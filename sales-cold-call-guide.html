@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LCD Internal / Sales Cold Call Guide</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ────────────────────────────────────────────────────────────
+       Standalone document: all CSS is embedded so this file can be
+       emailed, downloaded, or opened from anywhere with full LCD
+       branding — no dependency on the website's assets.
+       Base rules below are copied from assets/styles.css.
+       ──────────────────────────────────────────────────────────── */
+    :root {
+      --lcd-red: #E31E26;
+      --lcd-red-dark: #B81820;
+      --lcd-red-soft: rgba(227, 30, 38, 0.08);
+      --lcd-black: #1A1A1A;
+      --lcd-charcoal: #2D2D2D;
+      --lcd-grey: #6B6B6B;
+      --lcd-grey-light: #B8B8B8;
+      --lcd-bg: #FAFAFA;
+      --lcd-bg-card: #FFFFFF;
+      --lcd-bg-soft: #F2F2F2;
+      --lcd-border: #E5E5E5;
+      --lcd-accent: #1F4E79;
+      --lcd-warn: #C8801F;
+      --lcd-success: #2D8659;
+      --lcd-gold: #B89640;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.04), 0 1px 4px rgba(0,0,0,0.04);
+      --shadow-lg: 0 12px 32px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05);
+      --radius: 8px;
+      --radius-lg: 14px;
+      --radius-full: 999px;
+      --container: 1280px;
+      --container-tight: 1080px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    a { color: inherit; text-decoration: none; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--lcd-black);
+      background: var(--lcd-bg);
+      line-height: 1.55;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4 { color: var(--lcd-black); font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }
+    h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
+    h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); margin-bottom: 0.4rem; }
+    h3 { font-size: 1.25rem; font-weight: 700; }
+    h4 { font-size: 1rem; font-weight: 700; }
+    p { margin: 0 0 0.9rem 0; }
+    p:last-child { margin-bottom: 0; }
+    strong { font-weight: 700; color: var(--lcd-black); }
+    .eyebrow {
+      display: inline-block; color: var(--lcd-red); font-size: 0.72rem;
+      font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .section-title { margin-bottom: 0.5rem; }
+    .section-lede {
+      font-size: 1.05rem; color: var(--lcd-grey); max-width: 720px;
+      margin-bottom: 2.5rem; line-height: 1.6;
+    }
+    .text-center { text-align: center; }
+    .text-center .section-lede { margin-left: auto; margin-right: auto; }
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 1.5rem; }
+    .container-tight { max-width: var(--container-tight); margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 4.5rem 0; }
+    .section-alt { background: var(--lcd-bg-soft); }
+    .section-dark { background: var(--lcd-black); color: #FFFFFF; }
+    .section-dark h1, .section-dark h2, .section-dark h3, .section-dark h4 { color: #FFFFFF; }
+    .section-dark .section-lede { color: var(--lcd-grey-light); }
+    .card {
+      background: var(--lcd-bg-card); border: 1px solid var(--lcd-border);
+      border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-sm);
+    }
+    .card-grid { display: grid; gap: 1.25rem; }
+    .card-grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    .card h3 { margin-bottom: 0.4rem; font-size: 1.1rem; }
+    .card p { color: var(--lcd-grey); font-size: 0.92rem; line-height: 1.55; }
+    .tag {
+      display: inline-block; font-size: 0.66rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em; padding: 0.22rem 0.55rem;
+      border-radius: 4px; background: var(--lcd-bg-soft); color: var(--lcd-grey);
+    }
+    .tag-red { background: var(--lcd-red-soft); color: var(--lcd-red); }
+    .tag-blue { background: rgba(31,78,121,0.1); color: var(--lcd-accent); }
+    .tag-gold { background: rgba(184,150,64,0.12); color: var(--lcd-gold); }
+    .site-footer {
+      background: var(--lcd-black); color: var(--lcd-grey-light);
+      padding: 3rem 0 1.5rem; border-top: 4px solid var(--lcd-red);
+    }
+    @media (max-width: 700px) { .section { padding: 3rem 0; } }
+
+    /* ── Playbook-only styles ── */
+    .pb-banner {
+      background: var(--lcd-black); color: #fff; text-align: center;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 0.5rem 1rem;
+    }
+    .pb-banner span { color: var(--lcd-red); }
+
+    .pb-nav {
+      position: sticky; top: 0; z-index: 50; background: var(--lcd-bg-card);
+      border-bottom: 1px solid var(--lcd-border); box-shadow: var(--shadow-sm);
+      display: flex; gap: 0.25rem; overflow-x: auto; padding: 0.6rem 1rem;
+      -webkit-overflow-scrolling: touch;
+    }
+    .pb-nav a {
+      white-space: nowrap; font-size: 0.82rem; font-weight: 600;
+      padding: 0.35rem 0.8rem; border-radius: var(--radius-full);
+      color: var(--lcd-grey);
+    }
+    .pb-nav a:hover { background: var(--lcd-red-soft); color: var(--lcd-red); }
+
+    .pb-hero {
+      background: linear-gradient(135deg, var(--lcd-black), var(--lcd-charcoal));
+      color: #fff; padding: 3.5rem 1.5rem; text-align: center;
+    }
+    .pb-hero h1 { color: #fff; margin: 0.4rem 0 0.8rem; }
+    .pb-hero p { color: var(--lcd-grey-light); max-width: 760px; margin: 0 auto; }
+
+    .pb-callout {
+      background: var(--lcd-bg-card); border: 1px solid var(--lcd-border);
+      border-left: 4px solid var(--lcd-red); border-radius: var(--radius);
+      padding: 1.1rem 1.3rem; margin: 1rem 0; box-shadow: var(--shadow-sm);
+    }
+    .pb-callout strong { color: var(--lcd-red); }
+
+    .pb-script {
+      background: var(--lcd-bg-soft); border-radius: var(--radius);
+      padding: 1rem 1.2rem; margin: 0.8rem 0; font-size: 0.95rem;
+      border-left: 3px solid var(--lcd-charcoal); font-style: italic;
+    }
+    .pb-script::before { content: "YOU SAY"; display: block; font-style: normal;
+      font-size: 0.68rem; font-weight: 800; letter-spacing: 0.1em;
+      color: var(--lcd-grey); margin-bottom: 0.4rem; }
+    .pb-why {
+      font-size: 0.85rem; color: var(--lcd-grey); margin: 0.5rem 0 1rem;
+      padding-left: 1.2rem; border-left: 3px solid var(--lcd-gold);
+    }
+    .pb-why strong { color: var(--lcd-warn); }
+
+    details.pb-acc {
+      background: var(--lcd-bg-card); border: 1px solid var(--lcd-border);
+      border-radius: var(--radius); margin-bottom: 0.7rem; box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    details.pb-acc summary {
+      cursor: pointer; padding: 1rem 1.2rem; font-weight: 700; list-style: none;
+      display: flex; align-items: center; gap: 0.7rem;
+    }
+    details.pb-acc summary::-webkit-details-marker { display: none; }
+    details.pb-acc summary::after {
+      content: "+"; margin-left: auto; font-size: 1.2rem; font-weight: 800;
+      color: var(--lcd-red); transition: transform 0.15s ease;
+    }
+    details.pb-acc[open] summary::after { transform: rotate(45deg); }
+    details.pb-acc .pb-acc-body { padding: 0 1.2rem 1.2rem; }
+    .pb-step-num {
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+      background: var(--lcd-red); color: #fff; font-size: 0.85rem; font-weight: 800;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+
+    .pb-prod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 1rem; }
+    .pb-prod-grid details.pb-acc { margin-bottom: 0; align-self: start; }
+    .pb-field { margin-bottom: 0.7rem; font-size: 0.9rem; }
+    .pb-field b { display: block; font-size: 0.68rem; font-weight: 800;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--lcd-grey);
+      margin-bottom: 0.15rem; }
+
+    .pb-obj-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 1rem; }
+    .pb-obj {
+      background: var(--lcd-bg-card); border: 1px solid var(--lcd-border);
+      border-radius: var(--radius); padding: 1.2rem; box-shadow: var(--shadow-sm);
+      align-self: start;
+    }
+    .pb-obj-quote { font-weight: 700; font-size: 1rem; margin-bottom: 0.6rem; }
+    .pb-obj-quote::before { content: "THEY SAY"; display: block; font-size: 0.68rem;
+      font-weight: 800; letter-spacing: 0.1em; color: var(--lcd-red); margin-bottom: 0.2rem; }
+    .pb-obj-toggle {
+      background: none; border: 1px solid var(--lcd-red); color: var(--lcd-red);
+      font: inherit; font-size: 0.8rem; font-weight: 700; padding: 0.35rem 0.9rem;
+      border-radius: var(--radius-full); cursor: pointer;
+    }
+    .pb-obj-toggle:hover { background: var(--lcd-red); color: #fff; }
+    .pb-obj-answer { display: none; margin-top: 0.8rem; }
+    .pb-obj.open .pb-obj-answer { display: block; }
+
+    .pb-psy-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+    .pb-psy {
+      background: var(--lcd-bg-card); border: 1px solid var(--lcd-border);
+      border-top: 3px solid var(--lcd-accent); border-radius: var(--radius);
+      padding: 1.1rem 1.2rem; font-size: 0.9rem; box-shadow: var(--shadow-sm);
+    }
+    .pb-psy h4 { margin-bottom: 0.35rem; font-size: 0.95rem; }
+
+    /* ── Simulator ── */
+    .sim-wrap {
+      background: var(--lcd-bg-card); border: 1px solid var(--lcd-border);
+      border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+      max-width: 860px; margin: 0 auto; overflow: hidden;
+    }
+    .sim-head {
+      background: var(--lcd-charcoal); color: #fff; padding: 1rem 1.4rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .sim-head h3 { color: #fff; margin: 0; font-size: 1.05rem; }
+    .sim-score { font-size: 0.85rem; font-weight: 700; color: var(--lcd-grey-light); }
+    .sim-score b { color: #fff; }
+    .sim-log { padding: 1.4rem; min-height: 200px; }
+    .sim-msg { max-width: 85%; margin-bottom: 0.9rem; padding: 0.8rem 1rem;
+      border-radius: var(--radius); font-size: 0.93rem; line-height: 1.5; }
+    .sim-msg .who { display: block; font-size: 0.66rem; font-weight: 800;
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.25rem; opacity: 0.7; }
+    .sim-prospect { background: var(--lcd-bg-soft); border: 1px solid var(--lcd-border); }
+    .sim-rep { background: var(--lcd-red-soft); border: 1px solid rgba(227,30,38,0.25); margin-left: auto; }
+    .sim-coach { background: #FBF6E9; border: 1px solid #E8DBB6; font-size: 0.85rem;
+      color: #6B5A23; max-width: 100%; }
+    .sim-coach .who { color: var(--lcd-gold); }
+    .sim-choices { padding: 0 1.4rem 1.4rem; display: grid; gap: 0.6rem; }
+    .sim-choice {
+      text-align: left; font: inherit; font-size: 0.92rem; cursor: pointer;
+      background: var(--lcd-bg-card); border: 1.5px solid var(--lcd-border);
+      border-radius: var(--radius); padding: 0.85rem 1rem; transition: all 0.12s ease;
+    }
+    .sim-choice:hover { border-color: var(--lcd-red); background: var(--lcd-red-soft); }
+    .sim-end { padding: 1.4rem; border-top: 1px solid var(--lcd-border); text-align: center; }
+    .sim-end h4 { font-size: 1.3rem; margin-bottom: 0.4rem; }
+    .sim-end .grade { font-size: 0.9rem; color: var(--lcd-grey); margin-bottom: 1rem; }
+    .sim-restart {
+      font: inherit; font-weight: 700; cursor: pointer; border: none;
+      background: var(--lcd-red); color: #fff; padding: 0.7rem 1.6rem;
+      border-radius: var(--radius-full); margin: 0.25rem;
+    }
+    .sim-restart.alt { background: var(--lcd-charcoal); }
+    .sim-scenarios { padding: 1.4rem; display: grid; gap: 0.8rem; }
+    .sim-scenario {
+      text-align: left; font: inherit; cursor: pointer; background: var(--lcd-bg-card);
+      border: 1.5px solid var(--lcd-border); border-radius: var(--radius); padding: 1rem 1.2rem;
+    }
+    .sim-scenario:hover { border-color: var(--lcd-red); }
+    .sim-scenario b { display: block; margin-bottom: 0.2rem; }
+    .sim-scenario span { font-size: 0.85rem; color: var(--lcd-grey); }
+
+    /* ── Live-call mode: everything flat, scannable, Ctrl-F-able ── */
+    .pb-live-btn {
+      margin-left: auto; flex-shrink: 0; font: inherit; font-size: 0.82rem;
+      font-weight: 700; background: var(--lcd-red); color: #fff; border: none;
+      cursor: pointer; padding: 0.35rem 0.9rem; border-radius: var(--radius-full);
+    }
+    .pb-live-btn:hover { background: var(--lcd-red-dark); }
+    body.live-mode .pb-live-btn { background: var(--lcd-black); }
+    body.live-mode #simulator { display: none; }
+    body.live-mode .pb-hero { padding: 1.2rem 1.5rem; }
+    body.live-mode .pb-hero p { display: none; }
+    body.live-mode .section { padding: 2rem 0; }
+    body.live-mode .section-lede { margin-bottom: 1.2rem; }
+    body.live-mode .pb-obj-toggle { display: none; }
+
+    /* ── Reviewed sections (approved by sales leadership) ── */
+    .pb-approved {
+      border: 2px solid rgba(45,134,89,0.4); border-radius: var(--radius-lg);
+      padding: 1.5rem; background: rgba(45,134,89,0.04);
+    }
+    .pb-approved h3 { margin: 1.4rem 0 0.5rem; font-size: 1.05rem; }
+    .pb-approved h3:first-of-type { margin-top: 1rem; }
+    .pb-approved ul, .pb-approved ol { margin: 0.4rem 0 0.9rem 1.2rem; font-size: 0.93rem; }
+    .pb-approved li { margin-bottom: 0.45rem; }
+    .pb-approved-badge {
+      display: inline-block; background: var(--lcd-success); color: #fff;
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 0.25rem 0.7rem; border-radius: 4px;
+      margin-bottom: 0.8rem;
+    }
+    .pb-fill {
+      background: rgba(31,78,121,0.08); border-radius: 3px; padding: 0.05rem 0.35rem;
+      font-weight: 700; font-size: 0.85em; color: var(--lcd-accent);
+    }
+    .pb-script.pb-email { font-style: normal; }
+    .pb-script.pb-email::before { content: "EMAIL"; }
+
+    /* ── Print: expand everything, drop the interactive chrome ── */
+    @media print {
+      body { background: #fff; font-size: 11.5px; }
+      .pb-nav, .pb-banner, .pb-obj-toggle, #simulator { display: none !important; }
+      .pb-hero, .site-footer { background: #fff !important; padding: 1rem 0; border: none; }
+      .pb-hero h1 { color: var(--lcd-black); }
+      .pb-hero p, .site-footer p { color: var(--lcd-grey) !important; }
+      .section { padding: 1.4rem 0; }
+      .section-lede { margin-bottom: 1.2rem; }
+      .card, .pb-obj, .pb-psy, details.pb-acc, .pb-callout, .pb-script, .pb-approved {
+        break-inside: avoid; box-shadow: none;
+      }
+      .pb-obj-answer { display: block !important; }
+      details.pb-acc summary::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="pb-banner">LAN Cables Direct <span>&bull;</span> Internal Sales Enablement <span>&bull;</span> Not for Distribution</div>
+
+  <nav class="pb-nav" aria-label="Playbook sections">
+    <a href="#value">Value Prop</a>
+    <a href="#icp">Who to Call</a>
+    <a href="#personas">Who Picks Up</a>
+    <a href="#products">Product Positioning</a>
+    <a href="#callflow">The Call, Step by Step</a>
+    <a href="#objections">Objection Handling</a>
+    <a href="#cadence">Cadence</a>
+    <a href="#psychology">Sales Psychology</a>
+    <a href="#simulator">Call Simulator</a>
+    <button class="pb-live-btn" id="pb-live-btn" type="button" title="Flatten every script and objection play for fast scanning during a live call">&#9889; Live Call Mode</button>
+  </nav>
+
+  <header class="pb-hero">
+    <span class="eyebrow" style="color: var(--lcd-red);">Sales Cold Call Guide</span>
+    <h1>From "Hello?" to the First PO</h1>
+    <p>How to open a cold call with a data center prospect who has never heard of LAN Cables Direct, position every product we sell, survive the pushback, and walk away with a next step on the calendar &mdash; every time.</p>
+  </header>
+
+  <!-- ══════════════ VALUE PROP ══════════════ -->
+  <section class="section" id="value">
+    <div class="container-tight">
+      <span class="eyebrow">Know This Cold</span>
+      <h2 class="section-title">The Value Proposition</h2>
+      <p class="section-lede" style="margin-left:0;">Before you dial, you need one sentence you can say in your sleep. The prospect has never heard of us, so the value prop has to stand on <em>their</em> pain, not our brand.</p>
+
+      <div class="pb-callout">
+        <strong>The one-liner:</strong> "We're the direct supplier/manufacturer of the physical layer of the data center &mdash; fiber trunks, optics, DAC, copper, and power &mdash; tested before it ships, at your dock in 5&ndash;8 business days, without a distributor markup in between."
+      </div>
+
+      <div class="card-grid card-grid-2" style="margin-top:1.5rem;">
+        <div class="card">
+          <h3>Speed</h3>
+          <p>95% of custom fiber and copper assemblies dispatch in <strong>5&ndash;8 business days</strong>. Standard optics ship same-day from stock. The industry norm for custom MTP trunks is 4&ndash;6 weeks. This gap is our sharpest weapon &mdash; cabling should never be the thing holding up a turn-up.</p>
+        </div>
+        <div class="card">
+          <h3>Quality You Can Name</h3>
+          <p><strong>Corning glass. US Conec ferrules. SENKO connectors.</strong> Every assembly insertion-loss and return-loss tested; every transceiver coded, burned in, and verified on target silicon. No refurbished material, ever. When a prospect doubts an unknown brand, named components are the answer.</p>
+        </div>
+        <div class="card">
+          <h3>Direct Price</h3>
+          <p>No channel markup, no rebate structure, no distributor in the middle. Same parts the channel houses sell &mdash; without their overhead. On third-party optics versus OEM list, the savings are not 10&ndash;15%; they are often <strong>a multiple</strong>.</p>
+        </div>
+        <div class="card">
+          <h3>Accountability</h3>
+          <p><strong>One person, one phone number</strong>, one accountability chain. 15-year warranty on passive fiber and copper, 5-year on active optics and AOCs &mdash; against the OEM's typical 90 days to 1 year. Warranties are how a new vendor borrows trust it hasn't earned yet.</p>
+        </div>
+      </div>
+
+      <div class="pb-callout" style="border-left-color: var(--lcd-accent); margin-top:1.5rem;">
+        <strong style="color: var(--lcd-accent);">Positioning rule for brand-new prospects:</strong> never open with who we are &mdash; open with the two pains every infrastructure team recognizes instantly: <em>lead times that slip builds</em> and <em>OEM optic pricing</em>. Our name comes after they recognize the problem. A brand they've never heard of is a reason to hang up; a problem they live with every week is a reason to listen. <em>Which</em> pain you lead with depends on who answers &mdash; match it in <a href="#personas" style="color: var(--lcd-accent); font-weight:700;">The Four People Who Pick Up</a>.
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ ICP / WHO TO CALL ══════════════ -->
+  <section class="section section-alt" id="icp">
+    <div class="container-tight">
+      <span class="eyebrow">Before the Playbook: the List</span>
+      <h2 class="section-title">Who to Call &mdash; and Who to Skip</h2>
+      <p class="section-lede" style="margin-left:0;">The best opener in the world is wasted on the wrong company. Qualify the <em>list</em> before you qualify the prospect &mdash; an hour of list discipline is worth a week of great calls to dead accounts.</p>
+
+      <div class="pb-approved">
+        <span class="pb-approved-badge">Reviewed &amp; approved by sales leadership</span>
+
+        <h3>The bullseye &mdash; call these first</h3>
+        <ul>
+          <li><strong>Colocation / multi-tenant operators mid-expansion</strong> &mdash; recurring cross-connect and cage-build spend, and lead-time pain hits them hardest. Our cage-to-meet-me-room story fits exactly.</li>
+          <li><strong>AI / GPU cluster builders</strong> &mdash; 400G/800G optic volume, dense MTP backbone, brutally compressed timelines. The optics line item alone justifies the call.</li>
+          <li><strong>Enterprises running their own data centers</strong> &mdash; refresh cycles (10G&rarr;25G&rarr;100G) and a resented OEM optics bill. Slower to move, but sticky once landed.</li>
+          <li><strong>Regional cloud / hosting providers</strong> &mdash; hyperscaler problems without hyperscaler purchasing leverage. Direct pricing means more to them than to anyone.</li>
+        </ul>
+        <p style="font-size:0.93rem;">Common thread: they <strong>own their network gear</strong>, order cabling or optics at least quarterly, and have a build, refresh, or expansion inside 12 months.</p>
+
+        <h3>Worth a call &mdash; with eyes open</h3>
+        <ul>
+          <li><strong>Integrators and electrical contractors doing DC builds</strong> &mdash; real volume, but price-driven and loyal to their distributors. We sell both <strong>through</strong> them and <strong>around</strong> them &mdash; quote the contractor's BOM and pursue the end customer directly; the two don't conflict.</li>
+          <li><strong>MSPs managing client data centers</strong> &mdash; one relationship, many BOMs, but they may mark us up to their clients &mdash; accepted; their reorder volume is ours either way.</li>
+        </ul>
+
+        <h3>Skip, politely</h3>
+        <ul>
+          <li><strong>All-in public cloud companies</strong> &mdash; there is no layer 1 for them to buy.</li>
+          <li><strong>Colo tenants who don't own equipment</strong> &mdash; their operator buys the cabling. Ask who that is, exit warm, call the operator.</li>
+          <li><strong>One-off small cabling jobs</strong> (an office, a closet) &mdash; point them at the website and configurator; don't spend dials here.</li>
+        </ul>
+
+        <h3>Who to ask for</h3>
+        <p style="font-size:0.93rem;"><strong>First:</strong> Director/VP of Infrastructure, Data Center Operations Manager, Network Engineering lead &mdash; people who feel lead-time pain personally. <strong>Second:</strong> procurement &mdash; but only after a technical champion exists; procurement-first ends as a line card in a drawer. <strong>C-level</strong> only at small operators where the CTO still signs POs. How the conversation itself changes with the title: see <a href="#personas" style="color: var(--lcd-accent); font-weight:700;">The Four People Who Pick Up</a>.</p>
+
+        <h3>The three disqualifying questions</h3>
+        <ol>
+          <li><strong>"Do you run your own network gear, or is it all through your colo or MSP?"</strong> &mdash; No gear means no sale. Ask who handles it, exit warm, and call them instead.</li>
+          <li><strong>"How often does cabling or optics get ordered &mdash; monthly, quarterly, or when something breaks?"</strong> &mdash; Break-fix-only with no builds coming belongs on the nurture list, not the dial list.</li>
+          <li><strong>"Any build, refresh, or expansion on the calendar in the next 12 months?"</strong> &mdash; None, plus a low run-rate: park for 90 days with a trigger alert. Don't keep dialing hope.</li>
+        </ol>
+
+        <h3>Walk-away rules</h3>
+        <ul>
+          <li>A hard no is a no. Log it, leave the door open, stop calling.</li>
+          <li>Asked to be removed from the list: remove, log, honor it &mdash; without exception.</li>
+          <li>Single-vendor mandate enforced by procurement, with no technical contact willing to champion &mdash; there is no play here. Log it and move on.</li>
+          <li>Annual cable/optic spend below <strong>$25K</strong> &mdash; the math doesn't support pursuit; configurator link and a quarterly email instead.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ PERSONAS / WHO PICKS UP ══════════════ -->
+  <section class="section" id="personas">
+    <div class="container-tight">
+      <span class="eyebrow">Same Pitch, Wrong Ear = Dead Call</span>
+      <h2 class="section-title">The Four People Who Pick Up</h2>
+      <p class="section-lede" style="margin-left:0;">You qualified the <em>company</em> before dialing; you qualify the <em>person</em> in the first ten seconds. The opener (Step 1) never changes &mdash; honesty and permission work on everyone. The <strong>hook</strong> is what flexes: each of these four lives with a different pain, and leading with the wrong one ends the call. Listen for the job in how they answer, then run their script.</p>
+
+      <details class="pb-acc" open>
+        <summary><span class="tag tag-gold" style="flex-shrink:0;">Runs the Building</span> The Data Center Operator / Ops Manager</summary>
+        <div class="pb-acc-body">
+          <div class="pb-field"><b>Who they are</b>Colo and facilities side &mdash; uptime, tenant turn-ups, cross-connects, cage builds, the loading dock. In a colo, tenants often bring their own network gear, so this person may buy lots of fiber and patch and <em>no optics at all</em>.</div>
+          <div class="pb-field"><b>The pain that lands</b>A sold cage that isn't lit. Revenue starts when the tenant turns up, and cabling stuck in a distributor's queue is dead money on the floor.</div>
+          <div class="pb-script">"I'm with a data center supplier/manufacturer &mdash; we build the trunk fiber, cross-connect assemblies, and patch that cage builds wait on. The reason I'm calling: most colo teams tell me tenant turn-ups wait on cabling more than on anything else. When a cage is sold, how long until it's lit?"</div>
+          <div class="pb-field"><b>Discovery questions</b>"What's your turnaround promise on a cross-connect &mdash; and which part of it do you actually control?" &bull; "When a cage build slips a week, who hears about it first &mdash; you or the tenant?"</div>
+          <div class="pb-field"><b>Don't lead with</b>OEM optic pricing &mdash; they may not buy a single transceiver. Network-engineering depth. Lead with turn-up speed and the 5&ndash;8 day promise.</div>
+          <div class="pb-field"><b>A win looks like</b>A quote on the next cage build or cross-connect stock order &mdash; trunks, patch, and power cords on one PO.</div>
+        </div>
+      </details>
+
+      <details class="pb-acc">
+        <summary><span class="tag tag-red" style="flex-shrink:0;">Owns the Schedule</span> The Data Center Engineer (Design / Build)</summary>
+        <div class="pb-acc-body">
+          <div class="pb-field"><b>Who they are</b>The person with the drawings &mdash; specs the build, owns the project schedule, usually doesn't sign the PO. What they spec, purchasing buys.</div>
+          <div class="pb-field"><b>The pain that lands</b>The schedule. Long-lead cabling forces them to design around a six-week hole, and an install-day surprise (wrong polarity, a failed link) wrecks the week.</div>
+          <div class="pb-script">"I'm with a data center supplier/manufacturer &mdash; we supply the pre-terminated fiber that build schedules hinge on. The reason I'm calling: most build engineers tell me custom trunks get quoted four-to-six weeks and the schedule just eats it. What's the longest a cable order has ever held up one of your builds?"</div>
+          <div class="pb-field"><b>Discovery questions</b>"When you spec a build, do you pick the cabling vendor or does purchasing?" &bull; "What lead time are you forced to design around today?"</div>
+          <div class="pb-field"><b>Don't lead with</b>Price &mdash; it's not their budget and it's not their itch. Lead with lead time and polarity-verified, test-report-in-the-bag certainty.</div>
+          <div class="pb-field"><b>A win looks like</b>Getting written into the next BOM quote &mdash; and the specialty-cable offer ("send the drawing, quote in 24 hours") is the fastest way to their heart. Solve one weird problem and you're their vendor.</div>
+        </div>
+      </details>
+
+      <details class="pb-acc">
+        <summary><span class="tag tag-blue" style="flex-shrink:0;">Gets Paged at 2 A.M.</span> The Network Engineer</summary>
+        <div class="pb-acc-body">
+          <div class="pb-field"><b>Who they are</b>Runs the switches and the links. Rarely signs a PO &mdash; but in practice holds a veto over every optic that enters the building. No transceiver survives this person's distrust.</div>
+          <div class="pb-field"><b>The pain that lands</b>Risk, not price. Their nightmare is being the one blamed when a third-party optic flaps a link &mdash; and a "cheap optic" pitch makes that nightmare <em>more</em> vivid, not less.</div>
+          <div class="pb-script">"I'm with a data center supplier/manufacturer &mdash; we're the ones who code and burn in transceivers so they behave exactly like the OEM optic on your switches. The reason I'm calling: every network engineer I talk to likes the third-party price and hates the thought of being blamed for it at 2 a.m. Fair worry?"</div>
+          <div class="pb-field"><b>Discovery questions</b>"Have you run third-party optics before &mdash; and what happened?" &bull; "What would a third-party optic have to prove before you'd trust it in production?"</div>
+          <div class="pb-field"><b>Don't lead with</b>Savings percentages. Price enters later, framed as <em>their</em> win: "you walk the quote into your boss's office and look like the hero." Never ask them to buy &mdash; they can't.</div>
+          <div class="pb-field"><b>A win looks like</b>A technical champion: quote their highest-volume optic, lab pilot <em>after</em> they confirm the pricing looks good, and permission to use their name when you call the budget owner.</div>
+        </div>
+      </details>
+
+      <details class="pb-acc">
+        <summary><span class="tag" style="flex-shrink:0;">Does the Work</span> The Hands-On Tech / NOC</summary>
+        <div class="pb-acc-body">
+          <div class="pb-field"><b>Who they are</b>Racking, patching, tracing, the 2 a.m. fixes. Owns nothing on paper and everything in practice &mdash; and very often the person who answers the number you dialed.</div>
+          <div class="pb-field"><b>The pain that lands</b>Product ergonomics: snapped boots, stiff jackets, mystery polarity, gray-on-gray tracing at 2 a.m. They can't buy from you &mdash; but they know exactly what's bad about what's being bought.</div>
+          <div class="pb-script">"Sounds like I've got the person who actually does the work, not the person who signs for it &mdash; so I won't pitch you. One question and I'm gone: who decides what cabling and optics get bought there? &hellip; Appreciated. And between us &mdash; anything they keep buying that you hate working with?"</div>
+          <div class="pb-field"><b>Why that last question is gold</b>The tech's complaint becomes your discovery for the real buyer: "your floor team mentioned the patch boots keep snapping&hellip;" is the warmest cold open there is.</div>
+          <div class="pb-field"><b>Don't</b>Pitch pricing, ask them to pass along a brochure (it dies in a drawer), or treat them as an obstacle. They're the best scout in the building &mdash; and sometimes next year's ops manager.</div>
+          <div class="pb-field"><b>A win looks like</b>The right name, the best calling window, and one product gripe from the floor to open the real buyer's call with.</div>
+        </div>
+      </details>
+
+      <div class="pb-callout" style="border-left-color: var(--lcd-accent);">
+        <strong style="color: var(--lcd-accent);">The fifth person &mdash; procurement:</strong> per the rules above, procurement comes <em>after</em> a technical champion exists, never first. When you do reach them, their pain isn't speed or specs &mdash; it's risk and paperwork: lead with second-source resilience ("one supplier for trunks is a single point of failure"), simple vendor onboarding, and warranty terms. A procurement-first call without a champion is a line card in a drawer.
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ PRODUCT POSITIONING ══════════════ -->
+  <section class="section section-alt" id="products">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:2rem;">
+        <span class="eyebrow">Everything We Sell</span>
+        <h2 class="section-title">How to Position Each Product</h2>
+        <p class="section-lede">Click any product. Each card gives you the plain-English description, who cares about it, the word-for-word positioning line for a stranger, the discovery question that opens the topic, and the pushback you should expect.</p>
+      </div>
+
+      <div class="pb-callout" style="max-width:860px; margin:0 auto 1.5rem;">
+        <strong>The sequence matters.</strong> With a brand-new account: lead with the <em>wedge</em> (optics &mdash; biggest, most quantifiable savings), land the <em>easy yes</em> (DACs or patch cords &mdash; cheap, low-risk pilot), prove ourselves, then expand to MTP trunks (the lead-time story) and finally consolidate the whole rack &mdash; power cords, specialty, everything &mdash; onto one PO. Small steps. Nobody hands a stranger their backbone order on call one.
+      </div>
+
+      <div class="pb-prod-grid">
+
+        <details class="pb-acc" open>
+          <summary><span class="tag tag-red" style="flex-shrink:0;">The Wedge</span> Optical Transceivers</summary>
+          <div class="pb-acc-body">
+            <div class="pb-field"><b>What it is</b>Pluggable optics from 1G to 1.6T &mdash; SFP+/SFP28, QSFP28/QSFP56, QSFP-DD, OSFP, OSFP-XD. Coded for Cisco, Arista, Juniper, NVIDIA/Mellanox, Dell. MSA compliant &mdash; built to the same multi-source industry standard the OEM optics are.</div>
+            <div class="pb-field"><b>Who cares</b>Whoever signs the network hardware budget. Optics are often 10&ndash;15% of switch spend, and OEM list pricing is the most resented line item in the BOM. <strong>Caution:</strong> with the network <em>engineer</em> &mdash; who signs nothing but vetoes everything &mdash; lead with risk-removal, not price (see Who Picks Up).</div>
+            <div class="pb-script">"The optic inside the OEM box is built to the same MSA standard as ours. We code it for your switch, burn it in, test it on your silicon, and back it for five years instead of ninety days &mdash; at a fraction of what you're paying on the OEM line."</div>
+            <div class="pb-field"><b>Discovery question</b>"What did you pay for your last batch of 100G SR4 &mdash; and was that OEM or third-party?"</div>
+            <div class="pb-field"><b>Expected pushback</b>"Our switch vendor won't support third-party optics." Counter: MSA compliance, proper coding, then quote first &mdash; the free lab pilot is offered only after they confirm the pricing looks good. (Full script in Objections.)</div>
+          </div>
+        </details>
+
+        <details class="pb-acc">
+          <summary><span class="tag tag-blue" style="flex-shrink:0;">The Easy Yes</span> DAC / Twinax</summary>
+          <div class="pb-acc-body">
+            <div class="pb-field"><b>What it is</b>Direct-attach copper with the plugs built in. SFP+ through OSFP-XD, passive to 5m, active to 10m. Lowest latency, lowest cost in-rack link there is.</div>
+            <div class="pb-field"><b>Who cares</b>Anyone connecting servers to a ToR (top-of-rack) switch &mdash; the switch at the top of each rack that its servers plug into &mdash; which is everyone. It's a commodity they reorder constantly.</div>
+            <div class="pb-script">"DACs are the lowest-risk thing you could possibly try us on &mdash; it's a commodity part, you buy them all year, and ours are tested and a third cheaper. If we get one thing on your next order, make it this."</div>
+            <div class="pb-field"><b>Discovery question</b>"What's your standard in-rack link these days &mdash; 25G or 100G &mdash; and where are the DACs coming from?"</div>
+            <div class="pb-field"><b>Role in the sale</b>This is the foot in the door. A $400 DAC order that arrives fast and works perfectly is what earns the $40,000 trunk order.</div>
+          </div>
+        </details>
+
+        <details class="pb-acc">
+          <summary><span class="tag tag-red" style="flex-shrink:0;">Lead-Time Story</span> MTP/MPO Trunk Cables</summary>
+          <div class="pb-acc-body">
+            <div class="pb-field"><b>What it is</b>Pre-terminated Base-8 / Base-12 backbone fiber. OM3/OM4/OM5/OS2, Type A/B/C polarity, UPC or APC, plenum or non-plenum. 15-year warranty.</div>
+            <div class="pb-field"><b>Who cares</b>The build team. Trunks are the long-pole item &mdash; when trunks slip, the hall slips.</div>
+            <div class="pb-script">"Custom trunks are where the industry quotes you four to six weeks. We build to your exact spec &mdash; polarity verified, insertion-loss tested, Corning glass, US Conec ferrules &mdash; and 95% of orders are on your dock in five to eight business days."</div>
+            <div class="pb-field"><b>Discovery question</b>"On your last trunk order &mdash; how long from PO to loading dock?"</div>
+            <div class="pb-field"><b>Expected pushback</b>"Everyone promises fast lead times." Counter: "Then make us prove it &mdash; put one trunk on the next order and start a stopwatch."</div>
+          </div>
+        </details>
+
+        <details class="pb-acc">
+          <summary><span class="tag tag-red" style="flex-shrink:0;">Density Play</span> MTP Array / Breakout</summary>
+          <div class="pb-acc-body">
+            <div class="pb-field"><b>What it is</b>MTP-to-LC fan-outs, 1:4 and 1:8 splits, harnesses, transition modules. Polarity verified, polish tested.</div>
+            <div class="pb-field"><b>Who cares</b>Anyone running 400G at the leaf &mdash; the switch layer the racks uplink into &mdash; and breaking out to 4&times;100G at the server; the standard pattern in modern builds.</div>
+            <div class="pb-script">"If you're breaking 400G out to four-by-100 at the leaf, the harness is where polarity mistakes live. Ours ship polarity-verified with the test report in the bag &mdash; your techs plug, they don't troubleshoot."</div>
+            <div class="pb-field"><b>Discovery question</b>"Are you breaking out 400G to 100G at the leaf yet, or still straight runs?"</div>
+            <div class="pb-field"><b>Pairing</b>Always quoted alongside trunks &mdash; one conversation, one PO.</div>
+          </div>
+        </details>
+
+        <details class="pb-acc">
+          <summary><span class="tag" style="flex-shrink:0;">Fast Win</span> Fiber Patch Cords</summary>
+          <div class="pb-acc-body">
+            <div class="pb-field"><b>What it is</b>LC, SC, ST, FC; duplex, simplex, uniboot; OM3/OM4/OM5/OS2; any color, any length; insertion-loss tested. 15-year warranty.</div>
+            <div class="pb-field"><b>Who cares</b>Operations. Patch cords are the unglamorous reorder that someone is always chasing.</div>
+            <div class="pb-script">"Patch cords are the part nobody wants to think about until they're short fifty of them on a Friday. Any length, any color, tested, and they ride along on the same PO as everything else."</div>
+            <div class="pb-field"><b>Discovery question</b>"Who handles the patch cord reorders &mdash; and how often do they run short mid-job?"</div>
+            <div class="pb-field"><b>Role in the sale</b>Filler item that makes every order bigger and every reorder a habit. Habits are the moat.</div>
+          </div>
+        </details>
+
+        <details class="pb-acc">
+          <summary><span class="tag" style="flex-shrink:0;">Fast Win</span> Copper Patch Cords</summary>
+          <div class="pb-acc-body">
+            <div class="pb-field"><b>What it is</b>CAT6A/CAT6/CAT5E, shielded S/FTP and unshielded U/UTP, snagless boots, slim profile, color-coded. 15-year warranty.</div>
+            <div class="pb-field"><b>Who cares</b>Anyone with a copper plant &mdash; management networks, OOB, enterprise refresh.</div>
+            <div class="pb-script">"Color-coded CAT6A is the cheapest cable-management decision you'll ever make &mdash; your ToR stops looking like spaghetti and your techs stop tracing cables at 2 a.m."</div>
+            <div class="pb-field"><b>Discovery question</b>"Is your management network color-coded, or is it the classic gray-on-gray guessing game?"</div>
+            <div class="pb-field"><b>Role in the sale</b>Same as fiber patch &mdash; ride-along revenue and reorder habit.</div>
+          </div>
+        </details>
+
+        <details class="pb-acc">
+          <summary><span class="tag tag-blue" style="flex-shrink:0;">Reach Play</span> Active Optical Cables</summary>
+          <div class="pb-acc-body">
+            <div class="pb-field"><b>What it is</b>Pre-terminated fiber with the optics integrated on both ends. 10G&ndash;800G, 1m to 100m, straight or breakout. 5-year warranty.</div>
+            <div class="pb-field"><b>Who cares</b>Teams running links past DAC reach &mdash; across the row, between rows &mdash; who don't want to manage separate optics and fiber.</div>
+            <div class="pb-script">"Past three meters, copper gets heavy and power-hungry. An AOC is one part number instead of two optics plus a cable &mdash; lighter, cooler, and nothing to mismatch."</div>
+            <div class="pb-field"><b>Discovery question</b>"How are you handling the row-scale links today &mdash; DAC stretched past its comfort zone, or separate optics and fiber?"</div>
+            <div class="pb-field"><b>Pairing</b>Natural follow-on once they're buying DACs from us.</div>
+          </div>
+        </details>
+
+        <details class="pb-acc">
+          <summary><span class="tag tag-gold" style="flex-shrink:0;">The Sleeper</span> IEC Power Cords</summary>
+          <div class="pb-acc-body">
+            <div class="pb-field"><b>What it is</b>C13/C14, C14/C15, C19/C20, locking variants (P-Lock, V-Lock), color-coded, custom lengths, NEMA-to-IEC PDU whips.</div>
+            <div class="pb-field"><b>Who cares</b>Operations and anyone who has ever caused an outage by brushing a power cord.</div>
+            <div class="pb-script">"The dumbest outage in the data center is a power cord vibrating loose. Locking cords cost pennies more and make that outage impossible &mdash; and color-coding A and B feeds means nobody ever pulls the wrong one."</div>
+            <div class="pb-field"><b>Discovery question</b>"Are your A and B feeds color-coded, and are the cords locking?"</div>
+            <div class="pb-field"><b>Role in the sale</b>The consolidation play: once they buy three categories from us, power cords make us the single vendor for the whole rack's layer 1.</div>
+          </div>
+        </details>
+
+        <details class="pb-acc">
+          <summary><span class="tag" style="flex-shrink:0;">Engineering Hook</span> Specialty Network Cables</summary>
+          <div class="pb-acc-body">
+            <div class="pb-field"><b>What it is</b>Custom hybrids, armored fiber, ruggedized assemblies. Built from a drawing.</div>
+            <div class="pb-field"><b>Who cares</b>The engineer with the weird problem no catalog solves &mdash; the cross-building run, the under-floor armored span, the one-off harness.</div>
+            <div class="pb-script">"If you can sketch it on a napkin, we can build it. Send the drawing &mdash; you'll have a quote back inside 24 hours."</div>
+            <div class="pb-field"><b>Discovery question</b>"What's the one cabling problem on your floor that no catalog part ever solved?"</div>
+            <div class="pb-field"><b>Role in the sale</b>Turns us from a parts catalog into an engineering partner. Engineers who get their weird problem solved become internal champions.</div>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ CALL FLOW ══════════════ -->
+  <section class="section" id="callflow">
+    <div class="container-tight">
+      <span class="eyebrow">The Anatomy of the Call</span>
+      <h2 class="section-title">The Cold Call, Step by Step</h2>
+      <p class="section-lede" style="margin-left:0;">The goal of a cold call is <strong>not a sale</strong>. It is the next small step: a 15-minute meeting, or a one-page price comparison with a scheduled follow-up. Every line below is built around that. Click each stage.</p>
+
+      <details class="pb-acc" open>
+        <summary><span class="pb-step-num">0</span> Before You Dial &mdash; 60 Seconds of Prep</summary>
+        <div class="pb-acc-body">
+          <p>Find <strong>one trigger</strong> and <strong>one name</strong>. A trigger is anything that means they're buying: an expansion announcement, a new hall, job postings for DC techs, a colo win, an AI cluster press release. The name is the infrastructure / network / procurement lead. One minute on their website and LinkedIn is enough &mdash; this is a cold call, not a thesis.</p>
+          <div class="pb-why"><strong>Why:</strong> one specific, true detail ("saw you're standing up the Ashburn hall") makes you sound like the 1-in-50 caller who did homework. Specificity is credibility you don't have to claim.</div>
+          <p>Decide your <strong>wedge product</strong> before dialing: optics if they run their own network gear, trunks if they're mid-build, DACs if you know nothing. Have one real number ready (e.g., OEM list vs. our price on 100G SR4). And decide <strong>who you expect to answer</strong> &mdash; the pain you lead with changes with the job (see <a href="#personas" style="color: var(--lcd-red); font-weight:700;">The Four People Who Pick Up</a>).</p>
+        </div>
+      </details>
+
+      <details class="pb-acc" open>
+        <summary><span class="pb-step-num">1</span> The Opener &mdash; First 10 Seconds (No Company Name Yet)</summary>
+        <div class="pb-acc-body">
+          <p>They answer. Your job in the first ten seconds is to <strong>not sound like every other sales call</strong>, and to get permission to keep talking. You do <em>not</em> lead with your name or the company name &mdash; you lead with honesty and a category.</p>
+          <div class="pb-script">"Hi, is this Dana? &hellip; Dana, I'll be straight with you &mdash; this is a cold call. You can hang up on me now, or give me 27 seconds and then decide. Fair enough?"</div>
+          <div class="pb-why"><strong>Why it works:</strong> a <em>pattern interrupt</em> &mdash; admitting it's a cold call is the one thing telemarketers never do, so the brain's hang-up reflex misfires. Offering the hang-up restores their sense of <em>autonomy</em>: people resist hardest when they feel trapped, and relax when given an exit. "27 seconds" is oddly specific, which reads as honest and usually earns a smile.</div>
+          <div class="pb-script">Alternative (qualifier opener): "Hi Dana &mdash; quick question before anything else: are you the right person for the cabling and optics side of your data center builds?"</div>
+          <div class="pb-why"><strong>Why:</strong> opens with a question they can answer easily, gets a first small "yes," and confirms you're talking to the right person. Slightly more salesy-sounding than the honest opener &mdash; use it when you're unsure of your target.</div>
+          <div class="pb-callout"><strong>What you never do:</strong> "Hi! How are you today?!" (instant telemarketer pattern-match), or opening with "This is [name] from LAN Cables Direct" &mdash; an unknown brand name is the easiest thing in the world to say no to. The brand comes later, when it has context. But note the companion rule in Step 2: if they <em>ask</em> who you are, you answer immediately.</div>
+        </div>
+      </details>
+
+      <details class="pb-acc" open>
+        <summary><span class="pb-step-num">2</span> The Hook &mdash; Category + Reason + Pain (Seconds 10&ndash;40)</summary>
+        <div class="pb-acc-body">
+          <p>They gave you the 27 seconds. Spend it on a three-part sentence: <strong>what category we are</strong>, <strong>why you're calling</strong>, and <strong>a pain hypothesis ending in a question</strong>.</p>
+          <div class="pb-script">"I'm with a data center supplier/manufacturer &mdash; we supply the fiber trunks, optics, and DAC that builds end up waiting on. The reason I'm calling: most infrastructure teams I talk to are quoted four-to-six weeks on custom MTP and pay OEM list on optics. Is either of those true over there?"</div>
+          <div class="pb-why"><strong>Why it works:</strong> "data center supplier/manufacturer" gives them a category to file you under without a brand to dismiss. "The reason I'm calling" exploits the <em>because effect</em> &mdash; people comply far more with requests that carry a stated reason, almost regardless of the reason. The pain hypothesis ends in a question, which hands the conversation to them &mdash; and "most infrastructure teams I talk to" is quiet <em>social proof</em> that people like them take this call.</div>
+          <div class="pb-callout"><strong>Match the pain to the person:</strong> the script above is tuned for an infrastructure director. A colo ops manager hears <em>tenant turn-ups</em>; a build engineer hears <em>schedule</em>; a network engineer hears <em>2 a.m. blame</em>, never price. Word-for-word variants for each are in <a href="#personas" style="color: var(--lcd-red); font-weight:700;">The Four People Who Pick Up</a>.</div>
+          <div class="pb-callout"><strong>The "who are you?" rule:</strong> at some point they'll ask "who is this exactly?" Answer immediately and fully: <em>"LAN Cables Direct &mdash; I'm Mike. We're a direct supplier/manufacturer, no distributor in between."</em> Delaying the brand until there's context is technique. Dodging a direct question is evasion, and evasion ends calls. <strong>Never dodge twice.</strong></div>
+        </div>
+      </details>
+
+      <details class="pb-acc">
+        <summary><span class="pb-step-num">3</span> Discovery &mdash; Ask, Don't Pitch (Minutes 1&ndash;3)</summary>
+        <div class="pb-acc-body">
+          <p>If they engage at all, resist the urge to pitch. Ask, label, and quantify. The prospect should do most of the talking. Your best questions:</p>
+          <ul style="margin: 0.5rem 0 1rem 1.2rem; font-size: 0.95rem;">
+            <li>"On your last trunk order &mdash; how long from PO to dock?"</li>
+            <li>"When the cabling slips, what happens to the turn-up date?"</li>
+            <li>"Rough math &mdash; what does a day of idle hall cost you?"</li>
+            <li>"What are you paying per 100G SR4 today &mdash; OEM or third-party?"</li>
+            <li>"Who feels it first when parts run short mid-build &mdash; you or your contractor?"</li>
+          </ul>
+          <div class="pb-why"><strong>Why:</strong> people aren't persuaded by your claims; they're persuaded by their own answers. The cost-of-delay question converts a shrug ("lead times are what they are") into a number &mdash; and a number creates urgency you don't have to manufacture. Use <em>labeling</em> ("sounds like waiting has become part of the plan&hellip;") to show you heard them before asking the next question.</div>
+        </div>
+      </details>
+
+      <details class="pb-acc">
+        <summary><span class="pb-step-num">4</span> The Micro-Commitment Ladder &mdash; Small Steps to the Big Prize</summary>
+        <div class="pb-acc-body">
+          <p>Never ask a stranger for the account. Ask for the smallest next step they'd be unreasonable to refuse, then the next. The ladder:</p>
+          <ol style="margin: 0.5rem 0 1rem 1.2rem; font-size: 0.95rem;">
+            <li><strong>27 seconds</strong> of attention &rarr;</li>
+            <li><strong>One answer</strong> to a discovery question &rarr;</li>
+            <li><strong>One price-and-lead-time comparison</strong> on their highest-volume SKU (one part, one page) &rarr;</li>
+            <li><strong>15 minutes</strong> with the budget owner &rarr;</li>
+            <li><strong>A pilot</strong>: five optics in the lab, or DACs/patch on the next order (samples and pilot units only after they've seen the quote and confirmed the pricing looks good) &rarr;</li>
+            <li><strong>A line on the next BOM</strong> &rarr; the account.</li>
+          </ol>
+          <div class="pb-script">"Here's a low-effort way to find out if I'm wasting your time: pick the part you buy most &mdash; optics, trunks, DAC &mdash; and I'll send you one price-and-lead-time comparison against what you're paying. One part, one page. If it's not compelling, you've lost five minutes. Worth a look?"</div>
+          <div class="pb-why"><strong>Why it works:</strong> <em>commitment and consistency</em> &mdash; people who take a small step act consistently with it and become far more likely to take the next one. "Maybe I'm wasting your time" is a <em>takeaway</em> that lowers the pressure, and "one part, one page" makes the ask feel almost free.</div>
+        </div>
+      </details>
+
+      <details class="pb-acc">
+        <summary><span class="pb-step-num">5</span> The Close &mdash; Always Leave With a Calendar Entry</summary>
+        <div class="pb-acc-body">
+          <div class="pb-script">"I'll send the SR4 comparison today. If the math is interesting, the useful next step is 15 minutes with whoever owns the optics budget &mdash; does Thursday morning or Friday afternoon work better for a placeholder?"</div>
+          <div class="pb-why"><strong>Why:</strong> the <em>alternative choice close</em> &mdash; "Thursday or Friday" converts a yes/no decision into a scheduling decision. "Placeholder" lowers the stakes of accepting. Confirm their email address while still on the phone and send the invite before you hang up &mdash; an invite accepted live is ten times stickier than one sent later.</div>
+          <p>End at the peak. Once you have the next step, <strong>stop selling and get off the phone warmly</strong>: "That's all I needed &mdash; talk Thursday." The last ten seconds are what they remember.</p>
+        </div>
+      </details>
+
+      <details class="pb-acc">
+        <summary><span class="pb-step-num">6</span> Gatekeepers &amp; Voicemail</summary>
+        <div class="pb-acc-body">
+          <p><strong>Gatekeepers are allies, not obstacles.</strong> Ask for help &mdash; people like to help &mdash; and give them an honest one-liner they can repeat:</p>
+          <div class="pb-script">"Morning &mdash; hoping you can point me in the right direction. Who looks after purchasing for the cabling and optics on your data center builds? &hellip; And is now a decent time to catch them?"</div>
+          <div class="pb-why"><strong>Why:</strong> confidence and brevity get transfers; evasion gets "send it to info@". <strong>Never lie to a gatekeeper</strong> ("it's a personal call") &mdash; it gets discovered and burns the whole account.</div>
+          <p><strong>Voicemail</strong> exists to warm the next call, not to get a callback. Keep it under 30 seconds, leave one concrete number, and pair it with an email the same hour:</p>
+          <div class="pb-script">"Dana, this is Mike with LAN Cables Direct &mdash; we're a data center supplier/manufacturer, fiber and optics. One number for you: most teams pay $X for a 100G SR4 on the OEM line; ours is $Y, tested, five-year warranty. I'm emailing you the comparison right now &mdash; same subject line as this call. I'll try you again Thursday morning."</div>
+          <div class="pb-why"><strong>Why:</strong> the voicemail-plus-email pair builds familiarity (<em>mere exposure</em> &mdash; people warm to what they've encountered before), so Thursday's call is no longer fully cold. Note: in a voicemail you <em>do</em> lead with name and company &mdash; the no-brand-first rule is for live dialogue, where you can build context before the label.</div>
+        </div>
+      </details>
+
+      <details class="pb-acc">
+        <summary><span class="pb-step-num">7</span> After the Call &mdash; Same Day, Every Time</summary>
+        <div class="pb-acc-body">
+          <p>Within the hour: a three-line recap email with the one comparison you promised, the brochure attached, and the agreed next step restated with the date. Subject line referencing the call ("Per our call &mdash; the SR4 numbers"). Log the wedge product, the objections you heard, and the trigger for next time.</p>
+          <div class="pb-why"><strong>Why:</strong> speed of follow-up is the cheapest, most reliable differentiator in sales &mdash; and it quietly proves the entire value proposition: <em>we're the fast ones.</em></div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ══════════════ OBJECTIONS ══════════════ -->
+  <section class="section section-alt" id="objections">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:2rem;">
+        <span class="eyebrow">When They Push Back</span>
+        <h2 class="section-title">Objection Handling</h2>
+        <p class="section-lede">An objection on a cold call is a reflex, not a decision. Rule one: <strong>never argue</strong> &mdash; agree, reframe, and ask a question. Read the objection, think about what you'd say, then reveal the play.</p>
+      </div>
+
+      <div class="pb-obj-grid">
+
+        <div class="pb-obj">
+          <div class="pb-obj-quote">"We already have a supplier."</div>
+          <button class="pb-obj-toggle" type="button">Show the play</button>
+          <div class="pb-obj-answer">
+            <div class="pb-script">"I'd be worried if you didn't. I'm not calling to replace anyone &mdash; most of our accounts started us as the backup quote. Honest question: when your current supplier quotes four weeks on trunks, what's your plan B?"</div>
+            <div class="pb-why"><strong>Why it works:</strong> agreeing disarms the reflex; "backup quote" asks for nothing, so there's nothing to refuse. The plan-B question plants <em>loss aversion</em> &mdash; suddenly having no backup feels like the risk.</div>
+          </div>
+        </div>
+
+        <div class="pb-obj">
+          <div class="pb-obj-quote">"Not interested."</div>
+          <button class="pb-obj-toggle" type="button">Show the play</button>
+          <div class="pb-obj-answer">
+            <div class="pb-script">"Fair enough &mdash; I'll let you go. One question before I do, then I'm gone: when a build is waiting on cabling stuck in a distributor's queue, what does that cost you per day?"</div>
+            <div class="pb-why"><strong>Why it works:</strong> the <em>takeaway</em>. "I'll let you go" removes the pressure they were bracing against; with nothing to push back on, the single question often gets answered &mdash; and an answer reopens the call. If they still say no: thank them warmly and exit. A graceful exit keeps the number callable in six months.</div>
+          </div>
+        </div>
+
+        <div class="pb-obj">
+          <div class="pb-obj-quote">"Just send me an email."</div>
+          <button class="pb-obj-toggle" type="button">Show the play</button>
+          <div class="pb-obj-answer">
+            <div class="pb-script">"Happy to &mdash; and so I don't send you the generic brochure, one question: what do you buy most &mdash; optics, MTP trunks, or DAC? &hellip; I'll build the email around that and call you Thursday to see if the math is worth a conversation. Fair?"</div>
+            <div class="pb-why"><strong>Why it works:</strong> "send me an email" is usually a polite hang-up. Agreeing costs nothing; the qualifying question plus a named follow-up day converts the brush-off into two micro-commitments. An unqualified brochure email joins the other forty in the graveyard.</div>
+          </div>
+        </div>
+
+        <div class="pb-obj">
+          <div class="pb-obj-quote">"We only buy OEM optics &mdash; our vendor won't support third-party."</div>
+          <button class="pb-obj-toggle" type="button">Show the play</button>
+          <div class="pb-obj-answer">
+            <div class="pb-script">"That's the most common thing I hear, so let me be precise. The optic in the OEM box is built to the same MSA standard as ours; ours is coded for your switch and burned in on the same silicon. Vendors can't void support for third-party optics just for being third-party &mdash; and ours carry five years against their ninety days. Don't take my word for it: let me quote your highest-volume optic, and if the number looks good, I'll put five in your lab &mdash; on us &mdash; and you can see if TAC even notices."</div>
+            <div class="pb-why"><strong>Why it works:</strong> meets the fear head-on with facts, then drops the ask from "switch your optics" to "look at one quote" &mdash; with the free lab pilot as the prize behind it. The warranty contrast reframes who's actually taking the risk. <strong>Sample policy:</strong> the pilot units ship only after they've seen the quote and confirmed the pricing looks good. <strong>Rep glossary:</strong> MSA is the multi-source industry standard every transceiver maker builds to; TAC is the switch vendor's technical-support team &mdash; it's the engineer's own vocabulary, so use it.</div>
+          </div>
+        </div>
+
+        <div class="pb-obj">
+          <div class="pb-obj-quote">"We buy everything through our VAR / distributor."</div>
+          <button class="pb-obj-toggle" type="button">Show the play</button>
+          <div class="pb-obj-answer">
+            <div class="pb-script">"And I'm not asking you to fire them &mdash; VARs are great at a lot of things. But on cables and optics you're paying their margin for a part they just pass through. Do one thing: take a line item off your last invoice &mdash; whichever one &mdash; and let me quote it. If the gap's not worth a conversation, I'll never mention it again."</div>
+            <div class="pb-why"><strong>Why it works:</strong> never attack the incumbent relationship &mdash; shrink the comparison to one line item, where the direct-price story is undeniable and the effort to check is near zero.</div>
+          </div>
+        </div>
+
+        <div class="pb-obj">
+          <div class="pb-obj-quote">"I've never heard of you. How do I know your stuff isn't junk?"</div>
+          <button class="pb-obj-toggle" type="button">Show the play</button>
+          <div class="pb-obj-answer">
+            <div class="pb-script">"Fair &mdash; you haven't, and skepticism is the right default. So judge the parts, not the pitch: Corning glass, US Conec ferrules, SENKO connectors &mdash; the same names in the assemblies you already buy. Every assembly ships with its insertion-loss test report in the bag, and we back passive product for fifteen years. Tell me the part you buy most &mdash; I'll quote it, and if the pricing looks right to you, I'll send a sample your techs can put on a meter."</div>
+            <div class="pb-why"><strong>Why it works:</strong> validating the skepticism builds trust; named components let us <em>borrow</em> credibility from brands they already trust; the test report and 15-year warranty shift risk from them to us. The quote-then-sample sequence puts the verdict in their hands &mdash; people trust their own conclusions &mdash; while honoring the sample policy: price first, sample after they confirm it looks good.</div>
+          </div>
+        </div>
+
+        <div class="pb-obj">
+          <div class="pb-obj-quote">"I'm too busy &mdash; call me some other time."</div>
+          <button class="pb-obj-toggle" type="button">Show the play</button>
+          <div class="pb-obj-answer">
+            <div class="pb-script">"Totally get it &mdash; I'll be brief now and gone in ten seconds. I'm with a data center supplier/manufacturer; the call is about cutting your cabling lead times roughly in half. Does Thursday at 9 or Friday at 2 work better for ten minutes?"</div>
+            <div class="pb-why"><strong>Why it works:</strong> respect the time pressure but don't accept "some other time" &mdash; vague deferrals never convert. One sentence of value plus an alternative-choice close turns "later" into a calendar slot. If they pick one, send the invite immediately.</div>
+          </div>
+        </div>
+
+        <div class="pb-obj">
+          <div class="pb-obj-quote">"Who is this? What company are you with?"</div>
+          <button class="pb-obj-toggle" type="button">Show the play</button>
+          <div class="pb-obj-answer">
+            <div class="pb-script">"LAN Cables Direct &mdash; I'm Mike. We're the direct supplier/manufacturer of data center cabling and optics, no distributor in between. And the reason for the call is the part that matters to you: &hellip;"</div>
+            <div class="pb-why"><strong>Why it works:</strong> the no-brand-first technique has a hard limit &mdash; the moment they ask, you answer, fully and without hesitation, then bridge straight back to their pain. Delaying the brand once builds curiosity; dodging a direct question reads as evasive, and evasion ends calls. <strong>Never dodge twice.</strong></div>
+          </div>
+        </div>
+
+        <div class="pb-obj">
+          <div class="pb-obj-quote">"Your price sounds too good &mdash; what's the catch?"</div>
+          <button class="pb-obj-toggle" type="button">Show the play</button>
+          <div class="pb-obj-answer">
+            <div class="pb-script">"The catch is what's missing: there's no distributor between us, so there's no channel markup and no rebate structure baked into the price. Same components, same testing &mdash; we just sell it to you instead of selling it to someone who sells it to you."</div>
+            <div class="pb-why"><strong>Why it works:</strong> "too cheap" is a quality objection in disguise. Giving a structural reason for the price (the <em>because</em> effect again) lets them accept the number without concluding the product is inferior.</div>
+          </div>
+        </div>
+
+        <div class="pb-obj">
+          <div class="pb-obj-quote">"We're not buying anything right now."</div>
+          <button class="pb-obj-toggle" type="button">Show the play</button>
+          <div class="pb-obj-answer">
+            <div class="pb-script">"Perfect timing, honestly &mdash; nobody makes a good vendor decision mid-crisis. When's the next build or refresh on the calendar? &hellip; Then here's all I want: I'll send one price sheet now so you have a benchmark, and I'll check in a month before that date. Fair?"</div>
+            <div class="pb-why"><strong>Why it works:</strong> reframes "no budget now" as the ideal moment to evaluate calmly. The benchmark price sheet plants an <em>anchor</em> they'll compare every future quote against, and the dated follow-up is a micro-commitment that keeps the door legitimately open.</div>
+          </div>
+        </div>
+
+        <div class="pb-obj">
+          <div class="pb-obj-quote">"I'm not the right person &mdash; purchasing handles that."</div>
+          <button class="pb-obj-toggle" type="button">Show the play</button>
+          <div class="pb-obj-answer">
+            <div class="pb-script">"Honestly, I'd rather talk to you first anyway &mdash; you're the one who feels it when the parts are late or flaky; purchasing just signs. Two quick things and I'm gone: what do you buy most on the cabling side? &hellip; And when I call purchasing, can I say you and I spoke?"</div>
+            <div class="pb-why"><strong>Why it works:</strong> this is the #1 thing engineers and ops folks say, and it's an <em>opportunity</em>, not a brush-off. A call to purchasing that opens with a colleague's name is no longer cold &mdash; internal referral beats any script. <strong>Always ask permission to use the name</strong>; an ambush name-drop burns both contacts. And having helped you once, they're inclined to keep helping &mdash; that's commitment-consistency turning a wrong number into a champion.</div>
+          </div>
+        </div>
+
+        <div class="pb-obj">
+          <div class="pb-obj-quote">"You've reached the NOC &mdash; we don't take sales calls."</div>
+          <button class="pb-obj-toggle" type="button">Show the play</button>
+          <div class="pb-obj-answer">
+            <div class="pb-script">"And I won't give you one. You'd know better than anyone though &mdash; who owns cabling and optics purchasing there? &hellip; Appreciated. Last one, just between us: anything they keep buying that you hate working with?"</div>
+            <div class="pb-why"><strong>Why it works:</strong> NOC techs screen pitches all day, so <em>refusing to pitch</em> is the pattern interrupt. The routing question respects their time; the gripe question turns the screen into a scout &mdash; a complaint from the floor ("the patch boots keep snapping") is the warmest possible opener for the real buyer's call. Never pitch the tech, never ask them to pass along a brochure &mdash; both die in the NOC.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ CADENCE ══════════════ -->
+  <section class="section" id="cadence">
+    <div class="container-tight">
+      <span class="eyebrow">One Call Is Not the Game</span>
+      <h2 class="section-title">The Cadence: 8 Touches in 21 Days</h2>
+      <p class="section-lede" style="margin-left:0;">Most cold calls end in a no-answer, and most meetings come from touch three or later. The call flow above is what you run whenever they pick up &mdash; this is what you run when they don't. One sequence per prospect, then park it.</p>
+
+      <div class="pb-approved">
+        <span class="pb-approved-badge">Reviewed &amp; approved by sales leadership</span>
+        <p style="font-size:0.88rem; color:var(--lcd-grey);">Values marked <span class="pb-fill">[$ &mdash; pricing sheet]</span> are filled in by the rep from the current pricing sheet before dialing or sending &mdash; they change too often to hardcode here.</p>
+
+        <h3>The sequence</h3>
+        <ol>
+          <li><strong>Day 1, morning &mdash; Call #1.</strong> They pick up: run the playbook. No answer: voicemail #1 (the Step 6 script) <em>plus</em> the pairing email within the hour.</li>
+          <li><strong>Day 3 &mdash; Call #2.</strong> Different time of day. No voicemail &mdash; two messages in three days reads as pestering.</li>
+          <li><strong>Day 5 &mdash; Email: "One number."</strong> Template below. Shortest email of the sequence, and often the one that gets the reply.</li>
+          <li><strong>Day 8 &mdash; Call #3 + voicemail #2.</strong> Script below &mdash; it references the Day 5 email, so the two touches reinforce each other.</li>
+          <li><strong>Day 11 &mdash; LinkedIn connect.</strong> Short note, zero pitch: "Called a couple times about cabling lead times &mdash; figured I'd put a face to the voicemails." Within policy &mdash; keep it to the connect note; the selling stays on the phone and in email.</li>
+          <li><strong>Day 15 &mdash; Email: the standing offer.</strong> One line: reply with your highest-volume part number and the quote is back in 24 hours &mdash; and if the pricing looks good to you, a sample follows so your techs can judge the build quality and the lead time firsthand. <strong>Sample policy: no samples until a quote has been delivered and the prospect confirms the pricing looks good.</strong> Price earns the interest; the sample closes it.</li>
+          <li><strong>Day 18 &mdash; Call #4.</strong> No voicemail.</li>
+          <li><strong>Day 21 &mdash; The breakup email.</strong> Template below. Then <strong>park for 90 days</strong> &mdash; recycle only on a fresh trigger (expansion news, DC-tech job postings, a funding announcement). "Just checking in" without news is noise.</li>
+        </ol>
+
+        <h3>Voicemail #2 (Day 8)</h3>
+        <div class="pb-script">"Dana, Mike with LAN Cables Direct again &mdash; I emailed you Tuesday, subject line 'One number.' Short version: <span class="pb-fill">[$ &mdash; pricing sheet]</span> for a 100G SR4 against OEM list. If my math is wrong for your setup, tell me and I'll leave you alone. Otherwise I'll try you Thursday morning."</div>
+        <div class="pb-why"><strong>Why:</strong> referencing the email by subject line makes both touches feel like one coherent thread instead of scattered spam &mdash; and "tell me and I'll leave you alone" is a takeaway that invites a reply either way.</div>
+
+        <h3>Email templates</h3>
+        <div class="pb-script pb-email">Subject: Per my voicemail &mdash; the SR4 numbers<br><br>Dana &mdash; Mike with LAN Cables Direct, the data center supplier/manufacturer from your voicemail just now. One attachment: 100G SR4, our price next to OEM list <span class="pb-fill">[$ &mdash; pricing sheet]</span>. Tested, coded for your switches, five-year warranty. If the math is interesting, I'm calling Thursday morning &mdash; or grab 15 minutes here: <span class="pb-fill">[rep's calendar link]</span>.</div>
+        <div class="pb-script pb-email">Subject: One number<br><br>OEM list on a 100G SR4: <span class="pb-fill">[$ &mdash; pricing sheet]</span>. Ours: <span class="pb-fill">[$ &mdash; pricing sheet]</span> &mdash; tested, coded, five-year warranty against their ninety days. Multiply by your port count. Worth 15 minutes?</div>
+        <div class="pb-script pb-email">Subject: Closing the file<br><br>Dana &mdash; four calls and four emails says the timing's off, so I'll stop here. Two things before I go: the benchmark pricing I sent doesn't expire &mdash; use it against your next quote even if it's never with us. And when a lead time finally bites or an optics bill stings, my direct line is below. I'll check back if I see news of the next build.</div>
+        <div class="pb-why"><strong>Why the breakup works:</strong> it routinely gets the highest reply rate of the whole sequence &mdash; the takeaway ("I'll stop here") removes the pressure, and losing access to a benchmark feels like a loss even to someone who never replied. Loss aversion does the closing.</div>
+
+        <h3>Rules of the cadence</h3>
+        <ul>
+          <li><strong>Three voicemails maximum</strong> per sequence. Calls without voicemails still count as touches.</li>
+          <li><strong>Rotate call windows</strong> &mdash; 8&ndash;9am, the lunch edge, 4:30&ndash;5:30pm. Gatekeepers thin out at the edges of the day; directors answer their own phones early.</li>
+          <li><strong>Any reply or pickup exits the cadence</strong> and enters the call flow. The sequence is for silence, not conversations.</li>
+          <li><strong>Opt-out or hard no: stop immediately</strong>, log it, honor it &mdash; including do-not-call requests, without exception.</li>
+          <li><strong>One sequence per prospect per quarter.</strong> If touch 8 lands nothing, the answer is a better trigger next quarter &mdash; not touch 9.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ PSYCHOLOGY ══════════════ -->
+  <section class="section section-alt" id="psychology">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:2rem;">
+        <span class="eyebrow">Why These Scripts Work</span>
+        <h2 class="section-title">The Psychology Cheat Sheet</h2>
+        <p class="section-lede">Every line in this playbook uses one of these. Know the principle and you can improvise the words.</p>
+      </div>
+      <div class="pb-psy-grid">
+        <div class="pb-psy"><h4>Pattern Interrupt</h4>Brains auto-reject anything that sounds like a telemarketer. Say the thing they never say ("this is a cold call") and the hang-up reflex misfires, buying you ten seconds of genuine attention.</div>
+        <div class="pb-psy"><h4>Autonomy &amp; Permission</h4>People resist hardest when they feel trapped. "You can hang up on me" hands control back &mdash; and people who feel free to refuse are dramatically more likely to listen.</div>
+        <div class="pb-psy"><h4>The "Because" Effect</h4>Requests with a stated reason get far more compliance, almost regardless of the reason. Always give "the reason I'm calling" within the first two sentences.</div>
+        <div class="pb-psy"><h4>Labeling</h4>Name their emotion or situation out loud: "sounds like waiting has become part of the plan." Feeling understood lowers defenses faster than any argument.</div>
+        <div class="pb-psy"><h4>Foot-in-the-Door</h4>Small commitments lead to big ones, because people act consistently with what they've already agreed to. 27 seconds &rarr; one answer &rarr; one page &rarr; 15 minutes &rarr; pilot &rarr; account.</div>
+        <div class="pb-psy"><h4>Social Proof</h4>"Most infrastructure teams I talk to&hellip;" signals that people like them take this call and have this problem. Strangers trust the behavior of their peers more than your claims.</div>
+        <div class="pb-psy"><h4>Loss Aversion</h4>Losses loom about twice as large as gains. "What does a day of idle hall cost you?" and "what's your plan B when they quote four weeks?" sell harder than any discount.</div>
+        <div class="pb-psy"><h4>The Takeaway</h4>Lowering pressure raises interest: "Maybe I'm wasting your time," "I'll let you go &mdash; one question first." When there's nothing to push against, people stop pushing.</div>
+        <div class="pb-psy"><h4>Anchoring</h4>The first number in the conversation becomes the reference point. Quote OEM list price first, then ours &mdash; and send a benchmark price sheet even to prospects who "aren't buying."</div>
+        <div class="pb-psy"><h4>Alternative Choice Close</h4>"Thursday morning or Friday afternoon?" replaces a yes/no decision with a scheduling decision. Either answer is a yes.</div>
+        <div class="pb-psy"><h4>Mere Exposure</h4>People warm to what they've encountered before. Voicemail + same-hour email + named follow-up day means call two is never truly cold.</div>
+        <div class="pb-psy"><h4>Peak&ndash;End Rule</h4>People remember the peak moment and the ending. Close on the win, restate the next step, get off the phone warmly &mdash; never keep selling past the yes.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ SIMULATOR ══════════════ -->
+  <section class="section section-dark" id="simulator">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:2rem;">
+        <span class="eyebrow">Practice Before You Dial</span>
+        <h2 class="section-title">The Cold Call Simulator</h2>
+        <p class="section-lede">A branching practice call. Pick what you'd actually say; the prospect reacts, and the coach tells you why each move works &mdash; or doesn't. Try to book the meeting. Then try to get hung up on, just to see how easy it is.</p>
+      </div>
+
+      <div class="sim-wrap">
+        <div class="sim-head">
+          <h3>&#9742; Live Call &mdash; Meridian Data Centers</h3>
+          <div class="sim-score">Score: <b id="sim-score">0</b></div>
+        </div>
+        <div id="sim-body"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer" style="text-align:center;">
+    <div class="container">
+      <p style="color: var(--lcd-grey-light); font-size: 0.85rem;">LAN Cables Direct &mdash; Internal Sales Enablement. Questions or script improvements: bring them to the weekly sales huddle.</p>
+    </div>
+  </footer>
+
+  <script>
+  // ── Objection card toggles ──
+  function syncObjBtn(card) {
+    var btn = card.querySelector('.pb-obj-toggle');
+    if (btn) btn.textContent = card.classList.contains('open') ? 'Hide the play' : 'Show the play';
+  }
+  document.querySelectorAll('.pb-obj-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var card = btn.closest('.pb-obj');
+      card.classList.toggle('open');
+      syncObjBtn(card);
+    });
+  });
+
+  // ── Live-call mode + print: flatten everything, restore after ──
+  var savedState = null;
+  function expandAll() {
+    if (savedState) return;
+    savedState = {
+      details: Array.prototype.map.call(document.querySelectorAll('details.pb-acc'), function (d) { return d.open; }),
+      objs: Array.prototype.map.call(document.querySelectorAll('.pb-obj'), function (o) { return o.classList.contains('open'); })
+    };
+    document.querySelectorAll('details.pb-acc').forEach(function (d) { d.open = true; });
+    document.querySelectorAll('.pb-obj').forEach(function (o) { o.classList.add('open'); syncObjBtn(o); });
+  }
+  function restoreAll() {
+    if (!savedState) return;
+    document.querySelectorAll('details.pb-acc').forEach(function (d, i) { d.open = savedState.details[i]; });
+    document.querySelectorAll('.pb-obj').forEach(function (o, i) {
+      o.classList.toggle('open', savedState.objs[i]);
+      syncObjBtn(o);
+    });
+    savedState = null;
+  }
+  var liveBtn = document.getElementById('pb-live-btn');
+  liveBtn.addEventListener('click', function () {
+    var on = document.body.classList.toggle('live-mode');
+    if (on) { expandAll(); window.scrollTo({ top: 0 }); } else { restoreAll(); }
+    liveBtn.innerHTML = on ? '&#10005; Exit Live Call Mode' : '&#9889; Live Call Mode';
+  });
+  var printExpanded = false;
+  window.addEventListener('beforeprint', function () {
+    if (!document.body.classList.contains('live-mode')) { expandAll(); printExpanded = true; }
+  });
+  window.addEventListener('afterprint', function () {
+    if (printExpanded) { restoreAll(); printExpanded = false; }
+  });
+
+  // ── Cold call simulator ──
+  // Each node: prospect line (p), choices [{t: rep line, q: quality 0-2, note: coach note, next: node id}]
+  // End nodes: {end: true, title, blurb, win: true|false}
+  var SIM = {
+    scenarios: [
+      { id: 'dm_start', label: 'The decision-maker picks up', desc: 'Dana Chen, Director of Infrastructure, answers their direct line.' },
+      { id: 'ne_start', label: 'A network engineer picks up', desc: 'Jordan Reyes, Senior Network Engineer — uses the gear every day, signs for nothing.' },
+      { id: 'gk_start', label: 'A gatekeeper answers', desc: 'You hit the front desk. Get past the screen without burning the account.' },
+      { id: 'vm_start', label: 'Straight to voicemail', desc: 'No answer. What you leave (or don’t) shapes the next call.' }
+    ],
+    nodes: {
+      // ── Decision-maker path ──
+      dm_start: {
+        p: '…Hello, this is Dana.',
+        choices: [
+          { t: '"Hi, is this Dana? … Dana, I’ll be straight with you — this is a cold call. You can hang up on me now, or give me 27 seconds and then decide. Fair enough?"', q: 2, next: 'dm_permission',
+            note: 'Pattern interrupt + autonomy. Admitting it’s a cold call is the one thing telemarketers never do, so the hang-up reflex misfires. Offering the exit restores their sense of control — and "27 seconds" is oddly specific enough to earn a smile.' },
+          { t: '"Hi Dana — quick question: are you the right person for the cabling and optics side of your data center builds?"', q: 1, next: 'dm_qualify',
+            note: 'A qualifier opener is solid — it earns a small first "yes" and confirms targeting — but it pattern-matches to "sales call" faster than the honest opener, so expect more guard.' },
+          { t: '"Hi Dana! How are you doing today?!"', q: 0, next: 'dm_suspicious',
+            note: 'The classic telemarketer opener. Every brain pattern-matches this to "sales call" and the guard goes up before you’ve said anything of substance.' }
+        ]
+      },
+      dm_permission: {
+        p: 'Heh. Okay — 27 seconds. Go.',
+        choices: [
+          { t: '"I’m with a data center supplier/manufacturer — we supply the fiber trunks, optics, and DAC that builds end up waiting on. The reason I’m calling: most infrastructure teams I talk to are quoted four-to-six weeks on custom MTP and pay OEM list on optics. Is either of those true over there?"', q: 2, next: 'dm_whois',
+            note: 'Category first — no brand name yet, so there’s nothing to dismiss. "The reason I’m calling" uses the because effect; "most teams I talk to" is quiet social proof; and it ends in a question, handing the call to Dana.' },
+          { t: '"This is Mike from LAN Cables Direct, a leading provider of layer-1 connectivity solutions for hyperscale, AI/ML, and colocation environments, and I’d love to tell you about our product range…"', q: 0, next: 'dm_allset',
+            note: 'You spent the 27 seconds on your name and a brochure sentence — nothing in it is about Dana. An unknown brand name is the easiest thing in the world to say no to.' },
+          { t: '"We help organizations optimize their infrastructure connectivity outcomes end-to-end."', q: 0, next: 'dm_notinterested',
+            note: 'Vague consultant-speak. If Dana can’t repeat back what you sell after one sentence, the call is already over.' }
+        ]
+      },
+      dm_qualify: {
+        p: 'Depends who’s asking — I own infrastructure, yes. What’s this about?',
+        choices: [
+          { t: '"Fair. I’m with a data center supplier/manufacturer — fiber trunks, optics, DAC. Reason for the call: most teams I talk to are quoted four-to-six weeks on custom MTP and pay OEM list on optics. Either of those sound familiar?"', q: 2, next: 'dm_whois',
+            note: 'Category + reason + pain hypothesis, ending in a question. Exactly the right 15 seconds.' },
+          { t: '"We’re a full-service connectivity provider with a comprehensive catalog — do you have 30 minutes this week for a capabilities overview?"', q: 0, next: 'dm_notinterested',
+            note: 'You asked a stranger for 30 minutes before giving one reason to care. The ladder starts at 27 seconds, not half an hour.' }
+        ]
+      },
+      dm_suspicious: {
+        p: '…Who is this?',
+        choices: [
+          { t: '"Fair question — and honestly, that opener was a bad start. This is a cold call: I’m with a data center supplier/manufacturer, and it’s about the two things that bite every build — cabling lead times and optic pricing. Give me 20 seconds, then decide?"', q: 2, next: 'dm_permission',
+            note: 'Honesty as a recovery move. Owning the bad opener is itself a pattern interrupt, and you’ve restarted the proper sequence: permission, category, reason.' },
+          { t: '"Oh, just hoping to chat about your infrastructure! So, how’s your week going?"', q: 0, next: 'end_burned',
+            note: 'Dodging "who is this?" is fatal. The moment they ask, you answer — never dodge a direct question.' }
+        ]
+      },
+      dm_whois: {
+        p: 'Lead times could be better, I guess. Who am I actually talking to?',
+        choices: [
+          { t: '"LAN Cables Direct — I’m Mike. We’re a direct supplier/manufacturer, no distributor in between, which is why I can say five-to-eight days on custom trunks and mean it. But the part that matters to you: when your supplier quotes four weeks, what happens to the turn-up date?"', q: 2, next: 'dm_pain',
+            note: 'They asked — so you answer, fully and instantly. Delaying the brand builds curiosity; dodging a direct question is evasion. Then bridge straight back to their pain with a question.' },
+          { t: '"We’re a supplier/manufacturer — but before I get into all that, let me ask you a few questions about your environment first."', q: 0, next: 'end_burned',
+            note: 'You dodged a direct question to run your script. Evasion reads as having something to hide, and the call dies here. Never dodge twice — in fact, never dodge a direct "who are you?" at all.' }
+        ]
+      },
+      dm_pain: {
+        p: 'What happens? We wait. Or we pay expedite fees. It is what it is.',
+        choices: [
+          { t: '"Sounds like waiting has just become part of the plan. Rough math — when a hall sits idle waiting on cabling, what’s a day of that actually worth?"', q: 2, next: 'dm_engaged',
+            note: 'Labeling ("sounds like…") shows you heard them, then the cost-of-delay question converts a shrug into a number. Numbers create urgency you don’t have to manufacture — that’s loss aversion doing your selling.' },
+          { t: '"Well, we ship custom trunks in five-to-eight days. Want me to put together a quote?"', q: 1, next: 'dm_microclose',
+            note: 'Not wrong — but you skipped the step where Dana convinces themself there’s a real problem. Quotes requested out of politeness die quietly in inboxes.' },
+          { t: '"Yeah, supply chains, right? It’s been crazy out there for everyone since… well, you know how it is…"', q: 0, next: 'dm_sendemail',
+            note: 'Sympathetic rambling burns your credibility and their patience. Every sentence should either give value or ask a question.' }
+        ]
+      },
+      dm_engaged: {
+        p: 'Honestly? A delayed turn-up runs six figures a week on the big halls. Why — what are you going to do about it?',
+        choices: [
+          { t: '"Maybe nothing — depends what you buy most. Here’s a low-effort way to find out: pick your highest-volume part — optics, trunks, DAC — and I’ll send one price-and-lead-time comparison against what you’re paying. One part, one page. If it’s not compelling, you’ve lost five minutes. Worth a look?"', q: 2, next: 'dm_yes',
+            note: '"Maybe nothing" is a takeaway that drops the pressure, and the ask is tiny and concrete — one SKU, one page. Foot-in-the-door: small agreements compound into big ones.' },
+          { t: '"We can save you 40% across the board. Let’s set up a demo with your whole team this week."', q: 0, next: 'dm_email_brush',
+            note: 'Big claim, big ask. You went from first hello to "bring your team" in ninety seconds — the ladder has rungs for a reason.' }
+        ]
+      },
+      dm_yes: {
+        p: '…Alright, that’s easy enough. Optics, probably — 100G SR4 mostly.',
+        choices: [
+          { t: '"Done — SR4 comparison in your inbox today. And if the math is interesting, the useful next step is 15 minutes with whoever owns the optics budget. Thursday morning or Friday afternoon better for a placeholder?"', q: 2, next: 'end_meeting',
+            note: 'Confirm the micro-win, then the alternative choice close — "Thursday or Friday" turns yes/no into a scheduling question. "Placeholder" lowers the stakes of saying yes. End at the peak.' },
+          { t: '"Great, I’ll email that over. Have a good one!"', q: 1, next: 'end_followup',
+            note: 'You got the SKU but left without anything on the calendar. Recoverable — but every loose end halves the odds.' }
+        ]
+      },
+      dm_allset: {
+        p: 'We’re all set — we already have a supplier for that.',
+        choices: [
+          { t: '"I’d be worried if you didn’t. I’m not calling to replace anyone — most of our accounts started us as the backup quote. Honest question: when your current supplier quotes four weeks on trunks, what’s your plan B?"', q: 2, next: 'dm_pain',
+            note: 'Never fight the incumbent — agree, then reposition as the zero-risk backup. "Backup quote" asks for nothing, and the plan-B question plants loss aversion that grows on its own.' },
+          { t: '"Who are you with now? Whatever they charge, we’ll beat it."', q: 0, next: 'dm_pricefight',
+            note: 'Leading on price invites a race to the bottom and signals you have nothing else. Price is the proof, never the pitch.' },
+          { t: '"Ah, okay. Thanks for your time, then."', q: 0, next: 'end_quit',
+            note: 'A cold-call objection is a reflex, not a decision — and you folded on the very first reflex.' }
+        ]
+      },
+      dm_pricefight: {
+        p: 'Everyone says that. Send a line card to procurement like everybody else.',
+        choices: [
+          { t: '"Fair — but a line card won’t tell you the two things that matter: we test every assembly before it ships, and 95% of custom orders dock in five-to-eight days. One question before I let you go: what did your last trunk order take, PO to dock?"', q: 1, next: 'dm_sendemail',
+            note: 'A decent recovery — you swapped price talk for differentiation and ended with a takeaway plus one question. The hole was avoidable, though.' },
+          { t: '"Sure, what’s procurement’s email?"', q: 0, next: 'end_weak',
+            note: 'A line card to a generic procurement inbox is where cold calls go to be forgotten.' }
+        ]
+      },
+      dm_notinterested: {
+        p: 'Not interested. We’re good.',
+        choices: [
+          { t: '"Fair enough — I’ll let you go. One question before I do, then I’m gone: when a build’s waiting on cabling stuck in a distributor’s queue, what does that cost you per day?"', q: 2, next: 'dm_pain',
+            note: 'The takeaway. "I’ll let you go" removes the thing they were pushing against; with the pressure gone, one good question often reopens the call.' },
+          { t: '"You WILL be interested when you hear our pricing, trust me!"', q: 0, next: 'end_burned',
+            note: 'Arguing with a reflex turns it into a decision — against you. Nobody has ever been badgered into becoming a customer.' },
+          { t: '"Understood — have a good day."', q: 0, next: 'end_quit',
+            note: 'Polite, but you folded on the first reflex objection. One takeaway question costs nothing.' }
+        ]
+      },
+      dm_sendemail: {
+        p: 'Look — just send me an email, okay?',
+        choices: [
+          { t: '"Happy to — and so I don’t send the generic brochure, one question: what do you buy most — optics, MTP trunks, or DAC? … I’ll build the email around that and call you Thursday to see if the math’s worth a conversation. Fair?"', q: 2, next: 'dm_yes2',
+            note: '"Send me an email" is usually a polite hang-up. Agree, then attach a qualifying question and a named follow-up day — two micro-commitments instead of a brush-off.' },
+          { t: '"Sure thing, will do. Thanks Dana!"', q: 0, next: 'end_weak',
+            note: 'An unqualified "info" email joins the other forty in the graveyard. You had one move left and didn’t make it.' }
+        ]
+      },
+      dm_yes2: {
+        p: '…Optics, mostly 100G. Fine — Thursday.',
+        choices: [
+          { t: '"Perfect. Best email for you? … Got it. One page on 100G SR4, in your inbox today — and I’ll call Thursday morning. That’s all I needed, Dana. Talk then."', q: 2, next: 'end_followup_strong',
+            note: 'Confirm the address live, restate the deliverable and the day, then get off the phone warmly. Peak–end rule: the last ten seconds are what they remember.' },
+          { t: '"Awesome! And while I have you — let me also tell you about our power cords, and our specialty assemblies, and…"', q: 1, next: 'end_followup',
+            note: 'You kept selling past the yes. Every extra pitch after a win risks the win. Take the yes and go.' }
+        ]
+      },
+      dm_email_brush: {
+        p: 'Yeah… send something over and we’ll take a look at some point.',
+        choices: [
+          { t: '"Tell you what — instead of a brochure you’ll never open, give me your highest-volume part and I’ll send one price comparison on just that. Takes you 30 seconds to read. What moves the most — optics, trunks, DAC?"', q: 1, next: 'dm_sendemail',
+            note: 'A self-aware rescue: shrink the ask until it’s easier to answer than to brush off. You’re back in the game, barely.' },
+          { t: '"Will do — thanks for the time!"', q: 0, next: 'end_weak',
+            note: '"We’ll take a look at some point" means never. You accepted a no dressed as a maybe.' }
+        ]
+      },
+      dm_microclose: {
+        p: '…Sure, send a quote, I guess. We’re pretty busy though.',
+        choices: [
+          { t: '"Let’s keep it painless — one part, one page. What do you buy most: optics, trunks, or DAC? … And I’ll ring you Thursday to see if the math’s interesting. Fair?"', q: 2, next: 'dm_yes2',
+            note: 'You narrowed a polite "I guess" into a specific SKU and a named follow-up day. Specific commitments survive; vague ones evaporate.' },
+          { t: '"Great, I’ll put together our full catalog pricing and send it across!"', q: 0, next: 'end_weak',
+            note: 'A full catalog to a lukewarm stranger is homework, not a hook. Nobody does homework for a stranger.' }
+        ]
+      },
+
+      // ── Network engineer path (uses the gear, signs nothing) ──
+      ne_start: {
+        p: 'Network engineering, this is Jordan.',
+        choices: [
+          { t: '"Hey Jordan — I’ll be straight with you: this is a cold call, and you’re probably not even the person who signs for anything. 27 seconds, then you decide if anyone there should care?"', q: 2, next: 'ne_perm',
+            note: 'A double pattern interrupt: admitting it’s a cold call AND admitting they’re not the buyer. Engineers respect being leveled with — and "you decide if anyone should care" hands them the autonomy they guard hardest.' },
+          { t: '"Hi Jordan — are you the person who decides which optics go in the switches?"', q: 1, next: 'ne_perm',
+            note: 'Workable, but "decides" flatters wrongly — engineers influence and veto, they rarely decide. Expect a deflating "not really," which starts you in a hole.' },
+          { t: '"Jordan, great news — we can cut your optics budget by seventy percent!"', q: 0, next: 'ne_notbuyer',
+            note: 'A price pitch to a person with no budget. Worse: to a network engineer, "cheap optics" doesn’t sound like savings — it sounds like the link flap they’ll get blamed for at 2 a.m.' }
+        ]
+      },
+      ne_perm: {
+        p: '…Heh. Okay, 27 seconds. Go.',
+        choices: [
+          { t: '"I’m with a data center supplier/manufacturer — we’re the ones who code and burn in transceivers so they behave exactly like the OEM optic on your switches. Reason I’m calling: every network engineer I talk to likes the third-party price and hates the thought of being blamed for it at 2 a.m. Fair worry?"', q: 2, next: 'ne_engage',
+            note: 'The engineer hook: risk-removal first, price barely mentioned. Naming their actual fear — the 2 a.m. blame — is labeling, and "every network engineer I talk to" is social proof from their own tribe.' },
+          { t: '"This is Mike from LAN Cables Direct! We’re a leading provider of layer-1 connectivity solutions, and our optics cost a fraction of OEM list…"', q: 0, next: 'ne_notbuyer',
+            note: 'Brand name they’ve never heard plus a price pitch — the two things that mean nothing to a person who signs nothing. You spent your 27 seconds talking to the wrong job description.' }
+        ]
+      },
+      ne_engage: {
+        p: 'Ha — that IS the worry. But we’re an OEM shop. Policy… kind of.',
+        choices: [
+          { t: '"’Kind of’ is interesting — that usually means habit, not mandate. For what it’s worth: same MSA standard as the OEM optic, coded for your switches, burned in on the same silicon, five-year warranty against their ninety days. But you don’t sign POs anyway, right? Who does?"', q: 2, next: 'ne_champion',
+            note: 'You caught the hedge — "kind of" means there’s no real mandate — answered the fear with facts, then converted the moment into routing intel instead of arguing policy with someone who can’t change it.' },
+          { t: '"Tell you what — I’ll ship you five free optics today and you can try them whenever!"', q: 1, next: 'ne_champion',
+            note: 'Generous, but it breaks the sample policy — quote first, samples only after they confirm the pricing looks good — and it skips the step where Jordan earns internal credit for finding you. Free stuff nobody asked for gets binned.' }
+        ]
+      },
+      ne_notbuyer: {
+        p: 'Look — I don’t handle purchasing. That’s procurement, or my boss. You’re talking to the wrong guy.',
+        choices: [
+          { t: '"Honestly? I’d rather talk to you first anyway. You’re the one who gets paged when a link flaps — purchasing just signs. If I get you a quote that makes you look smart for finding it, who actually signs off?"', q: 2, next: 'ne_champion',
+            note: '"Wrong person" is the #1 engineer objection, and it’s an opportunity: you flipped it by making Jordan the hero of the story, not the obstacle in it. The question routes you AND recruits them.' },
+          { t: '"Ah, got it. Can you transfer me to procurement then?"', q: 0, next: 'end_weak',
+            note: 'Procurement-first with no technical champion is a line card in a drawer — the playbook says it, and you just speed-ran it. The engineer in front of you WAS the play.' }
+        ]
+      },
+      ne_champion: {
+        p: '…That’d be Dana Chen, our infrastructure director. Why — what do you want from me?',
+        choices: [
+          { t: '"Almost nothing. Give me your highest-volume optic and I’ll quote it. If the number looks right to YOU, I’ll put five in your lab — after you’ve seen pricing, not before — and you walk the quote into Dana’s office as your find, not my pitch. And when I call Dana: can I say we spoke?"', q: 2, next: 'end_champion',
+            note: 'The full champion play: tiny ask, quote-then-pilot in the right order (sample policy intact), internal credit handed to Jordan, and permission for the name — never an ambush name-drop. Dana’s call is now warm and technically pre-endorsed.' },
+          { t: '"Dana Chen — perfect, that’s all I needed. I’ll call them directly. Thanks Jordan!"', q: 0, next: 'end_namedrop',
+            note: 'You grabbed the name and threw away the person. A scraped name without an endorsement is barely warmer than a blind dial — and the engineer who could have championed you now remembers being used for directory assistance.' }
+        ]
+      },
+
+      // ── Gatekeeper path ──
+      gk_start: {
+        p: 'Good morning, Meridian Data Centers.',
+        choices: [
+          { t: '"Morning — hoping you can point me in the right direction. Who looks after purchasing for the cabling and optics on your data center builds?"', q: 2, next: 'gk_who',
+            note: 'Gatekeepers are allies, not obstacles. Asking for help works because people genuinely like to help — and "point me in the right direction" is the easiest help there is.' },
+          { t: '"Can I speak to whoever’s in charge there?"', q: 0, next: 'gk_screen',
+            note: '"Whoever’s in charge" announces you don’t know who you’re calling — the classic mark of a cold pitch, and an invitation to the info@ graveyard.' },
+          { t: '"It’s a personal call for the infrastructure director."', q: 0, next: 'end_busted',
+            note: 'Never lie to a gatekeeper. It gets discovered in one transfer, and it burns the entire account — permanently.' }
+        ]
+      },
+      gk_who: {
+        p: 'That would be Dana Chen. May I ask what this is regarding?',
+        choices: [
+          { t: '"Of course — I’m with a data center supplier/manufacturer; it’s about cabling lead times on your builds. Is Dana the right person for that, or does someone else own it?"', q: 2, next: 'gk_transfer',
+            note: 'A clean, honest one-liner the gatekeeper can repeat verbatim. Confidence and brevity get transfers; salesy evasion gets "send it to info@". The closing question makes them your scout.' },
+          { t: '"It’s… a business matter. They’ll know what it’s about."', q: 0, next: 'gk_screen2',
+            note: 'Evasive enough to trigger the screen’s spam filter. They’ve heard "they’ll know what it’s about" a thousand times — from people whose calls were never taken.' }
+        ]
+      },
+      gk_screen: {
+        p: 'I can take a message, or you can email info@meridiandc.com and someone will get back to you.',
+        choices: [
+          { t: '"Appreciate it — actually, you can probably save us both the email chain. Who owns cabling and optics purchasing for the builds? … And when’s usually a good time to catch them?"', q: 1, next: 'gk_partial',
+            note: 'A decent recovery: you turned a brush-off into an intel request. A name plus a best-time-to-call makes the next attempt a warm one.' },
+          { t: '"Okay, I’ll send an email to info@. Thanks."', q: 0, next: 'end_weak',
+            note: 'The info@ inbox is where cold outreach goes to die. You left with nothing — no name, no time, no next move.' }
+        ]
+      },
+      gk_screen2: {
+        p: 'Mm-hm. Best bet is the website contact form. Have a great day.',
+        choices: [
+          { t: '"Fair enough — last thing, so I don’t bother you again: is Dana the right person for data center cabling, and is morning or afternoon better to reach them?"', q: 1, next: 'gk_partial',
+            note: 'Salvage what you can: confirm the name, get a calling window, and — importantly — leave the gatekeeper on good terms. You’ll meet them again on every future call.' },
+          { t: '"…Right. Bye."', q: 0, next: 'end_weak',
+            note: 'Walked away empty. The gatekeeper controls every future attempt — leaving on a flat note makes them all harder.' }
+        ]
+      },
+      gk_partial: {
+        p: '…It’s Dana Chen. Mornings are better — Dana’s usually at the desk before nine.',
+        choices: [
+          { t: '"Dana Chen, mornings — you’ve just saved me three phone calls. Really appreciate the help. Have a good one."', q: 2, next: 'end_gk_intel',
+            note: 'Thank the gatekeeper like they did you a favor — because they did. You leave with a name, a calling window, and a front desk that remembers you as the polite one. Log it and dial Dana at 8:45 tomorrow.' },
+          { t: '"Great. And while I have you — can I tell you a bit about our product line, in case it ever comes up?"', q: 0, next: 'end_weak',
+            note: 'Pitching the gatekeeper after they helped you is how the helpful front desk becomes a wall. Take the intel, say thank you, and get out — the win was already in hand.' }
+        ]
+      },
+      gk_transfer: {
+        p: 'One moment — I’ll put you through to Dana.',
+        choices: [
+          { t: '(Take a breath. Here we go.) "Hi, is this Dana?…"', q: 2, next: 'dm_start',
+            note: 'Transferred by name, with the gatekeeper as a quiet endorsement. The live-call tree starts now — run the opener.' }
+        ]
+      },
+
+      // ── Voicemail path ──
+      vm_start: {
+        p: '"You’ve reached Dana Chen at Meridian Data Centers. Leave a message." — BEEP.',
+        choices: [
+          { t: '"Dana, Mike with LAN Cables Direct — we’re a data center supplier/manufacturer, fiber and optics. One number for you: most teams pay full OEM list on 100G SR4; ours is a fraction of that, tested, five-year warranty. I’m emailing the comparison right now — same subject as this message — and I’ll try you Thursday morning."', q: 2, next: 'end_vm_good',
+            note: 'Under 30 seconds, one concrete number, paired with a same-hour email, and a named day for the next attempt. Voicemails rarely get returned — their job is to make Thursday’s call warm (mere exposure). Note: in voicemail you DO lead with name and company; the no-brand-first rule is for live dialogue.' },
+          { t: 'Deliver the full 90-second pitch — company history, all nine product lines, the warranty terms, and your callback number twice.', q: 0, next: 'end_vm_bad',
+            note: 'Ninety seconds of monologue gets deleted at second eight. A voicemail is a movie trailer, not the movie.' },
+          { t: 'Hang up without leaving a message; just call again another day.', q: 1, next: 'end_vm_meh',
+            note: 'Defensible — but a short voicemail plus an email costs nothing and builds familiarity, so the next call is no longer fully cold. You left warmth on the table.' }
+        ]
+      },
+
+      // ── Endings ──
+      end_meeting:        { end: true, win: true,  title: '🏆 Meeting booked', blurb: 'SR4 comparison going out today, 15-minute placeholder on Friday, and Dana told you the cost of delay in their own words. Send the invite before you stand up — this is exactly what a perfect cold call looks like: not a sale, a next step.' },
+      end_followup_strong:{ end: true, win: true,  title: '✅ Strong follow-up secured', blurb: 'Qualified SKU, confirmed email, named callback day — three micro-commitments from a stone-cold start. Send the one-pager within the hour and call when you said you would: doing exactly what you promised IS the pitch.' },
+      end_followup:       { end: true, win: true,  title: '✅ Follow-up — with loose ends', blurb: 'You’re sending real information to a real buyer, but nothing is on the calendar, so the follow-up lives or dies on your discipline. Email within the hour, and put your own reminder in for Thursday. Next time: close on a day before you hang up.' },
+      end_weak:           { end: true, win: false, title: '📭 The email graveyard', blurb: 'The call ended politely and produced nothing: no qualified need, no named day, no commitment. "Send me something" without a follow-up plan is a no with good manners. Replay it — the rescue move was there.' },
+      end_quit:           { end: true, win: false, title: '🏳️ Folded too early', blurb: 'The first objection on a cold call is a reflex, not a decision. One agree-and-reframe, or one takeaway question, and this call was still alive. Politeness is free — but so is one more question.' },
+      end_burned:         { end: true, win: false, title: '☎️ They hung up', blurb: 'Click. Usually fatal: dodging a direct question, arguing with a reflex, or sounding like every other telemarketer. The good news: the simulator forgets. Dana would not have. Run it again.' },
+      end_busted:         { end: true, win: false, title: '🚫 Account burned', blurb: 'The lie got discovered on the first transfer, and the gatekeeper — who you’ll meet on every future call — now flags your number. Honesty isn’t just ethics; on the phone it’s strategy. Never lie to a gatekeeper.' },
+      end_champion:       { end: true, win: true,  title: '🤝 Champion recruited', blurb: 'A quote going out on Jordan’s highest-volume optic, a lab pilot staged behind the pricing per policy, and permission to open the Dana call with Jordan’s name. Engineers don’t sign POs — but nothing gets bought over their veto, and this one is now on your side. The next call isn’t cold; it’s introduced.' },
+      end_namedrop:       { end: true, win: false, title: '🚪 A name without a door', blurb: 'You left with Dana’s name and without the person who could open Dana’s door. Calling cold on a scraped name converts barely better than a blind dial — and if Dana asks Jordan about you, "some sales guy who wanted your name" is the reference you earned. The champion was the prize; the name was just directions.' },
+      end_gk_intel:       { end: true, win: true,  title: '📇 Intel secured', blurb: 'No transfer today — but you leave with the decision-maker’s name, the best window to catch them, and a gatekeeper who’ll recognize your voice kindly tomorrow. That’s a cold call converted into a warm one without ever reaching the buyer. Dial Dana at 8:45.' },
+      end_vm_good:        { end: true, win: true,  title: '✅ The ground is warmed', blurb: 'Thirty seconds, one number, an email pairing, and a named day. Thursday’s call opens with "I left you a message about the SR4 pricing" — and that call is no longer cold. This is how voicemail is actually won.' },
+      end_vm_bad:         { end: true, win: false, title: '🗑️ Deleted at second eight', blurb: 'Nobody finishes a 90-second pitch voicemail — and now your number is mentally filed under "spam." Short, specific, paired with email, with a named next attempt. That’s the whole formula.' },
+      end_vm_meh:         { end: true, win: false, title: '🤷 Nothing lost, nothing gained', blurb: 'No harm done — but the next call is exactly as cold as this one was. A 30-second message plus an email would have bought you familiarity for free. Take the free warmth.' }
+    }
+  };
+
+  (function () {
+    var body = document.getElementById('sim-body');
+    var scoreEl = document.getElementById('sim-score');
+    var score = 0, picks = 0;
+    var log, choicesEl;
+
+    function el(tag, cls, html) {
+      var e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (html !== undefined) e.innerHTML = html;
+      return e;
+    }
+    function msg(kind, who, text) {
+      var m = el('div', 'sim-msg ' + kind);
+      m.appendChild(el('span', 'who', who));
+      m.appendChild(document.createTextNode(text));
+      log.appendChild(m);
+      m.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    function showScenarios() {
+      score = 0; picks = 0; scoreEl.textContent = '0';
+      body.innerHTML = '';
+      var wrap = el('div', 'sim-scenarios');
+      wrap.appendChild(el('p', null, '<strong>Pick your scenario.</strong> You’re calling Meridian Data Centers — a colo operator mid-expansion that has never heard of LAN Cables Direct.'));
+      SIM.scenarios.forEach(function (s) {
+        var b = el('button', 'sim-scenario', '<b>' + s.label + '</b><span>' + s.desc + '</span>');
+        b.type = 'button';
+        b.addEventListener('click', function () { startCall(s.id); });
+        wrap.appendChild(b);
+      });
+      body.appendChild(wrap);
+    }
+    function startCall(nodeId) {
+      body.innerHTML = '';
+      log = el('div', 'sim-log');
+      choicesEl = el('div', 'sim-choices');
+      body.appendChild(log);
+      body.appendChild(choicesEl);
+      playNode(nodeId);
+    }
+    function playNode(id) {
+      var node = SIM.nodes[id];
+      if (node.end) return endCall(node);
+      var who = id.indexOf('gk_') === 0 ? 'Front desk'
+        : id.indexOf('ne_') === 0 ? 'Jordan (network engineer)'
+        : id === 'vm_start' ? 'Voicemail'
+        : 'Dana (prospect)';
+      msg('sim-prospect', who, node.p);
+      choicesEl.innerHTML = '';
+      // Shuffle so the best answer isn't always on top
+      node.choices.slice().sort(function () { return Math.random() - 0.5; }).forEach(function (c) {
+        var b = el('button', 'sim-choice');
+        b.type = 'button';
+        b.textContent = c.t;
+        b.addEventListener('click', function () { pick(c); });
+        choicesEl.appendChild(b);
+      });
+    }
+    function pick(c) {
+      choicesEl.innerHTML = '';
+      msg('sim-rep', 'You', c.t.replace(/^"|"$/g, ''));
+      score += c.q; picks++;
+      scoreEl.textContent = score;
+      var verdict = c.q === 2 ? '✔ Strong move. ' : (c.q === 1 ? '△ Workable, not optimal. ' : '✖ Costly move. ');
+      msg('sim-coach', 'Coach', verdict + c.note);
+      setTimeout(function () { playNode(c.next); }, 150);
+    }
+    function endCall(node) {
+      choicesEl.innerHTML = '';
+      var max = picks * 2;
+      var pct = max ? Math.round((score / max) * 100) : 0;
+      var grade = pct >= 85 ? 'Closer — you ran the playbook.' : pct >= 55 ? 'Getting there — reread the stages you stumbled on.' : 'Back to the playbook — then run it again.';
+      var end = el('div', 'sim-end');
+      end.appendChild(el('h4', null, node.title));
+      end.appendChild(el('p', null, node.blurb));
+      end.appendChild(el('p', 'grade', 'Technique score: ' + score + ' / ' + max + ' (' + pct + '%) — ' + grade));
+      var again = el('button', 'sim-restart', 'Run it again');
+      again.type = 'button';
+      again.addEventListener('click', showScenarios);
+      end.appendChild(again);
+      body.appendChild(end);
+      end.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    showScenarios();
+  })();
+  </script>
+</body>
+</html>
