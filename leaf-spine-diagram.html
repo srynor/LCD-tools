@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leaf-Spine Architecture</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0d1117;
+    color: #e2e8f0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    padding: 24px;
+  }
+  h1 {
+    font-size: 1.1rem;
+    color: #7dd3fc;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .subtitle {
+    font-size: 0.78rem;
+    color: #64748b;
+    margin-bottom: 20px;
+  }
+  .canvas-wrap {
+    position: relative;
+    background: #0d1117;
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  canvas {
+    display: block;
+    width: 100%;
+  }
+  .controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  button {
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #cbd5e1;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+  }
+  button:hover { background: #273449; border-color: #7dd3fc; color: #7dd3fc; }
+  button.active { background: #1e3a5f; border-color: #7dd3fc; color: #7dd3fc; }
+  .sep { color: #334155; margin: 0 4px; }
+  .legend {
+    display: flex;
+    gap: 20px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+  .leg-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.75rem;
+    color: #94a3b8;
+  }
+  .leg-dot {
+    width: 12px; height: 12px; border-radius: 3px;
+  }
+  .info-box {
+    background: #131c2e;
+    border: 1px solid #1e3a5f;
+    border-left: 3px solid #7dd3fc;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-top: 16px;
+    font-size: 0.8rem;
+    line-height: 1.75;
+    color: #94a3b8;
+    min-height: 72px;
+  }
+  .info-box strong { color: #e2e8f0; }
+  .info-box .hop { color: #f59e0b; font-weight: 600; }
+  .info-box .fiber { color: #a78bfa; }
+</style>
+</head>
+<body>
+
+<h1>Leaf-Spine Network Architecture</h1>
+<p class="subtitle">Click any server to trace its traffic path. Every hop is exactly 2 switches.</p>
+
+<div class="canvas-wrap">
+  <canvas id="c" height="480"></canvas>
+</div>
+
+<div class="controls">
+  <button id="btn-reset" class="active" onclick="setMode('reset')">Reset</button>
+  <span class="sep">|</span>
+  <button id="btn-add-leaf" onclick="addLeaf()">+ Add Leaf</button>
+  <button id="btn-add-spine" onclick="addSpine()">+ Add Spine</button>
+  <button id="btn-reset-topo" onclick="resetTopo()">Reset Topology</button>
+  <span class="sep">|</span>
+  <button id="btn-fail" onclick="setMode('fail')">Simulate Link Failure</button>
+</div>
+
+<div class="legend">
+  <div class="leg-item"><div class="leg-dot" style="background:#1e3a5f;border:2px solid #7dd3fc"></div> Spine (core)</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#1a2e1a;border:2px solid #4ade80"></div> Leaf (top-of-rack)</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#2d2d2d;border:2px solid #64748b"></div> Server</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#f59e0b;border:none;height:4px;border-radius:2px"></div> Active traffic path</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#ef4444;border:none;height:4px;border-radius:2px"></div> Failed link</div>
+</div>
+
+<div class="info-box" id="info">
+  <strong>Select a server</strong> to trace its path to any other server.<br>
+  Use <strong>+ Add Leaf</strong> or <strong>+ Add Spine</strong> to grow the fabric - notice every new leaf automatically connects to every spine.
+</div>
+
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+const info = document.getElementById('info');
+
+let mode = 'reset';
+let spines = [], leaves = [], servers = [], links = [], failedLinks = new Set();
+let selectedServer = null;
+let targetServer = null;
+let animFrame = 0;
+let animating = false;
+let pathLinks = [];
+let W, H;
+
+const SPINE_COLOR = '#7dd3fc';
+const LEAF_COLOR = '#4ade80';
+const SERVER_COLOR = '#64748b';
+const PATH_COLOR = '#f59e0b';
+const FAIL_COLOR = '#ef4444';
+const UPLINK_COLOR = '#334155';
+const DOWN_COLOR = '#1e293b';
+
+function setMode(m) {
+  mode = m;
+  document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn-' + m)?.classList.add('active');
+  if (m === 'reset') {
+    selectedServer = null;
+    targetServer = null;
+    pathLinks = [];
+    info.innerHTML = '<strong>Select a server</strong> to trace its path to any other server.<br>Use <strong>+ Add Leaf</strong> or <strong>+ Add Spine</strong> to grow the fabric.';
+    draw();
+  }
+}
+
+function buildTopo(nSpines, nLeaves) {
+  spines = []; leaves = []; servers = []; links = []; failedLinks = new Set();
+  selectedServer = null; targetServer = null; pathLinks = [];
+
+  W = canvas.offsetWidth || 800;
+  H = 480;
+  canvas.width = W;
+  canvas.height = H;
+
+  const spinePad = W * 0.12;
+  const spineY = H * 0.18;
+  const spineSpacing = (W - spinePad * 2) / Math.max(nSpines - 1, 1);
+
+  for (let i = 0; i < nSpines; i++) {
+    spines.push({
+      id: 'S' + i,
+      x: nSpines === 1 ? W / 2 : spinePad + i * spineSpacing,
+      y: spineY,
+      label: 'Spine ' + (i + 1),
+      type: 'spine'
+    });
+  }
+
+  const leafPad = W * 0.08;
+  const leafY = H * 0.52;
+  const leafSpacing = (W - leafPad * 2) / Math.max(nLeaves - 1, 1);
+
+  for (let i = 0; i < nLeaves; i++) {
+    const lx = nLeaves === 1 ? W / 2 : leafPad + i * leafSpacing;
+    leaves.push({
+      id: 'L' + i,
+      x: lx,
+      y: leafY,
+      label: 'Leaf ' + (i + 1),
+      rack: 'Rack ' + (i + 1),
+      type: 'leaf'
+    });
+    // uplinks
+    for (let s = 0; s < nSpines; s++) {
+      links.push({ id: `L${i}-S${s}`, a: 'L' + i, b: 'S' + s, type: 'uplink' });
+    }
+    // servers
+    const nSrv = 2;
+    for (let j = 0; j < nSrv; j++) {
+      const sx = lx + (j - (nSrv - 1) / 2) * 44;
+      const sy = H * 0.78;
+      const sid = `srv_${i}_${j}`;
+      servers.push({ id: sid, x: sx, y: sy, leaf: 'L' + i, label: `S${i + 1}.${j + 1}`, type: 'server' });
+      links.push({ id: `srv-${sid}`, a: sid, b: 'L' + i, type: 'downlink' });
+    }
+  }
+}
+
+function getNode(id) {
+  return spines.find(n => n.id === id) ||
+         leaves.find(n => n.id === id) ||
+         servers.find(n => n.id === id);
+}
+
+function dist(ax, ay, bx, by) { return Math.hypot(ax - bx, ay - by); }
+
+function hitNode(mx, my) {
+  for (const s of servers) if (dist(mx, my, s.x, s.y) < 16) return s;
+  for (const l of leaves) if (dist(mx, my, l.x, l.y) < 22) return l;
+  for (const s of spines) if (dist(mx, my, s.x, s.y) < 22) return s;
+  return null;
+}
+
+function hitLink(mx, my) {
+  for (const lk of links) {
+    const a = getNode(lk.a), b = getNode(lk.b);
+    if (!a || !b) continue;
+    const t = ((mx - a.x) * (b.x - a.x) + (my - a.y) * (b.y - a.y)) /
+              ((b.x - a.x) ** 2 + (b.y - a.y) ** 2 + 0.0001);
+    const tc = Math.max(0, Math.min(1, t));
+    const px = a.x + tc * (b.x - a.x);
+    const py = a.y + tc * (b.y - a.y);
+    if (dist(mx, my, px, py) < 8) return lk;
+  }
+  return null;
+}
+
+function findPath(srcId, dstId) {
+  // server -> leaf -> (spine) -> leaf -> server
+  const src = getNode(srcId), dst = getNode(dstId);
+  if (!src || !dst) return [];
+  if (src.leaf === dst.leaf) {
+    // same rack, go through leaf only
+    const leafUpLink = links.find(l => (l.a === srcId && l.b === src.leaf) || (l.b === srcId && l.a === src.leaf));
+    const leafDnLink = links.find(l => (l.a === dstId && l.b === dst.leaf) || (l.b === dstId && l.a === dst.leaf));
+    return [leafUpLink, leafDnLink].filter(Boolean);
+  }
+  // pick a healthy spine
+  const spine = spines.find(sp => {
+    const ul1 = links.find(l => (l.a === src.leaf && l.b === sp.id) || (l.b === src.leaf && l.a === sp.id));
+    const ul2 = links.find(l => (l.a === dst.leaf && l.b === sp.id) || (l.b === dst.leaf && l.a === sp.id));
+    return ul1 && ul2 && !failedLinks.has(ul1.id) && !failedLinks.has(ul2.id);
+  });
+  if (!spine) return null; // no path
+  const lu = links.find(l => (l.a === src.leaf && l.b === spine.id) || (l.b === src.leaf && l.a === spine.id));
+  const ld = links.find(l => (l.a === dst.leaf && l.b === spine.id) || (l.b === dst.leaf && l.a === spine.id));
+  const su = links.find(l => (l.a === srcId && l.b === src.leaf) || (l.b === srcId && l.a === src.leaf));
+  const sd = links.find(l => (l.a === dstId && l.b === dst.leaf) || (l.b === dstId && l.a === dst.leaf));
+  return [su, lu, ld, sd].filter(Boolean);
+}
+
+function drawRoundRect(x, y, w, h, r, fill, stroke, sw) {
+  ctx.beginPath();
+  ctx.roundRect(x - w/2, y - h/2, w, h, r);
+  ctx.fillStyle = fill;
+  ctx.fill();
+  if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = sw || 1.5; ctx.stroke(); }
+}
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+
+  // layer labels
+  ctx.font = '10px Segoe UI';
+  ctx.letterSpacing = '2px';
+  ctx.fillStyle = '#334155';
+  ctx.textAlign = 'center';
+  ctx.fillText('SPINE LAYER', W / 2, spines[0]?.y - 36 || 50);
+  ctx.fillText('LEAF LAYER  (top-of-rack)', W / 2, leaves[0]?.y - 36 || 200);
+  ctx.fillText('SERVERS', W / 2, servers[0]?.y - 28 || 340);
+  ctx.letterSpacing = '0px';
+
+  // draw links
+  for (const lk of links) {
+    const a = getNode(lk.a), b = getNode(lk.b);
+    if (!a || !b) continue;
+    const failed = failedLinks.has(lk.id);
+    const active = pathLinks.some(p => p?.id === lk.id);
+    ctx.beginPath();
+    ctx.moveTo(a.x, a.y);
+    ctx.lineTo(b.x, b.y);
+    if (active) {
+      ctx.strokeStyle = PATH_COLOR;
+      ctx.lineWidth = 3;
+      ctx.setLineDash([]);
+    } else if (failed) {
+      ctx.strokeStyle = FAIL_COLOR;
+      ctx.lineWidth = 2;
+      ctx.setLineDash([5, 4]);
+    } else {
+      ctx.strokeStyle = lk.type === 'uplink' ? UPLINK_COLOR : DOWN_COLOR;
+      ctx.lineWidth = lk.type === 'uplink' ? 1.5 : 1;
+      ctx.setLineDash(lk.type === 'uplink' ? [5, 3] : []);
+    }
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // bandwidth label on uplinks
+    if (lk.type === 'uplink' && !active && !failed) {
+      const mx = (a.x + b.x) / 2 + 6, my = (a.y + b.y) / 2;
+      ctx.font = '9px Segoe UI';
+      ctx.fillStyle = '#475569';
+      ctx.textAlign = 'left';
+      ctx.fillText('400G', mx, my);
+    }
+  }
+
+  // draw spines
+  for (const sp of spines) {
+    const glow = pathLinks.some(p => {
+      const a = getNode(p?.a), b = getNode(p?.b);
+      return a?.id === sp.id || b?.id === sp.id;
+    });
+    drawRoundRect(sp.x, sp.y, 100, 40, 8, '#1e3a5f', glow ? PATH_COLOR : SPINE_COLOR, glow ? 2.5 : 1.5);
+    ctx.font = 'bold 12px Segoe UI';
+    ctx.fillStyle = glow ? PATH_COLOR : SPINE_COLOR;
+    ctx.textAlign = 'center';
+    ctx.fillText(sp.label, sp.x, sp.y + 1);
+    ctx.font = '9px Segoe UI';
+    ctx.fillStyle = '#64748b';
+    ctx.fillText('core switch', sp.x, sp.y + 14);
+  }
+
+  // draw leaves
+  for (const lf of leaves) {
+    const glow = pathLinks.some(p => {
+      const a = getNode(p?.a), b = getNode(p?.b);
+      return a?.id === lf.id || b?.id === lf.id;
+    });
+    drawRoundRect(lf.x, lf.y, 100, 40, 8, '#1a2e1a', glow ? PATH_COLOR : LEAF_COLOR, glow ? 2.5 : 1.5);
+    ctx.font = 'bold 12px Segoe UI';
+    ctx.fillStyle = glow ? PATH_COLOR : LEAF_COLOR;
+    ctx.textAlign = 'center';
+    ctx.fillText(lf.label, lf.x, lf.y + 1);
+    ctx.font = '9px Segoe UI';
+    ctx.fillStyle = '#64748b';
+    ctx.fillText(lf.rack + ' TOR', lf.x, lf.y + 14);
+  }
+
+  // draw servers
+  for (const sv of servers) {
+    const isSrc = selectedServer?.id === sv.id;
+    const isDst = targetServer?.id === sv.id;
+    const col = isSrc ? PATH_COLOR : isDst ? '#a78bfa' : SERVER_COLOR;
+    drawRoundRect(sv.x, sv.y, 36, 26, 4, '#1a1a2e', col, isSrc || isDst ? 2 : 1);
+    ctx.font = isSrc || isDst ? 'bold 9px Segoe UI' : '9px Segoe UI';
+    ctx.fillStyle = col;
+    ctx.textAlign = 'center';
+    ctx.fillText(sv.label, sv.x, sv.y + 4);
+  }
+
+  // hop count badge
+  if (pathLinks.length) {
+    const hopCount = pathLinks.filter(p => p?.type === 'uplink' || p?.type === 'downlink').length;
+    const hops = pathLinks.length <= 2 ? 1 : 2;
+    ctx.font = 'bold 13px Segoe UI';
+    ctx.fillStyle = PATH_COLOR;
+    ctx.textAlign = 'center';
+    ctx.fillText(`${hops} hop${hops > 1 ? 's' : ''} - ${pathLinks.length} links`, W / 2, H - 14);
+  }
+}
+
+canvas.addEventListener('click', e => {
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = W / rect.width;
+  const mx = (e.clientX - rect.left) * scaleX;
+  const my = (e.clientY - rect.top) * (H / rect.height);
+
+  if (mode === 'fail') {
+    const lk = hitLink(mx, my);
+    if (lk && lk.type === 'uplink') {
+      if (failedLinks.has(lk.id)) {
+        failedLinks.delete(lk.id);
+        info.innerHTML = `<strong>Link restored:</strong> ${lk.id}. Traffic can flow again.`;
+      } else {
+        failedLinks.add(lk.id);
+        // recompute path if active
+        if (selectedServer && targetServer) {
+          pathLinks = findPath(selectedServer.id, targetServer.id) || [];
+        }
+        info.innerHTML = `<span style="color:#ef4444"><strong>Link failed:</strong> ${lk.id}</span> - Traffic reroutes through another spine automatically. Click again to restore.`;
+      }
+      draw();
+    }
+    return;
+  }
+
+  const node = hitNode(mx, my);
+  if (!node || node.type !== 'server') {
+    selectedServer = null; targetServer = null; pathLinks = [];
+    info.innerHTML = '<strong>Select a server</strong> to begin a trace.';
+    draw();
+    return;
+  }
+
+  if (!selectedServer) {
+    selectedServer = node;
+    targetServer = null;
+    pathLinks = [];
+    info.innerHTML = `<strong>Source:</strong> Server ${node.label} (${node.leaf.replace('L', 'Leaf ')})<br>Now click any <em>other</em> server to trace the path.`;
+    draw();
+  } else if (node.id === selectedServer.id) {
+    selectedServer = null; pathLinks = [];
+    info.innerHTML = '<strong>Select a server</strong> to begin a trace.';
+    draw();
+  } else {
+    targetServer = node;
+    const path = findPath(selectedServer.id, targetServer.id);
+    if (!path) {
+      pathLinks = [];
+      info.innerHTML = `<span style="color:#ef4444"><strong>No path available.</strong></span> All uplinks between ${selectedServer.leaf} and ${targetServer.leaf} are failed. This is why you add redundant spines.`;
+    } else {
+      pathLinks = path;
+      const srcLeaf = getNode(selectedServer.leaf);
+      const dstLeaf = getNode(targetServer.leaf);
+      const sameRack = selectedServer.leaf === targetServer.leaf;
+      const spineUsed = sameRack ? null : spines.find(sp =>
+        path.some(p => p?.a === sp.id || p?.b === sp.id)
+      );
+      if (sameRack) {
+        info.innerHTML = `<span class="hop"><strong>Same rack.</strong></span> ${selectedServer.label} and ${targetServer.label} share <strong>${srcLeaf?.label}</strong>. Traffic stays local - no spine needed. <span class="hop">1 hop.</span>`;
+      } else {
+        info.innerHTML = `<strong>${selectedServer.label}</strong> (${srcLeaf?.label}) <span class="hop">→</span> <strong>${spineUsed?.label}</strong> <span class="hop">→</span> <strong>${targetServer.label}</strong> (${dstLeaf?.label})<br><span class="hop">2 hops.</span> <span class="fiber">2 x 400G uplink fiber runs.</span> Always the same, regardless of scale.`;
+      }
+    }
+    draw();
+  }
+});
+
+window.addEventListener('resize', () => {
+  const nS = spines.length, nL = leaves.length;
+  buildTopo(nS, nL);
+  draw();
+});
+
+function addLeaf() {
+  const nS = spines.length, nL = leaves.length + 1;
+  buildTopo(nS, nL);
+  setMode('reset');
+  info.innerHTML = `<strong>Leaf added.</strong> Now ${nL} leaves, ${nL * nS} uplink runs. Every new leaf automatically connects to all ${nS} spine${nS > 1 ? 's' : ''}. No existing links touched.`;
+  draw();
+}
+
+function addSpine() {
+  const nS = spines.length + 1, nL = leaves.length;
+  buildTopo(nS, nL);
+  setMode('reset');
+  info.innerHTML = `<strong>Spine added.</strong> Now ${nS} spines. Every leaf gets a new uplink - ${nL * nS} total fiber runs. More bandwidth, more redundancy.`;
+  draw();
+}
+
+function resetTopo() {
+  buildTopo(2, 4);
+  setMode('reset');
+  info.innerHTML = '<strong>Topology reset.</strong> 2 spines, 4 leaves, 8 servers. Click a server to trace a path.';
+  draw();
+}
+
+// init
+buildTopo(2, 4);
+draw();
+</script>
+
+<div style="margin-top:40px;border-top:1px solid #1e293b;padding-top:32px;max-width:720px;">
+
+  <div style="margin-bottom:28px;">
+    <div style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#475569;margin-bottom:10px;">The Analogy</div>
+    <p style="font-size:0.85rem;line-height:1.85;color:#94a3b8;">
+      Think of a hotel.<br>
+      The hotel has floors. Each floor has rooms.<br>
+      Every floor has one elevator bank - that's the <strong style="color:#4ade80;">leaf</strong>, a top-of-rack switch.<br>
+      The elevator shafts run straight up through every floor to the roof. Those shafts are the <strong style="color:#7dd3fc;">spines</strong> - the core switches at the top.
+    </p>
+  </div>
+
+  <div style="margin-bottom:28px;">
+    <div style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#475569;margin-bottom:10px;">The Rule</div>
+    <p style="font-size:0.85rem;line-height:1.85;color:#94a3b8;">
+      A guest on Floor 2 wants to visit a guest on Floor 7.<br>
+      They don't walk hallways between floors.<br>
+      They go up to the roof, then back down. Two moves. Every time.<br>
+      That's <strong style="color:#f59e0b;">2 hops</strong> - leaf up to spine, spine back down to leaf. It never changes, no matter how many floors you add.
+    </p>
+  </div>
+
+  <div style="margin-bottom:28px;">
+    <div style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#475569;margin-bottom:10px;">Why It Matters</div>
+    <p style="font-size:0.85rem;line-height:1.85;color:#94a3b8;">
+      Older networks (called three-tier - core, distribution, access) were like a hotel where some floors had secret shortcuts to other floors. Fast if you knew the shortcuts. A disaster to troubleshoot when one broke.<br><br>
+      Leaf-spine removes all the shortcuts. One path. Predictable. If something breaks, you know exactly where to look.
+    </p>
+  </div>
+
+  <div style="margin-bottom:28px;">
+    <div style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#475569;margin-bottom:10px;">Scaling It</div>
+    <p style="font-size:0.85rem;line-height:1.85;color:#94a3b8;">
+      Need more servers? Add a leaf (another floor).<br>
+      Need more bandwidth between floors? Add a spine (another elevator shaft).<br>
+      You never touch what's already running.
+    </p>
+  </div>
+
+  <div style="margin-bottom:8px;">
+    <div style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#475569;margin-bottom:10px;">Where the Fiber Lives</div>
+    <p style="font-size:0.85rem;line-height:1.85;color:#94a3b8;">
+      Every leaf connects to every spine with a dedicated uplink - typically 100G or 400G today, sometimes 800G in AI/ML builds.<br><br>
+      A 4-leaf / 2-spine fabric has <strong style="color:#e2e8f0;">8 uplink runs</strong> minimum.<br>
+      A 16-leaf / 4-spine fabric has <strong style="color:#e2e8f0;">64</strong>.<br><br>
+      That's a lot of pre-terminated MTP trunk, and every one of those links needs to come up clean the first time.
+    </p>
+  </div>
+
+  <div style="margin-top:28px;background:#131c2e;border:1px solid #1e3a5f;border-left:3px solid #4ade80;border-radius:6px;padding:14px 18px;">
+    <div style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#475569;margin-bottom:10px;">Using This Diagram</div>
+    <p style="font-size:0.82rem;line-height:1.85;color:#94a3b8;">
+      <strong style="color:#e2e8f0;">Click any server</strong> - trace a path to another server. Watch the 2-hop rule hold every time.<br>
+      <strong style="color:#e2e8f0;">Add Leaf / Add Spine</strong> - grow the fabric. Every new leaf auto-connects to every spine. No existing links touched. That's the whole scaling story.<br>
+      <strong style="color:#e2e8f0;">Simulate Link Failure</strong> - click that mode, then click an uplink. Traffic reroutes through the surviving spine automatically. That's why you run 2+ spines minimum, and why that uplink fiber has to be right the first time.
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
