@@ -1,0 +1,1945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LAN Cables Direct - Sales Strategy Playbook</title>
+<style>
+  :root {
+    --lcd-blue: #0055a4;
+    --lcd-dark: #1a1a2e;
+    --lcd-light: #f0f4f8;
+    --lcd-accent: #00b4d8;
+    --lcd-orange: #f77f00;
+    --lcd-green: #06d6a0;
+    --lcd-red: #ef476f;
+    --lcd-purple: #7b2cbf;
+    --lcd-fiber-yellow: #ffd60a;
+    --lcd-fiber-aqua: #00b4d8;
+    --lcd-fiber-violet: #7b2cbf;
+    --lcd-copper-blue: #3a86ff;
+    --section-radius: 12px;
+    --card-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--lcd-light);
+    color: #222;
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* ---- PRINT STYLES ---- */
+  @media print {
+    body { background: white; font-size: 11pt; line-height: 1.5; }
+    .no-print, .toc-sidebar, .progress-bar, .nav-header, .level-toggle { display: none !important; }
+    .section { break-inside: avoid; page-break-inside: avoid; margin: 12pt 0; padding: 12pt; box-shadow: none; border: 1px solid #ccc; }
+    .section-content { max-height: none !important; overflow: visible !important; opacity: 1 !important; }
+    .collapsible-content { max-height: none !important; display: block !important; }
+    .hero { padding: 24pt 0; min-height: auto; background: white !important; }
+    .hero h1 { color: var(--lcd-blue) !important; font-size: 22pt; }
+    .diagram-container { break-inside: avoid; }
+    svg { max-width: 100%; height: auto; }
+    .detail-box { border: 1px solid #ddd; break-inside: avoid; }
+    a { color: inherit; text-decoration: none; }
+  }
+
+  /* ---- HEADER / NAV ---- */
+  .nav-header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: var(--lcd-dark);
+    padding: 12px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+  .nav-logo {
+    font-size: 1.1rem; font-weight: 700; color: white;
+    letter-spacing: 1px;
+  }
+  .nav-logo span { color: var(--lcd-accent); }
+  .level-toggle {
+    display: flex; gap: 8px;
+  }
+  .level-btn {
+    padding: 6px 16px; border-radius: 20px; border: 2px solid rgba(255,255,255,0.3);
+    background: transparent; color: white; cursor: pointer; font-size: 0.85rem;
+    transition: all 0.3s;
+  }
+  .level-btn.active {
+    background: var(--lcd-accent); border-color: var(--lcd-accent); color: var(--lcd-dark);
+    font-weight: 700;
+  }
+  .level-btn:hover { border-color: var(--lcd-accent); }
+
+  /* ---- PROGRESS BAR ---- */
+  .progress-bar {
+    position: fixed; top: 56px; left: 0; right: 0; height: 4px;
+    background: rgba(0,0,0,0.1); z-index: 999;
+  }
+  .progress-fill {
+    height: 100%; width: 0%; background: linear-gradient(90deg, var(--lcd-accent), var(--lcd-green));
+    transition: width 0.3s;
+  }
+
+  /* ---- SIDEBAR TOC ---- */
+  .toc-sidebar {
+    position: fixed; left: 0; top: 60px; bottom: 0; width: 260px;
+    background: white; border-right: 1px solid #e0e0e0;
+    overflow-y: auto; padding: 20px 0; z-index: 998;
+    transform: translateX(-260px); transition: transform 0.3s;
+  }
+  .toc-sidebar.open { transform: translateX(0); }
+  .toc-toggle {
+    position: fixed; left: 12px; top: 72px; z-index: 999;
+    background: var(--lcd-blue); color: white; border: none;
+    width: 36px; height: 36px; border-radius: 50%; cursor: pointer;
+    font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2); transition: left 0.3s;
+  }
+  .toc-sidebar.open ~ .toc-toggle { left: 272px; }
+  .toc-item {
+    display: block; padding: 8px 24px; color: #555; text-decoration: none;
+    font-size: 0.85rem; border-left: 3px solid transparent; transition: all 0.2s;
+  }
+  .toc-item:hover, .toc-item.active {
+    color: var(--lcd-blue); background: rgba(0,85,164,0.05);
+    border-left-color: var(--lcd-blue);
+  }
+  .toc-item.sub { padding-left: 40px; font-size: 0.8rem; }
+  .toc-section-label {
+    padding: 16px 24px 4px; font-size: 0.7rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px; color: #999;
+  }
+
+  /* ---- MAIN CONTENT ---- */
+  .main-content {
+    max-width: 900px; margin: 0 auto; padding: 80px 24px 60px;
+  }
+
+  /* ---- HERO ---- */
+  .hero {
+    text-align: center; padding: 80px 24px 60px;
+    background: linear-gradient(135deg, var(--lcd-dark) 0%, #16213e 100%);
+    border-radius: var(--section-radius);
+    margin-bottom: 40px; color: white;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(ellipse at 30% 50%, rgba(0,180,216,0.15) 0%, transparent 60%);
+  }
+  .hero h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 12px; position: relative; }
+  .hero .subtitle { font-size: 1.1rem; color: rgba(255,255,255,0.7); position: relative; max-width: 600px; margin: 0 auto; }
+  .hero .badge {
+    display: inline-block; margin-top: 20px; padding: 6px 20px;
+    background: rgba(0,180,216,0.2); border: 1px solid rgba(0,180,216,0.4);
+    border-radius: 20px; font-size: 0.85rem; color: var(--lcd-accent);
+    position: relative;
+  }
+
+  /* ---- SECTIONS ---- */
+  .section {
+    background: white; border-radius: var(--section-radius);
+    box-shadow: var(--card-shadow); margin-bottom: 32px;
+    overflow: hidden; transition: all 0.3s;
+  }
+  .section:hover { box-shadow: 0 6px 32px rgba(0,0,0,0.12); }
+  .section-header {
+    padding: 24px 32px; cursor: pointer; display: flex;
+    align-items: center; gap: 16px; user-select: none;
+  }
+  .section-header:hover { background: rgba(0,85,164,0.02); }
+  .section-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 1.3rem; color: var(--lcd-dark); flex: 1; }
+  .section-header .arrow {
+    font-size: 1.2rem; color: #aaa; transition: transform 0.3s;
+  }
+  .section.open .section-header .arrow { transform: rotate(180deg); }
+  .section-content {
+    max-height: 0; overflow: hidden; opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.3s ease, padding 0.3s ease;
+    padding: 0 32px;
+  }
+  .section.open .section-content {
+    max-height: 50000px; opacity: 1; padding: 0 32px 32px;
+  }
+
+  /* ---- CONTENT ELEMENTS ---- */
+  h3 { font-size: 1.15rem; color: var(--lcd-blue); margin: 28px 0 12px; }
+  h4 { font-size: 1rem; color: var(--lcd-dark); margin: 20px 0 8px; }
+  p { margin-bottom: 14px; color: #444; }
+  .lead { font-size: 1.05rem; color: #333; font-weight: 500; }
+
+  /* Simple explanation blocks */
+  .simple-box {
+    background: linear-gradient(135deg, #e8f4f8, #f0f8ff);
+    border-left: 4px solid var(--lcd-accent);
+    border-radius: 8px; padding: 20px 24px; margin: 16px 0;
+  }
+  .simple-box .label {
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+    color: var(--lcd-accent); letter-spacing: 1px; margin-bottom: 8px;
+  }
+
+  /* Technical detail blocks */
+  .tech-box {
+    background: linear-gradient(135deg, #f8f0ff, #f4f0ff);
+    border-left: 4px solid var(--lcd-purple);
+    border-radius: 8px; padding: 20px 24px; margin: 16px 0;
+  }
+  .tech-box .label {
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+    color: var(--lcd-purple); letter-spacing: 1px; margin-bottom: 8px;
+  }
+
+  /* Sales tip blocks */
+  .sales-box {
+    background: linear-gradient(135deg, #fff8e8, #fff4e0);
+    border-left: 4px solid var(--lcd-orange);
+    border-radius: 8px; padding: 20px 24px; margin: 16px 0;
+  }
+  .sales-box .label {
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+    color: var(--lcd-orange); letter-spacing: 1px; margin-bottom: 8px;
+  }
+
+  /* Key fact callouts */
+  .key-fact {
+    display: flex; align-items: flex-start; gap: 12px;
+    background: #f8fffe; border: 1px solid #d0f0e8;
+    border-radius: 8px; padding: 16px; margin: 12px 0;
+  }
+  .key-fact .icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+
+  /* Detail reveal */
+  .detail-box {
+    border: 1px solid #e8e8e8; border-radius: 8px; margin: 12px 0; overflow: hidden;
+  }
+  .detail-header {
+    padding: 12px 16px; cursor: pointer; display: flex;
+    align-items: center; gap: 8px; background: #fafafa;
+    font-weight: 600; font-size: 0.9rem; color: var(--lcd-dark);
+    user-select: none;
+  }
+  .detail-header:hover { background: #f0f0f0; }
+  .detail-header .chevron { transition: transform 0.2s; font-size: 0.7rem; color: #999; }
+  .detail-box.open .detail-header .chevron { transform: rotate(90deg); }
+  .detail-body {
+    max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+  }
+  .detail-box.open .detail-body { max-height: 5000px; }
+  .detail-body-inner { padding: 16px; border-top: 1px solid #e8e8e8; }
+
+  /* Comparison tables */
+  .comp-table {
+    width: 100%; border-collapse: collapse; margin: 16px 0;
+    font-size: 0.9rem;
+  }
+  .comp-table th {
+    background: var(--lcd-dark); color: white; padding: 12px 16px;
+    text-align: left; font-weight: 600;
+  }
+  .comp-table td {
+    padding: 10px 16px; border-bottom: 1px solid #eee;
+  }
+  .comp-table tr:hover td { background: #f8f8ff; }
+  .comp-table .highlight { background: rgba(0,180,216,0.08); }
+
+  /* Visual diagram containers */
+  .diagram-container {
+    background: white; border: 1px solid #e0e0e0; border-radius: 12px;
+    padding: 24px; margin: 20px 0; text-align: center;
+    overflow-x: auto;
+  }
+  .diagram-container svg { max-width: 100%; height: auto; }
+  .diagram-caption {
+    font-size: 0.8rem; color: #888; margin-top: 12px;
+    font-style: italic;
+  }
+
+  /* Speed badges */
+  .speed-badge {
+    display: inline-block; padding: 3px 10px; border-radius: 12px;
+    font-size: 0.75rem; font-weight: 700; margin: 2px;
+  }
+  .speed-1g { background: #e8f5e9; color: #2e7d32; }
+  .speed-10g { background: #e3f2fd; color: #1565c0; }
+  .speed-25g { background: #ede7f6; color: #4527a0; }
+  .speed-40g { background: #fce4ec; color: #c62828; }
+  .speed-100g { background: #fff3e0; color: #e65100; }
+  .speed-400g { background: #f3e5f5; color: #6a1b9a; }
+  .speed-800g { background: #e0f7fa; color: #00695c; }
+
+  /* Fiber color coding */
+  .fiber-os2 { color: #ffd60a; font-weight: 700; }
+  .fiber-om3 { color: #00b4d8; font-weight: 700; }
+  .fiber-om4 { color: #00b4d8; font-weight: 700; }
+  .fiber-om5 { color: #2dc653; font-weight: 700; }
+
+  /* Connector type visual tags */
+  .conn-tag {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 2px 10px; border-radius: 4px; font-size: 0.8rem;
+    font-weight: 600; margin: 2px;
+  }
+  .conn-mtp { background: #e8f5e9; color: #1b5e20; border: 1px solid #a5d6a7; }
+  .conn-lc { background: #e3f2fd; color: #0d47a1; border: 1px solid #90caf9; }
+  .conn-sc { background: #fff3e0; color: #e65100; border: 1px solid #ffcc80; }
+  .conn-rj45 { background: #f3e5f5; color: #4a148c; border: 1px solid #ce93d8; }
+
+  /* Glossary */
+  .glossary-term {
+    border-bottom: 1px dashed var(--lcd-accent); cursor: help;
+    position: relative;
+  }
+  .tooltip {
+    display: none; position: absolute; bottom: 100%; left: 50%;
+    transform: translateX(-50%); background: var(--lcd-dark); color: white;
+    padding: 8px 14px; border-radius: 6px; font-size: 0.8rem;
+    white-space: nowrap; z-index: 100; pointer-events: none;
+  }
+  .glossary-term:hover .tooltip { display: block; }
+
+  /* Product cards */
+  .product-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px; margin: 16px 0;
+  }
+  .product-card {
+    border: 2px solid #e8e8e8; border-radius: 12px; padding: 20px;
+    text-align: center; transition: all 0.3s; cursor: default;
+  }
+  .product-card:hover {
+    border-color: var(--lcd-accent); transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,180,216,0.15);
+  }
+  .product-card .card-icon { font-size: 2rem; margin-bottom: 8px; }
+  .product-card .card-title { font-weight: 700; color: var(--lcd-dark); margin-bottom: 4px; }
+  .product-card .card-desc { font-size: 0.85rem; color: #666; }
+
+  /* Objection handler */
+  .objection {
+    background: #fff5f5; border-radius: 8px; padding: 16px; margin: 12px 0;
+  }
+  .objection .q {
+    font-weight: 700; color: var(--lcd-red); margin-bottom: 8px;
+    font-size: 0.95rem;
+  }
+  .objection .a { color: #444; }
+  .objection .a strong { color: var(--lcd-blue); }
+
+  /* Flow steps */
+  .flow-steps {
+    display: flex; flex-direction: column; gap: 0; margin: 16px 0;
+  }
+  .flow-step {
+    display: flex; gap: 16px; position: relative;
+  }
+  .flow-step .step-line {
+    width: 3px; background: var(--lcd-accent); position: absolute;
+    top: 36px; bottom: -16px; left: 17px;
+  }
+  .flow-step:last-child .step-line { display: none; }
+  .flow-step .step-num {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--lcd-accent); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.9rem; flex-shrink: 0;
+    position: relative; z-index: 1;
+  }
+  .flow-step .step-content { padding-bottom: 24px; flex: 1; }
+  .flow-step .step-title { font-weight: 700; color: var(--lcd-dark); }
+  .flow-step .step-desc { font-size: 0.9rem; color: #555; margin-top: 4px; }
+
+  ul, ol { margin: 8px 0 14px 20px; }
+  li { margin-bottom: 6px; color: #444; }
+  li strong { color: #222; }
+
+  /* Level visibility */
+  .level-beginner { }
+  .level-intermediate { display: none; }
+  .level-advanced { display: none; }
+  body.show-intermediate .level-intermediate { display: block; }
+  body.show-advanced .level-intermediate,
+  body.show-advanced .level-advanced { display: block; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .main-content { padding: 70px 12px 40px; }
+    .section-content { padding: 0 16px; }
+    .section.open .section-content { padding: 0 16px 24px; }
+    .section-header { padding: 16px; }
+    .hero h1 { font-size: 1.6rem; }
+    .product-grid { grid-template-columns: 1fr; }
+    .comp-table { font-size: 0.8rem; }
+    .comp-table th, .comp-table td { padding: 8px; }
+  }
+</style>
+</head>
+<body class="show-advanced">
+
+<!-- NAVIGATION -->
+<nav class="nav-header no-print">
+  <div class="nav-logo">LAN CABLES <span>DIRECT</span> &mdash; Sales Playbook</div>
+  <div class="level-toggle">
+    <button class="level-btn" data-level="beginner" title="Simple explanations only">Beginner</button>
+    <button class="level-btn" data-level="intermediate" title="Beginner + intermediate detail">Intermediate</button>
+    <button class="level-btn active" data-level="advanced" title="Full detail - all levels">Full Detail</button>
+  </div>
+</nav>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar no-print"><div class="progress-fill" id="progressFill"></div></div>
+
+<!-- SIDEBAR TOC -->
+<aside class="toc-sidebar no-print" id="tocSidebar">
+  <div class="toc-section-label">Foundation</div>
+  <a class="toc-item" href="#welcome">Welcome</a>
+  <a class="toc-item" href="#big-picture">The Big Picture</a>
+  <a class="toc-item" href="#data-center">Inside a Data Center</a>
+
+  <div class="toc-section-label">What We Sell</div>
+  <a class="toc-item" href="#fiber-cables">Fiber Optic Cables</a>
+  <a class="toc-item" href="#copper-cables">Copper Cables</a>
+  <a class="toc-item" href="#transceivers">Optical Transceivers</a>
+  <a class="toc-item" href="#aoc-dac">AOCs &amp; DACs</a>
+  <a class="toc-item" href="#power-cords">IEC Power Cords</a>
+
+  <div class="toc-section-label">What It Plugs Into</div>
+  <a class="toc-item" href="#patch-panels">Patch Panels</a>
+  <a class="toc-item" href="#fiber-cassettes">Fiber Cassettes</a>
+  <a class="toc-item" href="#full-path">The Full Cable Path</a>
+
+  <div class="toc-section-label">Sales Strategy</div>
+  <a class="toc-item" href="#our-value">Why LAN Cables Direct</a>
+  <a class="toc-item" href="#qualifying">Qualifying a Lead</a>
+  <a class="toc-item" href="#objections">Objection Handling</a>
+  <a class="toc-item" href="#product-matching">Matching Products to Needs</a>
+  <a class="toc-item" href="#speed-guide">Speed &amp; Distance Guide</a>
+  <a class="toc-item" href="#glossary">Glossary</a>
+</aside>
+<button class="toc-toggle no-print" id="tocToggle" title="Table of Contents">&#9776;</button>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+
+<!-- ============================================ -->
+<!-- HERO -->
+<!-- ============================================ -->
+<div class="hero" id="welcome">
+  <h1>LAN Cables Direct<br>Sales Strategy Playbook</h1>
+  <p class="subtitle">Everything you need to know about structured cabling, our product line, and how to sell it. From zero to confident.</p>
+  <div class="badge">New Rep Training Guide &bull; v1.0</div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 1: THE BIG PICTURE -->
+<!-- ============================================ -->
+<div class="section open" id="big-picture">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon" style="background:#e3f2fd;">&#127760;</div>
+    <h2>The Big Picture - What Is All This Stuff?</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-content">
+
+    <div class="simple-box">
+      <div class="label">The Simple Version</div>
+      <p><strong>Think about roads and cars.</strong></p>
+      <p>Your house connects to the grocery store by roads. Cars carry people and groceries on those roads.</p>
+      <p>A data center works the same way. Computers need to talk to each other. They send information (like cars) through cables (like roads). The faster the road, the more cars can travel at once.</p>
+      <p><strong>We build the roads.</strong></p>
+      <p>LAN Cables Direct sells the cables, connectors, and optical parts that connect computers together inside big buildings called data centers. These buildings power everything - your Netflix, your email, your bank's website, AI chatbots, all of it.</p>
+    </div>
+
+    <!-- DIAGRAM: Roads analogy -->
+    <div class="diagram-container">
+      <svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg">
+        <!-- Road -->
+        <rect x="100" y="120" width="600" height="40" rx="4" fill="#555"/>
+        <line x1="200" y1="140" x2="230" y2="140" stroke="#ffd60a" stroke-width="3" stroke-dasharray="12,8"/>
+        <line x1="270" y1="140" x2="300" y2="140" stroke="#ffd60a" stroke-width="3" stroke-dasharray="12,8"/>
+        <line x1="340" y1="140" x2="370" y2="140" stroke="#ffd60a" stroke-width="3" stroke-dasharray="12,8"/>
+        <line x1="410" y1="140" x2="440" y2="140" stroke="#ffd60a" stroke-width="3" stroke-dasharray="12,8"/>
+        <line x1="480" y1="140" x2="510" y2="140" stroke="#ffd60a" stroke-width="3" stroke-dasharray="12,8"/>
+        <line x1="550" y1="140" x2="580" y2="140" stroke="#ffd60a" stroke-width="3" stroke-dasharray="12,8"/>
+
+        <!-- House (left) -->
+        <rect x="20" y="90" width="80" height="70" rx="4" fill="#90caf9" stroke="#1565c0" stroke-width="2"/>
+        <polygon points="60,50 20,90 100,90" fill="#1565c0"/>
+        <rect x="45" y="120" width="20" height="40" fill="#1565c0"/>
+        <text x="60" y="190" text-anchor="middle" font-size="12" fill="#333" font-weight="600">Computer A</text>
+
+        <!-- Building (right) -->
+        <rect x="700" y="70" width="80" height="90" rx="4" fill="#a5d6a7" stroke="#2e7d32" stroke-width="2"/>
+        <rect x="710" y="80" width="15" height="15" fill="#e8f5e9" rx="2"/>
+        <rect x="735" y="80" width="15" height="15" fill="#e8f5e9" rx="2"/>
+        <rect x="760" y="80" width="15" height="15" fill="#e8f5e9" rx="2"/>
+        <rect x="710" y="105" width="15" height="15" fill="#e8f5e9" rx="2"/>
+        <rect x="735" y="105" width="15" height="15" fill="#e8f5e9" rx="2"/>
+        <rect x="760" y="105" width="15" height="15" fill="#e8f5e9" rx="2"/>
+        <rect x="730" y="130" width="20" height="30" fill="#2e7d32"/>
+        <text x="740" y="190" text-anchor="middle" font-size="12" fill="#333" font-weight="600">Computer B</text>
+
+        <!-- Cars -->
+        <rect x="180" y="125" width="30" height="15" rx="4" fill="#ef476f"/>
+        <rect x="310" y="125" width="30" height="15" rx="4" fill="#00b4d8"/>
+        <rect x="440" y="145" width="30" height="15" rx="4" fill="#ffd60a"/>
+        <rect x="570" y="145" width="30" height="15" rx="4" fill="#06d6a0"/>
+
+        <!-- Arrows showing direction -->
+        <text x="400" y="110" text-anchor="middle" font-size="11" fill="#888">Information traveling through cables</text>
+        <text x="400" y="230" text-anchor="middle" font-size="13" fill="#0055a4" font-weight="700">Cable = Road &nbsp; &nbsp; Data = Cars &nbsp; &nbsp; Faster cable = Wider highway</text>
+
+        <!-- Speed labels -->
+        <text x="400" y="255" text-anchor="middle" font-size="11" fill="#888">More lanes (fibers) = more data at the same time</text>
+      </svg>
+      <div class="diagram-caption">Data travels through cables the same way cars travel on roads. Wider roads (faster cables) carry more traffic.</div>
+    </div>
+
+    <div class="level-intermediate">
+      <h3>Two Types of "Roads"</h3>
+      <p>There are two fundamental ways to send data through a cable:</p>
+
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="card-icon" style="color:var(--lcd-fiber-yellow);">&#128161;</div>
+          <div class="card-title">Fiber Optic</div>
+          <div class="card-desc">Uses pulses of light through thin glass strands. Extremely fast, long distances.</div>
+        </div>
+        <div class="product-card">
+          <div class="card-icon" style="color:var(--lcd-copper-blue);">&#9889;</div>
+          <div class="card-title">Copper</div>
+          <div class="card-desc">Uses electrical signals through copper wires. Shorter distances, lower cost per port.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="level-advanced">
+      <div class="tech-box">
+        <div class="label">Technical Detail</div>
+        <p><strong>Why this matters for sales:</strong> Your customer's choice between fiber and copper depends on distance, speed requirements, and budget. Most modern data centers use fiber for the backbone (long runs between switches) and copper for short connections within a rack or between adjacent racks. Knowing which to recommend and when is the core of your product knowledge.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 2: INSIDE A DATA CENTER -->
+<!-- ============================================ -->
+<div class="section" id="data-center">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon" style="background:#e8f5e9;">&#127970;</div>
+    <h2>Inside a Data Center</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-content">
+
+    <div class="simple-box">
+      <div class="label">The Simple Version</div>
+      <p>A data center is a big building full of tall metal shelves called <strong>racks</strong>. Each rack holds computers (called <strong>servers</strong>) and networking equipment (called <strong>switches</strong>).</p>
+      <p>Think of a big library. The racks are bookshelves. The servers are books. The cables are the hallways connecting everything together.</p>
+      <p>Every cable in the building has to be neat, organized, and able to be changed quickly when something breaks or gets upgraded. That's called <strong>structured cabling</strong> - having a plan for where every cable goes.</p>
+    </div>
+
+    <!-- DIAGRAM: Data Center Rack -->
+    <div class="diagram-container">
+      <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg">
+        <!-- Rack 1 -->
+        <rect x="50" y="30" width="140" height="360" rx="6" fill="#e0e0e0" stroke="#888" stroke-width="2"/>
+        <text x="120" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="#333">RACK 1</text>
+        <!-- Top of Rack Switch -->
+        <rect x="60" y="40" width="120" height="30" rx="3" fill="#1565c0"/>
+        <text x="120" y="60" text-anchor="middle" font-size="9" fill="white" font-weight="600">SWITCH (ToR)</text>
+        <!-- Patch Panel -->
+        <rect x="60" y="78" width="120" height="24" rx="3" fill="#f57f17"/>
+        <text x="120" y="94" text-anchor="middle" font-size="8" fill="white" font-weight="600">PATCH PANEL</text>
+        <!-- Small port dots on patch panel -->
+        <circle cx="75" cy="90" r="3" fill="#fff8e1"/><circle cx="85" cy="90" r="3" fill="#fff8e1"/>
+        <circle cx="95" cy="90" r="3" fill="#fff8e1"/><circle cx="105" cy="90" r="3" fill="#fff8e1"/>
+        <circle cx="115" cy="90" r="3" fill="#fff8e1"/><circle cx="125" cy="90" r="3" fill="#fff8e1"/>
+        <circle cx="135" cy="90" r="3" fill="#fff8e1"/><circle cx="145" cy="90" r="3" fill="#fff8e1"/>
+        <circle cx="155" cy="90" r="3" fill="#fff8e1"/><circle cx="165" cy="90" r="3" fill="#fff8e1"/>
+        <!-- Servers -->
+        <rect x="60" y="110" width="120" height="22" rx="2" fill="#424242"/><text x="120" y="125" text-anchor="middle" font-size="8" fill="#aaa">SERVER 1</text>
+        <rect x="60" y="138" width="120" height="22" rx="2" fill="#424242"/><text x="120" y="153" text-anchor="middle" font-size="8" fill="#aaa">SERVER 2</text>
+        <rect x="60" y="166" width="120" height="22" rx="2" fill="#424242"/><text x="120" y="181" text-anchor="middle" font-size="8" fill="#aaa">SERVER 3</text>
+        <rect x="60" y="194" width="120" height="22" rx="2" fill="#424242"/><text x="120" y="209" text-anchor="middle" font-size="8" fill="#aaa">SERVER 4</text>
+        <rect x="60" y="222" width="120" height="22" rx="2" fill="#424242"/><text x="120" y="237" text-anchor="middle" font-size="8" fill="#aaa">SERVER 5</text>
+        <rect x="60" y="250" width="120" height="22" rx="2" fill="#424242"/><text x="120" y="265" text-anchor="middle" font-size="8" fill="#aaa">SERVER 6</text>
+        <!-- PDU -->
+        <rect x="60" y="340" width="120" height="40" rx="3" fill="#6a1b9a"/>
+        <text x="120" y="365" text-anchor="middle" font-size="9" fill="white" font-weight="600">POWER (PDU)</text>
+
+        <!-- Rack 2 -->
+        <rect x="330" y="30" width="140" height="360" rx="6" fill="#e0e0e0" stroke="#888" stroke-width="2"/>
+        <text x="400" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="#333">RACK 2</text>
+        <rect x="340" y="40" width="120" height="30" rx="3" fill="#1565c0"/>
+        <text x="400" y="60" text-anchor="middle" font-size="9" fill="white" font-weight="600">SWITCH (ToR)</text>
+        <rect x="340" y="78" width="120" height="24" rx="3" fill="#f57f17"/>
+        <text x="400" y="94" text-anchor="middle" font-size="8" fill="white" font-weight="600">FIBER PANEL</text>
+        <circle cx="355" cy="90" r="3" fill="#fff8e1"/><circle cx="365" cy="90" r="3" fill="#fff8e1"/>
+        <circle cx="375" cy="90" r="3" fill="#fff8e1"/><circle cx="385" cy="90" r="3" fill="#fff8e1"/>
+        <circle cx="395" cy="90" r="3" fill="#fff8e1"/><circle cx="405" cy="90" r="3" fill="#fff8e1"/>
+        <circle cx="415" cy="90" r="3" fill="#fff8e1"/><circle cx="425" cy="90" r="3" fill="#fff8e1"/>
+        <circle cx="435" cy="90" r="3" fill="#fff8e1"/><circle cx="445" cy="90" r="3" fill="#fff8e1"/>
+        <rect x="340" y="110" width="120" height="22" rx="2" fill="#424242"/><text x="400" y="125" text-anchor="middle" font-size="8" fill="#aaa">SERVER 1</text>
+        <rect x="340" y="138" width="120" height="22" rx="2" fill="#424242"/><text x="400" y="153" text-anchor="middle" font-size="8" fill="#aaa">SERVER 2</text>
+        <rect x="340" y="166" width="120" height="22" rx="2" fill="#424242"/><text x="400" y="181" text-anchor="middle" font-size="8" fill="#aaa">SERVER 3</text>
+        <rect x="340" y="194" width="120" height="22" rx="2" fill="#424242"/><text x="400" y="209" text-anchor="middle" font-size="8" fill="#aaa">SERVER 4</text>
+        <rect x="340" y="340" width="120" height="40" rx="3" fill="#6a1b9a"/>
+        <text x="400" y="365" text-anchor="middle" font-size="9" fill="white" font-weight="600">POWER (PDU)</text>
+
+        <!-- Cable connections between racks -->
+        <path d="M 180 55 C 250 55, 260 55, 340 55" stroke="#00b4d8" stroke-width="3" fill="none" stroke-dasharray="6,4"/>
+        <text x="255" y="48" text-anchor="middle" font-size="9" fill="#00b4d8" font-weight="600">Fiber Trunk Cable</text>
+
+        <!-- Patch cable from switch to patch panel -->
+        <line x1="90" y1="70" x2="90" y2="78" stroke="#06d6a0" stroke-width="2"/>
+        <line x1="120" y1="70" x2="120" y2="78" stroke="#06d6a0" stroke-width="2"/>
+        <line x1="150" y1="70" x2="150" y2="78" stroke="#06d6a0" stroke-width="2"/>
+
+        <!-- Cables from servers to switch -->
+        <line x1="80" y1="110" x2="80" y2="70" stroke="#ef476f" stroke-width="1.5" opacity="0.6"/>
+        <line x1="100" y1="138" x2="100" y2="70" stroke="#ef476f" stroke-width="1.5" opacity="0.6"/>
+        <line x1="140" y1="166" x2="140" y2="70" stroke="#ef476f" stroke-width="1.5" opacity="0.6"/>
+        <line x1="160" y1="194" x2="160" y2="70" stroke="#ef476f" stroke-width="1.5" opacity="0.6"/>
+
+        <!-- Power cords -->
+        <line x1="80" y1="272" x2="80" y2="340" stroke="#f77f00" stroke-width="1.5" opacity="0.5"/>
+        <line x1="120" y1="272" x2="120" y2="340" stroke="#f77f00" stroke-width="1.5" opacity="0.5"/>
+
+        <!-- Labels -->
+        <rect x="600" y="40" width="180" height="180" rx="8" fill="#f5f5f5" stroke="#ddd" stroke-width="1"/>
+        <text x="690" y="62" text-anchor="middle" font-size="11" font-weight="700" fill="#333">KEY</text>
+        <rect x="615" y="74" width="24" height="12" rx="2" fill="#1565c0"/>
+        <text x="648" y="84" font-size="9" fill="#555">Network Switch</text>
+        <rect x="615" y="94" width="24" height="12" rx="2" fill="#f57f17"/>
+        <text x="648" y="104" font-size="9" fill="#555">Patch Panel</text>
+        <rect x="615" y="114" width="24" height="12" rx="2" fill="#424242"/>
+        <text x="648" y="124" font-size="9" fill="#555">Server</text>
+        <rect x="615" y="134" width="24" height="12" rx="2" fill="#6a1b9a"/>
+        <text x="648" y="144" font-size="9" fill="#555">Power (PDU)</text>
+        <line x1="615" y1="162" x2="639" y2="162" stroke="#00b4d8" stroke-width="3" stroke-dasharray="6,4"/>
+        <text x="648" y="166" font-size="9" fill="#555">Fiber Cable</text>
+        <line x1="615" y1="180" x2="639" y2="180" stroke="#ef476f" stroke-width="2"/>
+        <text x="648" y="184" font-size="9" fill="#555">Copper Cable</text>
+        <line x1="615" y1="198" x2="639" y2="198" stroke="#f77f00" stroke-width="2"/>
+        <text x="648" y="202" font-size="9" fill="#555">Power Cord</text>
+      </svg>
+      <div class="diagram-caption">Two racks in a data center. Each rack has a switch at top, a patch panel for cable management, servers below, and power at the bottom. The fiber trunk connects the two racks.</div>
+    </div>
+
+    <div class="level-intermediate">
+      <h3>Key Components in a Rack</h3>
+      <ul>
+        <li><strong>Switch (Top of Rack / ToR):</strong> The traffic controller. Every device in the rack connects to it. It decides where data goes next.</li>
+        <li><strong>Patch Panel:</strong> An organized wall of ports. Cables from the permanent building infrastructure land here. Short jumper cables connect from the patch panel to the switch. This way, you never unplug permanent cables - you only swap the short ones.</li>
+        <li><strong>Servers:</strong> The computers doing the actual work - storing data, running applications, processing AI models.</li>
+        <li><strong>PDU (Power Distribution Unit):</strong> A smart power strip. Distributes electricity to every device in the rack. Our IEC power cords connect servers and switches to the PDU.</li>
+      </ul>
+    </div>
+
+    <div class="level-advanced">
+      <div class="tech-box">
+        <div class="label">Architecture Note</div>
+        <p><strong>Leaf-Spine vs. Traditional:</strong> Modern data centers use a "leaf-spine" architecture. Every "leaf" switch (in each rack) connects to every "spine" switch (at the top of the network). This creates multiple paths for data, eliminating bottlenecks. The cables connecting leaf to spine switches are where our MTP fiber trunks and transceivers live. High-volume, high-margin territory.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 3: FIBER OPTIC CABLES -->
+<!-- ============================================ -->
+<div class="section" id="fiber-cables">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon" style="background:#fff8e1;">&#128161;</div>
+    <h2>Fiber Optic Cables - Our Core Product</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-content">
+
+    <div class="simple-box">
+      <div class="label">The Simple Version</div>
+      <p>Imagine you have a flashlight and a very long, very thin glass tube. You shine the flashlight into one end, and the light comes out the other end - even if the tube is curved.</p>
+      <p>That's fiber optic cable. Instead of a flashlight, a tiny laser sends flashes of light through a strand of glass thinner than a human hair. Each flash is a piece of data. The light bounces along the inside of the glass until it reaches the other end.</p>
+      <p><strong>Why light instead of electricity?</strong> Light travels farther without losing strength, carries more data, and doesn't get confused by nearby electrical signals.</p>
+    </div>
+
+    <!-- DIAGRAM: Fiber cross-section -->
+    <div class="diagram-container">
+      <svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+        <!-- Single fiber strand cross-section -->
+        <text x="150" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="#333">Single Fiber Strand</text>
+        <!-- Outer jacket -->
+        <circle cx="150" cy="150" r="80" fill="#ffd60a" opacity="0.3" stroke="#f57f17" stroke-width="2"/>
+        <text x="150" y="250" text-anchor="middle" font-size="10" fill="#888">Outer Coating (250&mu;m)</text>
+        <!-- Cladding -->
+        <circle cx="150" cy="150" r="50" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+        <text x="240" y="140" font-size="10" fill="#1565c0">Cladding (125&mu;m)</text>
+        <line x1="200" y1="140" x2="230" y2="138" stroke="#1565c0" stroke-width="1"/>
+        <!-- Core -->
+        <circle cx="150" cy="150" r="20" fill="#00b4d8"/>
+        <text x="150" y="154" text-anchor="middle" font-size="9" fill="white" font-weight="700">Core</text>
+        <text x="240" y="160" font-size="10" fill="#00b4d8">Core (9&mu;m or 50&mu;m)</text>
+        <line x1="170" y1="155" x2="230" y2="158" stroke="#00b4d8" stroke-width="1"/>
+
+        <!-- Light bouncing illustration -->
+        <text x="550" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="#333">How Light Travels Inside</text>
+        <rect x="380" y="80" width="340" height="80" rx="40" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+        <rect x="395" y="100" width="310" height="40" rx="20" fill="#e8f4f8"/>
+        <!-- Light path bouncing -->
+        <polyline points="400,120 430,105 460,135 490,105 520,135 550,105 580,135 610,105 640,135 670,105 700,120" stroke="#ffd60a" stroke-width="3" fill="none"/>
+        <!-- Laser on left -->
+        <rect x="360" y="108" width="40" height="24" rx="4" fill="#ef476f"/>
+        <text x="380" y="124" text-anchor="middle" font-size="8" fill="white" font-weight="700">LASER</text>
+        <!-- Detector on right -->
+        <rect x="700" y="108" width="40" height="24" rx="4" fill="#06d6a0"/>
+        <text x="720" y="124" text-anchor="middle" font-size="8" fill="white" font-weight="700">DETECT</text>
+
+        <text x="550" y="195" text-anchor="middle" font-size="11" fill="#888">Light bounces along the glass core at nearly 186,000 miles/sec</text>
+
+        <!-- Multimode vs Singlemode comparison -->
+        <text x="440" y="230" text-anchor="middle" font-size="11" font-weight="700" fill="#333">Multimode (OM3/OM4/OM5)</text>
+        <text x="440" y="245" text-anchor="middle" font-size="10" fill="#888">50&mu;m core, multiple light paths</text>
+        <text x="440" y="260" text-anchor="middle" font-size="10" fill="#00b4d8">Short distance (up to ~400m)</text>
+
+        <text x="680" y="230" text-anchor="middle" font-size="11" font-weight="700" fill="#333">Singlemode (OS2)</text>
+        <text x="680" y="245" text-anchor="middle" font-size="10" fill="#888">9&mu;m core, one light path</text>
+        <text x="680" y="260" text-anchor="middle" font-size="10" fill="#ffd60a">Long distance (up to 80km+)</text>
+      </svg>
+      <div class="diagram-caption">Fiber optic cable sends pulses of laser light through a glass core. Multimode uses a wider core for short distances. Singlemode uses a narrow core for long distances.</div>
+    </div>
+
+    <div class="level-intermediate">
+      <h3>Fiber Types We Sell</h3>
+      <table class="comp-table">
+        <tr>
+          <th>Fiber Type</th>
+          <th>Jacket Color</th>
+          <th>Core Size</th>
+          <th>Best For</th>
+          <th>Max Distance (typical)</th>
+        </tr>
+        <tr>
+          <td><strong>OM3</strong></td>
+          <td><span style="color:#00b4d8;">&#9632;</span> Aqua</td>
+          <td>50&mu;m</td>
+          <td>10G campus/short</td>
+          <td>~300m at 10G</td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>OM4</strong></td>
+          <td><span style="color:#00b4d8;">&#9632;</span> Aqua</td>
+          <td>50&mu;m</td>
+          <td>10G-100G data center</td>
+          <td>~400m at 10G, ~150m at 40/100G</td>
+        </tr>
+        <tr>
+          <td><strong>OM5</strong></td>
+          <td><span style="color:#2dc653;">&#9632;</span> Lime Green</td>
+          <td>50&mu;m</td>
+          <td>SWDM, future 400G</td>
+          <td>~150m at 40/100G</td>
+        </tr>
+        <tr>
+          <td><strong>OS2</strong></td>
+          <td><span style="color:#ffd60a;">&#9632;</span> Yellow</td>
+          <td>9&mu;m</td>
+          <td>Long-haul, campus backbone</td>
+          <td>10km+ (up to 80km with the right optic)</td>
+        </tr>
+      </table>
+
+      <div class="key-fact">
+        <div class="icon">&#128276;</div>
+        <div><strong>OM4 is our bread and butter.</strong> Most data center fiber runs are OM4 multimode. It handles 10G, 25G, 40G, and 100G at the distances data centers need (under 150 meters between racks). OS2 singlemode is for longer campus or building-to-building runs.</div>
+      </div>
+    </div>
+
+    <h3>Our Fiber Cable Products</h3>
+
+    <div class="detail-box" onclick="toggleDetail(this)">
+      <div class="detail-header"><span class="chevron">&#9654;</span> MTP Trunk Cables (Backbone)</div>
+      <div class="detail-body"><div class="detail-body-inner">
+        <div class="simple-box">
+          <div class="label">Simple</div>
+          <p>Think of a thick bundle of garden hoses all taped together. Each hose carries water. An MTP trunk cable is a thick bundle of fiber strands (12, 24, 48, 72, 96, or even 144 fibers) all in one cable, with a special connector on each end called an <strong>MTP connector</strong>.</p>
+          <p>MTP stands for "Multi-fiber Termination Push-on." It's like plugging in a USB cable, but it connects 12 or 24 fibers at once instead of one at a time.</p>
+        </div>
+
+        <div class="level-intermediate">
+          <p><strong>Why MTP trunks matter:</strong> Installing fiber one strand at a time would take forever. MTP trunks let you connect 12 or 24 fibers in one click. They come pre-terminated from the factory (already built with connectors), so there's no field splicing or polishing. Plug in and go.</p>
+          <p><strong>What we sell:</strong></p>
+          <ul>
+            <li><strong>MTP-12 Trunks</strong> - 12 fibers per connector. Standard for 40G/100G.</li>
+            <li><strong>MTP-24 Trunks</strong> - 24 fibers per connector. Growing for 100G/400G.</li>
+            <li><strong>Base-8 Trunks</strong> - 8-fiber configurations. Optimized for 25G/100G deployments using 2-fiber per lane optics.</li>
+            <li>Available in OM3, OM4, OM5, and OS2.</li>
+            <li>Custom lengths. Business days, not weeks.</li>
+          </ul>
+        </div>
+
+        <div class="level-advanced">
+          <div class="tech-box">
+            <div class="label">Technical Detail</div>
+            <p><strong>Polarity matters.</strong> MTP connectors come in Type A (key up to key up, straight), Type B (key up to key down, reversed), and Type C (key up to key up, pairs flipped). The customer's infrastructure design dictates which polarity they need. Always confirm polarity before quoting. Wrong polarity = light doesn't reach the receiver = the link is dead.</p>
+            <p><strong>Pin vs. No-Pin (Male vs. Female):</strong> MTP connectors have alignment pins on one end (male) that slot into the other end (female). Trunks are typically female-to-female. The cassette or adapter panel has the male (pinned) side. Always confirm.</p>
+          </div>
+          <div class="sales-box">
+            <div class="label">Sales Angle</div>
+            <p><strong>Our MTP trunks use US CONEC MTP connectors and Corning glass.</strong> These are the industry-standard components. Some competitors use generic ferrules that cause higher insertion loss and inconsistent polarity. Our cables are factory-tested and ship with test reports.</p>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="detail-box" onclick="toggleDetail(this)">
+      <div class="detail-header"><span class="chevron">&#9654;</span> MTP-to-LC Breakout / Harness / Array Cables</div>
+      <div class="detail-body"><div class="detail-body-inner">
+        <div class="simple-box">
+          <div class="label">Simple</div>
+          <p>Remember the garden hose bundle? Now imagine one end stays bundled (MTP connector), but the other end splits apart into individual hoses (LC connectors). That's a breakout cable. It takes one big multi-fiber connector and fans it out into individual fiber connections.</p>
+        </div>
+        <div class="level-intermediate">
+          <p><strong>Why breakouts exist:</strong> The MTP trunk brings a fat bundle of fibers to the rack. But switches and servers have individual ports. The breakout cable (also called a harness or array cable) converts from MTP to individual LC duplex connectors that plug directly into transceivers.</p>
+          <p>Common configurations: MTP-12 to 6x LC duplex, MTP-24 to 12x LC duplex, MTP-8 to 4x LC duplex.</p>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="detail-box" onclick="toggleDetail(this)">
+      <div class="detail-header"><span class="chevron">&#9654;</span> LC Duplex Patch Cables</div>
+      <div class="detail-body"><div class="detail-body-inner">
+        <div class="simple-box">
+          <div class="label">Simple</div>
+          <p>These are the short jumper cables. LC connectors on both ends. They connect a switch port to a patch panel port, or a patch panel to a server. "Duplex" means two fibers side by side - one sends, one receives.</p>
+        </div>
+        <div class="level-intermediate">
+          <p>Available in all fiber types (OM3, OM4, OS2). Typical lengths: 1m, 2m, 3m, 5m. LC is the dominant connector in modern data centers - small form factor, high density.</p>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 4: COPPER CABLES -->
+<!-- ============================================ -->
+<div class="section" id="copper-cables">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon" style="background:#ede7f6;">&#9889;</div>
+    <h2>Copper Cables - CAT6A &amp; CAT6</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-content">
+
+    <div class="simple-box">
+      <div class="label">The Simple Version</div>
+      <p>If fiber cables use light, copper cables use electricity. They look like the cable that connects your home internet router to your computer - a plastic plug on each end (called <strong>RJ45</strong>) with a cable in between.</p>
+      <p>Inside the cable, there are 8 thin copper wires twisted together in pairs (4 pairs). The twisting helps prevent signals from getting scrambled by nearby electronics.</p>
+    </div>
+
+    <!-- DIAGRAM: Copper cable anatomy -->
+    <div class="diagram-container">
+      <svg viewBox="0 0 800 240" xmlns="http://www.w3.org/2000/svg">
+        <!-- Cable cross-section -->
+        <text x="200" y="25" text-anchor="middle" font-size="14" font-weight="700" fill="#333">Inside a CAT6A Cable</text>
+        <!-- Outer jacket -->
+        <circle cx="200" cy="130" r="70" fill="#3a86ff" opacity="0.15" stroke="#3a86ff" stroke-width="2"/>
+        <text x="200" y="220" text-anchor="middle" font-size="10" fill="#888">Outer Jacket</text>
+        <!-- Spline/separator -->
+        <line x1="200" y1="75" x2="200" y2="185" stroke="#ddd" stroke-width="3"/>
+        <line x1="145" y1="130" x2="255" y2="130" stroke="#ddd" stroke-width="3"/>
+        <!-- Twisted pairs -->
+        <circle cx="172" cy="102" r="16" fill="none" stroke="#ef476f" stroke-width="3"/>
+        <text x="172" y="106" text-anchor="middle" font-size="7" fill="#ef476f" font-weight="700">Pair 1</text>
+        <circle cx="228" cy="102" r="16" fill="none" stroke="#06d6a0" stroke-width="3"/>
+        <text x="228" y="106" text-anchor="middle" font-size="7" fill="#06d6a0" font-weight="700">Pair 2</text>
+        <circle cx="172" cy="158" r="16" fill="none" stroke="#ffd60a" stroke-width="3"/>
+        <text x="172" y="162" text-anchor="middle" font-size="7" fill="#c4a000" font-weight="700">Pair 3</text>
+        <circle cx="228" cy="158" r="16" fill="none" stroke="#7b2cbf" stroke-width="3"/>
+        <text x="228" y="162" text-anchor="middle" font-size="7" fill="#7b2cbf" font-weight="700">Pair 4</text>
+
+        <!-- RJ45 connector -->
+        <text x="560" y="25" text-anchor="middle" font-size="14" font-weight="700" fill="#333">RJ45 Connector</text>
+        <rect x="500" y="55" width="120" height="60" rx="6" fill="#e0e0e0" stroke="#999" stroke-width="2"/>
+        <rect x="510" y="45" width="100" height="20" rx="3" fill="#ccc" stroke="#999" stroke-width="1.5"/>
+        <!-- Pins -->
+        <rect x="518" y="65" width="6" height="30" fill="#ffd60a"/><rect x="530" y="65" width="6" height="30" fill="#ffd60a"/>
+        <rect x="542" y="65" width="6" height="30" fill="#ffd60a"/><rect x="554" y="65" width="6" height="30" fill="#ffd60a"/>
+        <rect x="566" y="65" width="6" height="30" fill="#ffd60a"/><rect x="578" y="65" width="6" height="30" fill="#ffd60a"/>
+        <rect x="590" y="65" width="6" height="30" fill="#ffd60a"/><rect x="602" y="65" width="6" height="30" fill="#ffd60a"/>
+        <!-- Tab -->
+        <rect x="545" y="115" width="30" height="12" rx="3" fill="#bbb"/>
+        <text x="560" y="150" text-anchor="middle" font-size="10" fill="#888">8 gold pins, locking tab</text>
+
+        <!-- Comparison -->
+        <text x="560" y="185" text-anchor="middle" font-size="12" font-weight="700" fill="#333">CAT6 vs. CAT6A</text>
+        <text x="460" y="205" font-size="10" fill="#666">CAT6: 1G-10G, 55m at 10G</text>
+        <text x="460" y="222" font-size="10" fill="#3a86ff" font-weight="600">CAT6A: 10G up to 100m - our standard</text>
+      </svg>
+      <div class="diagram-caption">A CAT6A cable has 4 twisted pairs of copper wire inside a shielded jacket, terminated with RJ45 connectors.</div>
+    </div>
+
+    <div class="level-intermediate">
+      <h3>CAT6A vs. CAT6</h3>
+      <table class="comp-table">
+        <tr><th>Spec</th><th>CAT6</th><th>CAT6A (our standard)</th></tr>
+        <tr><td>Max Speed</td><td>10 Gbps</td><td>10 Gbps</td></tr>
+        <tr><td>Bandwidth</td><td>250 MHz</td><td>500 MHz</td></tr>
+        <tr><td>10G Distance</td><td>55 meters</td><td>100 meters</td></tr>
+        <tr class="highlight"><td>Shielding</td><td>Usually unshielded (UTP)</td><td>Shielded (F/UTP or U/FTP)</td></tr>
+        <tr><td>Use Case</td><td>Office, short rack connections</td><td>Data center standard, full 10G support</td></tr>
+      </table>
+
+      <div class="key-fact">
+        <div class="icon">&#128276;</div>
+        <div><strong>Always recommend CAT6A for data centers.</strong> The extra shielding and full 100-meter 10G support is what enterprise customers need. CAT6 is fine for office runs, but data center specs call for CAT6A.</div>
+      </div>
+    </div>
+
+    <div class="level-advanced">
+      <div class="sales-box">
+        <div class="label">Sales Context</div>
+        <p>Copper is typically used for within-rack or same-row connections (server to ToR switch). Runs over 5 meters in a data center usually switch to fiber or DAC. Our copper patch cables come in standard lengths from 0.5m to 15m. Custom lengths available.</p>
+        <p>When a customer asks for "Ethernet cables" or "network cables," they mean copper. Clarify the category (CAT6A vs CAT6) and the length needed.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 5: OPTICAL TRANSCEIVERS -->
+<!-- ============================================ -->
+<div class="section" id="transceivers">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon" style="background:#fce4ec;">&#128268;</div>
+    <h2>Optical Transceivers - The Translators</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-content">
+
+    <div class="simple-box">
+      <div class="label">The Simple Version</div>
+      <p>A switch speaks "electricity." A fiber cable speaks "light." They don't understand each other.</p>
+      <p>A <strong>transceiver</strong> is the translator. It plugs into the switch and converts electrical signals to light (and back again). It's a small, hot-swappable module about the size of a pack of gum.</p>
+      <p><strong>"Hot-swappable"</strong> means you can plug it in or pull it out while the switch is running. No need to shut anything down.</p>
+    </div>
+
+    <!-- DIAGRAM: Transceiver in a switch -->
+    <div class="diagram-container">
+      <svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg">
+        <!-- Switch -->
+        <rect x="100" y="80" width="600" height="120" rx="8" fill="#1a1a2e" stroke="#333" stroke-width="2"/>
+        <text x="400" y="70" text-anchor="middle" font-size="14" font-weight="700" fill="#333">Network Switch (front view)</text>
+
+        <!-- Transceiver slots -->
+        <rect x="130" y="100" width="50" height="35" rx="3" fill="#333" stroke="#555" stroke-width="1"/>
+        <rect x="190" y="100" width="50" height="35" rx="3" fill="#333" stroke="#555" stroke-width="1"/>
+        <rect x="250" y="100" width="50" height="35" rx="3" fill="#333" stroke="#555" stroke-width="1"/>
+
+        <!-- Transceiver plugged in (highlighted) -->
+        <rect x="310" y="95" width="55" height="42" rx="4" fill="#00b4d8" stroke="#0077b6" stroke-width="2"/>
+        <text x="337" y="120" text-anchor="middle" font-size="8" fill="white" font-weight="700">SFP28</text>
+        <!-- Fiber cable connected -->
+        <rect x="320" y="137" width="35" height="15" rx="3" fill="#ffd60a"/>
+        <line x1="337" y1="152" x2="337" y2="220" stroke="#ffd60a" stroke-width="3"/>
+        <text x="337" y="240" text-anchor="middle" font-size="10" fill="#888">Fiber Cable</text>
+
+        <rect x="375" y="100" width="50" height="35" rx="3" fill="#333" stroke="#555" stroke-width="1"/>
+        <rect x="435" y="100" width="50" height="35" rx="3" fill="#333" stroke="#555" stroke-width="1"/>
+
+        <!-- QSFP shown larger -->
+        <rect x="500" y="95" width="70" height="42" rx="4" fill="#7b2cbf" stroke="#5a189a" stroke-width="2"/>
+        <text x="535" y="120" text-anchor="middle" font-size="8" fill="white" font-weight="700">QSFP28</text>
+        <rect x="510" y="137" width="50" height="15" rx="3" fill="#ffd60a"/>
+        <line x1="535" y1="152" x2="535" y2="220" stroke="#ffd60a" stroke-width="3"/>
+        <text x="535" y="240" text-anchor="middle" font-size="10" fill="#888">MTP Trunk</text>
+
+        <rect x="585" y="100" width="70" height="35" rx="3" fill="#333" stroke="#555" stroke-width="1"/>
+
+        <!-- Labels -->
+        <text x="155" y="125" text-anchor="middle" font-size="7" fill="#888">Empty</text>
+        <text x="215" y="125" text-anchor="middle" font-size="7" fill="#888">Empty</text>
+        <text x="275" y="125" text-anchor="middle" font-size="7" fill="#888">Empty</text>
+        <text x="400" y="125" text-anchor="middle" font-size="7" fill="#888">Empty</text>
+        <text x="460" y="125" text-anchor="middle" font-size="7" fill="#888">Empty</text>
+        <text x="620" y="125" text-anchor="middle" font-size="7" fill="#888">Empty</text>
+
+        <!-- Arrow and label for transceiver -->
+        <line x1="337" y1="80" x2="337" y2="60" stroke="#00b4d8" stroke-width="1.5"/>
+        <text x="337" y="52" text-anchor="middle" font-size="10" fill="#00b4d8" font-weight="600">25G Transceiver</text>
+        <line x1="535" y1="80" x2="535" y2="52" stroke="#7b2cbf" stroke-width="1.5"/>
+        <text x="535" y="44" text-anchor="middle" font-size="10" fill="#7b2cbf" font-weight="600">100G Transceiver</text>
+
+        <!-- Explanation -->
+        <text x="400" y="270" text-anchor="middle" font-size="11" fill="#555">Transceivers plug into the switch. Cables plug into the transceiver.</text>
+      </svg>
+      <div class="diagram-caption">Transceivers plug into ports on the switch. They convert between the switch's electrical signals and the cable's optical (light) signals. Different sizes support different speeds.</div>
+    </div>
+
+    <div class="level-intermediate">
+      <h3>Transceiver Form Factors (Sizes)</h3>
+      <p>Transceivers come in different physical sizes. The size determines how fast it goes.</p>
+
+      <table class="comp-table">
+        <tr><th>Form Factor</th><th>Speed</th><th>Common Use</th></tr>
+        <tr><td><strong>SFP</strong></td><td><span class="speed-badge speed-1g">1G</span></td><td>Legacy, some management ports</td></tr>
+        <tr><td><strong>SFP+</strong></td><td><span class="speed-badge speed-10g">10G</span></td><td>Server uplinks, ToR connections</td></tr>
+        <tr><td><strong>SFP28</strong></td><td><span class="speed-badge speed-25g">25G</span></td><td>Modern server connections</td></tr>
+        <tr class="highlight"><td><strong>QSFP+</strong></td><td><span class="speed-badge speed-40g">40G</span></td><td>Switch-to-switch links</td></tr>
+        <tr class="highlight"><td><strong>QSFP28</strong></td><td><span class="speed-badge speed-100g">100G</span></td><td>Spine links, high-speed aggregation</td></tr>
+        <tr><td><strong>QSFP56</strong></td><td><span class="speed-badge speed-100g">200G</span></td><td>Next-gen spine, AI clusters</td></tr>
+        <tr><td><strong>QSFP-DD</strong></td><td><span class="speed-badge speed-400g">400G</span></td><td>AI/ML fabrics, hyperscale</td></tr>
+        <tr><td><strong>OSFP</strong></td><td><span class="speed-badge speed-400g">400G</span> <span class="speed-badge speed-800g">800G</span></td><td>Next-gen AI, hyperscale</td></tr>
+      </table>
+
+      <div class="key-fact">
+        <div class="icon">&#128276;</div>
+        <div><strong>"Q" means Quad.</strong> QSFP has 4 lanes instead of 1. A QSFP28 runs 4 lanes at 25G each = 100G total. A QSFP-DD is "Double Density" - 8 lanes. Understanding the lane math helps you recommend the right cable (how many fibers the cable needs matches the transceiver's lane count).</div>
+      </div>
+    </div>
+
+    <div class="level-advanced">
+      <h3>OEM vs. Third-Party ("Alternative") Transceivers</h3>
+      <p class="lead">This is where we make serious margin and deliver serious value.</p>
+
+      <p>Switch manufacturers (Cisco, Arista, Juniper, etc.) sell their own branded transceivers. These are called <strong>OEM optics</strong>. They work, but they cost 3-10x more than third-party alternatives that do the same job.</p>
+
+      <div class="sales-box">
+        <div class="label">The LAN Cables Direct Advantage</div>
+        <p><strong>We sell third-party "alternative" transceivers that are coded for the customer's switch platform.</strong> Same specs, same performance, same standards (IEEE, MSA) - at a fraction of the OEM price.</p>
+        <p>"Coded for" means our transceivers identify themselves as compatible with the specific switch brand. Cisco, Arista, Juniper, Dell, Mellanox/NVIDIA - we cover them all.</p>
+        <p>Our optics carry a 5-year warranty and ship with DOM (Digital Optical Monitoring) support so the customer can monitor signal health in real time.</p>
+      </div>
+
+      <div class="tech-box">
+        <div class="label">Technical Detail</div>
+        <p><strong>MSA compliance:</strong> MSA (Multi-Source Agreement) is the industry standard that defines physical dimensions and electrical interfaces for transceivers. Any MSA-compliant transceiver will physically fit and electronically work in any MSA-compliant switch port. OEM vendors add software locks to reject third-party modules. Our coding addresses this. The optic itself is identical in design.</p>
+        <p><strong>DOM / DDM:</strong> Digital Optical Monitoring reports TX power, RX power, temperature, voltage, and bias current. Our transceivers fully support DOM so the customer's monitoring tools work exactly as expected.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 6: AOCs & DACs -->
+<!-- ============================================ -->
+<div class="section" id="aoc-dac">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon" style="background:#e8f5e9;">&#128279;</div>
+    <h2>AOCs &amp; DACs - The Short-Range Champions</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-content">
+
+    <div class="simple-box">
+      <div class="label">The Simple Version</div>
+      <p>Sometimes two devices are right next to each other - in the same rack or one rack over. Using a separate transceiver + cable for a short connection is like hiring a moving truck to carry a pizza across the street.</p>
+      <p><strong>DACs and AOCs are all-in-one cables.</strong> The "transceiver" is built right into the cable ends. No separate parts. Plug one end into one switch, the other end into another switch. Done.</p>
+    </div>
+
+    <div class="level-intermediate">
+      <h3>DAC vs. AOC - What's the Difference?</h3>
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="card-icon">&#9889;</div>
+          <div class="card-title">DAC (Direct Attach Copper) / Twinax</div>
+          <div class="card-desc">Copper cable with transceivers built into each end. Passive (no electronics, up to ~5m) or Active (powered, up to ~10m). Lowest latency, lowest cost, lowest power.</div>
+        </div>
+        <div class="product-card">
+          <div class="card-icon">&#128161;</div>
+          <div class="card-title">AOC (Active Optical Cable)</div>
+          <div class="card-desc">Fiber cable with transceivers built into each end. Always active (powered). Reaches 10-100m. Thinner, lighter, better airflow than DAC at longer lengths.</div>
+        </div>
+      </div>
+
+      <table class="comp-table">
+        <tr><th>Feature</th><th>Passive DAC</th><th>Active DAC</th><th>AOC</th></tr>
+        <tr><td>Signal Type</td><td>Electrical</td><td>Electrical</td><td>Optical</td></tr>
+        <tr><td>Max Length</td><td>~5m</td><td>~10m</td><td>~100m</td></tr>
+        <tr><td>Power Draw</td><td>None (passive)</td><td>Low</td><td>Medium</td></tr>
+        <tr><td>Weight/Thickness</td><td>Heavier, stiffer</td><td>Heavier, stiffer</td><td>Light, flexible</td></tr>
+        <tr class="highlight"><td>Best For</td><td>Within-rack, adjacent rack</td><td>Same row</td><td>Same row, across row</td></tr>
+        <tr><td>Cost</td><td>Lowest</td><td>Low</td><td>Moderate</td></tr>
+      </table>
+    </div>
+
+    <div class="level-advanced">
+      <div class="sales-box">
+        <div class="label">Sales Tip</div>
+        <p><strong>Ask about distance first.</strong> If the run is under 5 meters, a passive DAC is the most cost-effective choice. 5-10 meters, consider active DAC or AOC. Over 10 meters, AOC or separate transceiver + fiber is the path. These are coded to platform just like our standalone transceivers.</p>
+        <p>DACs and AOCs are available in all major form factors: SFP+ (10G), SFP28 (25G), QSFP+ (40G), QSFP28 (100G), QSFP56 (200G), QSFP-DD (400G).</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 7: IEC POWER CORDS -->
+<!-- ============================================ -->
+<div class="section" id="power-cords">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon" style="background:#fff3e0;">&#9889;</div>
+    <h2>IEC Power Cords</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-content">
+
+    <div class="simple-box">
+      <div class="label">The Simple Version</div>
+      <p>Every computer in the data center needs electricity. IEC power cords are the cables that connect servers and switches to the power strip in the rack (the PDU).</p>
+      <p>They come in different plug shapes depending on how much power the device needs. Think of it like how a regular lamp uses a normal plug, but an oven uses a bigger, different-shaped plug.</p>
+    </div>
+
+    <div class="level-intermediate">
+      <h3>Common IEC Connector Types</h3>
+      <table class="comp-table">
+        <tr><th>Connector Pair</th><th>Amps</th><th>Used For</th></tr>
+        <tr><td><strong>C13/C14</strong></td><td>10A-15A</td><td>Standard servers, switches, most equipment</td></tr>
+        <tr class="highlight"><td><strong>C19/C20</strong></td><td>16A-20A</td><td>High-power servers, blade chassis, storage arrays</td></tr>
+        <tr><td><strong>C15/C16</strong></td><td>10A-15A</td><td>Higher temperature-rated devices (some Cisco)</td></tr>
+      </table>
+      <p><strong>C13/C14 is the most common.</strong> C19/C20 is for power-hungry equipment. These are consumables - data centers buy them in volume.</p>
+    </div>
+
+    <div class="level-advanced">
+      <div class="sales-box">
+        <div class="label">Sales Context</div>
+        <p>Power cords are a low-margin, high-volume, easy add-on. Any time you're quoting cables or optics, ask: "Do you need power cords for this deployment?" It's usually a yes, and it increases order value with zero additional selling effort. We carry standard North American (NEMA) plugs. Color options available for cable management (red for A-feed, blue for B-feed is common).</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 8: WHAT OUR CABLES PLUG INTO -->
+<!-- ============================================ -->
+<div class="section" id="patch-panels">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon" style="background:#e8eaf6;">&#128187;</div>
+    <h2>What Our Cables Plug Into - Patch Panels</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-content">
+
+    <div class="simple-box">
+      <div class="label">The Simple Version</div>
+      <p>Imagine you have 48 garden hoses going to different parts of your yard. Instead of having them all hang loose, you mount a board on the wall with 48 labeled holes. Each hose connects to its labeled hole. Now when you need to switch which hose goes where, you only change the short connecting piece on the front - you never touch the long hose running through the wall.</p>
+      <p>That's a <strong>patch panel</strong>. It's an organized wall of connection ports mounted in the rack. Permanent cables land on the back. Short "patch" cables on the front connect to the switch. Clean, organized, easy to change.</p>
+    </div>
+
+    <p class="lead" style="margin-top:12px;"><em>We don't sell patch panels, but your customers use them with our cables. Understanding how they work makes you a better consultant.</em></p>
+
+    <!-- DIAGRAM: Patch Panel Connection -->
+    <div class="diagram-container">
+      <svg viewBox="0 0 800 350" xmlns="http://www.w3.org/2000/svg">
+        <!-- Title -->
+        <text x="400" y="25" text-anchor="middle" font-size="15" font-weight="700" fill="#333">How Cables Connect Through a Patch Panel</text>
+
+        <!-- Switch at top -->
+        <rect x="200" y="45" width="400" height="50" rx="6" fill="#1565c0"/>
+        <text x="400" y="75" text-anchor="middle" font-size="12" fill="white" font-weight="700">NETWORK SWITCH</text>
+        <!-- Switch ports -->
+        <rect x="240" y="55" width="16" height="12" rx="2" fill="#90caf9"/>
+        <rect x="265" y="55" width="16" height="12" rx="2" fill="#90caf9"/>
+        <rect x="290" y="55" width="16" height="12" rx="2" fill="#90caf9"/>
+        <rect x="440" y="55" width="16" height="12" rx="2" fill="#90caf9"/>
+        <rect x="465" y="55" width="16" height="12" rx="2" fill="#90caf9"/>
+        <rect x="490" y="55" width="16" height="12" rx="2" fill="#90caf9"/>
+
+        <!-- Short patch cables from switch to patch panel front -->
+        <line x1="248" y1="67" x2="248" y2="135" stroke="#06d6a0" stroke-width="2.5"/>
+        <line x1="273" y1="67" x2="273" y2="135" stroke="#06d6a0" stroke-width="2.5"/>
+        <line x1="298" y1="67" x2="298" y2="135" stroke="#06d6a0" stroke-width="2.5"/>
+        <line x1="448" y1="67" x2="448" y2="135" stroke="#06d6a0" stroke-width="2.5"/>
+        <line x1="473" y1="67" x2="473" y2="135" stroke="#06d6a0" stroke-width="2.5"/>
+        <line x1="498" y1="67" x2="498" y2="135" stroke="#06d6a0" stroke-width="2.5"/>
+        <text x="380" y="115" text-anchor="middle" font-size="10" fill="#06d6a0" font-weight="600">Short Patch Cables</text>
+        <text x="380" y="128" text-anchor="middle" font-size="9" fill="#06d6a0">(our LC patch cables)</text>
+
+        <!-- Patch Panel -->
+        <rect x="200" y="135" width="400" height="40" rx="4" fill="#f57f17" stroke="#e65100" stroke-width="2"/>
+        <text x="400" y="160" text-anchor="middle" font-size="12" fill="white" font-weight="700">PATCH PANEL</text>
+        <!-- Front ports -->
+        <rect x="240" y="143" width="12" height="10" rx="1" fill="#fff8e1"/>
+        <rect x="265" y="143" width="12" height="10" rx="1" fill="#fff8e1"/>
+        <rect x="290" y="143" width="12" height="10" rx="1" fill="#fff8e1"/>
+        <rect x="440" y="143" width="12" height="10" rx="1" fill="#fff8e1"/>
+        <rect x="465" y="143" width="12" height="10" rx="1" fill="#fff8e1"/>
+        <rect x="490" y="143" width="12" height="10" rx="1" fill="#fff8e1"/>
+        <!-- Back ports -->
+        <rect x="240" y="164" width="12" height="10" rx="1" fill="#ffcc80"/>
+        <rect x="265" y="164" width="12" height="10" rx="1" fill="#ffcc80"/>
+        <rect x="290" y="164" width="12" height="10" rx="1" fill="#ffcc80"/>
+        <rect x="440" y="164" width="12" height="10" rx="1" fill="#ffcc80"/>
+        <rect x="465" y="164" width="12" height="10" rx="1" fill="#ffcc80"/>
+        <rect x="490" y="164" width="12" height="10" rx="1" fill="#ffcc80"/>
+
+        <!-- Long trunk cables from patch panel back going down -->
+        <line x1="248" y1="174" x2="248" y2="260" stroke="#ffd60a" stroke-width="3"/>
+        <line x1="273" y1="174" x2="273" y2="260" stroke="#ffd60a" stroke-width="3"/>
+        <line x1="298" y1="174" x2="298" y2="260" stroke="#ffd60a" stroke-width="3"/>
+        <line x1="448" y1="174" x2="448" y2="260" stroke="#ffd60a" stroke-width="3"/>
+        <line x1="473" y1="174" x2="473" y2="260" stroke="#ffd60a" stroke-width="3"/>
+        <line x1="498" y1="174" x2="498" y2="260" stroke="#ffd60a" stroke-width="3"/>
+        <text x="380" y="220" text-anchor="middle" font-size="10" fill="#e65100" font-weight="600">Permanent Trunk Cables</text>
+        <text x="380" y="235" text-anchor="middle" font-size="9" fill="#e65100">(our MTP trunks or horizontal runs)</text>
+
+        <!-- To other racks -->
+        <rect x="170" y="260" width="460" height="35" rx="4" fill="#e8e8e8" stroke="#bbb" stroke-width="1"/>
+        <text x="400" y="282" text-anchor="middle" font-size="11" fill="#666" font-weight="600">To Other Racks, Rows, or Buildings</text>
+
+        <!-- Labels on right side -->
+        <rect x="640" y="50" width="140" height="30" rx="4" fill="#e3f2fd"/>
+        <text x="710" y="70" text-anchor="middle" font-size="9" fill="#1565c0" font-weight="600">FRONT of Rack</text>
+        <rect x="640" y="250" width="140" height="30" rx="4" fill="#fff8e1"/>
+        <text x="710" y="270" text-anchor="middle" font-size="9" fill="#e65100" font-weight="600">BACK (to infrastructure)</text>
+
+        <!-- Summary text -->
+        <text x="400" y="320" text-anchor="middle" font-size="11" fill="#555">Short cables on the front are easy to swap. Permanent cables on the back stay untouched.</text>
+        <text x="400" y="338" text-anchor="middle" font-size="11" fill="#0055a4" font-weight="700">Patch panels = organized, maintainable cable management</text>
+      </svg>
+      <div class="diagram-caption">The patch panel sits between the switch and the permanent cabling. Our LC patch cables go on the front. Our MTP trunks go on the back. The customer swaps the front cables, not the permanent ones.</div>
+    </div>
+
+    <div class="level-intermediate">
+      <h3>Types of Patch Panels</h3>
+
+      <div class="detail-box" onclick="toggleDetail(this)">
+        <div class="detail-header"><span class="chevron">&#9654;</span> Copper Patch Panels (RJ45)</div>
+        <div class="detail-body"><div class="detail-body-inner">
+          <p>A flat 1U or 2U panel with 24 or 48 RJ45 ports on the front. Permanent copper cables (from wall jacks or other racks) punch down on the back. Short copper patch cables (our CAT6A) connect from the front to the switch.</p>
+          <p>Think of a telephone switchboard - the old-school kind with plugs. Same concept, modern execution.</p>
+        </div></div>
+      </div>
+
+      <div class="detail-box" onclick="toggleDetail(this)">
+        <div class="detail-header"><span class="chevron">&#9654;</span> Fiber Patch Panels (LC Adapter Panels)</div>
+        <div class="detail-body"><div class="detail-body-inner">
+          <p>Same concept as copper, but for fiber. LC duplex adapters mounted on a panel. Trunk cables land on the back, LC patch cables on the front. Common in high-density fiber deployments where cassettes aren't used.</p>
+          <p>These come in various densities: 24-port, 48-port, 96-port LC. They mount in standard rack enclosures.</p>
+        </div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 9: FIBER CASSETTES -->
+<!-- ============================================ -->
+<div class="section" id="fiber-cassettes">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon" style="background:#f3e5f5;">&#128230;</div>
+    <h2>Fiber Cassettes - The MTP-to-LC Bridge</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-content">
+
+    <div class="simple-box">
+      <div class="label">The Simple Version</div>
+      <p>Remember the MTP connector that carries 12 fibers at once? The switch has individual LC ports. Something needs to split the bundle into individual connections.</p>
+      <p>A <strong>fiber cassette</strong> is a small plastic box that does exactly this. The MTP trunk cable plugs into the back of the cassette. The front has individual LC ports. Inside the box, the 12 fibers are permanently fanned out and connected.</p>
+      <p>Think of it like a power strip adapter - one big plug on one side, many small outlets on the other.</p>
+    </div>
+
+    <!-- DIAGRAM: Fiber Cassette -->
+    <div class="diagram-container">
+      <svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg">
+        <text x="400" y="25" text-anchor="middle" font-size="15" font-weight="700" fill="#333">How a Fiber Cassette Works</text>
+
+        <!-- MTP Trunk coming from left -->
+        <rect x="30" y="115" width="120" height="30" rx="15" fill="#ffd60a" stroke="#e65100" stroke-width="2"/>
+        <text x="90" y="134" text-anchor="middle" font-size="9" fill="#333" font-weight="700">MTP Trunk Cable</text>
+        <text x="90" y="160" text-anchor="middle" font-size="8" fill="#888">(12 fibers, 1 connector)</text>
+
+        <!-- Arrow -->
+        <line x1="150" y1="130" x2="210" y2="130" stroke="#e65100" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <defs><marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#e65100"/></marker></defs>
+
+        <!-- Cassette box -->
+        <rect x="210" y="70" width="260" height="120" rx="8" fill="#f3e5f5" stroke="#7b2cbf" stroke-width="2.5"/>
+        <text x="340" y="62" text-anchor="middle" font-size="13" font-weight="700" fill="#7b2cbf">FIBER CASSETTE</text>
+
+        <!-- MTP port on back (left side of cassette) -->
+        <rect x="215" y="118" width="40" height="24" rx="4" fill="#7b2cbf"/>
+        <text x="235" y="134" text-anchor="middle" font-size="7" fill="white" font-weight="700">MTP</text>
+        <text x="235" y="103" text-anchor="middle" font-size="8" fill="#7b2cbf">BACK</text>
+
+        <!-- Internal fan-out lines -->
+        <line x1="255" y1="122" x2="400" y2="82" stroke="#ce93d8" stroke-width="1.5"/>
+        <line x1="255" y1="126" x2="400" y2="96" stroke="#ce93d8" stroke-width="1.5"/>
+        <line x1="255" y1="130" x2="400" y2="110" stroke="#ce93d8" stroke-width="1.5"/>
+        <line x1="255" y1="130" x2="400" y2="124" stroke="#ce93d8" stroke-width="1.5"/>
+        <line x1="255" y1="134" x2="400" y2="138" stroke="#ce93d8" stroke-width="1.5"/>
+        <line x1="255" y1="138" x2="400" y2="152" stroke="#ce93d8" stroke-width="1.5"/>
+        <text x="330" y="170" text-anchor="middle" font-size="8" fill="#999">Internal fiber routing</text>
+
+        <!-- LC ports on front (right side of cassette) -->
+        <rect x="400" y="78" width="28" height="10" rx="2" fill="#1565c0"/><text x="440" y="87" font-size="7" fill="#555">LC 1</text>
+        <rect x="400" y="93" width="28" height="10" rx="2" fill="#1565c0"/><text x="440" y="102" font-size="7" fill="#555">LC 2</text>
+        <rect x="400" y="108" width="28" height="10" rx="2" fill="#1565c0"/><text x="440" y="117" font-size="7" fill="#555">LC 3</text>
+        <rect x="400" y="123" width="28" height="10" rx="2" fill="#1565c0"/><text x="440" y="132" font-size="7" fill="#555">LC 4</text>
+        <rect x="400" y="138" width="28" height="10" rx="2" fill="#1565c0"/><text x="440" y="147" font-size="7" fill="#555">LC 5</text>
+        <rect x="400" y="153" width="28" height="10" rx="2" fill="#1565c0"/><text x="440" y="162" font-size="7" fill="#555">LC 6</text>
+        <text x="414" y="183" text-anchor="middle" font-size="8" fill="#1565c0">FRONT</text>
+
+        <!-- LC patch cables going right -->
+        <line x1="428" y1="83" x2="560" y2="83" stroke="#00b4d8" stroke-width="2"/>
+        <line x1="428" y1="98" x2="560" y2="98" stroke="#00b4d8" stroke-width="2"/>
+        <line x1="428" y1="113" x2="560" y2="113" stroke="#00b4d8" stroke-width="2"/>
+        <line x1="428" y1="128" x2="560" y2="128" stroke="#00b4d8" stroke-width="2"/>
+        <line x1="428" y1="143" x2="560" y2="143" stroke="#00b4d8" stroke-width="2"/>
+        <line x1="428" y1="158" x2="560" y2="158" stroke="#00b4d8" stroke-width="2"/>
+
+        <!-- Switch ports on right -->
+        <rect x="560" y="68" width="140" height="110" rx="6" fill="#1a1a2e" stroke="#333" stroke-width="2"/>
+        <text x="630" y="62" text-anchor="middle" font-size="11" font-weight="700" fill="#333">SWITCH</text>
+        <rect x="570" y="78" width="14" height="10" rx="2" fill="#90caf9"/>
+        <rect x="570" y="93" width="14" height="10" rx="2" fill="#90caf9"/>
+        <rect x="570" y="108" width="14" height="10" rx="2" fill="#90caf9"/>
+        <rect x="570" y="123" width="14" height="10" rx="2" fill="#90caf9"/>
+        <rect x="570" y="138" width="14" height="10" rx="2" fill="#90caf9"/>
+        <rect x="570" y="153" width="14" height="10" rx="2" fill="#90caf9"/>
+
+        <!-- Summary -->
+        <text x="400" y="225" text-anchor="middle" font-size="12" fill="#555">1 MTP connector (12 fibers) &#8594; 6 LC duplex ports (2 fibers each)</text>
+        <text x="400" y="250" text-anchor="middle" font-size="11" fill="#0055a4" font-weight="700">Our MTP trunk cable &#8594; Their cassette &#8594; Our LC patch cables &#8594; Their switch</text>
+        <text x="400" y="270" text-anchor="middle" font-size="10" fill="#888">Cassettes slide into rack-mounted fiber enclosures (1U, 2U, or 4U chassis)</text>
+      </svg>
+      <div class="diagram-caption">A fiber cassette converts one MTP-12 connection into 6 LC duplex connections. Our MTP trunks plug into the back. Our LC patch cables plug into the front. The cassette sits in between.</div>
+    </div>
+
+    <div class="level-intermediate">
+      <div class="key-fact">
+        <div class="icon">&#128276;</div>
+        <div><strong>Why you need to know this:</strong> When a customer orders MTP trunk cables, they're running those trunks to cassettes or breakout panels. Understanding the cassette means you can confirm the right polarity and fiber count. If they order an MTP-12 trunk, they'll use it with a 12-fiber cassette that fans out to 6 LC duplex ports. If they order an MTP-24 trunk, it fans to 12 LC duplex ports. The math has to match.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 10: THE FULL CABLE PATH -->
+<!-- ============================================ -->
+<div class="section" id="full-path">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon" style="background:#e0f7fa;">&#128736;</div>
+    <h2>The Full Cable Path - Putting It All Together</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-content">
+
+    <div class="simple-box">
+      <div class="label">The Simple Version</div>
+      <p>Now let's see how ALL the pieces connect in a real data center. Follow the path of data from one server to another server in a different rack:</p>
+    </div>
+
+    <!-- DIAGRAM: Full end-to-end path -->
+    <div class="diagram-container">
+      <svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg">
+        <text x="400" y="25" text-anchor="middle" font-size="15" font-weight="700" fill="#333">Complete Fiber Path: Server to Server</text>
+
+        <!-- LEFT SIDE - RACK A -->
+        <text x="200" y="55" text-anchor="middle" font-size="13" font-weight="700" fill="#1565c0">RACK A</text>
+
+        <!-- Step 1: Server -->
+        <rect x="100" y="65" width="200" height="40" rx="6" fill="#424242"/>
+        <text x="200" y="90" text-anchor="middle" font-size="10" fill="white" font-weight="600">SERVER</text>
+        <circle x="100" y="65" cx="120" cy="85" r="8" fill="#06d6a0"/>
+        <text x="120" y="89" text-anchor="middle" font-size="8" fill="white" font-weight="700">1</text>
+
+        <!-- Copper cable to ToR switch -->
+        <line x1="200" y1="105" x2="200" y2="125" stroke="#ef476f" stroke-width="2.5"/>
+        <text x="250" y="118" font-size="9" fill="#ef476f" font-weight="600">Copper CAT6A or DAC</text>
+
+        <!-- Step 2: ToR Switch -->
+        <rect x="100" y="125" width="200" height="40" rx="6" fill="#1565c0"/>
+        <text x="200" y="150" text-anchor="middle" font-size="10" fill="white" font-weight="600">SWITCH (Top of Rack)</text>
+        <circle cx="120" cy="145" r="8" fill="#06d6a0"/>
+        <text x="120" y="149" text-anchor="middle" font-size="8" fill="white" font-weight="700">2</text>
+
+        <!-- Transceiver in switch -->
+        <rect x="175" y="165" width="50" height="20" rx="3" fill="#00b4d8" stroke="#0077b6" stroke-width="1.5"/>
+        <text x="200" y="178" text-anchor="middle" font-size="7" fill="white" font-weight="700">OPTIC</text>
+        <circle cx="120" cy="175" r="8" fill="#06d6a0"/>
+        <text x="120" y="179" text-anchor="middle" font-size="8" fill="white" font-weight="700">3</text>
+        <text x="250" y="178" font-size="9" fill="#00b4d8" font-weight="600">Transceiver (our optic)</text>
+
+        <!-- LC patch cable to patch panel -->
+        <line x1="200" y1="185" x2="200" y2="210" stroke="#06d6a0" stroke-width="2.5"/>
+        <text x="250" y="202" font-size="9" fill="#06d6a0" font-weight="600">LC Patch Cable (ours)</text>
+        <circle cx="120" cy="198" r="8" fill="#06d6a0"/>
+        <text x="120" y="202" text-anchor="middle" font-size="8" fill="white" font-weight="700">4</text>
+
+        <!-- Patch Panel / Cassette -->
+        <rect x="100" y="210" width="200" height="35" rx="4" fill="#f57f17" stroke="#e65100" stroke-width="2"/>
+        <text x="200" y="232" text-anchor="middle" font-size="9" fill="white" font-weight="700">FIBER CASSETTE / PANEL</text>
+        <circle cx="120" cy="228" r="8" fill="#06d6a0"/>
+        <text x="120" y="232" text-anchor="middle" font-size="8" fill="white" font-weight="700">5</text>
+
+        <!-- MTP Trunk going across -->
+        <line x1="200" y1="245" x2="200" y2="290" stroke="#ffd60a" stroke-width="4"/>
+        <line x1="200" y1="290" x2="600" y2="290" stroke="#ffd60a" stroke-width="4" stroke-dasharray="10,5"/>
+        <line x1="600" y1="290" x2="600" y2="245" stroke="#ffd60a" stroke-width="4"/>
+        <rect x="320" y="275" width="160" height="30" rx="6" fill="white" stroke="#ffd60a" stroke-width="2"/>
+        <text x="400" y="295" text-anchor="middle" font-size="10" fill="#e65100" font-weight="700">MTP TRUNK CABLE (ours)</text>
+        <circle cx="400" cy="265" r="8" fill="#06d6a0"/>
+        <text x="400" y="269" text-anchor="middle" font-size="8" fill="white" font-weight="700">6</text>
+
+        <!-- RIGHT SIDE - RACK B -->
+        <text x="600" y="55" text-anchor="middle" font-size="13" font-weight="700" fill="#7b2cbf">RACK B</text>
+
+        <!-- Mirror of left side -->
+        <rect x="500" y="210" width="200" height="35" rx="4" fill="#f57f17" stroke="#e65100" stroke-width="2"/>
+        <text x="600" y="232" text-anchor="middle" font-size="9" fill="white" font-weight="700">FIBER CASSETTE / PANEL</text>
+        <circle cx="680" cy="228" r="8" fill="#06d6a0"/>
+        <text x="680" y="232" text-anchor="middle" font-size="8" fill="white" font-weight="700">7</text>
+
+        <line x1="600" y1="210" x2="600" y2="185" stroke="#06d6a0" stroke-width="2.5"/>
+        <text x="530" y="202" font-size="9" fill="#06d6a0" font-weight="600" text-anchor="end">LC Patch Cable (ours)</text>
+        <circle cx="680" cy="198" r="8" fill="#06d6a0"/>
+        <text x="680" y="202" text-anchor="middle" font-size="8" fill="white" font-weight="700">8</text>
+
+        <rect x="575" y="165" width="50" height="20" rx="3" fill="#00b4d8" stroke="#0077b6" stroke-width="1.5"/>
+        <text x="600" y="178" text-anchor="middle" font-size="7" fill="white" font-weight="700">OPTIC</text>
+        <circle cx="680" cy="175" r="8" fill="#06d6a0"/>
+        <text x="680" y="179" text-anchor="middle" font-size="8" fill="white" font-weight="700">9</text>
+        <text x="530" y="178" font-size="9" fill="#00b4d8" font-weight="600" text-anchor="end">Transceiver (our optic)</text>
+
+        <rect x="500" y="125" width="200" height="40" rx="6" fill="#7b2cbf"/>
+        <text x="600" y="150" text-anchor="middle" font-size="10" fill="white" font-weight="600">SWITCH (Top of Rack)</text>
+        <circle cx="680" cy="145" r="8" fill="#06d6a0"/>
+        <text x="680" y="149" text-anchor="middle" font-size="8" fill="white" font-weight="700">10</text>
+
+        <line x1="600" y1="125" x2="600" y2="105" stroke="#ef476f" stroke-width="2.5"/>
+        <text x="530" y="118" font-size="9" fill="#ef476f" font-weight="600" text-anchor="end">Copper or DAC</text>
+
+        <rect x="500" y="65" width="200" height="40" rx="6" fill="#424242"/>
+        <text x="600" y="90" text-anchor="middle" font-size="10" fill="white" font-weight="600">SERVER</text>
+        <circle cx="680" cy="85" r="8" fill="#06d6a0"/>
+        <text x="680" y="89" text-anchor="middle" font-size="8" fill="white" font-weight="700">11</text>
+
+        <!-- Key at bottom -->
+        <rect x="120" y="340" width="560" height="170" rx="8" fill="#f5f5f5" stroke="#ddd" stroke-width="1"/>
+        <text x="400" y="365" text-anchor="middle" font-size="12" font-weight="700" fill="#333">What We Sell on This Path</text>
+
+        <rect x="145" y="380" width="20" height="12" rx="2" fill="#ef476f"/>
+        <text x="175" y="390" font-size="10" fill="#555">Copper CAT6A / CAT6 patch cables</text>
+
+        <rect x="145" y="400" width="20" height="12" rx="2" fill="#00b4d8"/>
+        <text x="175" y="410" font-size="10" fill="#555">Optical Transceivers (SFP+, SFP28, QSFP28, QSFP-DD)</text>
+
+        <rect x="145" y="420" width="20" height="12" rx="2" fill="#06d6a0"/>
+        <text x="175" y="430" font-size="10" fill="#555">LC Duplex Fiber Patch Cables</text>
+
+        <rect x="145" y="440" width="20" height="12" rx="2" fill="#ffd60a"/>
+        <text x="175" y="450" font-size="10" fill="#555">MTP Fiber Trunk / Backbone Cables</text>
+
+        <rect x="145" y="460" width="20" height="12" rx="2" fill="#f57f17"/>
+        <text x="175" y="470" font-size="10" fill="#555">Patch Panels &amp; Cassettes (we don't sell these, but our cables plug into them)</text>
+
+        <text x="400" y="500" text-anchor="middle" font-size="11" fill="#0055a4" font-weight="700">5 out of 6 component types on this path are ours. That's our opportunity.</text>
+      </svg>
+      <div class="diagram-caption">Follow the numbered steps from Server (Rack A) to Server (Rack B). Our products appear at nearly every connection point except the patch panel/cassette itself.</div>
+    </div>
+
+    <div class="level-advanced">
+      <div class="sales-box">
+        <div class="label">Sales Insight</div>
+        <p><strong>One cable pull = multiple product sales.</strong> Every new rack deployment or migration creates demand for transceivers, patch cables, trunk cables, and power cords. A single new rack can mean $5,000-$50,000+ in cabling and optics. Our job is to be the single source for everything on this path.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 11: WHY LAN CABLES DIRECT -->
+<!-- ============================================ -->
+<div class="section" id="our-value">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon" style="background:#e8f5e9;">&#11088;</div>
+    <h2>Why LAN Cables Direct - Our Value Proposition</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-content">
+
+    <p class="lead">We don't sell cable. We sell the removal of anxiety. Speed. Availability. Single-point accountability.</p>
+
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="step-line"></div>
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Direct Model - No Distribution</div>
+          <div class="step-desc">We sell direct to end users. No distributor markup, no channel confusion. The customer talks to us. We own the relationship, the quote, the delivery, and the support. "Premium but competitively priced - the direct model cuts channel markups."</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-line"></div>
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Speed - Business Days, Not Weeks</div>
+          <div class="step-desc">Pre-terminated fiber ships fast. Custom lengths don't add months. We send ship notifications and tracking before they ask. Proactive communication is the standard.</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-line"></div>
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Quality Components - Corning Glass, US CONEC Connectors</div>
+          <div class="step-desc">Corning glass. US CONEC MTP connectors. Factory-tested with test reports. We don't use refurbished material. Our prices reflect real components, not corner-cutting.</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-line"></div>
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Single-Point Accountability</div>
+          <div class="step-desc">Fiber, copper, optics, DACs, AOCs, power cords - one vendor, one contact, one PO. If something goes wrong, the buck stops at us. We never blame the manufacturer.</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">Consultative, Never Pushy</div>
+          <div class="step-desc">We present options with pros and cons and let the customer choose. We don't upsell for the sake of it. We get suspicious of a steal, not excited - and we share that instinct with customers. Trust compounds.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="key-fact">
+      <div class="icon">&#128161;</div>
+      <div><strong>Remember:</strong> Reputation is a compounding asset. Never trade it for one sale. A customer who trusts us comes back for every deployment. A customer we oversold never calls again.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 12: QUALIFYING A LEAD -->
+<!-- ============================================ -->
+<div class="section" id="qualifying">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon" style="background:#fce4ec;">&#127919;</div>
+    <h2>Qualifying a Lead - The Questions That Matter</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-content">
+
+    <p class="lead">Judge competence by how complete a spec is. Vagueness means they don't know or don't care. Both are red flags you'll need to address.</p>
+
+    <h3>The Five Questions</h3>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="step-line"></div>
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">What are you connecting?</div>
+          <div class="step-desc">Server to switch? Switch to switch? Building to building? This tells you the product category (copper, fiber, DAC, AOC) and the distance.</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-line"></div>
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">What speed?</div>
+          <div class="step-desc">1G, 10G, 25G, 40G, 100G, 400G? This determines the cable grade, transceiver form factor, and fiber count.</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-line"></div>
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">What distance?</div>
+          <div class="step-desc">Under 5m? DAC territory. 5-100m? AOC or fiber with transceivers. Over 100m? Singlemode fiber. Distance is the first filter.</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-line"></div>
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">What equipment (switch/server brand and model)?</div>
+          <div class="step-desc">Cisco Nexus? Arista 7050? Dell S-series? Juniper QFX? Mellanox/NVIDIA ConnectX? This tells you what coding the transceivers need and confirms port compatibility.</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">How many?</div>
+          <div class="step-desc">One rack or a full deployment? Quantity shapes pricing, lead time, and whether to offer project-level support.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sales-box">
+      <div class="label">Pro Tip</div>
+      <p><strong>If they can't answer these five questions, help them figure it out.</strong> That's consultative selling. Walk them through it. The customer who needed help specifying becomes the customer who trusts you for the next 20 orders. Concede what you don't know ("I want to make sure I'm recommending the right thing - let me verify the compatibility on that switch model") and get back to them fast.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 13: OBJECTION HANDLING -->
+<!-- ============================================ -->
+<div class="section" id="objections">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon" style="background:#fff8e1;">&#128172;</div>
+    <h2>Objection Handling</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-content">
+
+    <p class="lead">Concede the other side first, then pivot with "however." Present the facts and let them choose.</p>
+
+    <div class="objection">
+      <div class="q">"Your price is higher than [competitor]."</div>
+      <div class="a">"You're right, we're not always the cheapest quote. However, our cables use <strong>Corning glass and US CONEC MTP connectors</strong> - the same components the major OEMs spec. We factory-test every cable and ship test reports. Some competitors cut cost by using generic ferrules or thinner fiber - that's fine for some applications, but insertion loss adds up in a 400G deployment. What matters most to you on this project - price floor or consistency?"</div>
+    </div>
+
+    <div class="objection">
+      <div class="q">"We only use OEM transceivers (Cisco/Arista branded)."</div>
+      <div class="a">"Understood. OEM optics come with the switch vendor's support umbrella, and that's a real benefit. However, third-party optics are built to the same <strong>IEEE and MSA standards</strong>. They use identical laser diodes and receivers. Our modules are coded for your platform, support full DOM monitoring, and carry a 5-year warranty. Many Fortune 100 data centers run 80-100% third-party optics - the cost savings at scale are significant. We'd suggest trying a small batch on non-critical links. Once you see the performance data matches, the conversation shifts. Would a trial make sense?"</div>
+    </div>
+
+    <div class="objection">
+      <div class="q">"We already have a cabling vendor."</div>
+      <div class="a">"That makes sense - nobody switches vendors for no reason. However, we'd welcome the chance to quote alongside them on your next project. Our turnaround on pre-terminated MTP trunk cables is <strong>business days, not weeks</strong>, and we handle fiber, copper, optics, DACs, and power cords as a single source. If your current vendor is working well, no pressure. If there's ever a project where timeline is tight or you want a second option, we're here."</div>
+    </div>
+
+    <div class="objection">
+      <div class="q">"That third-party transceiver price seems too good to be true."</div>
+      <div class="a">"Fair instinct - <strong>a price far below market usually means something is wrong.</strong> We're not the cheapest option out there. Some vendors sell refurbished optics as new or use lower-grade components. Our transceivers are new production, individually tested, and coded to your platform. The price difference vs. OEM comes from cutting out the brand premium, not cutting corners."</div>
+    </div>
+
+    <div class="objection">
+      <div class="q">"I just need a part number and price."</div>
+      <div class="a">"Got it. Let me get you that right now. [Provide the quote.] While I'm at it - are there any other cables, optics, or power cords on this project? Happy to bundle it into one PO and one shipment."</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 14: PRODUCT MATCHING -->
+<!-- ============================================ -->
+<div class="section" id="product-matching">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon" style="background:#e3f2fd;">&#128269;</div>
+    <h2>Matching Products to Needs - Decision Tree</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-content">
+
+    <div class="simple-box">
+      <div class="label">Quick Reference</div>
+      <p>Start with distance, then speed. The rest follows.</p>
+    </div>
+
+    <!-- Distance-based decision tree -->
+    <div class="diagram-container">
+      <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+        <text x="400" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#333">What Should I Recommend?</text>
+
+        <!-- Start -->
+        <rect x="310" y="45" width="180" height="36" rx="18" fill="#1a1a2e"/>
+        <text x="400" y="68" text-anchor="middle" font-size="11" fill="white" font-weight="700">How far is the run?</text>
+
+        <!-- Branch: Under 5m -->
+        <line x1="340" y1="81" x2="150" y2="120" stroke="#888" stroke-width="1.5"/>
+        <rect x="60" y="110" width="180" height="32" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+        <text x="150" y="131" text-anchor="middle" font-size="11" fill="#2e7d32" font-weight="700">Under 5 meters</text>
+
+        <line x1="150" y1="142" x2="80" y2="180" stroke="#888" stroke-width="1"/>
+        <rect x="15" y="170" width="130" height="50" rx="6" fill="#f0fff0"/>
+        <text x="80" y="190" text-anchor="middle" font-size="10" fill="#333" font-weight="600">Passive DAC</text>
+        <text x="80" y="206" text-anchor="middle" font-size="8" fill="#888">Lowest cost, zero power</text>
+
+        <line x1="150" y1="142" x2="210" y2="180" stroke="#888" stroke-width="1"/>
+        <rect x="145" y="170" width="130" height="50" rx="6" fill="#f0fff0"/>
+        <text x="210" y="190" text-anchor="middle" font-size="10" fill="#333" font-weight="600">Copper CAT6A</text>
+        <text x="210" y="206" text-anchor="middle" font-size="8" fill="#888">If standard Ethernet port</text>
+
+        <!-- Branch: 5-100m -->
+        <line x1="400" y1="81" x2="400" y2="120" stroke="#888" stroke-width="1.5"/>
+        <rect x="310" y="110" width="180" height="32" rx="6" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+        <text x="400" y="131" text-anchor="middle" font-size="11" fill="#1565c0" font-weight="700">5 - 100 meters</text>
+
+        <line x1="370" y1="142" x2="330" y2="180" stroke="#888" stroke-width="1"/>
+        <rect x="265" y="170" width="130" height="50" rx="6" fill="#f0f0ff"/>
+        <text x="330" y="190" text-anchor="middle" font-size="10" fill="#333" font-weight="600">AOC</text>
+        <text x="330" y="206" text-anchor="middle" font-size="8" fill="#888">Simple, one-piece</text>
+
+        <line x1="430" y1="142" x2="470" y2="180" stroke="#888" stroke-width="1"/>
+        <rect x="405" y="170" width="130" height="50" rx="6" fill="#f0f0ff"/>
+        <text x="470" y="186" text-anchor="middle" font-size="10" fill="#333" font-weight="600">Transceiver + Fiber</text>
+        <text x="470" y="202" text-anchor="middle" font-size="8" fill="#888">OM4 multimode</text>
+        <text x="470" y="214" text-anchor="middle" font-size="8" fill="#888">Flexible, swappable</text>
+
+        <!-- Branch: Over 100m -->
+        <line x1="460" y1="81" x2="650" y2="120" stroke="#888" stroke-width="1.5"/>
+        <rect x="560" y="110" width="180" height="32" rx="6" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+        <text x="650" y="131" text-anchor="middle" font-size="11" fill="#e65100" font-weight="700">Over 100 meters</text>
+
+        <line x1="650" y1="142" x2="650" y2="180" stroke="#888" stroke-width="1"/>
+        <rect x="575" y="170" width="150" height="50" rx="6" fill="#fff8f0"/>
+        <text x="650" y="190" text-anchor="middle" font-size="10" fill="#333" font-weight="600">Transceiver + OS2 Fiber</text>
+        <text x="650" y="206" text-anchor="middle" font-size="8" fill="#888">Singlemode, long-haul</text>
+
+        <!-- Speed overlay -->
+        <rect x="50" y="250" width="700" height="130" rx="8" fill="#f8f8ff" stroke="#ddd" stroke-width="1"/>
+        <text x="400" y="275" text-anchor="middle" font-size="12" font-weight="700" fill="#333">Then Match the Speed</text>
+
+        <text x="100" y="300" font-size="10" fill="#555"><tspan font-weight="700">10G:</tspan> SFP+ optic, OM3/OM4 fiber, CAT6A copper</text>
+        <text x="100" y="318" font-size="10" fill="#555"><tspan font-weight="700">25G:</tspan> SFP28 optic, OM4 fiber</text>
+        <text x="100" y="336" font-size="10" fill="#555"><tspan font-weight="700">40G:</tspan> QSFP+ optic, 8 or 12 fiber MTP trunk</text>
+        <text x="450" y="300" font-size="10" fill="#555"><tspan font-weight="700">100G:</tspan> QSFP28 optic, 8 or 24 fiber MTP trunk</text>
+        <text x="450" y="318" font-size="10" fill="#555"><tspan font-weight="700">400G:</tspan> QSFP-DD or OSFP optic, 16 or 32 fiber MTP</text>
+        <text x="450" y="336" font-size="10" fill="#555"><tspan font-weight="700">800G:</tspan> OSFP optic, next-gen fiber</text>
+
+        <text x="400" y="370" text-anchor="middle" font-size="10" fill="#0055a4" font-weight="600">Always confirm switch model and port type before quoting transceivers.</text>
+      </svg>
+      <div class="diagram-caption">Start with distance to narrow the product category, then match the speed to select the specific product and form factor.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 15: SPEED & DISTANCE GUIDE -->
+<!-- ============================================ -->
+<div class="section" id="speed-guide">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon" style="background:#f3e5f5;">&#128640;</div>
+    <h2>Speed &amp; Distance Quick Reference</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-content">
+
+    <!-- Speed Ladder -->
+    <div class="diagram-container">
+      <svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg">
+        <text x="400" y="25" text-anchor="middle" font-size="15" font-weight="700" fill="#333">Network Speed Ladder</text>
+        <text x="400" y="45" text-anchor="middle" font-size="11" fill="#888">Each step is roughly 2-4x the previous</text>
+
+        <!-- Steps -->
+        <rect x="60" y="260" width="80" height="40" rx="4" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+        <text x="100" y="275" text-anchor="middle" font-size="11" fill="#2e7d32" font-weight="700">1G</text>
+        <text x="100" y="292" text-anchor="middle" font-size="8" fill="#666">SFP</text>
+
+        <rect x="160" y="225" width="80" height="40" rx="4" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+        <text x="200" y="240" text-anchor="middle" font-size="11" fill="#1565c0" font-weight="700">10G</text>
+        <text x="200" y="257" text-anchor="middle" font-size="8" fill="#666">SFP+</text>
+
+        <rect x="260" y="190" width="80" height="40" rx="4" fill="#ede7f6" stroke="#4527a0" stroke-width="2"/>
+        <text x="300" y="205" text-anchor="middle" font-size="11" fill="#4527a0" font-weight="700">25G</text>
+        <text x="300" y="222" text-anchor="middle" font-size="8" fill="#666">SFP28</text>
+
+        <rect x="360" y="155" width="80" height="40" rx="4" fill="#fce4ec" stroke="#c62828" stroke-width="2"/>
+        <text x="400" y="170" text-anchor="middle" font-size="11" fill="#c62828" font-weight="700">40G</text>
+        <text x="400" y="187" text-anchor="middle" font-size="8" fill="#666">QSFP+</text>
+
+        <rect x="460" y="120" width="80" height="40" rx="4" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+        <text x="500" y="135" text-anchor="middle" font-size="11" fill="#e65100" font-weight="700">100G</text>
+        <text x="500" y="152" text-anchor="middle" font-size="8" fill="#666">QSFP28</text>
+
+        <rect x="560" y="85" width="80" height="40" rx="4" fill="#f3e5f5" stroke="#6a1b9a" stroke-width="2"/>
+        <text x="600" y="100" text-anchor="middle" font-size="11" fill="#6a1b9a" font-weight="700">400G</text>
+        <text x="600" y="117" text-anchor="middle" font-size="8" fill="#666">QSFP-DD</text>
+
+        <rect x="660" y="55" width="90" height="40" rx="4" fill="#e0f7fa" stroke="#00695c" stroke-width="2"/>
+        <text x="705" y="70" text-anchor="middle" font-size="11" fill="#00695c" font-weight="700">800G-1.6T</text>
+        <text x="705" y="87" text-anchor="middle" font-size="8" fill="#666">OSFP</text>
+
+        <!-- Staircase lines -->
+        <line x1="140" y1="280" x2="160" y2="245" stroke="#ccc" stroke-width="2"/>
+        <line x1="240" y1="245" x2="260" y2="210" stroke="#ccc" stroke-width="2"/>
+        <line x1="340" y1="210" x2="360" y2="175" stroke="#ccc" stroke-width="2"/>
+        <line x1="440" y1="175" x2="460" y2="140" stroke="#ccc" stroke-width="2"/>
+        <line x1="540" y1="140" x2="560" y2="105" stroke="#ccc" stroke-width="2"/>
+        <line x1="640" y1="105" x2="660" y2="75" stroke="#ccc" stroke-width="2"/>
+
+        <!-- AI callout -->
+        <rect x="560" y="60" width="200" height="1" fill="none"/>
+        <text x="600" y="45" text-anchor="middle" font-size="9" fill="#00695c" font-weight="600">AI/ML clusters live here</text>
+      </svg>
+      <div class="diagram-caption">Network speeds have grown exponentially. Most enterprise data centers today operate between 10G and 100G. AI/ML deployments push into 400G and beyond.</div>
+    </div>
+
+    <div class="level-advanced">
+      <h3>Distance Limits by Fiber Type and Speed</h3>
+      <table class="comp-table">
+        <tr><th>Speed</th><th>OM3</th><th>OM4</th><th>OS2 (Singlemode)</th></tr>
+        <tr><td><span class="speed-badge speed-10g">10G</span></td><td>300m</td><td>400m</td><td>10km+</td></tr>
+        <tr><td><span class="speed-badge speed-25g">25G</span></td><td>70m</td><td>100m</td><td>10km+</td></tr>
+        <tr><td><span class="speed-badge speed-40g">40G</span></td><td>100m</td><td>150m</td><td>10km+</td></tr>
+        <tr class="highlight"><td><span class="speed-badge speed-100g">100G</span></td><td>70m</td><td>100-150m</td><td>10-40km</td></tr>
+        <tr><td><span class="speed-badge speed-400g">400G</span></td><td>70m</td><td>100m</td><td>10km+</td></tr>
+      </table>
+      <p><em>Actual distance varies by transceiver type and standard (SR, LR, ER, etc.). These are typical maximums for the most common optic at each speed. Always verify against the specific transceiver datasheet.</em></p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 16: GLOSSARY -->
+<!-- ============================================ -->
+<div class="section" id="glossary">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon" style="background:#e0e0e0;">&#128214;</div>
+    <h2>Glossary - Terms You'll Hear Every Day</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-content">
+
+    <table class="comp-table">
+      <tr><th style="width:180px;">Term</th><th>What It Means</th></tr>
+      <tr><td><strong>AOC</strong></td><td>Active Optical Cable. Fiber cable with built-in transceivers on each end.</td></tr>
+      <tr><td><strong>Bandwidth</strong></td><td>How much data a cable can carry. Higher bandwidth = more data capacity.</td></tr>
+      <tr><td><strong>Base-8</strong></td><td>8-fiber cabling architecture. Matches 2-fiber-per-lane optics (like 25G SFP28).</td></tr>
+      <tr><td><strong>Cassette</strong></td><td>Module that converts MTP (multi-fiber) to individual LC ports. Slides into a fiber enclosure.</td></tr>
+      <tr><td><strong>CAT6/CAT6A</strong></td><td>Categories of copper cable. CAT6A supports 10G at 100m - the data center standard.</td></tr>
+      <tr><td><strong>DAC</strong></td><td>Direct Attach Copper (Twinax). Copper cable with built-in transceivers. Very short range.</td></tr>
+      <tr><td><strong>DOM/DDM</strong></td><td>Digital Optical Monitoring. Lets the switch read transceiver health (power, temp, voltage).</td></tr>
+      <tr><td><strong>Duplex</strong></td><td>Two fibers - one transmits, one receives. Standard for most connections.</td></tr>
+      <tr><td><strong>IEC</strong></td><td>International Electrotechnical Commission. Sets standards for power connectors (C13, C19, etc.).</td></tr>
+      <tr><td><strong>Insertion Loss</strong></td><td>How much signal is lost at each connection point. Lower is better. Bad connectors = high loss.</td></tr>
+      <tr><td><strong>LC</strong></td><td>Lucent Connector. Small fiber connector. The most common in data centers.</td></tr>
+      <tr><td><strong>Leaf-Spine</strong></td><td>Modern data center network design. Every access switch connects to every core switch.</td></tr>
+      <tr><td><strong>MTP/MPO</strong></td><td>Multi-fiber connectors. MTP is the brand name (US CONEC). MPO is the standard. Same thing in practice.</td></tr>
+      <tr><td><strong>MSA</strong></td><td>Multi-Source Agreement. Industry spec that ensures transceivers are physically interchangeable.</td></tr>
+      <tr><td><strong>Multimode</strong></td><td>Fiber with a wide core (50&mu;m). Uses multiple light paths. Short distance. OM3/OM4/OM5.</td></tr>
+      <tr><td><strong>OEM</strong></td><td>Original Equipment Manufacturer. Cisco, Arista, etc. Their branded (expensive) transceivers.</td></tr>
+      <tr><td><strong>OSFP</strong></td><td>Octal Small Form-factor Pluggable. 8-lane transceiver for 400G/800G/1.6T.</td></tr>
+      <tr><td><strong>Patch Panel</strong></td><td>Organized wall of ports in a rack. Permanent cables on back, removable patch cables on front.</td></tr>
+      <tr><td><strong>PDU</strong></td><td>Power Distribution Unit. Smart power strip inside a rack.</td></tr>
+      <tr><td><strong>Polarity</strong></td><td>The alignment of transmit/receive fibers. Must match end-to-end or the link fails.</td></tr>
+      <tr><td><strong>QSFP</strong></td><td>Quad Small Form-factor Pluggable. 4-lane transceiver. QSFP+ (40G), QSFP28 (100G).</td></tr>
+      <tr><td><strong>QSFP-DD</strong></td><td>QSFP Double Density. 8 lanes. Supports 400G. Backwards compatible with QSFP28.</td></tr>
+      <tr><td><strong>RJ45</strong></td><td>The standard copper Ethernet connector. 8-pin modular plug.</td></tr>
+      <tr><td><strong>SFP/SFP+/SFP28</strong></td><td>Small Form-factor Pluggable. Single-lane transceivers. SFP (1G), SFP+ (10G), SFP28 (25G).</td></tr>
+      <tr><td><strong>Singlemode</strong></td><td>Fiber with a narrow core (9&mu;m). One light path. Long distance. OS2.</td></tr>
+      <tr><td><strong>Structured Cabling</strong></td><td>The planned, organized physical network infrastructure. Everything we sell is part of this.</td></tr>
+      <tr><td><strong>ToR</strong></td><td>Top of Rack. The switch at the top of each server rack.</td></tr>
+      <tr><td><strong>Transceiver</strong></td><td>Module that converts electrical signals to optical (and back). Plugs into the switch.</td></tr>
+      <tr><td><strong>Twinax</strong></td><td>Another name for DAC (Direct Attach Copper). Two copper conductors in one cable.</td></tr>
+    </table>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div style="text-align:center; padding:40px 0 20px; color:#999; font-size:0.85rem;">
+  <p><strong>LAN Cables Direct, LLC</strong> - Sales Strategy Playbook v1.0</p>
+  <p>Confidential - Internal Training Use Only</p>
+  <p style="margin-top:8px; font-size:0.75rem;">Generated May 2026</p>
+</div>
+
+</div><!-- /main-content -->
+
+<!-- ============================================ -->
+<!-- JAVASCRIPT -->
+<!-- ============================================ -->
+<script>
+// Toggle sections open/closed
+function toggleSection(header) {
+  const section = header.parentElement;
+  section.classList.toggle('open');
+}
+
+// Toggle detail boxes
+function toggleDetail(box) {
+  box.classList.toggle('open');
+}
+
+// Level toggle buttons
+document.querySelectorAll('.level-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    const level = this.dataset.level;
+    document.body.classList.remove('show-intermediate', 'show-advanced');
+    if (level === 'intermediate') document.body.classList.add('show-intermediate');
+    if (level === 'advanced') document.body.classList.add('show-advanced');
+  });
+});
+
+// Table of contents sidebar toggle
+document.getElementById('tocToggle').addEventListener('click', function() {
+  document.getElementById('tocSidebar').classList.toggle('open');
+});
+
+// TOC link handling
+document.querySelectorAll('.toc-item').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Open the section if it's closed
+      if (target.classList.contains('section') && !target.classList.contains('open')) {
+        target.classList.add('open');
+      }
+    }
+    // Close sidebar on mobile
+    if (window.innerWidth < 768) {
+      document.getElementById('tocSidebar').classList.remove('open');
+    }
+  });
+});
+
+// Progress bar
+window.addEventListener('scroll', function() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = (scrollTop / docHeight) * 100;
+  document.getElementById('progressFill').style.width = progress + '%';
+});
+
+// Active TOC highlighting
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      document.querySelectorAll('.toc-item').forEach(item => item.classList.remove('active'));
+      const tocLink = document.querySelector(`.toc-item[href="#${entry.target.id}"]`);
+      if (tocLink) tocLink.classList.add('active');
+    }
+  });
+}, { threshold: 0.2, rootMargin: '-60px 0px -60px 0px' });
+
+document.querySelectorAll('.section, .hero').forEach(section => {
+  if (section.id) observer.observe(section);
+});
+
+// Open all sections for print
+window.addEventListener('beforeprint', function() {
+  document.querySelectorAll('.section').forEach(s => s.classList.add('open'));
+  document.querySelectorAll('.detail-box').forEach(d => d.classList.add('open'));
+  document.body.classList.add('show-advanced');
+});
+</script>
+
+</body>
+</html>
