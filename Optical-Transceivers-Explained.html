@@ -1,0 +1,1933 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Optical Transceivers, Explained - LAN Cables Direct</title>
+<meta name="description" content="A plain-English field guide to optical network transceivers from 1G to 1.6T. How they work, where they live, and how to choose. Produced by LAN Cables Direct.">
+<style>
+/* ============================================================
+   LAN CABLES DIRECT - Optical Transceivers, Explained
+   Single-file interactive booklet. All CSS/JS/SVG inline.
+   ============================================================ */
+
+:root{
+  --navy:#262626;
+  --ink:#262626;
+  --blue:#E1251B;
+  --blue-2:#FF5236;
+  --cyan:#00C2D1;
+  --cyan-glow:#19D3E6;
+  --amber:#FF9F1C;
+  --amber-2:#FFB020;
+  --green:#1FA971;
+  --red:#E5484D;
+  --violet:#7C5CFF;
+
+  --bg:#F5F6F8;
+  --bg-2:#EBEEF1;
+  --surface:#FFFFFF;
+  --surface-2:#FAFBFC;
+  --border:#E1E4E8;
+  --border-2:#CBD0D6;
+  --text:#262A2C;
+  --muted:#677077;
+  --muted-2:#8A9298;
+
+  --shadow-sm:0 1px 2px rgba(10,37,64,.06), 0 1px 3px rgba(10,37,64,.08);
+  --shadow:0 4px 14px rgba(10,37,64,.08), 0 2px 6px rgba(10,37,64,.06);
+  --shadow-lg:0 18px 50px rgba(10,37,64,.16);
+  --radius:14px;
+  --radius-sm:10px;
+  --radius-lg:22px;
+  --maxw:1080px;
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji",sans-serif;
+  --mono:"SF Mono",ui-monospace,"Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+}
+
+[data-theme="dark"]{
+  --bg:#141516;
+  --bg-2:#1B1D1E;
+  --surface:#202325;
+  --surface-2:#1A1D1E;
+  --border:#33373A;
+  --border-2:#464B4F;
+  --text:#ECEEEF;
+  --muted:#A6ACB1;
+  --muted-2:#878E93;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+  --shadow:0 6px 20px rgba(0,0,0,.45);
+  --shadow-lg:0 24px 60px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:78px}
+body{
+  margin:0;font-family:var(--font);background:var(--bg);color:var(--text);
+  line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased;
+  transition:background .3s ease,color .3s ease;
+}
+img{max-width:100%}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---------- Reading progress ---------- */
+#progress{position:fixed;top:0;left:0;height:3px;width:0%;
+  background:linear-gradient(90deg,var(--blue),var(--blue-2),var(--amber));
+  z-index:120;transition:width .12s ease}
+
+/* ---------- Top nav ---------- */
+header.topbar{
+  position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--surface) 88%,transparent);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.topbar-inner{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:14px;
+  padding:10px 20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px;
+  color:var(--text);white-space:nowrap}
+.brand .logo{width:30px;height:30px;flex:0 0 auto}
+.brand small{display:block;font-weight:600;font-size:10px;letter-spacing:2.5px;color:var(--muted);text-transform:uppercase}
+.brand b{font-size:15px;line-height:1}
+.wordmark{height:30px;width:auto;display:block;flex:0 0 auto}
+.wm-cables{fill:var(--text)}
+.wm-direct{fill:var(--blue)}
+.wm-tag{fill:var(--muted)}
+.wm-lan-red{fill:var(--blue)}
+.brand-tag{font-size:10px;font-weight:800;letter-spacing:2.2px;text-transform:uppercase;color:var(--muted);
+  border-left:1px solid var(--border);padding-left:11px}
+.hero .wm-cables,footer .wm-cables{fill:#F4F4F5}
+.hero .wm-tag,footer .wm-tag{fill:#AEB4B8}
+footer .wordmark{height:50px;margin-bottom:10px}
+@media(max-width:560px){.wordmark{height:26px}.brand-tag{display:none}}
+nav.jump{margin-left:auto;display:flex;gap:2px;flex-wrap:wrap;justify-content:flex-end}
+nav.jump a{font-size:13px;color:var(--muted);padding:6px 10px;border-radius:8px;font-weight:600}
+nav.jump a:hover{background:var(--bg-2);color:var(--text);text-decoration:none}
+nav.jump a.active{color:var(--blue);background:color-mix(in srgb,var(--blue) 10%,transparent)}
+.theme-btn{flex:0 0 auto;width:38px;height:38px;border-radius:10px;border:1px solid var(--border);
+  background:var(--surface);cursor:pointer;display:grid;place-items:center;color:var(--text);
+  font-size:17px;transition:.2s}
+.theme-btn:hover{border-color:var(--blue);color:var(--blue)}
+
+/* ---------- Layout ---------- */
+main{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+section.chap{padding:64px 0 12px;scroll-margin-top:80px}
+section.chap:first-of-type{padding-top:40px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;
+  letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin:0 0 10px}
+.eyebrow .num{display:grid;place-items:center;width:24px;height:24px;border-radius:7px;
+  background:linear-gradient(135deg,var(--blue),var(--blue-2));color:#fff;font-size:12px}
+h1,h2,h3,h4{line-height:1.2;color:var(--text);font-weight:800}
+h2{font-size:32px;margin:.1em 0 .35em;letter-spacing:-.5px}
+h3{font-size:21px;margin:1.4em 0 .4em}
+h4{font-size:16px;margin:1.2em 0 .3em}
+p{margin:.6em 0}
+.lead{font-size:19px;color:var(--muted);max-width:64ch}
+.tight{max-width:68ch}
+.muted{color:var(--muted)}
+hr.div{border:0;height:1px;background:var(--border);margin:40px 0}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;overflow:hidden;color:#EAF0F2;
+  background:radial-gradient(1100px 480px at 82% -12%,rgba(225,37,27,.22) 0%,transparent 55%),
+             radial-gradient(900px 500px at 0% 115%,#2d2d2d 0%,transparent 50%),
+             linear-gradient(160deg,#141414 0%,#262626 55%,#1b1b1b 100%)}
+.hero-inner{max-width:var(--maxw);margin:0 auto;padding:62px 20px 54px;position:relative;z-index:2}
+.hero .kicker{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;color:#7fe9f3;
+  background:rgba(0,194,209,.12);border:1px solid rgba(0,194,209,.3);
+  padding:7px 14px;border-radius:999px}
+.hero h1{font-size:clamp(34px,6vw,60px);margin:18px 0 8px;color:#fff;letter-spacing:-1.5px;line-height:1.04}
+.hero h1 .grad{background:linear-gradient(100deg,#FF8566,#E1251B 58%,#FF9F1C);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.sub{font-size:clamp(17px,2.4vw,21px);color:#B9D2E8;max-width:60ch;margin:6px 0 26px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:15px;
+  padding:13px 22px;border-radius:12px;cursor:pointer;border:1px solid transparent;transition:.2s;text-decoration:none}
+.btn-primary{background:linear-gradient(120deg,var(--blue),var(--blue-2));color:#fff;box-shadow:0 8px 24px rgba(20,99,255,.35)}
+.btn-primary:hover{transform:translateY(-2px);text-decoration:none;box-shadow:0 12px 30px rgba(20,99,255,.45)}
+.btn-ghost{background:rgba(255,255,255,.06);color:#EAF3FF;border-color:rgba(255,255,255,.22)}
+.btn-ghost:hover{background:rgba(255,255,255,.14);text-decoration:none}
+.hero-stats{display:flex;gap:28px;flex-wrap:wrap;margin-top:34px}
+.hero-stats div{min-width:90px}
+.hero-stats b{display:block;font-size:26px;background:linear-gradient(100deg,#FF9E8A,#E1251B);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-stats span{font-size:12.5px;color:#9fc0db;letter-spacing:.4px}
+.hero-art{position:absolute;inset:0;z-index:1;opacity:.9}
+
+/* ---------- Cards & grids ---------- */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:22px;box-shadow:var(--shadow-sm)}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:820px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+.figure{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:18px;box-shadow:var(--shadow-sm);margin:22px 0}
+.figure svg{display:block;width:100%;height:auto}
+.dash{stroke-dasharray:6 9;animation:dashflow 1.1s linear infinite}
+@keyframes dashflow{to{stroke-dashoffset:-30}}
+@media(prefers-reduced-motion:reduce){.dash{animation:none}}
+.figure .cap{font-size:13.5px;color:var(--muted);margin-top:12px;padding-top:12px;border-top:1px dashed var(--border);
+  display:flex;gap:8px;align-items:flex-start}
+.figure .cap b{color:var(--text)}
+.fig-tag{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--cyan);
+  background:color-mix(in srgb,var(--cyan) 12%,transparent);padding:3px 8px;border-radius:6px;flex:0 0 auto}
+
+/* callouts */
+.callout{border-left:4px solid var(--blue);background:color-mix(in srgb,var(--blue) 6%,var(--surface));
+  border-radius:0 12px 12px 0;padding:16px 18px;margin:20px 0}
+.callout.tip{border-color:var(--green);background:color-mix(in srgb,var(--green) 8%,var(--surface))}
+.callout.warn{border-color:var(--amber);background:color-mix(in srgb,var(--amber) 9%,var(--surface))}
+.callout.key{border-color:var(--violet);background:color-mix(in srgb,var(--violet) 8%,var(--surface))}
+.callout h4{margin:0 0 4px;font-size:14px;text-transform:uppercase;letter-spacing:.6px}
+.callout p{margin:.2em 0}
+
+/* analogy box */
+.analogy{display:flex;gap:14px;align-items:flex-start;background:linear-gradient(135deg,
+  color-mix(in srgb,var(--amber) 10%,var(--surface)),var(--surface));
+  border:1px solid color-mix(in srgb,var(--amber) 30%,var(--border));border-radius:14px;padding:16px 18px;margin:18px 0}
+.analogy .ab{flex:0 0 auto;width:42px;height:42px;border-radius:11px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--amber),var(--amber-2));color:#3a2200;font-size:22px;font-weight:800}
+.analogy b{color:var(--text)}
+
+/* badges */
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;
+  padding:3px 9px;border-radius:999px;border:1px solid var(--border-2);color:var(--muted);background:var(--surface-2)}
+.badge.b-mmf{color:#0e8f9b;border-color:#0e8f9b55;background:#0e8f9b14}
+.badge.b-smf{color:var(--blue);border-color:#1463ff55;background:#1463ff12}
+.badge.b-cu{color:#b06b00;border-color:#b06b0055;background:#b06b0014}
+.badge.b-co{color:var(--violet);border-color:#7c5cff55;background:#7c5cff14}
+
+/* tables */
+.tablewrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius);margin:20px 0;box-shadow:var(--shadow-sm)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:640px}
+thead th{background:var(--bg-2);text-align:left;padding:12px 14px;font-weight:800;color:var(--text);
+  border-bottom:2px solid var(--border-2);white-space:nowrap}
+tbody td{padding:11px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+tbody tr:hover{background:var(--bg-2)}
+tbody tr:last-child td{border-bottom:0}
+td code,.codei{font-family:var(--mono);font-size:13px;background:var(--bg-2);padding:2px 6px;border-radius:6px;color:var(--text)}
+
+/* tooltip / glossary term */
+.term{border-bottom:2px dotted var(--blue);cursor:help;font-weight:600}
+.term:hover{background:color-mix(in srgb,var(--blue) 8%,transparent)}
+.tip-pop{position:fixed;z-index:200;max-width:300px;background:var(--navy);color:#EAF3FF;
+  padding:11px 14px;border-radius:10px;font-size:13.5px;line-height:1.5;box-shadow:var(--shadow-lg);
+  pointer-events:none;opacity:0;transform:translateY(6px);transition:opacity .15s, transform .15s}
+.tip-pop.show{opacity:1;transform:translateY(0)}
+.tip-pop b{color:var(--cyan)}
+[data-theme="dark"] .tip-pop{background:#04304a;border:1px solid #0c4a6e}
+
+/* accordion */
+.acc{border:1px solid var(--border);border-radius:12px;margin:12px 0;overflow:hidden;background:var(--surface)}
+.acc>button{width:100%;text-align:left;background:none;border:0;padding:15px 18px;cursor:pointer;
+  font-size:15.5px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px;font-family:var(--font)}
+.acc>button:hover{background:var(--bg-2)}
+.acc>button .chev{margin-left:auto;transition:transform .25s;color:var(--muted);font-size:14px}
+.acc>button[aria-expanded="true"] .chev{transform:rotate(90deg);color:var(--blue)}
+.acc>button .gd{font-size:11px;font-weight:800;letter-spacing:1px;color:var(--violet);
+  background:#7c5cff18;padding:2px 7px;border-radius:6px;text-transform:uppercase}
+.acc .body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.acc .body-inner{padding:0 18px 16px}
+
+/* ---------- Interactive: form-factor explorer ---------- */
+.ffx{display:grid;grid-template-columns:300px 1fr;gap:18px;margin:22px 0}
+@media(max-width:820px){.ffx{grid-template-columns:1fr}}
+.ffx-list{display:flex;flex-direction:column;gap:6px;max-height:560px;overflow:auto;padding-right:4px}
+.ffx-item{display:flex;align-items:center;gap:12px;padding:11px 13px;border:1px solid var(--border);
+  border-radius:11px;cursor:pointer;background:var(--surface);transition:.18s;text-align:left;font-family:var(--font);color:var(--text)}
+.ffx-item:hover{border-color:var(--blue-2);transform:translateX(3px)}
+.ffx-item.active{border-color:var(--blue);background:color-mix(in srgb,var(--blue) 8%,var(--surface));box-shadow:var(--shadow-sm)}
+.ffx-item .sz{flex:0 0 auto;border-radius:4px;background:linear-gradient(135deg,var(--blue),var(--blue-2));opacity:.85}
+.ffx-item b{font-size:14.5px;display:block}
+.ffx-item span{font-size:12px;color:var(--muted)}
+.ffx-panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow-sm)}
+.ffx-panel h3{margin-top:0}
+.ffx-spec{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:16px 0}
+@media(max-width:520px){.ffx-spec{grid-template-columns:1fr}}
+.ffx-spec .s{background:var(--bg-2);border-radius:10px;padding:11px 13px}
+.ffx-spec .s span{font-size:11.5px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);font-weight:700}
+.ffx-spec .s b{font-size:15px;display:block;margin-top:2px}
+
+/* ---------- Speed reference ---------- */
+.speedbar{display:flex;gap:7px;flex-wrap:wrap;margin:22px 0 14px}
+.speedbar button{font-family:var(--font);font-weight:800;font-size:14px;padding:9px 15px;border-radius:10px;
+  border:1px solid var(--border-2);background:var(--surface);color:var(--text);cursor:pointer;transition:.18s}
+.speedbar button:hover{border-color:var(--blue)}
+.speedbar button.active{background:linear-gradient(120deg,var(--blue),var(--blue-2));color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(20,99,255,.3)}
+.speed-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-top:8px}
+.speed-card .head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:8px}
+.speed-card .bignum{font-size:34px;font-weight:900;letter-spacing:-1px;
+  background:linear-gradient(120deg,var(--blue),var(--blue-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.speed-card .ff{font-size:13px;font-weight:700;color:var(--muted)}
+.chip{display:inline-block;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;
+  background:var(--bg-2);color:var(--muted);border:1px solid var(--border);margin:2px}
+
+/* ---------- Decoder ---------- */
+.decoder{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow-sm);margin:20px 0}
+.dec-presets{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.dec-presets button{font-family:var(--mono);font-size:13px;font-weight:700;padding:8px 12px;border-radius:9px;
+  border:1px solid var(--border-2);background:var(--bg-2);color:var(--text);cursor:pointer;transition:.18s}
+.dec-presets button:hover,.dec-presets button.active{background:var(--blue);color:#fff;border-color:transparent}
+.dec-string{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0 18px}
+.dec-part{padding:10px 12px;border-radius:10px;font-family:var(--mono);font-weight:800;font-size:18px;cursor:pointer;
+  border:2px solid transparent;transition:.18s}
+.dec-part:hover{transform:translateY(-3px)}
+.dec-part.p0{background:#1463ff18;color:var(--blue)}
+.dec-part.p1{background:#00c2d118;color:#0e8f9b}
+.dec-part.p2{background:#ff9f1c20;color:#b06b00}
+.dec-part.p3{background:#7c5cff18;color:var(--violet)}
+.dec-part.active{border-color:currentColor}
+.dec-explain{background:var(--bg-2);border-radius:12px;padding:16px 18px;min-height:64px;font-size:15px}
+.dec-explain .k{font-weight:800}
+
+/* ---------- EEPROM map ---------- */
+.eeprom{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin:18px 0}
+.ee-cell{border:1px solid var(--border);border-radius:10px;padding:11px;cursor:pointer;background:var(--surface);transition:.18s}
+.ee-cell:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.ee-cell .addr{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.ee-cell b{display:block;font-size:13.5px;margin-top:2px}
+.ee-cell.active{border-color:var(--blue);background:color-mix(in srgb,var(--blue) 8%,var(--surface))}
+.ee-detail{background:var(--bg-2);border-radius:12px;padding:16px 18px;margin-top:6px;font-size:15px;min-height:54px}
+
+/* wavelength visualizer */
+.wave-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.wave-tabs button{font-family:var(--font);font-weight:700;font-size:13.5px;padding:8px 13px;border-radius:9px;
+  border:1px solid var(--border-2);background:var(--surface);color:var(--text);cursor:pointer}
+.wave-tabs button.active{color:#fff;border-color:transparent}
+
+/* quiz */
+.quiz{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin:20px 0}
+.q{margin-bottom:20px;padding-bottom:18px;border-bottom:1px dashed var(--border)}
+.q:last-of-type{border-bottom:0}
+.q .qtxt{font-weight:700;margin-bottom:12px;display:flex;gap:10px}
+.q .qtxt .qn{flex:0 0 auto;width:26px;height:26px;border-radius:8px;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:13px}
+.opt{display:block;width:100%;text-align:left;font-family:var(--font);font-size:15px;padding:12px 14px;margin:7px 0;
+  border:1px solid var(--border-2);border-radius:10px;background:var(--surface-2);color:var(--text);cursor:pointer;transition:.15s}
+.opt:hover{border-color:var(--blue)}
+.opt.correct{border-color:var(--green);background:color-mix(in srgb,var(--green) 12%,var(--surface));font-weight:700}
+.opt.wrong{border-color:var(--red);background:color-mix(in srgb,var(--red) 10%,var(--surface))}
+.opt .fb{display:block;font-size:13px;color:var(--muted);margin-top:5px;font-weight:400}
+.quiz-score{font-size:18px;font-weight:800;text-align:center;padding:14px;border-radius:12px;background:var(--bg-2);margin-top:8px}
+
+/* glossary */
+.gloss{column-count:2;column-gap:26px}
+@media(max-width:680px){.gloss{column-count:1}}
+.gloss dt{font-weight:800;color:var(--text);margin-top:12px;break-after:avoid}
+.gloss dd{margin:2px 0 0;color:var(--muted);font-size:14.5px;break-inside:avoid}
+
+/* footer */
+footer{background:var(--navy);color:#cfe0ee;margin-top:70px;padding:48px 20px 34px}
+[data-theme="dark"] footer{background:#04101a;border-top:1px solid var(--border)}
+.foot-inner{max-width:var(--maxw);margin:0 auto}
+footer h3{color:#fff}
+footer .pos{font-size:16px;color:#9fc0db;max-width:60ch}
+footer .fine{font-size:12.5px;color:#6f8aa3;margin-top:26px;border-top:1px solid rgba(255,255,255,.1);padding-top:18px;line-height:1.7}
+.foot-line{display:flex;gap:6px;align-items:baseline;flex-wrap:wrap;margin:5px 0}
+.foot-line b{color:#fff}
+
+.toplink{position:fixed;right:20px;bottom:20px;width:46px;height:46px;border-radius:13px;
+  background:var(--blue);color:#fff;display:grid;place-items:center;box-shadow:var(--shadow-lg);
+  cursor:pointer;opacity:0;pointer-events:none;transition:.25s;z-index:90;font-size:20px;border:0}
+.toplink.show{opacity:1;pointer-events:auto}
+.toplink:hover{background:var(--cyan)}
+
+/* print */
+@media print{
+  header.topbar,#progress,.toplink,.theme-btn,.hero-cta,.speedbar,.dec-presets,.wave-tabs{display:none!important}
+  body{font-size:12px;background:#fff;color:#000}
+  .acc .body{max-height:none!important}
+  section.chap{padding:18px 0;page-break-inside:avoid}
+  .figure,.card,.speed-card{box-shadow:none;break-inside:avoid}
+  .hero{background:#0A2540!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top" aria-label="LAN Cables Direct home">
+      <svg class="wordmark" viewBox="0 0 640 100" role="img" aria-label="LAN Cables Direct. Fast. Competitive. Service.">
+        <defs><linearGradient id="lanG1" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#BFC5C9"/><stop offset=".55" stop-color="#8B9298"/><stop offset="1" stop-color="#636B71"/></linearGradient></defs>
+        <text x="6" y="67" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="74" letter-spacing="-3" class="wm-lan-red">LAN</text>
+        <text x="11" y="62" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="74" letter-spacing="-3" fill="url(#lanG1)">LAN</text>
+        <text x="210" y="58" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="55" letter-spacing="-1.5"><tspan class="wm-cables">Cables</tspan><tspan class="wm-direct">Direct</tspan></text>
+        <text x="212" y="90" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="15" letter-spacing="3.4" class="wm-tag">FAST.  COMPETITIVE.  SERVICE</text>
+      </svg>
+      <span class="brand-tag">Field Guide</span>
+    </a>
+    <nav class="jump" id="jumpnav" aria-label="Section navigation">
+      <a href="#basics">Basics</a>
+      <a href="#light">Light</a>
+      <a href="#inside">Inside</a>
+      <a href="#eeprom">EEPROM</a>
+      <a href="#wavelengths">Wavelengths</a>
+      <a href="#formfactors">Form Factors</a>
+      <a href="#speeds">Speeds</a>
+      <a href="#decode">Decode</a>
+      <a href="#nicswitch">NIC vs Switch</a>
+      <a href="#dacaoc">DAC/AOC</a>
+      <a href="#msa">MSA</a>
+      <a href="#makers">Makers</a>
+      <a href="#glossary">Glossary</a>
+      <a href="#quiz">Quiz</a>
+    </nav>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode" title="Toggle light / dark">&#9789;</button>
+  </div>
+</header>
+
+<a id="top"></a>
+<div class="hero">
+  <svg class="hero-art" viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="fib" x1="0" x2="1"><stop offset="0" stop-color="#19D3E6"/><stop offset="1" stop-color="#2E6BFF"/></linearGradient>
+      <radialGradient id="dot"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#19D3E6"/></radialGradient>
+    </defs>
+    <g stroke="url(#fib)" stroke-width="1.4" fill="none" opacity=".5">
+      <path d="M-50 120 C 300 60, 500 220, 1250 140"/>
+      <path d="M-50 200 C 350 180, 600 300, 1250 240"/>
+      <path d="M-50 300 C 300 280, 700 360, 1250 320"/>
+      <path d="M-50 410 C 350 380, 650 470, 1250 420"/>
+    </g>
+    <g fill="url(#dot)">
+      <circle r="4"><animateMotion dur="3.2s" repeatCount="indefinite" path="M-50 120 C 300 60, 500 220, 1250 140"/></circle>
+      <circle r="3"><animateMotion dur="4s" repeatCount="indefinite" path="M-50 200 C 350 180, 600 300, 1250 240"/></circle>
+      <circle r="3.5"><animateMotion dur="3.6s" repeatCount="indefinite" path="M-50 300 C 300 280, 700 360, 1250 320"/></circle>
+      <circle r="3"><animateMotion dur="4.4s" repeatCount="indefinite" path="M-50 410 C 350 380, 650 470, 1250 420"/></circle>
+    </g>
+  </svg>
+  <div class="hero-inner">
+    <span class="kicker">&#128268; Optical Networking &middot; A Field Guide for Beginners</span>
+    <h1>Optical Transceivers,<br><span class="grad">Explained.</span></h1>
+    <p class="sub">The little modules that turn your data into light and back again. From 1G to 1.6 terabit, in plain English, with pictures. No prior networking knowledge needed.</p>
+    <div class="hero-cta">
+      <a href="#basics" class="btn btn-primary">Start at the beginning &rarr;</a>
+      <a href="#speeds" class="btn btn-ghost">Jump to the speed guide</a>
+    </div>
+    <div class="hero-stats">
+      <div><b>1G-1.6T</b><span>Every speed covered</span></div>
+      <div><b>11</b><span>Form factors</span></div>
+      <div><b>40+</b><span>Diagrams &amp; visuals</span></div>
+      <div><b>0</b><span>Jargon left unexplained</span></div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- ============ HOW TO USE ============ -->
+<section class="chap" id="howto">
+  <p class="eyebrow"><span class="num">&#9733;</span> Start Here</p>
+  <h2>Read this if optics are new to you</h2>
+  <p class="lead">A transceiver is the part that lets a switch or a server talk over a fiber cable. This guide explains what one is, how it works, and how to pick the right one. You do not need a networking background.</p>
+  <div class="grid g3" style="margin-top:22px">
+    <div class="card">
+      <h4 style="margin-top:0">&#128161; How it is written</h4>
+      <p class="muted" style="font-size:15px;margin:0">Plain English first. Short sentences. Every acronym gets explained the first time it shows up. Dotted words have a definition on hover or tap.</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">&#128300; Two layers of depth</h4>
+      <p class="muted" style="font-size:15px;margin:0">The main text is the beginner layer. Boxes marked <span class="badge b-co">Go deeper</span> open up the engineering detail when you want it. Skip them on the first pass.</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">&#129518; Try things</h4>
+      <p class="muted" style="font-size:15px;margin:0">Click the form-factor explorer, the speed buttons, the name decoder, and the memory map. The quiz at the end checks what stuck.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 1. BASICS ============ -->
+<section class="chap" id="basics">
+  <p class="eyebrow"><span class="num">1</span> The Basics</p>
+  <h2>What is an optical transceiver?</h2>
+  <p class="lead">A transceiver is a small module that plugs into a switch or a server. It turns electrical signals into light, sends that light down a glass fiber, and turns light coming back into electrical signals.</p>
+
+  <div class="analogy">
+    <div class="ab">&#128172;</div>
+    <div><b>The translator analogy.</b> A switch thinks in electricity. A fiber cable carries light. The transceiver is the translator that sits between them. It speaks electricity on one side and light on the other. The word itself is a mash-up of <b>transmit</b> and <b>receive</b>, because every module does both jobs at once.</div>
+  </div>
+
+  <p>The name breaks down simply. <b>Trans</b>mitter plus re<b>ceiver</b> equals <b>transceiver</b>. One side has a tiny laser that flashes light on and off billions of times per second. The other side has a light detector that reads those flashes back into data. Both live in the same module, so a single fiber link can run in both directions.</p>
+
+  <p>People also call these <b>optics</b>, <b>modules</b>, <b>pluggables</b>, or by their shape, like <span class="term" data-tip="Small Form-factor Pluggable. The most common small transceiver shape, used from 1G up to 25G.">SFP</span> or <span class="term" data-tip="Quad Small Form-factor Pluggable. A wider module with four or more lanes, used at 40G, 100G and up.">QSFP</span>. They all do the same core job. They convert between electrical and optical and they plug into a slot called a <b>cage</b> or <b>port</b>.</p>
+
+  <h3>The three things every transceiver decides</h3>
+  <div class="grid g3">
+    <div class="card"><b style="color:var(--blue)">1. Speed</b><p class="muted" style="font-size:15px;margin:.3em 0 0">How much data per second. From 1 gigabit (1G) to 1.6 terabit (1.6T). Higher numbers move more traffic.</p></div>
+    <div class="card"><b style="color:var(--cyan)">2. Reach</b><p class="muted" style="font-size:15px;margin:.3em 0 0">How far the light can travel and still be read. From a few meters in a rack to 80 km or more across a city.</p></div>
+    <div class="card"><b style="color:var(--amber)">3. Media</b><p class="muted" style="font-size:15px;margin:.3em 0 0">What it plugs into. The fiber type and connector on the front, the speed and host on the back.</p></div>
+  </div>
+
+  <p style="margin-top:20px">Get those three right and the link comes up. Get one wrong and it does not. Most of this booklet is really about reading those three things off a label and matching them to your network.</p>
+
+  <h3>Anatomy of a module</h3>
+  <p>Here is what is actually inside. This is drawn as an SFP, the most common shape, but every transceiver has these same building blocks.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 900 420" role="img" aria-label="Cutaway diagram of an SFP optical transceiver showing housing, optical port, transmitter, receiver, EEPROM and gold edge connector">
+      <defs>
+        <linearGradient id="metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfd9e6"/><stop offset="1" stop-color="#9fb0c4"/></linearGradient>
+        <linearGradient id="pcb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c6e4a"/><stop offset="1" stop-color="#0f5536"/></linearGradient>
+      </defs>
+      <!-- body -->
+      <rect x="120" y="120" width="640" height="180" rx="16" fill="url(#metal)" stroke="#7d90a6" stroke-width="2"/>
+      <rect x="120" y="120" width="640" height="180" rx="16" fill="none" stroke="#ffffff" stroke-opacity=".5" stroke-width="1"/>
+      <!-- bail latch -->
+      <path d="M120 150 q-46 0 -46 60 q0 60 46 60" fill="none" stroke="#2E6BFF" stroke-width="7" stroke-linecap="round"/>
+      <text x="58" y="330" font-size="13" fill="#5A6B7B" font-weight="700">Bail latch</text>
+      <!-- optical port (LC duplex) -->
+      <rect x="140" y="160" width="70" height="100" rx="8" fill="#0A2540"/>
+      <circle cx="175" cy="190" r="11" fill="#19D3E6"/><circle cx="175" cy="230" r="11" fill="#7C5CFF"/>
+      <text x="175" y="148" font-size="12" fill="#0A2540" font-weight="800" text-anchor="middle">LC port</text>
+      <text x="232" y="186" font-size="11" fill="#0e8f9b" font-weight="700">TX out</text>
+      <text x="232" y="238" font-size="11" fill="#7C5CFF" font-weight="700">RX in</text>
+      <!-- PCB inside -->
+      <rect x="250" y="175" width="430" height="120" rx="8" fill="url(#pcb)"/>
+      <!-- TOSA -->
+      <rect x="268" y="195" width="92" height="40" rx="6" fill="#0A2540"/>
+      <circle cx="284" cy="215" r="7" fill="#FF5252"/>
+      <text x="314" y="219" font-size="11" fill="#fff" font-weight="700" text-anchor="middle">Laser</text>
+      <text x="314" y="252" font-size="11" fill="#cfe8d8" text-anchor="middle">TOSA (TX)</text>
+      <!-- ROSA -->
+      <rect x="268" y="245" width="92" height="34" rx="6" fill="#10243a"/>
+      <circle cx="284" cy="262" r="7" fill="#7C5CFF"/>
+      <text x="318" y="266" font-size="11" fill="#fff" font-weight="700" text-anchor="middle">Detector</text>
+      <!-- controller / DSP -->
+      <rect x="392" y="205" width="78" height="66" rx="6" fill="#11385f"/>
+      <text x="431" y="234" font-size="11" fill="#cfe1ff" font-weight="700" text-anchor="middle">Driver /</text>
+      <text x="431" y="250" font-size="11" fill="#cfe1ff" font-weight="700" text-anchor="middle">controller</text>
+      <!-- EEPROM -->
+      <rect x="500" y="212" width="60" height="52" rx="6" fill="#FF9F1C"/>
+      <text x="530" y="236" font-size="11" fill="#3a2200" font-weight="800" text-anchor="middle">EEPROM</text>
+      <text x="530" y="252" font-size="10" fill="#3a2200" text-anchor="middle">ID chip</text>
+      <!-- gold fingers -->
+      <g fill="#E9C36B">
+        <rect x="690" y="185" width="26" height="9" rx="2"/><rect x="690" y="200" width="26" height="9" rx="2"/>
+        <rect x="690" y="215" width="26" height="9" rx="2"/><rect x="690" y="230" width="26" height="9" rx="2"/>
+        <rect x="690" y="245" width="26" height="9" rx="2"/><rect x="690" y="260" width="26" height="9" rx="2"/>
+      </g>
+      <text x="703" y="320" font-size="12" fill="#5A6B7B" font-weight="700" text-anchor="middle">Gold</text>
+      <text x="703" y="336" font-size="12" fill="#5A6B7B" font-weight="700" text-anchor="middle">contacts</text>
+      <!-- light out -->
+      <line x1="60" y1="190" x2="138" y2="190" stroke="#19D3E6" stroke-width="3" class="dash"/>
+      <line x1="138" y1="230" x2="60" y2="230" stroke="#7C5CFF" stroke-width="3" stroke-dasharray="5 9"/>
+      <text x="20" y="175" font-size="12" fill="#0e8f9b" font-weight="800">Light to fiber</text>
+      <!-- electrical zone label -->
+      <text x="703" y="110" font-size="12" fill="#b06b00" font-weight="800" text-anchor="middle">Electrical side</text>
+      <text x="690" y="372" font-size="12.5" fill="#0A2540" font-weight="700" text-anchor="middle">plugs into switch</text>
+      <text x="175" y="372" font-size="12.5" fill="#0A2540" font-weight="700" text-anchor="middle">fiber plugs in here</text>
+    </svg>
+    <div class="cap"><span class="fig-tag">Fig 1</span><span><b>Inside an SFP.</b> Light leaves and enters on the left through the LC port. Data enters and leaves on the right through the gold contacts. The <b>TOSA</b> holds the laser, the <b>ROSA</b> holds the detector, and the small <b>EEPROM</b> chip stores the module's identity. More on each of these as we go.</span></div>
+  </div>
+
+  <div class="callout key">
+    <h4>&#128273; The one idea to keep</h4>
+    <p>A transceiver is a converter with an ID card. It converts electricity to light and back, and it carries a little memory chip that tells the switch what it is. Everything else is detail on top of those two facts.</p>
+  </div>
+</section>
+
+<!-- ============ 2. LIGHT ============ -->
+<section class="chap" id="light">
+  <p class="eyebrow"><span class="num">2</span> The Idea</p>
+  <h2>How light carries your data</h2>
+  <p class="lead">Computers speak in ones and zeros. A transceiver sends a one as a flash of light and a zero as darkness. Do that billions of times a second down a glass fiber and you have a network link.</p>
+
+  <p>Think of an incredibly fast flashlight pointed down a glass tube. Light on means one. Light off means zero. The laser can switch on and off billions of times each second, so a huge amount of data flows in a moment. At the far end, a light detector watches for the flashes and rebuilds the ones and zeros.</p>
+
+  <p>Glass fiber is used instead of copper for two reasons. Light travels far with very little loss, and it is immune to electrical noise. That is why a fiber link can run hundreds of meters or many kilometers where copper would give up after a few meters at high speed.</p>
+
+  <h3>The full journey, end to end</h3>
+  <div class="figure">
+    <svg viewBox="0 0 920 300" role="img" aria-label="Signal path from sending switch through transceiver, fiber, and receiving switch">
+      <!-- left ASIC -->
+      <rect x="20" y="100" width="120" height="100" rx="12" fill="#11385f"/>
+      <text x="80" y="145" font-size="13" fill="#cfe1ff" font-weight="800" text-anchor="middle">Switch</text>
+      <text x="80" y="164" font-size="13" fill="#cfe1ff" font-weight="800" text-anchor="middle">chip</text>
+      <text x="80" y="230" font-size="11" fill="#5A6B7B" text-anchor="middle">makes 1s and 0s</text>
+      <!-- electrical -->
+      <g stroke="#FF9F1C" stroke-width="3"><line x1="140" y1="135" x2="225" y2="135"/><line x1="140" y1="150" x2="225" y2="150"/><line x1="140" y1="165" x2="225" y2="165"/></g>
+      <text x="182" y="100" font-size="11" fill="#b06b00" font-weight="800" text-anchor="middle">electrical</text>
+      <!-- TX transceiver -->
+      <rect x="225" y="105" width="120" height="90" rx="10" fill="url(#metal)" stroke="#7d90a6"/>
+      <circle cx="262" cy="150" r="10" fill="#FF5252"/>
+      <text x="300" y="146" font-size="11" fill="#0A2540" font-weight="800" text-anchor="middle">laser</text>
+      <text x="300" y="162" font-size="10" fill="#0A2540" text-anchor="middle">TX</text>
+      <text x="285" y="212" font-size="11" fill="#5A6B7B" text-anchor="middle">electricity to light</text>
+      <!-- fiber -->
+      <rect x="345" y="140" width="230" height="20" rx="10" fill="#0A2540"/>
+      <line x1="350" y1="150" x2="570" y2="150" stroke="#19D3E6" stroke-width="4" class="dash"/>
+      <circle r="5" fill="#fff"><animateMotion dur="1.6s" repeatCount="indefinite" path="M350 150 L570 150"/></circle>
+      <circle r="5" fill="#19D3E6"><animateMotion dur="1.6s" begin="0.5s" repeatCount="indefinite" path="M350 150 L570 150"/></circle>
+      <circle r="5" fill="#fff"><animateMotion dur="1.6s" begin="1s" repeatCount="indefinite" path="M350 150 L570 150"/></circle>
+      <text x="460" y="125" font-size="12" fill="#0e8f9b" font-weight="800" text-anchor="middle">glass fiber - light</text>
+      <text x="460" y="185" font-size="11" fill="#5A6B7B" text-anchor="middle">meters to kilometers</text>
+      <!-- RX transceiver -->
+      <rect x="575" y="105" width="120" height="90" rx="10" fill="url(#metal)" stroke="#7d90a6"/>
+      <circle cx="612" cy="150" r="10" fill="#7C5CFF"/>
+      <text x="650" y="146" font-size="11" fill="#0A2540" font-weight="800" text-anchor="middle">detector</text>
+      <text x="650" y="162" font-size="10" fill="#0A2540" text-anchor="middle">RX</text>
+      <text x="635" y="212" font-size="11" fill="#5A6B7B" text-anchor="middle">light to electricity</text>
+      <!-- electrical right -->
+      <g stroke="#FF9F1C" stroke-width="3"><line x1="695" y1="135" x2="780" y2="135"/><line x1="695" y1="150" x2="780" y2="150"/><line x1="695" y1="165" x2="780" y2="165"/></g>
+      <!-- right ASIC -->
+      <rect x="780" y="100" width="120" height="100" rx="12" fill="#11385f"/>
+      <text x="840" y="145" font-size="13" fill="#cfe1ff" font-weight="800" text-anchor="middle">Switch</text>
+      <text x="840" y="164" font-size="13" fill="#cfe1ff" font-weight="800" text-anchor="middle">chip</text>
+      <text x="840" y="230" font-size="11" fill="#5A6B7B" text-anchor="middle">reads 1s and 0s</text>
+    </svg>
+    <div class="cap"><span class="fig-tag">Fig 2</span><span><b>One link, four conversions.</b> Electricity becomes light in the sending module, travels the fiber as light, then becomes electricity again in the receiving module. The orange wires are the electrical side. The cyan strand is the optical side.</span></div>
+  </div>
+
+  <h3>NRZ and PAM4, or why a flash can mean more than one bit</h3>
+  <p>Early optics used the simple rule, light on equals one and light off equals zero. That scheme is called <span class="term" data-tip="Non-Return-to-Zero. The simple 2-level scheme: one brightness for a 1, another for a 0.">NRZ</span>. It works well up to about 25 to 28 gigabits per lane.</p>
+  <p>To go faster without flashing faster, engineers added more brightness levels. <span class="term" data-tip="Pulse Amplitude Modulation with 4 levels. Each light level encodes 2 bits, doubling the data per flash.">PAM4</span> uses four light levels instead of two. Each flash now carries two bits at once, not one. That doubles the data at the same flash rate. PAM4 is how the industry got to 50G, 100G, and 200G on a single lane. The trade-off is that the four levels sit closer together, so PAM4 is more sensitive to noise and always leans on error correction. More on that later.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 820 230" role="img" aria-label="Comparison of NRZ two-level signal and PAM4 four-level signal">
+      <!-- NRZ -->
+      <text x="160" y="28" font-size="14" fill="#0A2540" font-weight="800" text-anchor="middle">NRZ - 2 levels - 1 bit per flash</text>
+      <line x1="40" y1="60" x2="300" y2="60" stroke="#DCE4EE"/><line x1="40" y1="150" x2="300" y2="150" stroke="#DCE4EE"/>
+      <text x="24" y="64" font-size="11" fill="#5A6B7B" text-anchor="end">1</text>
+      <text x="24" y="154" font-size="11" fill="#5A6B7B" text-anchor="end">0</text>
+      <polyline points="40,150 80,150 80,60 140,60 140,150 180,150 180,60 220,60 220,150 260,150 260,60 300,60" fill="none" stroke="#1463FF" stroke-width="3"/>
+      <!-- PAM4 -->
+      <text x="610" y="28" font-size="14" fill="#0A2540" font-weight="800" text-anchor="middle">PAM4 - 4 levels - 2 bits per flash</text>
+      <line x1="470" y1="60" x2="780" y2="60" stroke="#DCE4EE"/><line x1="470" y1="90" x2="780" y2="90" stroke="#DCE4EE"/>
+      <line x1="470" y1="120" x2="780" y2="120" stroke="#DCE4EE"/><line x1="470" y1="150" x2="780" y2="150" stroke="#DCE4EE"/>
+      <text x="454" y="64" font-size="10" fill="#5A6B7B" text-anchor="end">11</text>
+      <text x="454" y="94" font-size="10" fill="#5A6B7B" text-anchor="end">10</text>
+      <text x="454" y="124" font-size="10" fill="#5A6B7B" text-anchor="end">01</text>
+      <text x="454" y="154" font-size="10" fill="#5A6B7B" text-anchor="end">00</text>
+      <polyline points="470,150 510,150 510,60 550,60 550,120 590,120 590,90 630,90 630,150 670,150 670,60 710,60 710,90 750,90 750,120 780,120" fill="none" stroke="#00C2D1" stroke-width="3"/>
+    </svg>
+    <div class="cap"><span class="fig-tag">Fig 3</span><span><b>Two levels versus four.</b> NRZ sends one bit at a time. PAM4 packs two bits into every flash by using four brightness steps. Same flash rate, double the data, at the cost of less margin against noise.</span></div>
+  </div>
+
+  <div class="acc">
+    <button aria-expanded="false"><span class="gd">Go deeper</span> What is a "lane" and why does it matter?</button>
+    <div class="body"><div class="body-inner">
+      <p>A <b>lane</b> is one independent stream of bits. A simple SFP has one lane. A QSFP has four lanes. The Q in QSFP stands for Quad, meaning four.</p>
+      <p>Total speed equals lane speed times lane count. Four lanes of 25G gives 100G. Eight lanes of 100G gives 800G. This is the single most useful piece of mental math in optics. When you see 400G as 8x50G, that means eight lanes each running 50 gigabits. When you see it as 4x100G, that is four lanes at 100 gigabits. Same total, fewer lanes, newer technology.</p>
+      <p>Lanes can be carried as separate colors of light on one fiber, or as separate fibers in a ribbon. That choice is what separates the SR, DR, FR and LR variants you will meet in the wavelengths and speeds sections.</p>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ 3. INSIDE ============ -->
+<section class="chap" id="inside">
+  <p class="eyebrow"><span class="num">3</span> Under the Hood</p>
+  <h2>What is inside the module</h2>
+  <p class="lead">Four parts do almost all the work. A laser, a detector, a chip that drives them, and a memory chip that holds the module's ID. Knowing these makes every datasheet easier to read.</p>
+
+  <div class="grid g2">
+    <div class="card">
+      <h4 style="margin-top:0">&#128293; TOSA - the transmit side</h4>
+      <p style="margin:.2em 0" class="muted">TOSA stands for Transmitter Optical Sub-Assembly. It holds the laser and the lens that focuses light into the fiber. When the switch sends a one, the driver flashes the laser. The TOSA is where electricity becomes light.</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">&#128065; ROSA - the receive side</h4>
+      <p style="margin:.2em 0" class="muted">ROSA stands for Receiver Optical Sub-Assembly. It holds a light detector called a photodiode and an amplifier. It watches the incoming flashes and turns them back into a clean electrical signal. The ROSA is where light becomes electricity.</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">&#129518; The driver, DSP or gearbox</h4>
+      <p style="margin:.2em 0" class="muted">A controller chip shapes the signal. At higher speeds this is a <span class="term" data-tip="Digital Signal Processor. Cleans up and reshapes the high-speed signal, essential for PAM4 optics.">DSP</span> that cleans up PAM4 and can convert lane counts, for example turning eight slow lanes from the switch into four fast lanes of light.</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">&#128190; The EEPROM - the ID card</h4>
+      <p style="margin:.2em 0" class="muted">A tiny memory chip stores who made the module, what speed it runs, what wavelength it uses, and how far it reaches. The switch reads this the instant you plug in. The whole next section is about this chip.</p>
+    </div>
+  </div>
+
+  <h3>Lasers, and why some optics cost more than others</h3>
+  <p>The laser is the single biggest driver of cost and reach. A cheap laser is fine for a short hop inside a rack. A long run across a campus needs a more precise and more expensive laser. Here are the four families you will meet.</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Laser type</th><th>Typical use</th><th>Wavelength</th><th>Reach feel</th><th>Relative cost</th></tr></thead>
+      <tbody>
+        <tr><td><b>VCSEL</b></td><td>Short reach over multimode fiber. The SR optics.</td><td>850 nm</td><td>Meters to a few hundred meters</td><td>Lowest</td></tr>
+        <tr><td><b>FP / DFB</b></td><td>Medium and long reach over single-mode. DR, FR, LR.</td><td>1310 nm</td><td>500 m to 10 km</td><td>Medium</td></tr>
+        <tr><td><b>EML</b></td><td>High speed and longer single-mode. Many FR and LR optics at 100G per lane.</td><td>1310 / 1550 nm</td><td>2 km to 40 km</td><td>Higher</td></tr>
+        <tr><td><b>Tunable / coherent</b></td><td>Very long haul and data center interconnect. ZR optics.</td><td>1550 nm band</td><td>80 km to 120 km and beyond</td><td>Highest</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="analogy">
+    <div class="ab">&#128294;</div>
+    <div><b>The flashlight versus the lighthouse.</b> A VCSEL is a cheap, wide flashlight. Great across a room, useless across a bay. A coherent laser is a tight, tuned lighthouse beam built to be seen 100 km away. You pay for the precision, and you only need it when the distance demands it. This is why matching reach to the job saves real money. There is no point buying a lighthouse to light a closet.</div>
+  </div>
+
+  <div class="acc">
+    <button aria-expanded="false"><span class="gd">Go deeper</span> Direct detection versus coherent</button>
+    <div class="body"><div class="body-inner">
+      <p>Most optics in a data center use <b>intensity modulation, direct detection</b>, often shortened to IM-DD. The laser changes brightness and the detector simply measures brightness. Simple, cheap, and great for short and medium reach.</p>
+      <p>For very long distances the industry uses <b>coherent</b> optics. These encode data in the phase and amplitude of the light, not just brightness, and use a powerful DSP to recover it. This is the technology behind <span class="codei">400G-ZR</span> and <span class="codei">400G-ZR+</span>, which can carry 400G across a metro area on a single wavelength. Coherent used to fill a whole line card. It now fits inside a QSFP-DD or OSFP pluggable, which is one of the bigger recent shifts in the industry.</p>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ 4. EEPROM ============ -->
+<section class="chap" id="eeprom">
+  <p class="eyebrow"><span class="num">4</span> The ID Card</p>
+  <h2>The EEPROM, coding, and live diagnostics</h2>
+  <p class="lead">Every transceiver carries a small memory chip called the EEPROM. It is the module's ID card and its health monitor. Understanding it explains why one optic works in a switch and an identical-looking one gets rejected.</p>
+
+  <p><span class="term" data-tip="Electrically Erasable Programmable Read-Only Memory. Non-volatile memory that keeps its contents with no power.">EEPROM</span> is just a small chunk of memory that keeps its contents when the power is off. The instant you seat a module, the switch reads this chip over a simple two-wire connection. In under a second the switch knows the brand, the model, the speed, the wavelength, the reach, and the fiber type. No drivers, no install. The module introduces itself.</p>
+
+  <h3>What the chip actually stores</h3>
+  <p>The memory is split into two areas. A static area that never changes, and a live area that updates constantly. Click any field below to see what it holds and why it matters.</p>
+
+  <div class="callout"><h4>&#128279; Static info (the ID)</h4><p>Set at the factory. Brand, part number, serial, supported speeds, wavelength, reach, connector and fiber type.</p></div>
+  <div class="eeprom" id="eepromGrid">
+    <button class="ee-cell" data-key="id"><span class="addr">byte 0</span><b>Identifier</b></button>
+    <button class="ee-cell" data-key="vendor"><span class="addr">bytes 20-35</span><b>Vendor name</b></button>
+    <button class="ee-cell" data-key="oui"><span class="addr">bytes 37-39</span><b>Vendor OUI</b></button>
+    <button class="ee-cell" data-key="pn"><span class="addr">bytes 40-59</span><b>Part number</b></button>
+    <button class="ee-cell" data-key="sn"><span class="addr">bytes 68-83</span><b>Serial number</b></button>
+    <button class="ee-cell" data-key="date"><span class="addr">bytes 84-91</span><b>Date code</b></button>
+    <button class="ee-cell" data-key="conn"><span class="addr">byte 2</span><b>Connector</b></button>
+    <button class="ee-cell" data-key="codes"><span class="addr">bytes 3-10</span><b>Transceiver codes</b></button>
+    <button class="ee-cell" data-key="wave"><span class="addr">bytes 60-61</span><b>Wavelength</b></button>
+    <button class="ee-cell" data-key="rate"><span class="addr">byte 12</span><b>Nominal bit rate</b></button>
+    <button class="ee-cell" data-key="reach"><span class="addr">bytes 14-19</span><b>Length / reach</b></button>
+    <button class="ee-cell" data-key="enc"><span class="addr">byte 11</span><b>Encoding</b></button>
+  </div>
+
+  <div class="callout warn"><h4>&#128201; Live diagnostics, called DOM or DDM</h4><p>Updated in real time while the link runs. This is your early-warning system for a failing optic or a dirty fiber.</p></div>
+  <div class="eeprom" id="eepromGrid2">
+    <button class="ee-cell" data-key="temp"><span class="addr">live</span><b>Temperature</b></button>
+    <button class="ee-cell" data-key="vcc"><span class="addr">live</span><b>Supply voltage</b></button>
+    <button class="ee-cell" data-key="bias"><span class="addr">live</span><b>Laser bias current</b></button>
+    <button class="ee-cell" data-key="txp"><span class="addr">live</span><b>TX optical power</b></button>
+    <button class="ee-cell" data-key="rxp"><span class="addr">live</span><b>RX optical power</b></button>
+    <button class="ee-cell" data-key="thr"><span class="addr">live</span><b>Alarm thresholds</b></button>
+  </div>
+
+  <div class="ee-detail" id="eeDetail"><b>&#9757; Tap a field above.</b> Each one is a real value the switch can read off the module while it runs.</div>
+
+  <h3>Wavelength lives in the EEPROM</h3>
+  <p>One of those fields is the <b>wavelength</b>, the color of light the module uses. It is stored right there in the ID area, often as a number like 850, 1310, or 1550 nanometers. This matters because the two ends of a link must agree on color. A module sending 1310 nm light cannot be read by a receiver tuned for 850 nm. When you read an optic's EEPROM, the wavelength field tells you instantly whether it is a short-reach multimode optic or a long-reach single-mode one. The next section is all about why these colors are what they are.</p>
+
+  <h3>The management standards behind the chip</h3>
+  <p>The layout of the EEPROM is not random. Three published specifications define where each piece of information lives, so any switch can read any vendor's module. You do not need to memorize these, but you will see the names.</p>
+  <div class="grid g3">
+    <div class="card"><b class="codei">SFF-8472</b><p class="muted" style="font-size:14.5px;margin:.4em 0 0">The map for SFP, SFP+ and SFP28. Defines the ID area and the live diagnostics area.</p></div>
+    <div class="card"><b class="codei">SFF-8636</b><p class="muted" style="font-size:14.5px;margin:.4em 0 0">The map for QSFP, QSFP+ and QSFP28. A paged layout to hold more lanes of data.</p></div>
+    <div class="card"><b class="codei">CMIS</b><p class="muted" style="font-size:14.5px;margin:.4em 0 0">Common Management Interface Specification. The modern map for QSFP-DD, OSFP and other 200G-per-lane and faster modules.</p></div>
+  </div>
+
+  <h3>What "coding" means, and why it matters to you</h3>
+  <p>Here is the part that trips up newcomers. The EEPROM includes the vendor name and part number. Many switch makers check that field and will only fully trust a module whose ID matches their own approved list. Plug in an unrecognized optic and the switch may flag it, throttle it, or refuse to bring the port up.</p>
+  <p>A third-party or compatible optic is a quality module whose EEPROM has been programmed, or <b>coded</b>, to present the exact ID the target switch expects. The glass, the laser, and the detector are the same class of parts. The difference is the ID written to the chip. A Cisco-coded module reports itself as Cisco. An Arista-coded module reports itself as Arista. This is completely standard practice and it is how the compatible-optics market exists.</p>
+  <div class="callout key"><h4>&#127919; Why this is the heart of the business</h4><p>Coding is the difference between an optic that lights up on the first try and one that throws an error. It is also where a single wrong digit on an order turns into a return. Coded to the right switch, confirmed before it ships. That is the whole value of buying from someone who checks.</p></div>
+
+  <div class="callout tip"><h4>&#128161; A practical habit</h4><p>When a new link will not come up, read the DOM before you swap anything. Low or zero RX power usually means a fiber, connector, or polarity problem, not a bad module. A clean TX power with no RX often means the light is leaving fine but not arriving. The chip tells you where to look.</p></div>
+</section>
+
+<!-- ============ 5. WAVELENGTHS ============ -->
+<section class="chap" id="wavelengths">
+  <p class="eyebrow"><span class="num">5</span> The Colors of Light</p>
+  <h2>Wavelengths, and putting many colors on one fiber</h2>
+  <p class="lead">Wavelength is just the color of the light. Optics use three main colors, plus clever tricks to stack many colors on a single strand. The color decides how far the light travels and what fiber it needs.</p>
+
+  <p>Light has a color, measured in nanometers, written <b>nm</b>. Optics use three main wavelengths. All three are infrared, which means your eye cannot see them. Never assume a fiber is dark. Always treat it as live.</p>
+
+  <div class="wave-tabs" id="waveTabs" role="tablist">
+    <button data-w="850" style="--c:#0e8f9b" class="active">850 nm</button>
+    <button data-w="1310" style="--c:#1463FF">1310 nm</button>
+    <button data-w="1550" style="--c:#7C5CFF">1550 nm</button>
+    <button data-w="cwdm" style="--c:#1FA971">CWDM</button>
+    <button data-w="dwdm" style="--c:#E5484D">DWDM</button>
+  </div>
+  <div class="card" id="waveDetail" style="min-height:120px"></div>
+
+  <div class="figure">
+    <svg viewBox="0 0 880 300" role="img" aria-label="Glass fiber loss across wavelength, showing the 850, 1310 and 1550 nm windows">
+      <!-- axes -->
+      <line x1="70" y1="240" x2="840" y2="240" stroke="#9fb0c4" stroke-width="1.5"/>
+      <line x1="70" y1="40" x2="70" y2="240" stroke="#9fb0c4" stroke-width="1.5"/>
+      <text x="455" y="285" font-size="13" fill="#5A6B7B" font-weight="700" text-anchor="middle">Wavelength (nm)  -  longer color to the right</text>
+      <text x="28" y="140" font-size="13" fill="#5A6B7B" font-weight="700" text-anchor="middle" transform="rotate(-90 28 140)">Signal loss</text>
+      <!-- loss curve (lower is better) -->
+      <path d="M110 80 C 180 150, 220 180, 300 150 C 360 128, 380 200, 470 120 C 540 70, 560 95, 660 95 C 720 95, 760 120, 820 150" fill="none" stroke="#C7D3E2" stroke-width="6"/>
+      <!-- windows -->
+      <g>
+        <rect x="120" y="50" width="60" height="190" rx="6" fill="#0e8f9b" opacity=".12"/>
+        <circle cx="150" cy="120" r="8" fill="#0e8f9b"/>
+        <text x="150" y="262" font-size="12" fill="#0e8f9b" font-weight="800" text-anchor="middle">850</text>
+        <text x="150" y="38" font-size="10.5" fill="#0e8f9b" font-weight="700" text-anchor="middle">multimode</text>
+      </g>
+      <g>
+        <rect x="430" y="50" width="60" height="190" rx="6" fill="#1463FF" opacity=".12"/>
+        <circle cx="462" cy="123" r="8" fill="#1463FF"/>
+        <text x="462" y="262" font-size="12" fill="#1463FF" font-weight="800" text-anchor="middle">1310</text>
+        <text x="462" y="38" font-size="10.5" fill="#1463FF" font-weight="700" text-anchor="middle">O-band</text>
+      </g>
+      <g>
+        <rect x="628" y="50" width="64" height="190" rx="6" fill="#7C5CFF" opacity=".12"/>
+        <circle cx="660" cy="95" r="8" fill="#7C5CFF"/>
+        <text x="660" y="262" font-size="12" fill="#7C5CFF" font-weight="800" text-anchor="middle">1550</text>
+        <text x="660" y="38" font-size="10.5" fill="#7C5CFF" font-weight="700" text-anchor="middle">C-band</text>
+      </g>
+      <text x="150" y="160" font-size="10" fill="#5A6B7B" text-anchor="middle">higher loss</text>
+      <text x="660" y="135" font-size="10" fill="#5A6B7B" text-anchor="middle">lowest loss</text>
+    </svg>
+    <div class="cap"><span class="fig-tag">Fig 4</span><span><b>Why these three colors.</b> Glass is clearest at certain wavelengths, so the light loses less energy and travels farther. 850 nm is used for cheap short links over multimode. 1310 and 1550 nm sit in the clearest windows and are used for long single-mode runs.</span></div>
+  </div>
+
+  <h3>WDM, or many colors down one fiber</h3>
+  <p>Here is the clever part. Different colors of light do not interfere with each other. So you can send several colors down the same fiber at the same time and split them apart at the far end. This is called <span class="term" data-tip="Wavelength Division Multiplexing. Sending several colors of light down one fiber at once to multiply its capacity.">WDM</span>. It is how one pair of fibers carries four, eight, or even eighty separate data streams.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 880 250" role="img" aria-label="Four colored signals combined onto one fiber and split apart again">
+      <g font-size="12" font-weight="700" text-anchor="middle">
+        <circle cx="70" cy="55" r="13" fill="#E5484D"/><text x="105" y="59" fill="#5A6B7B" text-anchor="start">color 1</text>
+        <circle cx="70" cy="95" r="13" fill="#FF9F1C"/><text x="105" y="99" fill="#5A6B7B" text-anchor="start">color 2</text>
+        <circle cx="70" cy="135" r="13" fill="#1FA971"/><text x="105" y="139" fill="#5A6B7B" text-anchor="start">color 3</text>
+        <circle cx="70" cy="175" r="13" fill="#1463FF"/><text x="105" y="179" fill="#5A6B7B" text-anchor="start">color 4</text>
+      </g>
+      <!-- mux -->
+      <path d="M180 40 L260 95 L260 135 L180 190 Z" fill="#11385f"/>
+      <text x="220" y="120" font-size="11" fill="#cfe1ff" font-weight="800" text-anchor="middle">MUX</text>
+      <g stroke-width="3" fill="none">
+        <line x1="83" y1="55" x2="185" y2="70" stroke="#E5484D"/><line x1="83" y1="95" x2="185" y2="95" stroke="#FF9F1C"/>
+        <line x1="83" y1="135" x2="185" y2="135" stroke="#1FA971"/><line x1="83" y1="175" x2="185" y2="160" stroke="#1463FF"/>
+      </g>
+      <!-- one fiber -->
+      <rect x="260" y="105" width="360" height="20" rx="10" fill="#0A2540"/>
+      <line x1="268" y1="115" x2="612" y2="115" stroke="#19D3E6" stroke-width="4" class="dash"/>
+      <circle r="5" fill="#fff"><animateMotion dur="2s" repeatCount="indefinite" path="M268 115 L612 115"/></circle>
+      <text x="440" y="98" font-size="12" fill="#0e8f9b" font-weight="800" text-anchor="middle">one fiber carries all four colors</text>
+      <!-- demux -->
+      <path d="M700 40 L620 95 L620 135 L700 190 Z" fill="#11385f"/>
+      <text x="660" y="120" font-size="11" fill="#cfe1ff" font-weight="800" text-anchor="middle">DEMUX</text>
+      <g stroke-width="3" fill="none">
+        <line x1="700" y1="70" x2="800" y2="55" stroke="#E5484D"/><line x1="700" y1="95" x2="800" y2="95" stroke="#FF9F1C"/>
+        <line x1="700" y1="135" x2="800" y2="135" stroke="#1FA971"/><line x1="700" y1="160" x2="800" y2="175" stroke="#1463FF"/>
+      </g>
+      <g fill="#5A6B7B" font-size="11" font-weight="700" text-anchor="start">
+        <text x="808" y="59">out 1</text><text x="808" y="99">out 2</text><text x="808" y="139">out 3</text><text x="808" y="179">out 4</text>
+      </g>
+    </svg>
+    <div class="cap"><span class="fig-tag">Fig 5</span><span><b>Four streams, one fiber.</b> A combiner (MUX) merges the colors at one end. A splitter (DEMUX) separates them at the other. This is exactly how a <span class="codei">100GBASE-LR4</span> optic puts four 25G streams of different colors onto a single pair of fibers.</span></div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card"><h4 style="margin-top:0">CWDM - coarse</h4><p class="muted" style="margin:.2em 0;font-size:15px">Colors spaced far apart, about 20 nm. The lasers do not need cooling, so it is cheaper. Used inside many 40G and 100G optics like CWDM4. Good for short and medium reach.</p></div>
+    <div class="card"><h4 style="margin-top:0">DWDM - dense</h4><p class="muted" style="margin:.2em 0;font-size:15px">Colors packed very close, under 1 nm apart, on a precise grid. Lasers are cooled and tuned. Fits dozens of channels on one fiber for long haul and connecting data centers across a city.</p></div>
+  </div>
+</section>
+
+<!-- ============ 6. FIBER & CONNECTORS ============ -->
+<section class="chap" id="fiber">
+  <p class="eyebrow"><span class="num">6</span> The Cable Itself</p>
+  <h2>Fiber types and connectors</h2>
+  <p class="lead">A transceiver is only half a link. The fiber and the connector are the other half. Two fiber families and two connector styles cover almost everything you will see.</p>
+
+  <h3>Multimode versus single-mode</h3>
+  <p>The difference is the size of the glass core in the middle of the fiber, where the light actually travels.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 880 280" role="img" aria-label="Cross section comparison of multimode fiber with a wide core and single-mode fiber with a narrow core">
+      <!-- MMF -->
+      <text x="225" y="30" font-size="15" fill="#0e8f9b" font-weight="800" text-anchor="middle">Multimode (MMF)</text>
+      <rect x="60" y="60" width="330" height="90" rx="8" fill="#d8f0f2" stroke="#0e8f9b"/>
+      <rect x="60" y="92" width="330" height="26" fill="#7fd6dd"/>
+      <text x="225" y="173" font-size="12" fill="#0e8f9b" font-weight="700" text-anchor="middle">wide core, about 50 microns</text>
+      <!-- bouncing rays -->
+      <polyline points="60,105 110,95 160,115 210,95 260,115 310,95 360,115 390,105" fill="none" stroke="#E5484D" stroke-width="2"/>
+      <polyline points="60,105 100,118 150,92 200,118 250,92 300,118 350,95 390,105" fill="none" stroke="#FF9F1C" stroke-width="2"/>
+      <text x="225" y="210" font-size="12.5" fill="#5A6B7B" text-anchor="middle">Light bounces along many paths.</text>
+      <text x="225" y="230" font-size="12.5" fill="#5A6B7B" text-anchor="middle">Cheap optics, but paths spread out, so reach is limited.</text>
+      <!-- SMF -->
+      <text x="655" y="30" font-size="15" fill="#1463FF" font-weight="800" text-anchor="middle">Single-mode (SMF)</text>
+      <rect x="490" y="60" width="330" height="90" rx="8" fill="#dbe6ff" stroke="#1463FF"/>
+      <rect x="490" y="101" width="330" height="8" fill="#1463FF"/>
+      <text x="655" y="173" font-size="12" fill="#1463FF" font-weight="700" text-anchor="middle">narrow core, about 9 microns</text>
+      <line x1="490" y1="105" x2="820" y2="105" stroke="#7C5CFF" stroke-width="2.5"/>
+      <text x="655" y="210" font-size="12.5" fill="#5A6B7B" text-anchor="middle">Light travels one straight path.</text>
+      <text x="655" y="230" font-size="12.5" fill="#5A6B7B" text-anchor="middle">Pricier optics, but it stays clean over long distance.</text>
+    </svg>
+    <div class="cap"><span class="fig-tag">Fig 6</span><span><b>The core is everything.</b> Multimode has a wide core, so light takes many paths and slowly smears. That caps the distance. Single-mode has a tiny core, so light travels one clean path and goes far. The optics match the fiber, so an SR module needs multimode and an LR module needs single-mode.</span></div>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Fiber</th><th>Type</th><th>Jacket color</th><th>Typical use</th></tr></thead>
+      <tbody>
+        <tr><td><b>OM3</b></td><td><span class="badge b-mmf">Multimode</span></td><td>Aqua</td><td>10G to 100m, short SR links</td></tr>
+        <tr><td><b>OM4</b></td><td><span class="badge b-mmf">Multimode</span></td><td>Aqua / violet</td><td>The common in-rack and in-row multimode choice</td></tr>
+        <tr><td><b>OM5</b></td><td><span class="badge b-mmf">Multimode</span></td><td>Lime green</td><td>Multimode WDM, squeezes more out of one fiber pair</td></tr>
+        <tr><td><b>OS2</b></td><td><span class="badge b-smf">Single-mode</span></td><td>Yellow</td><td>Everything long, from 500m DR to 80km ZR</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout tip"><h4>&#128161; Fast rule of thumb</h4><p>Aqua or lime jacket usually means multimode and short reach. Yellow jacket usually means single-mode and long reach. It is a rule, not a law, so confirm against the optic, but it is right far more often than not.</p></div>
+
+  <h3>Connectors - LC and MPO</h3>
+  <p>Two connector styles cover most of the data center. The choice depends on whether the optic uses two fibers or many.</p>
+  <div class="figure">
+    <svg viewBox="0 0 880 250" role="img" aria-label="LC duplex connector with two fibers and MPO connector with twelve fibers">
+      <!-- LC -->
+      <text x="220" y="34" font-size="15" fill="#0A2540" font-weight="800" text-anchor="middle">LC duplex - 2 fibers</text>
+      <rect x="120" y="60" width="90" height="120" rx="10" fill="#1463FF"/>
+      <rect x="230" y="60" width="90" height="120" rx="10" fill="#19D3E6"/>
+      <rect x="150" y="180" width="30" height="40" fill="#0A2540"/><rect x="260" y="180" width="30" height="40" fill="#0A2540"/>
+      <text x="220" y="240" font-size="12" fill="#5A6B7B" font-weight="700" text-anchor="middle">one to send, one to receive</text>
+      <text x="220" y="120" font-size="12" fill="#fff" font-weight="800" text-anchor="middle">TX  RX</text>
+      <!-- MPO -->
+      <text x="650" y="34" font-size="15" fill="#0A2540" font-weight="800" text-anchor="middle">MPO / MTP - 12 fibers</text>
+      <rect x="520" y="70" width="260" height="100" rx="12" fill="#0A2540"/>
+      <g fill="#19D3E6"><circle cx="548" cy="120" r="7"/><circle cx="570" cy="120" r="7"/><circle cx="592" cy="120" r="7"/><circle cx="614" cy="120" r="7"/><circle cx="636" cy="120" r="7"/><circle cx="658" cy="120" r="7"/><circle cx="680" cy="120" r="7"/><circle cx="702" cy="120" r="7"/><circle cx="724" cy="120" r="7"/><circle cx="746" cy="120" r="7"/><circle cx="768" cy="120" r="7"/><circle cx="526" cy="120" r="7"/></g>
+      <text x="650" y="200" font-size="12" fill="#5A6B7B" font-weight="700" text-anchor="middle">a row of fibers in one push-on connector</text>
+    </svg>
+    <div class="cap"><span class="fig-tag">Fig 7</span><span><b>Two fibers or many.</b> An <b>LC</b> carries one fiber to send and one to receive. It suits optics that use a single beam each way, like LR4 and FR4. An <b>MPO</b> (the branded version is <b>MTP</b> from US CONEC) packs 8, 12, 16 or 24 fibers into one connector, which suits parallel optics like SR4, DR4 and SR8.</span></div>
+  </div>
+
+  <div class="grid g3">
+    <div class="card"><h4 style="margin-top:0">Simplex</h4><p class="muted" style="margin:.2em 0;font-size:15px">One fiber, used with special optics that send and receive on the same strand using two colors.</p></div>
+    <div class="card"><h4 style="margin-top:0">Duplex</h4><p class="muted" style="margin:.2em 0;font-size:15px">Two fibers, the everyday setup. One to transmit, one to receive. This is the LC world.</p></div>
+    <div class="card"><h4 style="margin-top:0">Parallel</h4><p class="muted" style="margin:.2em 0;font-size:15px">Many fibers at once, each a separate lane. This is the MPO world, used by SR4, DR4 and the breakouts you will meet soon.</p></div>
+  </div>
+
+  <div class="acc">
+    <button aria-expanded="false"><span class="gd">Go deeper</span> Why MPO polarity and cleanliness cause most field faults</button>
+    <div class="body"><div class="body-inner">
+      <p>With parallel optics, every transmit fiber on one end must land on the matching receive fiber at the other end. Get that mapping wrong, called <b>polarity</b>, and the link stays dark even though every part is good. MPO systems use defined polarity methods, often labeled A, B and C, to keep this straight. Order the cassettes and trunks as a matched set and the polarity is handled for you.</p>
+      <p>The other big one is dirt. A single speck of dust on a fiber end face can block enough light to drop a high-speed link. The faster the optic, the less margin it has for contamination. Inspect and clean end faces before mating. More links are saved by a cleaning swab than by a new transceiver.</p>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ 7. FORM FACTORS ============ -->
+<section class="chap" id="formfactors">
+  <p class="eyebrow"><span class="num">7</span> The Shapes</p>
+  <h2>Form factors - the shape of the module</h2>
+  <p class="lead">A form factor is the physical shape of the module and the slot it fits into. The shape sets the size, the lane count, and therefore the top speed. Learn the family names and the whole catalog falls into place.</p>
+
+  <p>The names look like alphabet soup at first. They are not. There is a simple logic.</p>
+  <div class="grid g2">
+    <div class="card"><b class="codei" style="color:var(--blue)">SFP = small, 1 lane</b><p class="muted" style="font-size:15px;margin:.3em 0 0">Small Form-factor Pluggable. The little single-lane module. SFP, SFP+, SFP28 and SFP56 are the same shape at faster lane speeds.</p></div>
+    <div class="card"><b class="codei" style="color:var(--cyan)">QSFP = quad, 4 lanes</b><p class="muted" style="font-size:15px;margin:.3em 0 0">The Q is Quad, meaning four lanes in one module. Wider than an SFP. QSFP+, QSFP28 and QSFP56 step up the lane speed.</p></div>
+    <div class="card"><b class="codei" style="color:var(--violet)">DD = double density, 8 lanes</b><p class="muted" style="font-size:15px;margin:.3em 0 0">QSFP-DD adds a second row of electrical contacts to fit eight lanes in a QSFP-sized body. That is how it reaches 400G and 800G.</p></div>
+    <div class="card"><b class="codei" style="color:var(--amber)">OSFP = octal, 8 lanes</b><p class="muted" style="font-size:15px;margin:.3em 0 0">Octal means eight. A slightly larger body built from the start for eight high-speed lanes and the heat that comes with them. The path to 800G and 1.6T.</p></div>
+  </div>
+
+  <h3>Explore the family</h3>
+  <p>Click any module to see its specs. The colored bar shows its relative footprint.</p>
+  <div class="ffx">
+    <div class="ffx-list" id="ffxList" role="tablist">
+      <button class="ffx-item active" data-key="sfp"><span class="sz" style="width:16px;height:10px"></span><span><b>SFP</b><span>1G</span></span></button>
+      <button class="ffx-item" data-key="sfpp"><span class="sz" style="width:16px;height:10px"></span><span><b>SFP+</b><span>10G</span></span></button>
+      <button class="ffx-item" data-key="sfp28"><span class="sz" style="width:16px;height:10px"></span><span><b>SFP28</b><span>25G</span></span></button>
+      <button class="ffx-item" data-key="sfp56"><span class="sz" style="width:16px;height:10px"></span><span><b>SFP56</b><span>50G</span></span></button>
+      <button class="ffx-item" data-key="qsfpp"><span class="sz" style="width:24px;height:13px"></span><span><b>QSFP+</b><span>40G</span></span></button>
+      <button class="ffx-item" data-key="qsfp28"><span class="sz" style="width:24px;height:13px"></span><span><b>QSFP28</b><span>100G</span></span></button>
+      <button class="ffx-item" data-key="qsfp56"><span class="sz" style="width:24px;height:13px"></span><span><b>QSFP56</b><span>200G</span></span></button>
+      <button class="ffx-item" data-key="qsfpdd"><span class="sz" style="width:24px;height:13px"></span><span><b>QSFP-DD</b><span>400G / 800G</span></span></button>
+      <button class="ffx-item" data-key="osfp"><span class="sz" style="width:30px;height:16px"></span><span><b>OSFP</b><span>400G / 800G</span></span></button>
+      <button class="ffx-item" data-key="osfpxd"><span class="sz" style="width:33px;height:18px"></span><span><b>OSFP-XD / OSFP1600</b><span>1.6T</span></span></button>
+      <button class="ffx-item" data-key="cfp"><span class="sz" style="width:46px;height:22px"></span><span><b>CFP / CFP2</b><span>legacy 40G-100G</span></span></button>
+    </div>
+    <div class="ffx-panel" id="ffxPanel"></div>
+  </div>
+
+  <h3>Side by side, roughly to scale</h3>
+  <div class="figure">
+    <svg viewBox="0 0 880 240" role="img" aria-label="Relative front-face sizes of SFP, QSFP, QSFP-DD, OSFP and CFP2 modules">
+      <g text-anchor="middle">
+        <!-- SFP -->
+        <rect x="40" y="150" width="44" height="34" rx="6" fill="#1463FF"/>
+        <text x="62" y="205" font-size="12" font-weight="800" fill="#0A2540">SFP</text>
+        <text x="62" y="222" font-size="10.5" fill="#5A6B7B">1 lane</text>
+        <!-- QSFP -->
+        <rect x="150" y="135" width="70" height="49" rx="7" fill="#00C2D1"/>
+        <text x="185" y="205" font-size="12" font-weight="800" fill="#0A2540">QSFP</text>
+        <text x="185" y="222" font-size="10.5" fill="#5A6B7B">4 lanes</text>
+        <!-- QSFP-DD -->
+        <rect x="285" y="130" width="72" height="54" rx="7" fill="#2E6BFF"/>
+        <text x="321" y="205" font-size="12" font-weight="800" fill="#0A2540">QSFP-DD</text>
+        <text x="321" y="222" font-size="10.5" fill="#5A6B7B">8 lanes</text>
+        <!-- OSFP -->
+        <rect x="420" y="120" width="88" height="64" rx="8" fill="#7C5CFF"/>
+        <text x="464" y="205" font-size="12" font-weight="800" fill="#0A2540">OSFP</text>
+        <text x="464" y="222" font-size="10.5" fill="#5A6B7B">8 lanes + heatsink</text>
+        <!-- OSFP-XD -->
+        <rect x="560" y="112" width="96" height="72" rx="8" fill="#FF9F1C"/>
+        <text x="608" y="205" font-size="12" font-weight="800" fill="#0A2540">OSFP-XD</text>
+        <text x="608" y="222" font-size="10.5" fill="#5A6B7B">16 lanes</text>
+        <!-- CFP2 -->
+        <rect x="705" y="96" width="140" height="88" rx="9" fill="#9aa7b8"/>
+        <text x="775" y="205" font-size="12" font-weight="800" fill="#0A2540">CFP2 (legacy)</text>
+        <text x="775" y="222" font-size="10.5" fill="#5A6B7B">large, early 100G</text>
+      </g>
+    </svg>
+    <div class="cap"><span class="fig-tag">Fig 8</span><span><b>Bigger body, more lanes, more heat.</b> Faster modules need more electrical lanes and a way to shed more heat, so the bodies grow. Notice QSFP-DD keeps the QSFP footprint, which is why it can accept older QSFP optics. OSFP is its own slightly larger shape with a built-in heatsink area.</span></div>
+  </div>
+
+  <div class="callout key">
+    <h4>&#128273; The compatibility rule that saves money</h4>
+    <p>A faster port usually accepts the slower module of the same family. A QSFP-DD port takes QSFP28 and QSFP+ optics. A QSFP28 port takes QSFP+ optics. This lets you buy a fast switch now and light it with the optics you already own. OSFP is the exception. OSFP ports take OSFP modules, and reaching a QSFP optic needs a small adapter.</p>
+  </div>
+
+  <div class="acc">
+    <button aria-expanded="false"><span class="gd">Go deeper</span> Older and niche shapes you may still meet</button>
+    <div class="body"><div class="body-inner">
+      <p><b>XFP</b> was an early 10G module, larger than SFP+, now mostly retired. <b>CFP, CFP2 and CFP4</b> were the first 40G and 100G shapes, large and power-hungry, replaced by QSFP28 for most uses but still found on some long-haul and coherent gear. <b>SFP-DD</b> and <b>SFP112</b> push the small SFP body to 100G on a single lane for high-density server links. <b>QSFP-DD800</b> is QSFP-DD running eight lanes at 100G each for 800G. You do not need these on day one, but the names will appear on old and new gear alike.</p>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ 8. SPEEDS ============ -->
+<section class="chap" id="speeds">
+  <p class="eyebrow"><span class="num">8</span> The Speed Guide</p>
+  <h2>Every speed from 1G to 1.6T</h2>
+  <p class="lead">This is the heart of the booklet. Each speed has a typical shape, a lane structure, and a family of variants for different distances. Tap a speed to see its card, then use the full table to compare.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 900 260" role="img" aria-label="Timeline of Ethernet optical speeds from 1G to 1.6T showing the shift from NRZ to PAM4">
+      <line x1="40" y1="210" x2="870" y2="210" stroke="#C7D3E2" stroke-width="2"/>
+      <!-- rising trend line -->
+      <polyline points="70,195 160,188 250,178 340,168 430,150 520,128 610,104 700,78 800,50" fill="none" stroke="#1463FF" stroke-width="2" opacity=".35" stroke-dasharray="2 6"/>
+      <g text-anchor="middle" font-weight="800">
+        <g><circle cx="70" cy="195" r="7" fill="#1463FF"/><text x="70" y="178" font-size="12" fill="#0A2540">1G</text><text x="70" y="232" font-size="10" fill="#5A6B7B">~2000</text></g>
+        <g><circle cx="160" cy="188" r="7" fill="#1463FF"/><text x="160" y="171" font-size="12" fill="#0A2540">10G</text><text x="160" y="232" font-size="10" fill="#5A6B7B">~2002</text></g>
+        <g><circle cx="250" cy="178" r="7" fill="#1463FF"/><text x="250" y="161" font-size="12" fill="#0A2540">40G</text><text x="250" y="232" font-size="10" fill="#5A6B7B">~2010</text></g>
+        <g><circle cx="340" cy="168" r="7" fill="#1463FF"/><text x="340" y="151" font-size="12" fill="#0A2540">25G/100G</text><text x="340" y="232" font-size="10" fill="#5A6B7B">~2016</text></g>
+        <g><circle cx="455" cy="150" r="7" fill="#00C2D1"/><text x="455" y="133" font-size="12" fill="#0A2540">50G/200G</text><text x="455" y="232" font-size="10" fill="#5A6B7B">~2018</text></g>
+        <g><circle cx="585" cy="120" r="7" fill="#00C2D1"/><text x="585" y="103" font-size="12" fill="#0A2540">400G</text><text x="585" y="232" font-size="10" fill="#5A6B7B">~2020</text></g>
+        <g><circle cx="700" cy="84" r="7" fill="#FF9F1C"/><text x="700" y="67" font-size="12" fill="#0A2540">800G</text><text x="700" y="232" font-size="10" fill="#5A6B7B">~2024</text></g>
+        <g><circle cx="810" cy="52" r="8" fill="#FF9F1C"/><text x="810" y="34" font-size="12" fill="#0A2540">1.6T</text><text x="810" y="232" font-size="10" fill="#5A6B7B">~2025+</text></g>
+      </g>
+      <rect x="44" y="244" width="14" height="6" rx="3" fill="#1463FF"/><text x="64" y="250" font-size="11" fill="#5A6B7B" font-weight="700">NRZ era</text>
+      <rect x="150" y="244" width="14" height="6" rx="3" fill="#00C2D1"/><text x="170" y="250" font-size="11" fill="#5A6B7B" font-weight="700">PAM4 begins (50G per lane)</text>
+      <rect x="400" y="244" width="14" height="6" rx="3" fill="#FF9F1C"/><text x="420" y="250" font-size="11" fill="#5A6B7B" font-weight="700">PAM4 at 100G then 200G per lane</text>
+    </svg>
+    <div class="cap"><span class="fig-tag">Fig 9</span><span><b>How we got faster.</b> For years, speed came from faster NRZ lanes and more of them. Around 50G per lane the industry switched to PAM4 to keep climbing. 800G and 1.6T are PAM4 at 100G and 200G per lane. Same modules getting denser, not bigger.</span></div>
+  </div>
+
+  <h3>Pick a speed</h3>
+  <div class="speedbar" id="speedBar" role="tablist">
+    <button data-s="1G" class="active">1G</button>
+    <button data-s="10G">10G</button>
+    <button data-s="25G">25G</button>
+    <button data-s="40G">40G</button>
+    <button data-s="50G">50G</button>
+    <button data-s="100G">100G</button>
+    <button data-s="200G">200G</button>
+    <button data-s="400G">400G</button>
+    <button data-s="800G">800G</button>
+    <button data-s="1.6T">1.6T</button>
+  </div>
+  <div id="speedCard"></div>
+
+  <h3 style="margin-top:40px">The full comparison table</h3>
+  <p>Every mainstream speed, its usual shape, how the lanes are built, and the variants you will quote most. Reaches are typical industry figures. Always confirm the exact reach on the vendor datasheet.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Speed</th><th>Usual form factor</th><th>Lanes</th><th>Modulation</th><th>Common variants</th><th>Fiber</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>1G</b></td><td>SFP</td><td>1 &times; 1G</td><td>NRZ</td>
+          <td><span class="codei">SX</span> 550m, <span class="codei">LX</span> 10km, <span class="codei">ZX</span> 80km, <span class="codei">T</span> copper</td>
+          <td><span class="badge b-mmf">MM</span><span class="badge b-smf">SM</span><span class="badge b-cu">Cu</span></td>
+        </tr>
+        <tr>
+          <td><b>10G</b></td><td>SFP+</td><td>1 &times; 10G</td><td>NRZ</td>
+          <td><span class="codei">SR</span> 300m, <span class="codei">LR</span> 10km, <span class="codei">ER</span> 40km, <span class="codei">ZR</span> 80km</td>
+          <td><span class="badge b-mmf">MM</span><span class="badge b-smf">SM</span></td>
+        </tr>
+        <tr>
+          <td><b>25G</b></td><td>SFP28</td><td>1 &times; 25G</td><td>NRZ</td>
+          <td><span class="codei">SR</span> 100m, <span class="codei">LR</span> 10km, <span class="codei">ER</span> 30-40km</td>
+          <td><span class="badge b-mmf">MM</span><span class="badge b-smf">SM</span></td>
+        </tr>
+        <tr>
+          <td><b>40G</b></td><td>QSFP+</td><td>4 &times; 10G</td><td>NRZ</td>
+          <td><span class="codei">SR4</span> 150m, <span class="codei">LR4</span> 10km, <span class="codei">ER4</span> 40km, <span class="codei">BiDi</span> duplex MM</td>
+          <td><span class="badge b-mmf">MM</span><span class="badge b-smf">SM</span></td>
+        </tr>
+        <tr>
+          <td><b>50G</b></td><td>SFP56</td><td>1 &times; 50G</td><td>PAM4</td>
+          <td><span class="codei">SR</span> 100m, <span class="codei">FR</span> 2km, <span class="codei">LR</span> 10km</td>
+          <td><span class="badge b-mmf">MM</span><span class="badge b-smf">SM</span></td>
+        </tr>
+        <tr>
+          <td><b>100G</b></td><td>QSFP28</td><td>4 &times; 25G or 1 &times; 100G</td><td>NRZ / PAM4</td>
+          <td><span class="codei">SR4</span> 100m, <span class="codei">DR</span> 500m, <span class="codei">FR</span> 2km, <span class="codei">LR4</span> 10km, <span class="codei">ER4</span> 40km, <span class="codei">CWDM4</span> 2km</td>
+          <td><span class="badge b-mmf">MM</span><span class="badge b-smf">SM</span></td>
+        </tr>
+        <tr>
+          <td><b>200G</b></td><td>QSFP56</td><td>4 &times; 50G</td><td>PAM4</td>
+          <td><span class="codei">SR4</span> 100m, <span class="codei">DR4</span> 500m, <span class="codei">FR4</span> 2km, <span class="codei">LR4</span> 10km</td>
+          <td><span class="badge b-mmf">MM</span><span class="badge b-smf">SM</span></td>
+        </tr>
+        <tr>
+          <td><b>400G</b></td><td>QSFP-DD / OSFP</td><td>8 &times; 50G or 4 &times; 100G</td><td>PAM4</td>
+          <td><span class="codei">SR8</span> 100m, <span class="codei">DR4</span> 500m, <span class="codei">FR4</span> 2km, <span class="codei">LR4</span> 10km, <span class="codei">ZR</span> 80-120km</td>
+          <td><span class="badge b-mmf">MM</span><span class="badge b-smf">SM</span><span class="badge b-co">Coherent</span></td>
+        </tr>
+        <tr>
+          <td><b>800G</b></td><td>QSFP-DD800 / OSFP</td><td>8 &times; 100G</td><td>PAM4</td>
+          <td><span class="codei">SR8</span> 100m, <span class="codei">DR8</span> 500m, <span class="codei">2xFR4</span> 2km, <span class="codei">2xDR4</span>, <span class="codei">ZR</span> coherent</td>
+          <td><span class="badge b-mmf">MM</span><span class="badge b-smf">SM</span><span class="badge b-co">Coherent</span></td>
+        </tr>
+        <tr>
+          <td><b>1.6T</b></td><td>OSFP1600 / OSFP-XD</td><td>8 &times; 200G</td><td>PAM4</td>
+          <td><span class="codei">DR8</span> 500m, <span class="codei">2xDR4</span>, <span class="codei">2x800G</span>, breakouts, coherent emerging</td>
+          <td><span class="badge b-smf">SM</span><span class="badge b-co">Coherent</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout"><h4>&#128221; A note on the newest tiers</h4><p>800G is defined by the ratified IEEE 802.3df standard from 2024 and is shipping in volume for AI clusters. 1.6T is being finalized under IEEE 802.3dj, with the standard expected around 2026 and early modules already in the market. At these speeds the form-factor choice, the host SerDes, and the coding all need to match the switch exactly, so confirm the full part number before ordering.</p></div>
+</section>
+
+<!-- ============ 9. DECODE THE NAME ============ -->
+<section class="chap" id="decode">
+  <p class="eyebrow"><span class="num">9</span> Read the Label</p>
+  <h2>Decode any optic name in five seconds</h2>
+  <p class="lead">Names like 100GBASE-LR4 look cryptic until you know the pattern. There are only four parts, and once you see them you can read any optic on a datasheet.</p>
+
+  <p>Tap a name below, then tap each colored block to see what it means.</p>
+  <div class="decoder">
+    <div class="dec-presets" id="decPresets">
+      <button data-code="100GBASE-LR4" class="active">100GBASE-LR4</button>
+      <button data-code="400GBASE-DR4">400GBASE-DR4</button>
+      <button data-code="800GBASE-SR8">800GBASE-SR8</button>
+      <button data-code="10GBASE-T">10GBASE-T</button>
+      <button data-code="400GBASE-ZR">400GBASE-ZR</button>
+    </div>
+    <div class="dec-string" id="decString"></div>
+    <div class="dec-explain" id="decExplain"></div>
+  </div>
+
+  <h3>The reach letter is the one that matters most</h3>
+  <p>The middle letter tells you how far the optic reaches and what fiber it needs. Memorize these six and you are most of the way there.</p>
+  <div class="grid g3">
+    <div class="card"><b style="color:#0e8f9b">S = Short</b><p class="muted" style="margin:.2em 0;font-size:14.5px">Multimode, up to about 100m. The cheap in-rack and in-row optic. Example SR, SR4, SR8.</p></div>
+    <div class="card"><b style="color:var(--green)">D = 500 meters</b><p class="muted" style="margin:.2em 0;font-size:14.5px">Single-mode, 500m, one wavelength per fiber. The data center workhorse. Example DR, DR4, DR8.</p></div>
+    <div class="card"><b style="color:var(--amber)">F = 2 kilometers</b><p class="muted" style="margin:.2em 0;font-size:14.5px">Single-mode, 2km. Building to building on a campus. Example FR, FR4.</p></div>
+    <div class="card"><b style="color:var(--blue)">L = 10 kilometers</b><p class="muted" style="margin:.2em 0;font-size:14.5px">Single-mode, 10km. The classic long reach. Example LR, LR4.</p></div>
+    <div class="card"><b style="color:#b06b00">E = 40 kilometers</b><p class="muted" style="margin:.2em 0;font-size:14.5px">Single-mode, 40km. Extended reach across a metro. Example ER, ER4.</p></div>
+    <div class="card"><b style="color:var(--violet)">Z = 80 km, coherent</b><p class="muted" style="margin:.2em 0;font-size:14.5px">Single-mode, 80km and beyond, usually coherent. Connecting data centers. Example ZR, ZR+.</p></div>
+  </div>
+  <p style="margin-top:14px" class="muted">Other letters you will see: <b>T</b> means twisted-pair copper, <b>C</b> points to CWDM colors, and <b>B</b> means BiDi, which sends both directions on a single fiber using two colors. The trailing number is the count of lanes or wavelengths, so the 4 in LR4 means four colors and the 8 in SR8 means eight fibers.</p>
+</section>
+
+<!-- ============ 10. NIC vs SWITCH ============ -->
+<section class="chap" id="nicswitch">
+  <p class="eyebrow"><span class="num">10</span> Where They Live</p>
+  <h2>NIC and switch - the two homes for a transceiver</h2>
+  <p class="lead">Every link has a transceiver at both ends. One end is usually a server's network card. The other is a switch. The jobs are the same, but the context is different.</p>
+
+  <div class="grid g2">
+    <div class="card">
+      <h4 style="margin-top:0">&#128421; The NIC side - the server</h4>
+      <p style="margin:.2em 0" class="muted">A <span class="term" data-tip="Network Interface Card. The adapter in a server that connects it to the network.">NIC</span> is the network card inside a server. It usually has one or two ports. The transceiver plugs into the NIC and a fiber runs from there to the switch. Server speeds have climbed fast, from 10G and 25G to 100G, 200G and now 400G for AI servers. A smarter NIC with its own processor is called a SmartNIC or a DPU.</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">&#127970; The switch side - the network</h4>
+      <p style="margin:.2em 0" class="muted">A switch aggregates many links. The <span class="term" data-tip="Top of Rack. The switch at the top of a server rack that all servers in that rack connect to.">ToR</span> switch sits at the top of each rack and every server in the rack connects to it. ToR switches connect up to <b>leaf</b> and <b>spine</b> switches that tie the whole data center together. Switch ports are dense and fast, which is exactly why breakouts exist.</p>
+    </div>
+  </div>
+
+  <div class="figure">
+    <svg viewBox="0 0 900 420" role="img" aria-label="Data center topology showing spine and leaf switches, top of rack switches, and servers with NICs connected by transceivers">
+      <!-- spine -->
+      <g text-anchor="middle">
+        <rect x="330" y="30" width="110" height="34" rx="7" fill="#0A2540"/><text x="385" y="52" font-size="12" fill="#fff" font-weight="800">Spine</text>
+        <rect x="470" y="30" width="110" height="34" rx="7" fill="#0A2540"/><text x="525" y="52" font-size="12" fill="#fff" font-weight="800">Spine</text>
+        <!-- leaf -->
+        <rect x="250" y="120" width="120" height="34" rx="7" fill="#11385f"/><text x="310" y="142" font-size="12" fill="#cfe1ff" font-weight="800">Leaf</text>
+        <rect x="540" y="120" width="120" height="34" rx="7" fill="#11385f"/><text x="600" y="142" font-size="12" fill="#cfe1ff" font-weight="800">Leaf</text>
+      </g>
+      <!-- spine-leaf links -->
+      <g stroke="#19D3E6" stroke-width="2" opacity=".8">
+        <line x1="370" y1="64" x2="310" y2="120"/><line x1="450" y1="64" x2="310" y2="120"/>
+        <line x1="400" y1="64" x2="600" y2="120"/><line x1="540" y1="64" x2="600" y2="120"/>
+      </g>
+      <!-- ToR -->
+      <g text-anchor="middle">
+        <rect x="120" y="210" width="150" height="32" rx="7" fill="#1463FF"/><text x="195" y="231" font-size="12" fill="#fff" font-weight="800">ToR switch</text>
+        <rect x="610" y="210" width="150" height="32" rx="7" fill="#1463FF"/><text x="685" y="231" font-size="12" fill="#fff" font-weight="800">ToR switch</text>
+      </g>
+      <g stroke="#19D3E6" stroke-width="2" opacity=".8">
+        <line x1="195" y1="210" x2="310" y2="154"/><line x1="685" y1="210" x2="600" y2="154"/>
+      </g>
+      <!-- servers left -->
+      <g text-anchor="middle" font-size="10.5" font-weight="700">
+        <rect x="120" y="300" width="150" height="22" rx="4" fill="#cfd9e6"/><text x="195" y="315" fill="#0A2540">Server NIC</text>
+        <rect x="120" y="330" width="150" height="22" rx="4" fill="#cfd9e6"/><text x="195" y="345" fill="#0A2540">Server NIC</text>
+        <rect x="120" y="360" width="150" height="22" rx="4" fill="#cfd9e6"/><text x="195" y="375" fill="#0A2540">Server NIC</text>
+      </g>
+      <g stroke="#7C5CFF" stroke-width="2"><line x1="195" y1="242" x2="195" y2="300"/><line x1="205" y1="242" x2="205" y2="330"/><line x1="185" y1="242" x2="185" y2="360"/></g>
+      <!-- servers right with breakout -->
+      <g text-anchor="middle" font-size="10.5" font-weight="700">
+        <rect x="610" y="300" width="150" height="22" rx="4" fill="#cfd9e6"/><text x="685" y="315" fill="#0A2540">Server NIC</text>
+        <rect x="610" y="330" width="150" height="22" rx="4" fill="#cfd9e6"/><text x="685" y="345" fill="#0A2540">Server NIC</text>
+        <rect x="610" y="360" width="150" height="22" rx="4" fill="#cfd9e6"/><text x="685" y="375" fill="#0A2540">Server NIC</text>
+      </g>
+      <g stroke="#FF9F1C" stroke-width="2.4"><line x1="685" y1="242" x2="640" y2="300"/><line x1="685" y1="242" x2="685" y2="330"/><line x1="685" y1="242" x2="730" y2="360"/></g>
+      <text x="685" y="262" font-size="10.5" fill="#b06b00" font-weight="800" text-anchor="middle">one port broken out</text>
+      <!-- legend -->
+      <g font-size="11" font-weight="700">
+        <circle cx="60" cy="405" r="6" fill="#7C5CFF"/><text x="72" y="409" fill="#5A6B7B" text-anchor="start">direct links</text>
+        <circle cx="200" cy="405" r="6" fill="#FF9F1C"/><text x="212" y="409" fill="#5A6B7B" text-anchor="start">breakout link</text>
+        <text x="360" y="409" fill="#5A6B7B" text-anchor="start">a transceiver sits at every line end</text>
+      </g>
+    </svg>
+    <div class="cap"><span class="fig-tag">Fig 10</span><span><b>Optics everywhere.</b> Servers connect up to a ToR switch. ToR switches connect to leaf and spine switches above them. Every one of those lines ends in a transceiver on each side. The faster the layer, the more optics, which is why a single switch can hold hundreds of modules.</span></div>
+  </div>
+
+  <div class="callout"><h4>&#128279; A quick word on the in-rack short hops</h4><p>Not every short link needs an optical transceiver. For a few meters inside the same rack, many teams use a direct attach copper cable or an active optical cable instead, because it is cheaper for that distance. This booklet is about optical transceivers, so the rule of thumb is simple. Very short, in the rack, copper can win. Anything longer, optical transceivers over fiber carry the load.</p></div>
+</section>
+
+<!-- ============ 11. BREAKOUTS ============ -->
+<section class="chap" id="breakouts">
+  <p class="eyebrow"><span class="num">11</span> One Into Many</p>
+  <h2>Breakouts - splitting a fast port into several</h2>
+  <p class="lead">A breakout turns one high-speed switch port into several lower-speed links. It is one of the most common and most money-saving setups in the data center.</p>
+
+  <p>A switch has a limited number of ports, and each one is fast. Servers are often slower than a single switch port. A breakout solves this. It takes one 400G port and splits it into four 100G links, each going to a different server. The lanes were already separate inside the optic, so the split is natural.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 880 260" role="img" aria-label="One 400G switch port breaking out into four 100G server links">
+      <!-- switch port -->
+      <rect x="40" y="100" width="150" height="60" rx="10" fill="#1463FF"/>
+      <text x="115" y="128" font-size="13" fill="#fff" font-weight="800" text-anchor="middle">1 port</text>
+      <text x="115" y="148" font-size="12" fill="#dbe6ff" text-anchor="middle">400G QSFP-DD</text>
+      <!-- fanout lines -->
+      <g stroke="#00C2D1" stroke-width="3" fill="none">
+        <path d="M190 118 C 320 118, 360 50, 520 50"/>
+        <path d="M190 128 C 320 128, 360 105, 520 105"/>
+        <path d="M190 138 C 320 138, 360 160, 520 160"/>
+        <path d="M190 148 C 320 148, 360 215, 520 215"/>
+      </g>
+      <!-- four server optics -->
+      <g text-anchor="middle" font-weight="800" font-size="12">
+        <rect x="520" y="32" width="150" height="38" rx="8" fill="#7C5CFF"/><text x="595" y="56" fill="#fff">100G to server A</text>
+        <rect x="520" y="87" width="150" height="38" rx="8" fill="#7C5CFF"/><text x="595" y="111" fill="#fff">100G to server B</text>
+        <rect x="520" y="142" width="150" height="38" rx="8" fill="#7C5CFF"/><text x="595" y="166" fill="#fff">100G to server C</text>
+        <rect x="520" y="197" width="150" height="38" rx="8" fill="#7C5CFF"/><text x="595" y="221" fill="#fff">100G to server D</text>
+      </g>
+      <text x="355" y="20" font-size="12" fill="#5A6B7B" font-weight="700" text-anchor="middle">4 lanes split into 4 links</text>
+    </svg>
+    <div class="cap"><span class="fig-tag">Fig 11</span><span><b>One 400G becomes four 100G.</b> A <span class="codei">400GBASE-DR4</span> optic has four single-mode lanes. A breakout cable or harness sends each lane to its own server. You light four servers from one switch port and one optic, which saves ports and money.</span></div>
+  </div>
+
+  <div class="grid g3">
+    <div class="card"><b>40G &rarr; 4 &times; 10G</b><p class="muted" style="font-size:14.5px;margin:.3em 0 0">The original breakout. A QSFP+ feeding four 10G server links.</p></div>
+    <div class="card"><b>100G &rarr; 4 &times; 25G</b><p class="muted" style="font-size:14.5px;margin:.3em 0 0">A QSFP28 SR4 split to four 25G servers. Very common in the 25G server era.</p></div>
+    <div class="card"><b>400G &rarr; 4 &times; 100G</b><p class="muted" style="font-size:14.5px;margin:.3em 0 0">Today's workhorse. A QSFP-DD or OSFP DR4 feeding four 100G servers.</p></div>
+  </div>
+
+  <div class="callout warn"><h4>&#9888; The catch to confirm</h4><p>Breakouts only work when the switch port supports that breakout mode and both ends agree on lanes, speed and error correction. The optic, the cable, and the switch config all have to line up. This is a place where a quick compatibility check before you order prevents a frustrating afternoon at the rack.</p></div>
+</section>
+
+<!-- ============ 12. DAC & AOC ============ -->
+<section class="chap" id="dacaoc">
+  <p class="eyebrow"><span class="num">12</span> The In-Rack Story</p>
+  <h2>DAC and AOC - the short-reach alternatives</h2>
+  <p class="lead">Not every link needs a transceiver and a separate fiber. For the shortest hops, two all-in-one cables often win on price and power. Here is when each one beats a pluggable optic, and when it does not.</p>
+
+  <p>A pluggable transceiver plus a fiber is the flexible choice. For a one or two meter hop inside the same rack, it can also be more than you need. Two fixed cables fill that gap. A DAC and an AOC. Both arrive with the connector ends built on at the factory, so you buy one sealed assembly instead of two optics and a patch cord.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 900 330" role="img" aria-label="Three ways to make a short link: a DAC copper cable, an AOC fiber cable, and a modular transceiver plus fiber">
+      <defs><linearGradient id="mtl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfd9e6"/><stop offset="1" stop-color="#9fb0c4"/></linearGradient></defs>
+      <!-- DAC -->
+      <text x="450" y="40" font-size="14" fill="#b06b00" font-weight="800" text-anchor="middle">DAC  -  direct attach copper</text>
+      <rect x="150" y="58" width="66" height="38" rx="6" fill="url(#mtl)" stroke="#7d90a6"/>
+      <rect x="684" y="58" width="66" height="38" rx="6" fill="url(#mtl)" stroke="#7d90a6"/>
+      <line x1="216" y1="77" x2="684" y2="77" stroke="#b06b00" stroke-width="9" stroke-linecap="round"/>
+      <text x="450" y="116" font-size="11.5" fill="#677077" text-anchor="middle">copper inside, no optics, fixed ends  -  about 3 to 7 m</text>
+      <!-- AOC -->
+      <text x="450" y="150" font-size="14" fill="#0e8f9b" font-weight="800" text-anchor="middle">AOC  -  active optical cable</text>
+      <rect x="150" y="168" width="66" height="38" rx="6" fill="url(#mtl)" stroke="#7d90a6"/>
+      <circle cx="205" cy="187" r="5" fill="#FF5252"/>
+      <rect x="684" y="168" width="66" height="38" rx="6" fill="url(#mtl)" stroke="#7d90a6"/>
+      <circle cx="695" cy="187" r="5" fill="#7C5CFF"/>
+      <line x1="216" y1="187" x2="684" y2="187" stroke="#19D3E6" stroke-width="4" stroke-dasharray="6 8"/>
+      <circle r="4.5" fill="#fff"><animateMotion dur="2.2s" repeatCount="indefinite" path="M216 187 L684 187"/></circle>
+      <text x="450" y="226" font-size="11.5" fill="#677077" text-anchor="middle">optics sealed into both ends, fixed  -  up to about 30 m</text>
+      <!-- transceiver + fiber -->
+      <text x="450" y="260" font-size="14" fill="#E1251B" font-weight="800" text-anchor="middle">Transceiver + your own fiber</text>
+      <rect x="150" y="278" width="40" height="38" rx="6" fill="#11385f"/>
+      <text x="170" y="301" font-size="9" fill="#cfe1ff" font-weight="700" text-anchor="middle">port</text>
+      <rect x="196" y="283" width="64" height="28" rx="5" fill="url(#mtl)" stroke="#7d90a6"/>
+      <text x="228" y="301" font-size="9" fill="#0A2540" font-weight="700" text-anchor="middle">optic</text>
+      <rect x="266" y="291" width="14" height="12" rx="2" fill="#0A2540"/>
+      <line x1="280" y1="297" x2="750" y2="297" stroke="#19D3E6" stroke-width="4" stroke-dasharray="6 8"/>
+      <text x="520" y="287" font-size="10.5" fill="#677077" text-anchor="middle">two separate parts you choose</text>
+    </svg>
+    <div class="cap"><span class="fig-tag">Fig 12</span><span><b>Three ways to make a short link.</b> A <b>DAC</b> is copper with the ends molded on. An <b>AOC</b> is fiber with the optics sealed in. A <b>transceiver plus fiber</b> keeps the two parts separate, so you can swap either one. The first two are cheaper for a short hop. The third gives you reach and freedom to re-patch.</span></div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h4 style="margin-top:0">&#129521; DAC - direct attach copper</h4>
+      <p style="margin:.2em 0" class="muted">A DAC is a copper twinax cable with module housings molded onto both ends. No laser, no glass. The housing seats in a normal SFP or QSFP cage, but inside it is shielded copper.</p>
+      <p style="margin:.4em 0" class="muted">It is the cheapest link you can buy, with the lowest power draw and the lowest latency.</p>
+      <p style="margin:.4em 0" class="muted">Two kinds exist. A <b>passive</b> DAC carries the raw signal and reaches about 3 to 5 m. An <b>active</b> DAC, sometimes called an AEC, adds small chips to clean the signal and stretch reach to roughly 7 m.</p>
+      <p style="margin:.4em 0"><b>Best for</b> server to top-of-rack inside the same rack.</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">&#128268; AOC - active optical cable</h4>
+      <p style="margin:.2em 0" class="muted">An AOC is a fiber cable with the optics permanently attached at both ends. Picture two transceivers joined by a fiber and sealed as one part.</p>
+      <p style="margin:.4em 0" class="muted">It is thinner, lighter, and longer than a DAC. Common reaches run to about 30 m, and some go much farther.</p>
+      <p style="margin:.4em 0" class="muted">It shrugs off electrical noise and routes easily in bulk between rows.</p>
+      <p style="margin:.4em 0"><b>Best for</b> row to row and longer in-room hops where a DAC runs out of distance.</p>
+    </div>
+  </div>
+
+  <h3>DAC vs AOC vs a pluggable optic</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>What matters</th><th>DAC</th><th>AOC</th><th>Transceiver + fiber</th></tr></thead>
+      <tbody>
+        <tr><td><b>What it is</b></td><td>Copper twinax, fixed ends</td><td>Fiber with fixed optics</td><td>Removable optic plus a fiber</td></tr>
+        <tr><td><b>Typical reach</b></td><td>3 to 7 m</td><td>up to about 30 m</td><td>100 m to 80 km, by optic</td></tr>
+        <tr><td><b>Relative cost</b></td><td>Lowest</td><td>Low to medium</td><td>Highest, most flexible</td></tr>
+        <tr><td><b>Power draw</b></td><td>Lowest</td><td>Low</td><td>Set by the optic</td></tr>
+        <tr><td><b>Bulk and weight</b></td><td>Heavy in volume</td><td>Light and thin</td><td>Light fiber, small optic</td></tr>
+        <tr><td><b>Swap one end</b></td><td>No, replace the cable</td><td>No, replace the cable</td><td>Yes, swap optic or fiber alone</td></tr>
+        <tr><td><b>Coded to host</b></td><td>Yes</td><td>Yes</td><td>Yes, the optic is coded</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Which one, by distance</h3>
+  <div class="figure">
+    <svg viewBox="0 0 900 150" role="img" aria-label="Which short-reach option to use by distance from passive DAC to transceiver plus fiber">
+      <g text-anchor="middle">
+        <rect x="60" y="50" width="184" height="48" rx="9" fill="#b06b00"/>
+        <text x="152" y="73" font-size="12.5" fill="#fff" font-weight="800">Passive DAC</text>
+        <text x="152" y="120" font-size="12" fill="#677077" font-weight="700">0 to 3 m</text>
+        <rect x="252" y="50" width="184" height="48" rx="9" fill="#FF9F1C"/>
+        <text x="344" y="73" font-size="12.5" fill="#3a2200" font-weight="800">Active DAC / AEC</text>
+        <text x="344" y="120" font-size="12" fill="#677077" font-weight="700">3 to 7 m</text>
+        <rect x="444" y="50" width="184" height="48" rx="9" fill="#00C2D1"/>
+        <text x="536" y="73" font-size="12.5" fill="#06343a" font-weight="800">AOC</text>
+        <text x="536" y="120" font-size="12" fill="#677077" font-weight="700">7 to 30 m</text>
+        <rect x="636" y="50" width="204" height="48" rx="9" fill="#E1251B"/>
+        <text x="738" y="73" font-size="12.5" fill="#fff" font-weight="800">Transceiver + fiber</text>
+        <text x="738" y="120" font-size="12" fill="#677077" font-weight="700">30 m and beyond</text>
+      </g>
+      <text x="60" y="32" font-size="12" fill="#677077" font-weight="700" text-anchor="start">shorter, cheaper</text>
+      <text x="840" y="32" font-size="12" fill="#677077" font-weight="700" text-anchor="end">longer, more flexible</text>
+    </svg>
+    <div class="cap"><span class="fig-tag">Fig 13</span><span><b>Match the media to the distance.</b> Inside one rack, a DAC is the cheapest answer. Across a row, an AOC carries farther on light fiber. Past that, or whenever you want to re-patch freely, a transceiver and fiber earn their place.</span></div>
+  </div>
+
+  <div class="callout"><h4>&#128190; Yes, these are coded too</h4><p>The connector ends on a DAC and an AOC carry an EEPROM, the same as a transceiver. They report an identity to the switch and they can be coded to a specific host. A DAC coded for one vendor can be rejected by another. So the coded-to-your-switch rule from the EEPROM section applies to these cables, not just to optics.</p></div>
+
+  <div class="callout key"><h4>&#127919; How LAN Cables Direct fits the short hop</h4><p>Passive DAC, active DAC, AOC, and coded transceivers all sit on the same shelf, coded to your exact switch and tested before they ship. Concede the obvious, a DAC is cheaper than an optic plus a fiber for a two meter hop. However, the moment you need distance or the freedom to re-patch, a transceiver and fiber earn their keep. We will lay out the pros and cons and let you choose. In stock ships in business days - not weeks.</p></div>
+</section>
+
+<!-- ============ 13. MSA ============ -->
+<section class="chap" id="msa">
+  <p class="eyebrow"><span class="num">13</span> The Rules</p>
+  <h2>What is an MSA, and who makes the rules</h2>
+  <p class="lead">An MSA is the reason a module from one company drops straight into another company's switch. Without it, every vendor's optics would be a closed island. Three groups of rule-makers work together to make interoperability happen.</p>
+
+  <p><span class="term" data-tip="Multi-Source Agreement. A voluntary agreement among vendors to build a part to one shared spec so their products interchange.">MSA</span> stands for Multi-Source Agreement. It is a voluntary pact among several manufacturers to build a module to one shared specification. They agree on the exact size, the pin layout, the power, and the management, so a buyer can get the same part from multiple sources. That is the whole point. Multi-source means you are not locked to one supplier.</p>
+  <p>An MSA is not a government or a formal standards body. It is the industry agreeing with itself, because interchangeable parts grow the whole market. The QSFP-DD MSA and the OSFP MSA are two big examples that define today's highest-speed shapes.</p>
+
+  <h3>Three layers, three rule-makers</h3>
+  <p>It helps to see who defines what. A finished optic obeys three sets of rules at once.</p>
+  <div class="figure">
+    <svg viewBox="0 0 880 300" role="img" aria-label="Three layers of standards: IEEE for signaling, MSA for the package, SFF and CMIS for management">
+      <!-- layer 1 -->
+      <rect x="60" y="40" width="760" height="64" rx="12" fill="#1463FF"/>
+      <text x="90" y="68" font-size="15" fill="#fff" font-weight="800">IEEE and ITU-T</text>
+      <text x="90" y="90" font-size="12.5" fill="#dbe6ff">the signal - speed, modulation, wavelength plan, reach. Example 100GBASE-LR4.</text>
+      <text x="800" y="78" font-size="12" fill="#fff" font-weight="800" text-anchor="end">the language</text>
+      <!-- layer 2 -->
+      <rect x="60" y="118" width="760" height="64" rx="12" fill="#00C2D1"/>
+      <text x="90" y="146" font-size="15" fill="#063238" font-weight="800">MSA groups</text>
+      <text x="90" y="168" font-size="12.5" fill="#063238">the package - size, pins, power, latching. Example QSFP28, QSFP-DD, OSFP.</text>
+      <text x="800" y="156" font-size="12" fill="#063238" font-weight="800" text-anchor="end">the shape and socket</text>
+      <!-- layer 3 -->
+      <rect x="60" y="196" width="760" height="64" rx="12" fill="#FF9F1C"/>
+      <text x="90" y="224" font-size="15" fill="#3a2200" font-weight="800">SFF / SNIA and CMIS</text>
+      <text x="90" y="246" font-size="12.5" fill="#3a2200">the ID card - the EEPROM layout and live diagnostics. Example SFF-8472, CMIS.</text>
+      <text x="800" y="234" font-size="12" fill="#3a2200" font-weight="800" text-anchor="end">the ID format</text>
+      <text x="440" y="285" font-size="12.5" fill="#5A6B7B" font-weight="700" text-anchor="middle">All three must line up for a module to work in a port.</text>
+    </svg>
+    <div class="cap"><span class="fig-tag">Fig 14</span><span><b>Three rule-makers, one module.</b> IEEE defines how the light should carry data. The MSA defines the physical module and slot. SFF and CMIS define the ID chip. A working optic satisfies all three, which is why any compliant module from any vendor interoperates.</span></div>
+  </div>
+
+  <div class="callout tip"><h4>&#128161; The plain-English takeaway</h4><p>IEEE decides the language the light speaks. The MSA decides the shape of the plug. SFF and CMIS decide how the module introduces itself. Compatible optics follow all three, then code the ID to your switch. That is the entire trick to interchangeable optics.</p></div>
+</section>
+
+<!-- ============ 13. MAKERS ============ -->
+<section class="chap" id="makers">
+  <p class="eyebrow"><span class="num">14</span> The Ecosystem</p>
+  <h2>Who actually makes a transceiver</h2>
+  <p class="lead">No single company makes a whole optic from raw sand to finished module. It is a layered supply chain. Knowing the layers explains why a compatible optic can match an OEM optic in quality.</p>
+
+  <div class="grid" style="gap:12px">
+    <div class="card" style="border-left:4px solid var(--blue)">
+      <h4 style="margin-top:0">1. Component makers - the raw ingredients</h4>
+      <p class="muted" style="margin:.2em 0;font-size:15px">The glass, the connectors, the lasers, and the chips. <b>Corning</b> is a leading optical fiber and glass maker. <b>US CONEC</b> makes the MTP connectors. <b>Broadcom</b> and <b>Marvell</b> make the DSP and electronics. Specialist firms make the lasers and detectors. These parts decide the real quality of any module, OEM or not.</p>
+    </div>
+    <div class="card" style="border-left:4px solid var(--cyan)">
+      <h4 style="margin-top:0">2. Module assemblers - the factories</h4>
+      <p class="muted" style="margin:.2em 0;font-size:15px">A focused group of optical manufacturers builds the finished modules. Names include <b>Coherent</b>, <b>Lumentum</b>, <b>InnoLight</b>, <b>Eoptolink</b>, <b>Source Photonics</b>, <b>Accelink</b> and <b>AOI</b>. Here is the key fact. Many optics sold under a switch brand are built by these same assemblers, then coded to the brand.</p>
+    </div>
+    <div class="card" style="border-left:4px solid var(--violet)">
+      <h4 style="margin-top:0">3. Switch and system OEMs - the brand label</h4>
+      <p class="muted" style="margin:.2em 0;font-size:15px"><b>Cisco</b>, <b>Arista</b>, <b>Juniper</b>, <b>NVIDIA</b>, <b>HPE</b> and <b>Dell</b> sell optics under their own labels, coded to their switches and sold at a premium. The module is often the same class of part from the same assembler as a compatible optic.</p>
+    </div>
+    <div class="card" style="border-left:4px solid var(--amber)">
+      <h4 style="margin-top:0">4. Compatible optics suppliers - the alternative</h4>
+      <p class="muted" style="margin:.2em 0;font-size:15px">This channel sources from the same assemblers, codes the EEPROM to the target switch, tests each unit, and sells direct. You get the same glass and the same lasers, coded correctly, without the OEM markup. The value lives in sourcing, coding accuracy, testing, and standing behind the part.</p>
+    </div>
+  </div>
+
+  <div class="analogy">
+    <div class="ab">&#127863;</div>
+    <div><b>The bottler analogy.</b> A handful of factories make most of the world's optics, the way a few bottlers fill many drink brands. The label on the front changes. The liquid inside often does not. What you are really buying from a good compatible supplier is correct coding, real testing, honest material, and one company that owns the outcome if anything is wrong.</div>
+  </div>
+
+  <div class="callout key"><h4>&#127919; The LAN Cables Direct view</h4><p>We sell direct, no distribution layer in the middle. Corning glass, US CONEC MTP connectors, transceivers coded to your exact switch and tested before they ship. We do not use refurbished material. In stock ships in business days - not weeks. One owner, one phone call, start to finish. Higher for a reason.</p></div>
+</section>
+
+<!-- ============ 14. COMPATIBILITY & FEC ============ -->
+<section class="chap" id="compat">
+  <p class="eyebrow"><span class="num">15</span> Making It Work</p>
+  <h2>Compatibility, FEC, and why links fail</h2>
+  <p class="lead">Most failed links are not bad modules. They are a mismatch. Four things have to agree for a link to come up clean. Here is what they are and how to check them.</p>
+
+  <h3>FEC, the safety net for fast signals</h3>
+  <p><span class="term" data-tip="Forward Error Correction. Extra data sent alongside the signal so the receiver can fix errors without asking for a resend.">FEC</span> stands for Forward Error Correction. The optic sends a little extra math along with the data so the receiver can fix small errors on the fly. At 25G per lane and above, and always with PAM4, FEC is not optional. The four close levels of PAM4 produce errors that FEC quietly cleans up.</p>
+  <p>The catch is that both ends must run the same FEC setting. If the switch expects <span class="codei">RS-FEC</span> and the other end has it off, the link may flap, run slow, or never come up. When a 25G or faster link misbehaves, FEC mismatch is one of the first things to check.</p>
+
+  <h3>The four things that must agree</h3>
+  <div class="grid g4">
+    <div class="card"><b style="color:var(--blue)">Coding</b><p class="muted" style="font-size:14px;margin:.3em 0 0">The EEPROM ID must match what the switch expects, or it may reject the optic.</p></div>
+    <div class="card"><b style="color:var(--cyan)">Speed and reach</b><p class="muted" style="font-size:14px;margin:.3em 0 0">Both ends and the fiber must support the same speed and the distance involved.</p></div>
+    <div class="card"><b style="color:var(--amber)">Fiber and polarity</b><p class="muted" style="font-size:14px;margin:.3em 0 0">Multimode optic needs multimode fiber. Parallel optics need correct MPO polarity.</p></div>
+    <div class="card"><b style="color:var(--violet)">FEC</b><p class="muted" style="font-size:14px;margin:.3em 0 0">The error correction setting must match on both ends of the link.</p></div>
+  </div>
+
+  <h3>A beginner's troubleshooting order</h3>
+  <p>When a new link will not come up, work in this order. It moves from cheapest to most involved, and the EEPROM helps at almost every step.</p>
+  <div class="acc">
+    <button aria-expanded="false">1. Read the DOM first <span class="chev">&#9656;</span></button>
+    <div class="body"><div class="body-inner"><p>Check the live diagnostics. Is the far end's light arriving. Zero or very low RX power points at the fiber, the connector, or polarity, not the module. Good TX with no RX means light is leaving but not landing.</p></div></div>
+  </div>
+  <div class="acc">
+    <button aria-expanded="false">2. Clean and reseat the fiber <span class="chev">&#9656;</span></button>
+    <div class="body"><div class="body-inner"><p>Inspect and clean the end faces. A speck of dust drops more links than a bad laser. Reseat both connectors firmly. This fixes a surprising number of faults for the price of a cleaning swab.</p></div></div>
+  </div>
+  <div class="acc">
+    <button aria-expanded="false">3. Confirm fiber type and polarity <span class="chev">&#9656;</span></button>
+    <div class="body"><div class="body-inner"><p>Multimode optic on multimode fiber, single-mode on single-mode. For MPO parallel links, verify the polarity method matches across trunks and cassettes. A swapped TX and RX pair leaves the link dark with no error on the parts themselves.</p></div></div>
+  </div>
+  <div class="acc">
+    <button aria-expanded="false">4. Check coding and FEC <span class="chev">&#9656;</span></button>
+    <div class="body"><div class="body-inner"><p>Does the switch see the optic as supported. Does the port log a coding or vendor error. Is FEC set the same on both ends. This is where a part coded to the wrong switch reveals itself, and where a quick call to your supplier saves the day.</p></div></div>
+  </div>
+  <div class="acc">
+    <button aria-expanded="false">5. Verify reach and breakout mode <span class="chev">&#9656;</span></button>
+    <div class="body"><div class="body-inner"><p>Is the run within the optic's rated distance. For breakouts, is the switch port configured for the breakout and does each branch agree on speed and FEC. A 10km optic will not magically reach 40km, and a port not set to break out will only light one branch.</p></div></div>
+  </div>
+
+  <div class="callout tip"><h4>&#128222; When to stop guessing</h4><p>If the DOM looks healthy, the fiber is clean, and the coding and FEC match, but the link still will not behave, that is the moment to call your supplier with the part numbers and the port logs in hand. A supplier who coded and tested the optic can confirm the match fast. Bad news goes to the phone, not another hour of swapping parts.</p></div>
+</section>
+
+<!-- ============ 15. CHEAT SHEET ============ -->
+<section class="chap" id="cheat">
+  <p class="eyebrow"><span class="num">16</span> Keep This Handy</p>
+  <h2>The one-page cheat sheet</h2>
+  <p class="lead">Everything that fits on a sticky note. Print this page or keep it open while you read a datasheet.</p>
+
+  <div class="grid g2">
+    <div class="card">
+      <h4 style="margin-top:0">Reach letters</h4>
+      <p style="margin:.2em 0;font-size:15px"><b>S</b> short, multimode, ~100m<br>
+      <b>D</b> 500m single-mode<br>
+      <b>F</b> 2km single-mode<br>
+      <b>L</b> 10km single-mode<br>
+      <b>E</b> 40km single-mode<br>
+      <b>Z</b> 80km plus, coherent<br>
+      <b>T</b> copper twisted pair</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">Fiber at a glance</h4>
+      <p style="margin:.2em 0;font-size:15px"><span class="badge b-mmf">OM3 / OM4 / OM5</span> multimode, short, aqua or lime<br>
+      <span class="badge b-smf">OS2</span> single-mode, long, yellow<br><br>
+      Aqua or lime jacket, think short.<br>Yellow jacket, think long.</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">Form factor to speed</h4>
+      <p style="margin:.2em 0;font-size:15px">SFP 1G &middot; SFP+ 10G &middot; SFP28 25G &middot; SFP56 50G<br>
+      QSFP+ 40G &middot; QSFP28 100G &middot; QSFP56 200G<br>
+      QSFP-DD 400G/800G &middot; OSFP 400G/800G<br>
+      OSFP1600 / OSFP-XD 1.6T</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">The lane math</h4>
+      <p style="margin:.2em 0;font-size:15px">total speed = lane speed &times; lane count<br><br>
+      4 &times; 25G = 100G<br>
+      8 &times; 50G = 400G<br>
+      8 &times; 100G = 800G<br>
+      8 &times; 200G = 1.6T</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">Connectors</h4>
+      <p style="margin:.2em 0;font-size:15px"><b>LC</b> two fibers, duplex optics like LR4, FR4<br>
+      <b>MPO / MTP</b> many fibers, parallel optics like SR4, DR4, SR8<br><br>
+      Duplex uses colors on one pair. Parallel uses one fiber per lane.</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">Before you order, confirm</h4>
+      <p style="margin:.2em 0;font-size:15px">1. Switch or NIC make and model<br>
+      2. Speed and reach needed<br>
+      3. Fiber type already in the ground<br>
+      4. Coding to match the host<br>
+      5. Breakout mode if splitting a port</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 16. GLOSSARY ============ -->
+<section class="chap" id="glossary">
+  <p class="eyebrow"><span class="num">17</span> Plain-English Glossary</p>
+  <h2>Every term, defined simply</h2>
+  <p class="lead">If an acronym in this booklet ever loses you, it is here.</p>
+  <dl class="gloss">
+    <dt>AOC</dt><dd>Active Optical Cable. A fixed cable with optics built into both ends, for short hops.</dd>
+    <dt>BiDi</dt><dd>Bidirectional. Sends both directions on a single fiber using two colors of light.</dd>
+    <dt>CMIS</dt><dd>Common Management Interface Specification. The modern EEPROM and control layout for QSFP-DD, OSFP and faster modules.</dd>
+    <dt>Coherent</dt><dd>A long-reach optical method that encodes data in the phase and amplitude of light. Powers ZR optics.</dd>
+    <dt>Coding</dt><dd>Programming a module's EEPROM so it reports the identity a specific switch expects.</dd>
+    <dt>CWDM</dt><dd>Coarse Wavelength Division Multiplexing. Several colors spaced far apart on one fiber. Cheaper, no laser cooling.</dd>
+    <dt>DAC</dt><dd>Direct Attach Cable. A copper cable with connectors built in, for very short in-rack links.</dd>
+    <dt>DFB</dt><dd>Distributed Feedback laser. A precise single-mode laser used for medium and long reach.</dd>
+    <dt>DOM / DDM</dt><dd>Digital Optical Monitoring. Live readings of temperature, voltage, and light power from the module.</dd>
+    <dt>DR</dt><dd>A 500m single-mode reach class, one wavelength per fiber.</dd>
+    <dt>DSP</dt><dd>Digital Signal Processor. Cleans and reshapes high-speed signals, essential for PAM4 optics.</dd>
+    <dt>DWDM</dt><dd>Dense Wavelength Division Multiplexing. Many colors packed close on one fiber for long haul.</dd>
+    <dt>EEPROM</dt><dd>The small memory chip in a module that stores its identity and supports diagnostics.</dd>
+    <dt>EML</dt><dd>Electro-absorption Modulated Laser. A fast single-mode laser for higher speeds and longer reach.</dd>
+    <dt>ER</dt><dd>Extended Reach, about 40km on single-mode fiber.</dd>
+    <dt>FEC</dt><dd>Forward Error Correction. Extra data that lets the receiver fix errors. Required at 25G per lane and up.</dd>
+    <dt>FR</dt><dd>A 2km single-mode reach class.</dd>
+    <dt>IEEE</dt><dd>The standards body that defines Ethernet signaling, such as 100GBASE-LR4 and 800G under 802.3df.</dd>
+    <dt>IM-DD</dt><dd>Intensity Modulation, Direct Detection. The simple brightness-based method for short and medium reach.</dd>
+    <dt>ITU-T</dt><dd>A standards body that defines wavelength grids used in WDM and coherent systems.</dd>
+    <dt>LC</dt><dd>A small two-fiber connector, the everyday duplex connector.</dd>
+    <dt>LR</dt><dd>Long Reach, about 10km on single-mode fiber.</dd>
+    <dt>MMF</dt><dd>Multimode Fiber. Wide core, short reach, cheaper optics. OM3, OM4, OM5.</dd>
+    <dt>MPO</dt><dd>Multi-fiber Push-On connector. Packs 8 to 24 fibers in one connector for parallel optics.</dd>
+    <dt>MSA</dt><dd>Multi-Source Agreement. A vendor pact on a shared spec so modules interchange.</dd>
+    <dt>MTP</dt><dd>A high-performance branded MPO connector from US CONEC.</dd>
+    <dt>NIC</dt><dd>Network Interface Card. The network adapter in a server.</dd>
+    <dt>NRZ</dt><dd>Non-Return-to-Zero. The simple two-level signal, one bit per flash.</dd>
+    <dt>OSFP</dt><dd>Octal Small Form-factor Pluggable. An eight-lane module shape for 400G, 800G and 1.6T.</dd>
+    <dt>PAM4</dt><dd>Four-level signaling that carries two bits per flash. Used from 50G per lane upward.</dd>
+    <dt>PSM4</dt><dd>Parallel Single-Mode, four lanes, each on its own fiber over an MPO connector.</dd>
+    <dt>QSFP</dt><dd>Quad Small Form-factor Pluggable. A four-lane module shape.</dd>
+    <dt>ROSA</dt><dd>Receiver Optical Sub-Assembly. Holds the light detector.</dd>
+    <dt>RS-FEC</dt><dd>Reed-Solomon Forward Error Correction. The common FEC scheme at high speeds.</dd>
+    <dt>SerDes</dt><dd>Serializer / Deserializer. The switch chip circuit that drives each electrical lane.</dd>
+    <dt>SFF</dt><dd>Small Form Factor specifications. Defines EEPROM layouts such as SFF-8472 and SFF-8636.</dd>
+    <dt>SFP</dt><dd>Small Form-factor Pluggable. The common single-lane module shape.</dd>
+    <dt>SMF</dt><dd>Single-Mode Fiber. Narrow core, long reach, pricier optics. OS2.</dd>
+    <dt>SR</dt><dd>Short Reach over multimode, up to about 100m.</dd>
+    <dt>TOSA</dt><dd>Transmitter Optical Sub-Assembly. Holds the laser.</dd>
+    <dt>ToR</dt><dd>Top of Rack. The switch at the top of a rack that all its servers connect to.</dd>
+    <dt>VCSEL</dt><dd>A low-cost 850nm laser used for short multimode links.</dd>
+    <dt>WDM</dt><dd>Wavelength Division Multiplexing. Many colors of light sharing one fiber.</dd>
+    <dt>ZR</dt><dd>An 80km plus coherent reach class for connecting data centers.</dd>
+  </dl>
+</section>
+
+<!-- ============ 17. QUIZ ============ -->
+<section class="chap" id="quiz">
+  <p class="eyebrow"><span class="num">18</span> Check Yourself</p>
+  <h2>Knowledge check</h2>
+  <p class="lead">Eight quick questions. Tap an answer to see if you got it and why. No score is saved, so guess freely.</p>
+
+  <div class="quiz" id="quizBox">
+    <div class="q" data-q>
+      <div class="qtxt"><span class="qn">1</span><span>What is the core job of an optical transceiver?</span></div>
+      <button class="opt" data-c="0" data-fb="That is the fiber's job, not the module's.">Carry light over a long distance</button>
+      <button class="opt" data-c="1" data-fb="Right. It converts electrical signals to light and back, in both directions.">Convert between electrical signals and light</button>
+      <button class="opt" data-c="0" data-fb="Switch chips route traffic. The transceiver only converts and sends.">Route network traffic between servers</button>
+      <button class="opt" data-c="0" data-fb="It stores a tiny ID, but conversion is the core job.">Store the network configuration</button>
+    </div>
+    <div class="q" data-q>
+      <div class="qtxt"><span class="qn">2</span><span>Why does a transceiver need to be coded to your switch?</span></div>
+      <button class="opt" data-c="0" data-fb="Coding does not change speed. It changes the reported identity.">It makes the module run faster</button>
+      <button class="opt" data-c="1" data-fb="Correct. The EEPROM ID must match what the switch expects or the port may reject it.">So the switch recognizes the module's identity and accepts it</button>
+      <button class="opt" data-c="0" data-fb="Power is set by the form factor and class, not coding.">It lowers the power the module uses</button>
+      <button class="opt" data-c="0" data-fb="Reach is set by the laser and optics, not by coding.">It extends how far the light reaches</button>
+    </div>
+    <div class="q" data-q>
+      <div class="qtxt"><span class="qn">3</span><span>How many bits does PAM4 carry per flash compared with NRZ?</span></div>
+      <button class="opt" data-c="0" data-fb="That is NRZ, which sends one bit per flash.">One bit, same as NRZ</button>
+      <button class="opt" data-c="1" data-fb="Yes. Four light levels means two bits per flash, double NRZ.">Two bits, double NRZ</button>
+      <button class="opt" data-c="0" data-fb="PAM4 uses four levels, which is two bits, not four.">Four bits</button>
+      <button class="opt" data-c="0" data-fb="It carries more, not less, than NRZ.">Half a bit</button>
+    </div>
+    <div class="q" data-q>
+      <div class="qtxt"><span class="qn">4</span><span>An optic named 100GBASE-LR4 reaches roughly how far?</span></div>
+      <button class="opt" data-c="0" data-fb="That is the S short reach class on multimode.">100 meters</button>
+      <button class="opt" data-c="0" data-fb="That is the D class, 500m.">500 meters</button>
+      <button class="opt" data-c="1" data-fb="Correct. L means long reach, about 10km on single-mode.">10 kilometers</button>
+      <button class="opt" data-c="0" data-fb="That is the Z coherent class, much farther than LR.">80 kilometers</button>
+    </div>
+    <div class="q" data-q>
+      <div class="qtxt"><span class="qn">5</span><span>A module using 850 nm light needs which fiber?</span></div>
+      <button class="opt" data-c="1" data-fb="Right. 850nm is the multimode short-reach color.">Multimode, like OM4</button>
+      <button class="opt" data-c="0" data-fb="Single-mode is for 1310 and 1550nm long-reach optics.">Single-mode, like OS2</button>
+      <button class="opt" data-c="0" data-fb="850nm is optical, it does not run on copper.">Copper twisted pair</button>
+      <button class="opt" data-c="0" data-fb="850nm specifically needs multimode, not any fiber.">Any fiber works</button>
+    </div>
+    <div class="q" data-q>
+      <div class="qtxt"><span class="qn">6</span><span>What is an MSA?</span></div>
+      <button class="opt" data-c="0" data-fb="That is IEEE's role, defining the signaling.">A government rule for signal speeds</button>
+      <button class="opt" data-c="1" data-fb="Yes. A multi-vendor agreement on a shared spec so modules interchange.">A multi-vendor agreement so modules interoperate</button>
+      <button class="opt" data-c="0" data-fb="DOM is the diagnostic feature, not the MSA.">A diagnostic tool inside the module</button>
+      <button class="opt" data-c="0" data-fb="That is coding, a separate idea.">A way to lock optics to one brand</button>
+    </div>
+    <div class="q" data-q>
+      <div class="qtxt"><span class="qn">7</span><span>Reading 400G as 4 x 100G tells you what?</span></div>
+      <button class="opt" data-c="1" data-fb="Correct. Four lanes, each running 100 gigabits.">Four lanes, each at 100 gigabits</button>
+      <button class="opt" data-c="0" data-fb="That would be 100 lanes, which no module uses.">One hundred lanes at 4 gigabits</button>
+      <button class="opt" data-c="0" data-fb="The reach is set by the variant letter, not the lane math.">The reach is 400 meters</button>
+      <button class="opt" data-c="0" data-fb="Lane count and color count can differ. This notation is about lanes.">It uses four colors on one fiber</button>
+    </div>
+    <div class="q" data-q>
+      <div class="qtxt"><span class="qn">8</span><span>Which connector suits a parallel optic like 400GBASE-DR4?</span></div>
+      <button class="opt" data-c="0" data-fb="LC carries two fibers, fine for duplex optics, not 4-lane parallel.">LC duplex</button>
+      <button class="opt" data-c="1" data-fb="Right. Parallel optics use MPO or MTP to carry one fiber per lane.">MPO or MTP</button>
+      <button class="opt" data-c="0" data-fb="RJ45 is copper Ethernet, not fiber.">RJ45</button>
+      <button class="opt" data-c="0" data-fb="That is a coax style, not used for these optics.">BNC</button>
+    </div>
+    <div class="quiz-score" id="quizScore">Answered 0 of 8</div>
+  </div>
+
+  <div class="callout key" style="margin-top:26px">
+    <h4>&#127881; That is the whole picture</h4>
+    <p>You now know what a transceiver is, how it turns data into light, how to read its name and EEPROM, which shape and speed fits where, and why coding and FEC decide whether a link comes up. That is more than enough to hold your own on a data center call. Keep the cheat sheet close and the rest becomes second nature fast.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="foot-inner">
+    <h3 class="sr">LAN Cables Direct</h3>
+    <svg class="wordmark" viewBox="0 0 640 100" role="img" aria-label="LAN Cables Direct. Fast. Competitive. Service.">
+      <defs><linearGradient id="lanG2" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#C7CDD1"/><stop offset=".55" stop-color="#959BA1"/><stop offset="1" stop-color="#6E767C"/></linearGradient></defs>
+      <text x="6" y="67" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="74" letter-spacing="-3" class="wm-lan-red">LAN</text>
+      <text x="11" y="62" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="74" letter-spacing="-3" fill="url(#lanG2)">LAN</text>
+      <text x="210" y="58" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="55" letter-spacing="-1.5"><tspan class="wm-cables">Cables</tspan><tspan class="wm-direct">Direct</tspan></text>
+      <text x="212" y="90" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="15" letter-spacing="3.4" class="wm-tag">FAST.  COMPETITIVE.  SERVICE</text>
+    </svg>
+    <p class="pos">We sell the removal of anxiety. Speed, availability, and single-point accountability on the optical and copper that connects data centers. Corning glass, US CONEC MTP connectors, transceivers coded to your switch. Higher for a reason.</p>
+    <div style="margin-top:18px">
+      <div class="foot-line"><b>Lead times:</b> in stock ships in business days - not weeks.</div>
+      <div class="foot-line"><b>Material:</b> we do not use refurbished optics.</div>
+      <div class="foot-line"><b>Accountability:</b> one phone call, one owner, start to finish.</div>
+    </div>
+    <p class="fine">
+      This booklet is an educational primer written for people new to optical networking. It explains concepts at a high level and simplifies in places for clarity.
+      Standards bodies (IEEE, ITU-T), MSA groups, and vendor datasheets are the authority for exact electrical, optical, and mechanical specifications. Always confirm reach, fiber type, and host compatibility against the switch or NIC vendor documentation before you buy.
+      Brand and product names are the property of their respective owners and are used here for identification and education only.
+      <br><br>&copy; <span id="yr"></span> LAN Cables Direct. Produced as a customer and team education resource.
+    </p>
+  </div>
+</footer>
+
+<button class="toplink" id="toplink" aria-label="Back to top">&uarr;</button>
+<div class="tip-pop" id="tippop" role="tooltip"></div>
+
+<script>
+(function(){
+"use strict";
+var $=function(s,c){return (c||document).querySelector(s);};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));};
+
+/* ---------- year ---------- */
+var yr=$("#yr"); if(yr) yr.textContent=new Date().getFullYear();
+
+/* ---------- theme ---------- */
+var root=document.documentElement, tBtn=$("#themeBtn");
+function setTheme(t){root.setAttribute("data-theme",t); tBtn.innerHTML = t==="dark" ? "&#9728;" : "&#9789;";
+  try{localStorage.setItem("lcd_theme",t);}catch(e){}}
+var saved="light"; try{saved=localStorage.getItem("lcd_theme")||"light";}catch(e){}
+setTheme(saved);
+tBtn.addEventListener("click",function(){setTheme(root.getAttribute("data-theme")==="dark"?"light":"dark");});
+
+/* ---------- progress + back to top ---------- */
+var prog=$("#progress"), topl=$("#toplink");
+function onScroll(){
+  var h=document.documentElement, sc=h.scrollTop||document.body.scrollTop;
+  var max=h.scrollHeight-h.clientHeight;
+  prog.style.width=(max>0?(sc/max*100):0)+"%";
+  if(sc>600) topl.classList.add("show"); else topl.classList.remove("show");
+}
+window.addEventListener("scroll",onScroll,{passive:true}); onScroll();
+topl.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+
+/* ---------- active nav ---------- */
+var navLinks={}; $$("#jumpnav a").forEach(function(a){navLinks[a.getAttribute("href").slice(1)]=a;});
+if("IntersectionObserver" in window){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      var id=e.target.id, link=navLinks[id]; if(!link) return;
+      if(e.isIntersecting){ $$("#jumpnav a").forEach(function(x){x.classList.remove("active");}); link.classList.add("active"); }
+    });
+  },{rootMargin:"-45% 0px -50% 0px"});
+  $$("section.chap").forEach(function(s){io.observe(s);});
+}
+
+/* ---------- tooltips ---------- */
+var pop=$("#tippop"), curTerm=null;
+function showTip(el){
+  var t=el.getAttribute("data-tip"); if(!t) return;
+  pop.textContent=t; pop.classList.add("show");
+  var r=el.getBoundingClientRect();
+  var pw=Math.min(300, window.innerWidth-24);
+  pop.style.maxWidth=pw+"px";
+  var left=r.left+r.width/2-pw/2;
+  left=Math.max(12, Math.min(left, window.innerWidth-pw-12));
+  pop.style.left=left+"px";
+  var top=r.top-pop.offsetHeight-10;
+  if(top<8) top=r.bottom+10;
+  pop.style.top=top+"px";
+}
+function hideTip(){pop.classList.remove("show"); curTerm=null;}
+$$(".term").forEach(function(el){
+  el.addEventListener("mouseenter",function(){showTip(el);});
+  el.addEventListener("mouseleave",hideTip);
+  el.addEventListener("click",function(e){e.stopPropagation(); if(curTerm===el){hideTip();}else{curTerm=el;showTip(el);}});
+});
+document.addEventListener("click",function(){if(curTerm)hideTip();});
+window.addEventListener("scroll",function(){if(pop.classList.contains("show"))hideTip();},{passive:true});
+
+/* ---------- accordions ---------- */
+$$(".acc").forEach(function(acc){
+  var btn=$("button",acc), body=$(".body",acc);
+  if(!$(".chev",btn)){ var c=document.createElement("span"); c.className="chev"; c.innerHTML="&#9656;"; btn.appendChild(c); }
+  btn.setAttribute("aria-expanded","false");
+  btn.addEventListener("click",function(){
+    var open=btn.getAttribute("aria-expanded")==="true";
+    btn.setAttribute("aria-expanded",open?"false":"true");
+    body.style.maxHeight=open?null:(body.scrollHeight+24)+"px";
+  });
+});
+
+/* ---------- EEPROM explorer ---------- */
+var eeData={
+  id:{t:"Identifier",d:"The very first byte. It tells the switch what kind of module this is, for example an SFP or a QSFP, so it knows how to read the rest of the chip."},
+  vendor:{t:"Vendor name",d:"The maker's name in plain text. This is part of what a switch checks against its approved list, and part of what coding sets."},
+  oui:{t:"Vendor OUI",d:"A three-byte code that officially identifies the manufacturer, like a company fingerprint registered with the IEEE."},
+  pn:{t:"Part number",d:"The manufacturer's model number for this exact optic. The single most important field to get right on an order."},
+  sn:{t:"Serial number",d:"A unique number for this one physical unit. Used for warranty, tracking and returns."},
+  date:{t:"Date code",d:"When the module was made. Useful for spotting old stock and for warranty checks."},
+  conn:{t:"Connector type",d:"What plugs into the front, for example an LC or an MPO. Tells you the fiber connector you need."},
+  codes:{t:"Transceiver codes",d:"A set of flags listing the speeds and reach types this optic supports, like SR or LR. The switch reads this to confirm the link type."},
+  wave:{t:"Wavelength",d:"The color of light in nanometers, such as 850, 1310 or 1550. Both ends of a link must agree on this. It also tells you multimode versus single-mode at a glance."},
+  rate:{t:"Nominal bit rate",d:"The headline speed the module runs, stored as a simple number the switch can read instantly."},
+  reach:{t:"Length / reach",d:"How far the optic is rated to go, often listed per fiber type in meters or kilometers."},
+  enc:{t:"Encoding",d:"How bits are represented on the wire. A clue to whether the optic is an older NRZ design or a newer PAM4 one."},
+  temp:{t:"Temperature (DOM)",d:"Live module temperature. Optics run hot, and an overheating module is an early warning of trouble or poor airflow."},
+  vcc:{t:"Supply voltage (DOM)",d:"Live input voltage. Out-of-range voltage points at a power or seating problem rather than the optic itself."},
+  bias:{t:"Laser bias current (DOM)",d:"How hard the laser is being driven. A slow climb over months is the classic sign of a laser nearing end of life."},
+  txp:{t:"TX optical power (DOM)",d:"How much light is leaving this module. If TX looks good but the far end sees nothing, the light is leaving fine but not arriving."},
+  rxp:{t:"RX optical power (DOM)",d:"How much light is arriving from the far end. Zero or very low RX almost always means a fiber, connector or polarity issue, not a dead module."},
+  thr:{t:"Alarm and warning thresholds",d:"The high and low limits for each live reading. Cross a threshold and the module raises a flag the switch can act on."}
+};
+var eeDetail=$("#eeDetail");
+$$(".ee-cell").forEach(function(c){
+  c.addEventListener("click",function(){
+    $$(".ee-cell").forEach(function(x){x.classList.remove("active");});
+    c.classList.add("active");
+    var k=c.getAttribute("data-key"), o=eeData[k];
+    if(o) eeDetail.innerHTML="<b>"+o.t+"</b><br>"+o.d;
+  });
+});
+
+/* ---------- wavelengths ---------- */
+var waveData={
+  "850":{t:"850 nm - short reach multimode",c:"#0e8f9b",d:"The cheapest color to make, using a VCSEL laser. It runs over multimode fiber for short hops, up to about 100m. This is the world of the SR optics inside a rack or a row."},
+  "1310":{t:"1310 nm - the O-band",c:"#1463FF",d:"A clear, low-loss window in glass. Used over single-mode fiber for medium and long reach, from 500m DR up to 10km LR. The everyday single-mode color in a data center."},
+  "1550":{t:"1550 nm - the C-band",c:"#7C5CFF",d:"The clearest window of all, so light travels farthest here. Used for the longest reaches, 40km ER and 80km plus ZR, and it is the band coherent and DWDM systems live in."},
+  "cwdm":{t:"CWDM - coarse colors",c:"#1FA971",d:"Coarse Wavelength Division Multiplexing spaces colors far apart, about 20nm. The lasers do not need cooling, so it is cheaper. It powers optics like CWDM4 and many 40G and 100G duplex modules."},
+  "dwdm":{t:"DWDM - dense colors",c:"#E5484D",d:"Dense Wavelength Division Multiplexing packs colors very close on a precise grid, under 1nm apart. With cooled, tuned lasers it fits dozens of channels on one fiber for long haul and connecting data centers across a metro."}
+};
+var waveDetail=$("#waveDetail"), waveBtns=$$("#waveTabs button");
+function showWave(k){
+  var o=waveData[k]; if(!o) return;
+  waveBtns.forEach(function(b){ var on=b.getAttribute("data-w")===k; b.classList.toggle("active",on);
+    b.style.background=on?(b.style.getPropertyValue("--c")||"#1463FF"):""; b.style.color=on?"#fff":""; });
+  waveDetail.innerHTML="<h4 style='margin:0 0 6px;color:"+o.c+"'>"+o.t+"</h4><p style='margin:0' class='muted'>"+o.d+"</p>";
+}
+waveBtns.forEach(function(b){ b.addEventListener("click",function(){showWave(b.getAttribute("data-w"));}); });
+showWave("850");
+
+/* ---------- form factor explorer ---------- */
+var ffData={
+  sfp:{n:"SFP",full:"Small Form-factor Pluggable",intro:"The original small single-lane module. Compact, low power, everywhere.",lanes:"1",max:"1G",conn:"LC duplex, or RJ45 for copper",mgmt:"SFF-8472",compat:"Base of the small-module family",use:"Management links, legacy 1G access, out-of-band ports",note:"Tiny and cheap. The shape that started it all."},
+  sfpp:{n:"SFP+",full:"Enhanced SFP",intro:"Same body as SFP, upgraded to 10G on one lane.",lanes:"1",max:"10G",conn:"LC duplex, DAC, or RJ45",mgmt:"SFF-8472",compat:"Fits most SFP+ ports, very widely deployed",use:"10G server access, storage, switch uplinks",note:"Still one of the most common optics in the world."},
+  sfp28:{n:"SFP28",full:"25G SFP",intro:"The SFP body taken to 25G on a single lane.",lanes:"1",max:"25G",conn:"LC duplex, DAC",mgmt:"SFF-8472",compat:"SFP28 ports usually accept SFP+ optics",use:"Modern 25G server connections to the ToR switch",note:"The standard server speed for much of the last decade."},
+  sfp56:{n:"SFP56",full:"50G SFP",intro:"A single 50G lane using PAM4 in the small body.",lanes:"1 (PAM4)",max:"50G",conn:"LC duplex, DAC",mgmt:"SFF-8472 / CMIS",compat:"Often backward to SFP28 and SFP+",use:"Higher-speed single-lane server links",note:"First small module to use PAM4."},
+  qsfpp:{n:"QSFP+",full:"Quad SFP",intro:"Four lanes in one module. The Q is for Quad.",lanes:"4 x 10G",max:"40G",conn:"MPO for SR4, LC for LR4",mgmt:"SFF-8636",compat:"QSFP+ ports take this and can break out to 4x10G",use:"Legacy 40G switch uplinks and aggregation",note:"Introduced the four-lane idea that scales upward."},
+  qsfp28:{n:"QSFP28",full:"100G QSFP",intro:"Four lanes at 25G for 100G. The data center workhorse.",lanes:"4 x 25G",max:"100G",conn:"MPO for SR4/DR, LC for LR4/FR",mgmt:"SFF-8636",compat:"Accepts QSFP+ optics, breaks out to 4x25G",use:"100G leaf-spine, breakouts, the most common 100G shape",note:"Defined 100G for years and is still everywhere."},
+  qsfp56:{n:"QSFP56",full:"200G QSFP",intro:"Four lanes at 50G PAM4 for 200G.",lanes:"4 x 50G (PAM4)",max:"200G",conn:"MPO for SR4/DR4, LC for FR4/LR4",mgmt:"SFF-8636 / CMIS",compat:"Backward to QSFP28 in many ports",use:"200G spine links and high-end servers",note:"Brought PAM4 to the quad form factor."},
+  qsfpdd:{n:"QSFP-DD",full:"QSFP Double Density",intro:"Adds a second row of contacts for eight lanes in a QSFP-sized body.",lanes:"8 x 50G or 8 x 100G",max:"800G",conn:"MPO for SR8/DR8/DR4, LC for FR4",mgmt:"CMIS",compat:"Backward compatible with QSFP28 and QSFP+ optics",use:"400G and 800G fabric, the popular high-speed choice",note:"Keeps the QSFP footprint, which protects your existing optics."},
+  osfp:{n:"OSFP",full:"Octal SFP",intro:"A slightly larger eight-lane body built for high speed and heat from the start.",lanes:"8 x 50G or 8 x 100G",max:"800G",conn:"MPO and LC variants",mgmt:"CMIS",compat:"OSFP ports take OSFP only, a small adapter reaches QSFP optics",use:"400G and 800G, favored in some large AI builds",note:"Has a built-in heatsink area for the hottest optics."},
+  osfpxd:{n:"OSFP-XD / OSFP1600",full:"OSFP eXtra Dense and OSFP1600",intro:"The 1.6T generation. OSFP1600 uses eight lanes at 200G. OSFP-XD adds lanes for future growth.",lanes:"8 x 200G (OSFP1600) or 16 lanes (OSFP-XD)",max:"1.6T",conn:"MPO based, single-mode",mgmt:"CMIS",compat:"OSFP1600 keeps OSFP cage compatibility, OSFP-XD needs a new chassis",use:"Next-generation AI fabric at 1.6T",note:"IEEE 802.3dj for 1.6T is finalizing around 2026, early modules already ship."},
+  cfp:{n:"CFP / CFP2",full:"C Form-factor Pluggable",intro:"The first generation of 40G and 100G modules. Large and power-hungry.",lanes:"varies",max:"100G (and early coherent)",conn:"LC and others",mgmt:"MDIO based",compat:"Mostly replaced by QSFP28, still seen on older and coherent gear",use:"Legacy 100G and some long-haul line cards",note:"Mostly historical, but the name still appears on older equipment."}
+};
+var ffPanel=$("#ffxPanel");
+function showFF(k){
+  var o=ffData[k]; if(!o) return;
+  $$(".ffx-item").forEach(function(x){x.classList.toggle("active",x.getAttribute("data-key")===k);});
+  ffPanel.innerHTML=
+    "<h3>"+o.n+" <span class='chip'>"+o.full+"</span></h3>"+
+    "<p class='muted' style='margin:.2em 0 0'>"+o.intro+"</p>"+
+    "<div class='ffx-spec'>"+
+      "<div class='s'><span>Lanes</span><b>"+o.lanes+"</b></div>"+
+      "<div class='s'><span>Top speed</span><b>"+o.max+"</b></div>"+
+      "<div class='s'><span>Connector</span><b>"+o.conn+"</b></div>"+
+      "<div class='s'><span>EEPROM map</span><b>"+o.mgmt+"</b></div>"+
+      "<div class='s'><span>Compatibility</span><b>"+o.compat+"</b></div>"+
+      "<div class='s'><span>Typical use</span><b>"+o.use+"</b></div>"+
+    "</div>"+
+    "<p style='margin:.4em 0 0'><b>Good to know.</b> "+o.note+"</p>";
+}
+$$(".ffx-item").forEach(function(it){ it.addEventListener("click",function(){showFF(it.getAttribute("data-key"));}); });
+showFF("sfp");
+
+/* ---------- speed reference ---------- */
+function vchip(code,reach,media){return "<span class='chip'><b>"+code+"</b> &middot; "+reach+(media?" &middot; "+media:"")+"</span>";}
+var spData={
+ "1G":{tot:"1 Gigabit",ff:"SFP",lanes:"1 lane, NRZ",blurb:"Where Ethernet optics began. Still used for management, out-of-band and legacy access.",
+   v:[vchip("1000BASE-SX","550m","multimode 850nm"),vchip("1000BASE-LX","10km","single-mode 1310nm"),vchip("1000BASE-ZX","80km","single-mode 1550nm"),vchip("1000BASE-T","100m","copper")]},
+ "10G":{tot:"10 Gigabit",ff:"SFP+ (XFP on older gear)",lanes:"1 lane, NRZ",blurb:"A workhorse for two decades. Everywhere in access, storage and uplinks.",
+   v:[vchip("10GBASE-SR","300m","multimode"),vchip("10GBASE-LR","10km","single-mode"),vchip("10GBASE-ER","40km","single-mode"),vchip("10GBASE-ZR","80km","single-mode")]},
+ "25G":{tot:"25 Gigabit",ff:"SFP28",lanes:"1 lane, NRZ",blurb:"The modern single-lane server speed. One clean lane, no breakout needed.",
+   v:[vchip("25GBASE-SR","100m","multimode"),vchip("25GBASE-LR","10km","single-mode"),vchip("25GBASE-ER","30-40km","single-mode")]},
+ "40G":{tot:"40 Gigabit",ff:"QSFP+",lanes:"4 lanes x 10G, NRZ",blurb:"The first popular quad module. Often broken out to four 10G links. Being replaced by 100G.",
+   v:[vchip("40GBASE-SR4","150m","multimode MPO"),vchip("40GBASE-LR4","10km","single-mode LC"),vchip("40GBASE-ER4","40km","single-mode"),vchip("40G-BiDi","150m","duplex multimode")]},
+ "50G":{tot:"50 Gigabit",ff:"SFP56",lanes:"1 lane x 50G, PAM4",blurb:"The first single small lane to use PAM4. A step up for servers without a wider module.",
+   v:[vchip("50GBASE-SR","100m","multimode"),vchip("50GBASE-FR","2km","single-mode"),vchip("50GBASE-LR","10km","single-mode")]},
+ "100G":{tot:"100 Gigabit",ff:"QSFP28 (also SFP-DD / SFP112)",lanes:"4 x 25G NRZ, or 1 x 100G PAM4",blurb:"The data center standard for a decade. Huge variety of reaches and the most common breakout source.",
+   v:[vchip("100GBASE-SR4","100m","multimode MPO"),vchip("100GBASE-DR","500m","single-mode"),vchip("100GBASE-FR","2km","single-mode"),vchip("100GBASE-LR4","10km","single-mode LC"),vchip("100GBASE-CWDM4","2km","single-mode"),vchip("100GBASE-ER4","30-40km","single-mode")]},
+ "200G":{tot:"200 Gigabit",ff:"QSFP56",lanes:"4 lanes x 50G, PAM4",blurb:"PAM4 in the quad body. Used for spine links and stronger servers.",
+   v:[vchip("200GBASE-SR4","100m","multimode"),vchip("200GBASE-DR4","500m","single-mode MPO"),vchip("200GBASE-FR4","2km","single-mode"),vchip("200GBASE-LR4","10km","single-mode")]},
+ "400G":{tot:"400 Gigabit",ff:"QSFP-DD or OSFP",lanes:"8 x 50G or 4 x 100G, PAM4",blurb:"Today's leaf-spine and AI fabric standard. DR4 commonly breaks out to four 100G servers.",
+   v:[vchip("400GBASE-SR8","100m","multimode"),vchip("400GBASE-DR4","500m","single-mode MPO"),vchip("400GBASE-FR4","2km","single-mode"),vchip("400GBASE-LR4","10km","single-mode"),vchip("400G-ZR","80-120km","coherent")]},
+ "800G":{tot:"800 Gigabit",ff:"QSFP-DD800 or OSFP",lanes:"8 lanes x 100G, PAM4",blurb:"Shipping in volume for AI clusters. Defined by IEEE 802.3df, ratified in 2024.",
+   v:[vchip("800GBASE-SR8","100m","multimode"),vchip("800GBASE-DR8","500m","single-mode MPO"),vchip("2xFR4","2km","single-mode"),vchip("2xDR4","500m","single-mode"),vchip("800G-ZR","metro","coherent")]},
+ "1.6T":{tot:"1.6 Terabit",ff:"OSFP1600 or OSFP-XD",lanes:"8 lanes x 200G, PAM4",blurb:"The next AI fabric tier. IEEE 802.3dj is finalizing around 2026 and early modules already ship.",
+   v:[vchip("1.6T-DR8","500m","single-mode"),vchip("2xDR4","500m","single-mode"),vchip("2x800G","short","single-mode"),vchip("coherent","metro","emerging")]}
+};
+var speedCard=$("#speedCard");
+function showSpeed(s){
+  var o=spData[s]; if(!o) return;
+  $$("#speedBar button").forEach(function(b){b.classList.toggle("active",b.getAttribute("data-s")===s);});
+  speedCard.innerHTML=
+    "<div class='speed-card'>"+
+      "<div class='head'><span class='bignum'>"+s+"</span><div><div style='font-weight:800;font-size:16px'>"+o.tot+" per second</div>"+
+      "<div class='ff'>"+o.ff+"  &middot;  "+o.lanes+"</div></div></div>"+
+      "<p class='muted' style='margin:.4em 0 .8em'>"+o.blurb+"</p>"+
+      "<div style='font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:6px'>Common variants</div>"+
+      "<div>"+o.v.join(" ")+"</div>"+
+    "</div>";
+}
+$$("#speedBar button").forEach(function(b){ b.addEventListener("click",function(){showSpeed(b.getAttribute("data-s"));}); });
+showSpeed("1G");
+
+/* ---------- decoder ---------- */
+var reachMap={
+  "SR":{l:"Short Reach",d:"multimode fiber, up to about 100m. The cheap in-rack optic."},
+  "DR":{l:"500 meter reach",d:"single-mode fiber, 500m, one wavelength per fiber."},
+  "FR":{l:"2 km reach",d:"single-mode fiber, about 2km. Building to building."},
+  "LR":{l:"Long Reach",d:"single-mode fiber, about 10km. The classic long optic."},
+  "ER":{l:"Extended Reach",d:"single-mode fiber, about 40km across a metro."},
+  "ZR":{l:"80 km plus, coherent",d:"single-mode, 80km and beyond, usually coherent. Connects data centers."},
+  "T":{l:"Copper twisted pair",d:"runs over RJ45 copper cabling, not fiber. Short distance."}
+};
+function decExplainParts(code){
+  var idx=code.indexOf("BASE");
+  var speed=code.slice(0,idx);
+  var rest=code.slice(idx+4); if(rest[0]==="-") rest=rest.slice(1);
+  var m=rest.match(/^([A-Za-z]+)(\d*)$/)||[rest,rest,""];
+  var letters=m[1]||rest, num=m[2]||"";
+  var parts=[];
+  parts.push({cls:"p0",txt:speed,k:"Speed",dsc:speed+" is the total data rate, "+speed.replace("G"," gigabits").replace("T"," terabits")+" per second."});
+  parts.push({cls:"p1",txt:"BASE",k:"BASE",dsc:"BASE means baseband. The signal uses the whole medium with no radio carrier. This is the normal case for Ethernet, so it is on almost every optic name."});
+  var rm=reachMap[letters.toUpperCase()]||{l:letters,d:"a reach or media code. Check the datasheet for specifics."};
+  parts.push({cls:"p2",txt:letters,k:"Reach / media",dsc:letters.toUpperCase()+" = "+rm.l+". "+rm.d});
+  if(num) parts.push({cls:"p3",txt:num,k:"Lane / wavelength count",dsc:"The "+num+" means "+num+" lanes or wavelengths. For example "+num+" fibers in a parallel optic, or "+num+" colors of light in a duplex one."});
+  else parts.push({cls:"p3",txt:"(none)",k:"Lane count",dsc:"No trailing number means a single lane or a single beam.",ghost:true});
+  return parts;
+}
+var decString=$("#decString"), decExplain=$("#decExplain");
+function renderDecoder(code){
+  $$("#decPresets button").forEach(function(b){b.classList.toggle("active",b.getAttribute("data-code")===code);});
+  var parts=decExplainParts(code);
+  decString.innerHTML="";
+  parts.forEach(function(p,i){
+    if(p.ghost) return;
+    var span=document.createElement("span");
+    span.className="dec-part "+p.cls; span.textContent=p.txt;
+    span.addEventListener("click",function(){
+      $$(".dec-part",decString).forEach(function(x){x.classList.remove("active");});
+      span.classList.add("active");
+      decExplain.innerHTML="<span class='k'>"+p.k+":</span> "+p.dsc;
+    });
+    decString.appendChild(span);
+  });
+  decExplain.innerHTML="<span class='k'>"+parts[0].k+":</span> "+parts[0].dsc;
+  var first=$(".dec-part",decString); if(first) first.classList.add("active");
+}
+$$("#decPresets button").forEach(function(b){ b.addEventListener("click",function(){renderDecoder(b.getAttribute("data-code"));}); });
+renderDecoder("100GBASE-LR4");
+
+/* ---------- quiz ---------- */
+var answered=0, correct=0, total=$$("#quizBox [data-q]").length, scoreEl=$("#quizScore");
+$$("#quizBox [data-q]").forEach(function(q){
+  var opts=$$(".opt",q);
+  opts.forEach(function(opt){
+    opt.addEventListener("click",function(){
+      if(q.getAttribute("data-done")) return;
+      q.setAttribute("data-done","1"); answered++;
+      var right=opt.getAttribute("data-c")==="1";
+      if(right) correct++;
+      opts.forEach(function(o){
+        var oc=o.getAttribute("data-c")==="1";
+        if(oc){o.classList.add("correct"); o.innerHTML=o.textContent+"<span class='fb'>&#10003; "+o.getAttribute("data-fb")+"</span>";}
+        else if(o===opt){o.classList.add("wrong"); o.innerHTML=o.textContent+"<span class='fb'>&#10007; "+o.getAttribute("data-fb")+"</span>";}
+        o.style.cursor="default";
+      });
+      scoreEl.textContent="Score "+correct+" of "+total+"  ("+answered+" answered)";
+      if(answered===total){
+        var msg = correct===total ? "Perfect score. You have got this." : correct>=Math.ceil(total*0.6) ? "Solid. Skim the sections you missed." : "Good start. Worth a second read of the basics.";
+        scoreEl.textContent="Final score "+correct+" of "+total+". "+msg;
+      }
+    });
+  });
+});
+scoreEl.textContent="Answered 0 of "+total;
+
+})();
+</script>
+</body>
+</html>
