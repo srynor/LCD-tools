@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indoor Fiber-Optic Cable Assemblies — Data Center Training Guide</title>
+<style>
+:root {
+  --navy:#1a2b42;--blue:#0066cc;--blue-light:#e8f0fb;
+  --gray-100:#f7f9fc;--gray-200:#edf1f7;--gray-700:#4a5568;--gray-900:#1a202c;
+  --om3:#00aaaa;--om4:#00ccee;--om5:#33dd00;--os2:#ffdd00;
+  --tp-bg:#edf7f0;--tp-border:#27a85a;--radius:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--gray-100);color:var(--gray-900);}
+header{background:var(--navy);color:white;padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.3);}
+header h1{font-size:1rem;font-weight:600;letter-spacing:.02em;}
+header span{font-size:.78rem;opacity:.55;}
+.layout{display:flex;min-height:calc(100vh - 58px);}
+aside{width:230px;min-width:230px;background:white;border-right:1px solid var(--gray-200);position:sticky;top:58px;height:calc(100vh - 58px);overflow-y:auto;padding:16px 0;}
+aside h3{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gray-700);padding:10px 18px 4px;}
+aside a{display:block;padding:7px 18px;color:var(--gray-700);text-decoration:none;font-size:.84rem;border-left:3px solid transparent;transition:all .15s;}
+aside a:hover,aside a.active{color:var(--blue);border-left-color:var(--blue);background:var(--blue-light);}
+main{flex:1;padding:32px;max-width:920px;}
+section{margin-bottom:52px;scroll-margin-top:76px;}
+section h2{font-size:1.4rem;color:var(--navy);margin-bottom:8px;padding-bottom:8px;border-bottom:2px solid var(--blue);}
+.intro{color:var(--gray-700);margin-bottom:18px;line-height:1.65;}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:14px;margin-bottom:18px;}
+.card{background:white;border-radius:var(--radius);padding:15px;border:1px solid var(--gray-200);box-shadow:0 1px 3px rgba(0,0,0,.05);}
+.card-header{display:flex;align-items:center;gap:10px;margin-bottom:9px;}
+.swatch{width:34px;height:34px;border-radius:50%;border:3px solid rgba(0,0,0,.12);flex-shrink:0;}
+.card h3{font-size:.95rem;color:var(--navy);}
+.card p{font-size:.815rem;color:var(--gray-700);line-height:1.55;}
+.card .spec{font-size:.73rem;background:var(--gray-100);border-radius:4px;padding:6px 8px;margin-top:8px;line-height:1.6;}
+table{width:100%;border-collapse:collapse;background:white;border-radius:var(--radius);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05);margin-bottom:18px;font-size:.855rem;}
+th{background:var(--navy);color:white;padding:9px 12px;text-align:left;font-size:.78rem;}
+td{padding:8px 12px;border-bottom:1px solid var(--gray-200);}
+tr:last-child td{border-bottom:none;}
+tr:nth-child(even) td{background:var(--gray-100);}
+td.good{color:#1a7a3c;font-weight:600;}
+td.ok{color:#7a5800;font-weight:600;}
+td.none{color:#aaa;}
+.tp{background:var(--tp-bg);border-left:4px solid var(--tp-border);border-radius:0 var(--radius) var(--radius) 0;padding:13px 17px;margin-top:18px;}
+.tp h4{color:#1a6e3c;font-size:.76rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px;}
+.tp ul{padding-left:16px;}
+.tp li{font-size:.845rem;color:#1e4a2e;margin-bottom:6px;line-height:1.55;}
+.interactive{background:white;border:1px solid var(--gray-200);border-radius:var(--radius);padding:18px;margin-bottom:18px;}
+.interactive h4{font-size:.9rem;font-weight:600;margin-bottom:10px;color:var(--navy);}
+select{font-size:.855rem;padding:6px 10px;border:1px solid var(--gray-200);border-radius:4px;color:var(--gray-900);background:white;}
+.strand-btns{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px;}
+.strand-btn{padding:5px 13px;border:2px solid var(--blue);border-radius:4px;background:white;color:var(--blue);cursor:pointer;font-weight:600;font-size:.82rem;transition:all .15s;}
+.strand-btn.active,.strand-btn:hover{background:var(--blue);color:white;}
+.polarity-btns{display:flex;gap:8px;margin-bottom:14px;}
+.polarity-btns button{padding:6px 18px;border:2px solid var(--blue);border-radius:4px;background:white;color:var(--blue);cursor:pointer;font-weight:600;font-size:.855rem;transition:all .15s;}
+.polarity-btns button.active{background:var(--blue);color:white;}
+.diagram{width:100%;overflow-x:auto;margin:14px 0;}
+svg{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
+.result-box{background:var(--blue-light);border:1px solid #b3d1f5;border-radius:var(--radius);padding:12px 15px;margin-top:12px;line-height:1.7;}
+.tip{background:#fffbea;border-left:4px solid var(--os2);border-radius:0 var(--radius) var(--radius) 0;padding:10px 14px;margin:12px 0;font-size:.84rem;color:#5a4a00;line-height:1.55;}
+.math-box{background:#f7f9fc;border-radius:6px;padding:14px;font-size:.855rem;line-height:1.8;border:1px solid var(--gray-200);}
+.glossary dl{background:white;border-radius:var(--radius);padding:20px;border:1px solid var(--gray-200);}
+.glossary dt{font-weight:700;color:var(--navy);margin-top:13px;font-size:.88rem;}
+.glossary dd{color:var(--gray-700);font-size:.83rem;line-height:1.55;padding-left:12px;margin-top:2px;}
+h3.sub{font-size:.95rem;color:var(--navy);margin:16px 0 8px;}
+@media(max-width:768px){
+  .layout{flex-direction:column;}
+  aside{width:100%;min-width:0;height:auto;position:static;display:flex;overflow-x:auto;padding:6px;white-space:nowrap;}
+  aside h3{display:none;}
+  aside a{display:inline-block;border-left:none;border-bottom:3px solid transparent;padding:6px 11px;}
+  aside a:hover,aside a.active{border-left-color:transparent;border-bottom-color:var(--blue);}
+  main{padding:16px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>&#128309; Indoor Fiber-Optic Cable Assemblies &mdash; Data Center Training Guide</h1>
+  <span>LAN Cables Direct</span>
+</header>
+
+<div class="layout">
+<aside id="sidebar">
+  <h3>Contents</h3>
+  <a href="#fiber-types">1. Fiber Types</a>
+  <a href="#mtp-connectors">2. MTP &amp; MPO Connectors</a>
+  <a href="#trunk-cables">3. Trunk Cables</a>
+  <a href="#array-cables">4. Array Cables &amp; Furcation</a>
+  <a href="#patch-cords">5. Patch Cords</a>
+  <a href="#distances">6. Distance Limits</a>
+  <a href="#cabling-path">7. Full Cabling Path</a>
+  <a href="#polarity">8. Polarity Methods</a>
+  <a href="#glossary">Glossary</a>
+</aside>
+
+<main>
+
+<!-- ===== SECTION 1 ===== -->
+<section id="fiber-types">
+<h2>1. Fiber Types Used in Data Centers</h2>
+<p class="intro">All fiber-optic cables carry light — but the glass itself determines speed and distance. Two families matter inside a data center: <strong>multimode</strong> (OM3, OM4, OM5) for short intra-building runs, and <strong>single-mode</strong> (OS2) for long-distance inter-building or campus connections.</p>
+
+<div class="cards">
+  <div class="card">
+    <div class="card-header"><div class="swatch" style="background:var(--om3)"></div><h3>OM3</h3></div>
+    <p>50/125 &micro;m laser-optimized multimode. The entry-level data center fiber. Still found in pre-2015 installations. Supports 10G up to 300m. Being displaced by OM4 in most new builds.</p>
+    <div class="spec">Jacket: Aqua &bull; Core: 50 &micro;m &bull; Bandwidth: 2,000 MHz&middot;km</div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="swatch" style="background:var(--om4)"></div><h3>OM4</h3></div>
+    <p>50/125 &micro;m high-bandwidth multimode. The current enterprise data center standard. Supports 100G up to 100m and 400G up to 100m. Best value for most new builds.</p>
+    <div class="spec">Jacket: Aqua (US market) &bull; Core: 50 &micro;m &bull; Bandwidth: 4,700 MHz&middot;km</div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="swatch" style="background:var(--om5)"></div><h3>OM5</h3></div>
+    <p>50/125 &micro;m wideband multimode. Lime green jacket. Fully backward compatible with OM4 optics. Uniquely enables SWDM4 — four wavelengths on one fiber pair — extending 400G reach to 150m on the same infrastructure.</p>
+    <div class="spec">Jacket: Lime Green &bull; Core: 50 &micro;m &bull; Bandwidth: 28,000 MHz&middot;km @ 953 nm</div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="swatch" style="background:var(--os2)"></div><h3>OS2</h3></div>
+    <p>9/125 &micro;m single-mode. Yellow jacket. Carries a single wavelength over distances from 2km to 80km+. Required between buildings, across campus, or in any link that exceeds multimode reach.</p>
+    <div class="spec">Jacket: Yellow &bull; Core: 9 &micro;m &bull; Bandwidth: Effectively unlimited at reach</div>
+  </div>
+</div>
+
+<div class="tip"><strong>Quick rule:</strong> Multimode (OM3/4/5) stays inside the building. Single-mode (OS2) goes between buildings. The 9 &micro;m OS2 core requires more precise &mdash; and more expensive &mdash; transceivers. At intra-facility distances, multimode wins on cost every time.</div>
+
+<div class="tp">
+  <h4>&#128172; Sales Talking Points</h4>
+  <ul>
+    <li>"OM4 is the right answer for 90% of new data center builds. It supports everything up to 100G at the distances you&rsquo;ll actually see inside a facility &mdash; and it&rsquo;s substantially less expensive than single-mode at those distances."</li>
+    <li>"If your customer is designing for 400G now or within the next few years, OM5 is worth the conversation. Same connectors, same installation process &mdash; but the glass supports more wavelengths, so you don&rsquo;t repull cable when speeds double again."</li>
+    <li>"OS2 shows up when runs go between buildings, to a remote IDF, or across a campus ring. The fiber itself is inexpensive &mdash; the transceivers are where the cost lives."</li>
+  </ul>
+</div>
+</section>
+
+<!-- ===== SECTION 2 ===== -->
+<section id="mtp-connectors">
+<h2>2. MTP&reg; and MPO Connectors</h2>
+<p class="intro">Standard LC and SC connectors carry 2 fibers. MTP/MPO connectors carry 8, 12, 16, or 24 fibers in a single push-on interface the size of an SC connector. They are the foundation of high-density, high-speed data center cabling.</p>
+
+<div class="diagram">
+<svg viewBox="0 0 760 250" xmlns="http://www.w3.org/2000/svg" width="760" height="250">
+  <rect width="760" height="250" fill="#f7f9fc" rx="8"/>
+  <text x="380" y="20" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a2b42">MTP&#174; Connector Anatomy</text>
+
+  <!-- Cable -->
+  <rect x="20" y="105" width="100" height="40" fill="#777" rx="4"/>
+  <text x="70" y="129" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Round Cable</text>
+  <text x="70" y="168" text-anchor="middle" font-size="8" fill="#555">Multi-fiber jacket</text>
+
+  <!-- Boot -->
+  <rect x="120" y="110" width="36" height="30" fill="#444" rx="3"/>
+  <text x="138" y="157" text-anchor="middle" font-size="8" fill="#444">Strain Boot</text>
+
+  <!-- Housing -->
+  <rect x="156" y="92" width="155" height="66" fill="#2468b0" rx="6"/>
+  <text x="234" y="123" text-anchor="middle" font-size="11" fill="white" font-weight="bold">Connector Housing</text>
+  <text x="234" y="138" text-anchor="middle" font-size="9" fill="#c8dcf5">Push-pull latch mechanism</text>
+  <!-- Key tab -->
+  <rect x="194" y="88" width="80" height="7" fill="#f5a623" rx="2"/>
+  <text x="234" y="84" text-anchor="middle" font-size="8" fill="#c07000">&#9650; Key (orientation notch)</text>
+
+  <!-- Ferrule -->
+  <rect x="311" y="105" width="85" height="40" fill="#d8d8d8" rx="3" stroke="#aaa" stroke-width="1"/>
+  <text x="353" y="122" text-anchor="middle" font-size="10" fill="#333" font-weight="bold">MT Ferrule</text>
+  <text x="353" y="136" text-anchor="middle" font-size="8" fill="#666">Holds all fiber ends</text>
+
+  <!-- Guide pins -->
+  <circle cx="318" cy="125" r="5" fill="#c0392b"/>
+  <circle cx="389" cy="125" r="5" fill="#c0392b"/>
+  <text x="353" y="157" text-anchor="middle" font-size="8" fill="#c0392b">Guide pins (male) or holes (female)</text>
+
+  <!-- Fiber row visual -->
+  <text x="353" y="178" text-anchor="middle" font-size="8.5" fill="#555">Fiber positions inside ferrule face (12F shown):</text>
+  <g transform="translate(287,186)">
+    <rect x="0" y="0" width="132" height="18" fill="white" stroke="#ddd" rx="3"/>
+    <circle cx="9"  cy="9" r="4.5" fill="#0033cc"/>
+    <circle cx="20" cy="9" r="4.5" fill="#ffa500"/>
+    <circle cx="31" cy="9" r="4.5" fill="#228B22"/>
+    <circle cx="42" cy="9" r="4.5" fill="#8B4513"/>
+    <circle cx="53" cy="9" r="4.5" fill="#aaa"/>
+    <circle cx="64" cy="9" r="4.5" fill="#eee" stroke="#ccc" stroke-width="1"/>
+    <circle cx="75" cy="9" r="4.5" fill="#cc0000"/>
+    <circle cx="86" cy="9" r="4.5" fill="#ff99cc"/>
+    <circle cx="97" cy="9" r="4.5" fill="#cccc00"/>
+    <circle cx="108" cy="9" r="4.5" fill="#8B008B"/>
+    <circle cx="119" cy="9" r="4.5" fill="#008B8B"/>
+    <circle cx="130" cy="9" r="4.5" fill="#8B4500" opacity=".8"/>
+  </g>
+  <text x="353" y="218" text-anchor="middle" font-size="8" fill="#888">F1 (blue) through F12 (orange) &mdash; TIA color-coded</text>
+
+  <!-- MPO vs MTP box -->
+  <rect x="440" y="82" width="305" height="158" fill="white" stroke="#ddd" rx="6"/>
+  <text x="592" y="102" text-anchor="middle" font-size="11" font-weight="bold" fill="#1a2b42">MPO vs. MTP&#174; &mdash; What&rsquo;s the Difference?</text>
+  <text x="450" y="120" font-size="9.5" fill="#333">MPO = Multi-fiber Push-On</text>
+  <text x="450" y="135" font-size="9.5" fill="#555">  IEC 61754-7 international standard</text>
+  <text x="450" y="149" font-size="9.5" fill="#555">  Generic &mdash; any manufacturer can produce it</text>
+  <text x="450" y="167" font-size="9.5" fill="#1a2b42" font-weight="bold">MTP&#174; = US Conec trademark</text>
+  <text x="450" y="182" font-size="9.5" fill="#555">  Meets MPO standard, but manufactured to tighter</text>
+  <text x="450" y="196" font-size="9.5" fill="#555">  tolerances for lower insertion loss</text>
+  <text x="450" y="212" font-size="9" fill="#0066cc">  &#10003; Precision-ground ferrule (&#8804;0.35 dB IL)</text>
+  <text x="450" y="226" font-size="9" fill="#0066cc">  &#10003; Removable &amp; reversible guide pins</text>
+  <text x="450" y="233" font-size="9" fill="#888">  (All MTP&#174; connectors are MPO. Not all MPO are MTP&#174;.)</text>
+</svg>
+</div>
+
+<div class="cards">
+  <div class="card">
+    <h3>&#9794; Male (Pinned)</h3>
+    <p>Two precision guide pins protrude from the ferrule face. Male ends are used on trunk cables and mate into female receptacles in cassettes, panels, and equipment ports. The pins ensure micron-level fiber alignment.</p>
+    <div class="spec">Max IL (MTP&#174;): &#8804;0.35 dB</div>
+  </div>
+  <div class="card">
+    <h3>&#9792; Female (Non-Pinned)</h3>
+    <p>Guide pin holes receive the male pins. Female ends are found on patch panels, cassettes, modules, and active equipment QSFP ports. The female housing accepts the male pins to align all fibers simultaneously.</p>
+    <div class="spec">Min RL (MM): &#8805;20 dB &bull; Min RL (SM APC): &#8805;35 dB</div>
+  </div>
+  <div class="card">
+    <h3>Key-Up vs. Key-Down</h3>
+    <p>The "key" is a flat tab on the connector housing. When you look at the ferrule face, the key can face up or down. This orientation determines fiber numbering direction and directly controls polarity. Never insert without checking orientation.</p>
+    <div class="spec">Affects: fiber map, Tx/Rx alignment, polarity method</div>
+  </div>
+  <div class="card">
+    <h3>Fiber Counts Per MTP</h3>
+    <p>MTP connectors come in 8F, 12F, 16F, and 24F configurations. MTP-12 is the most common. MTP-8 is used for 40GBASE-SR4 and 100GBASE-SR4 (uses 8 of 12 positions, zero fiber waste). MTP-16 and MTP-24 serve higher-density applications.</p>
+    <div class="spec">Common: 8F, 12F &bull; High-density: 16F, 24F</div>
+  </div>
+</div>
+
+<div class="tp">
+  <h4>&#128172; Sales Talking Points</h4>
+  <ul>
+    <li>"MTP&#174; is US Conec's trademark &mdash; it meets the MPO standard but with tighter ferrule tolerances and lower insertion loss. Our trunks use US Conec MTP&#174; connectors. That's a named component with a published spec sheet, not a marketing claim."</li>
+    <li>"One MTP-12 connection replaces six LC duplex connections. In a 48-port 100G switch, that means 48 MTP connections instead of 288 individual fiber connections at the panel. Cleaner trays, faster installation, fewer failure points."</li>
+  </ul>
+</div>
+</section>
+
+<!-- ===== SECTION 3 ===== -->
+<section id="trunk-cables">
+<h2>3. MTP Trunk / Backbone Cables</h2>
+<p class="intro">Trunk cables are the permanent highway of the fiber plant. Both ends terminate in MTP connectors. They run from distribution points through cable trays to equipment areas. No breakouts, no splices &mdash; just a clean, factory-tested multi-fiber run from point A to point B.</p>
+
+<div class="interactive">
+  <h4>&#128295; Strand Count Explorer &mdash; click any count to visualize</h4>
+  <div class="strand-btns" id="strand-btns">
+    <button class="strand-btn" onclick="setStrand(12)">12F</button>
+    <button class="strand-btn" onclick="setStrand(24)">24F</button>
+    <button class="strand-btn" onclick="setStrand(48)">48F</button>
+    <button class="strand-btn" onclick="setStrand(72)">72F</button>
+    <button class="strand-btn" onclick="setStrand(96)">96F</button>
+    <button class="strand-btn" onclick="setStrand(144)">144F</button>
+    <button class="strand-btn" onclick="setStrand(216)">216F</button>
+    <button class="strand-btn" onclick="setStrand(288)">288F</button>
+  </div>
+  <div id="strand-info" class="result-box">Select a strand count above.</div>
+  <div class="diagram">
+    <svg id="strand-svg" viewBox="0 0 680 120" xmlns="http://www.w3.org/2000/svg" width="680" height="120">
+      <rect width="680" height="120" fill="#f7f9fc" rx="6"/>
+      <text id="ssv-title" x="340" y="20" text-anchor="middle" font-size="11" fill="#1a2b42" font-weight="bold">Select a strand count above</text>
+      <g id="ssv-dots"></g>
+      <g id="ssv-legend"></g>
+    </svg>
+  </div>
+</div>
+
+<h3 class="sub">Jacket Types</h3>
+<table>
+  <tr><th>Jacket Rating</th><th>Code</th><th>Where Required</th><th>Notes</th></tr>
+  <tr><td><strong>Plenum (OFNP)</strong></td><td>CMP</td><td>Any space used for HVAC air return: raised floors, drop ceilings used as plenum</td><td>Low smoke, flame-retardant. Most data centers require plenum throughout.</td></tr>
+  <tr><td><strong>Riser (OFNR)</strong></td><td>CMR</td><td>Vertical runs between floors in conduit or enclosed raceways</td><td>Cannot substitute for plenum in air-handling spaces. Lower cost than plenum.</td></tr>
+  <tr><td><strong>LSZH</strong></td><td>&mdash;</td><td>European/international facilities, enclosed spaces with limited ventilation</td><td>Low Smoke Zero Halogen &mdash; minimal toxic fume output when burned. Required in many EU markets.</td></tr>
+</table>
+
+<div class="tp">
+  <h4>&#128172; Sales Talking Points</h4>
+  <ul>
+    <li>"Trunk cables are passive. Once installed, they stay in the tray for 15 years. Every dollar spent on quality fiber and MTP&#174; connectors pays back in uptime and speed-of-deployment for the life of the facility."</li>
+    <li>"Higher strand counts aren't just about capacity &mdash; they reduce pathway congestion. One 144F trunk replaces twelve 12F trunks in the same tray space. That's twelve fewer runs to manage, twelve fewer sets of MTP connections, and dramatically cleaner airflow under the floor."</li>
+    <li>"Every trunk we ship comes with a factory test report &mdash; insertion loss per fiber, end-to-end. The customer knows the link is good before the tech arrives on site."</li>
+  </ul>
+</div>
+</section>
+
+<!-- ===== SECTION 4 ===== -->
+<section id="array-cables">
+<h2>4. Array Cables &amp; Furcation</h2>
+<p class="intro">An array cable &mdash; also called a harness, hydra, or breakout cable &mdash; takes a single MTP trunk end and fans it into multiple smaller connectors. This is how one MTP-24 connection becomes twelve individual LC duplex connections. It&rsquo;s the translation layer between the high-density trunk and the individual equipment ports.</p>
+
+<div class="tip"><strong>Critical distinction:</strong> A <em>trunk cable</em> has MTP connectors on both ends. A <em>breakout/array cable</em> has an MTP on one end and LC (or SC) connectors on the other. These are not interchangeable terms. Confusing them in front of a data center engineer undermines credibility immediately.</div>
+
+<h3 class="sub">Anatomy of a Breakout Cable</h3>
+<div class="diagram">
+<svg viewBox="0 0 760 195" xmlns="http://www.w3.org/2000/svg" width="760" height="195">
+  <rect width="760" height="195" fill="#f7f9fc" rx="8"/>
+  <text x="380" y="19" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a2b42">MTP-24 to 12&#215; LC Duplex Array Cable</text>
+
+  <!-- MTP end -->
+  <rect x="16" y="75" width="62" height="46" fill="#2468b0" rx="6"/>
+  <text x="47" y="100" text-anchor="middle" font-size="10" fill="white" font-weight="bold">MTP</text>
+  <text x="47" y="113" text-anchor="middle" font-size="9" fill="#c8dcf5">24F &#9794;</text>
+  <text x="47" y="148" text-anchor="middle" font-size="8" fill="#666">Trunk End</text>
+
+  <!-- Round trunk section -->
+  <rect x="78" y="92" width="115" height="12" fill="#555" rx="4"/>
+  <text x="136" y="118" text-anchor="middle" font-size="8" fill="#666">Round jacketed trunk section</text>
+
+  <!-- Breakout / transition box -->
+  <rect x="193" y="68" width="54" height="60" fill="#e8a020" rx="6"/>
+  <text x="220" y="95" text-anchor="middle" font-size="9" fill="white" font-weight="bold">Break</text>
+  <text x="220" y="107" text-anchor="middle" font-size="9" fill="white" font-weight="bold">out</text>
+  <text x="220" y="148" text-anchor="middle" font-size="8" fill="#666">Transition pt.</text>
+
+  <!-- Breakout length brace -->
+  <line x1="78" y1="55" x2="530" y2="55" stroke="#e8a020" stroke-width="1" stroke-dasharray="5,4"/>
+  <text x="304" y="50" text-anchor="middle" font-size="8.5" fill="#c07000">&#8592; Breakout Length (e.g. 3m) &#8594;</text>
+
+  <!-- 8 legs (representing 12) -->
+  <g transform="translate(247,0)">
+    <line x1="0" y1="98" x2="283" y2="28"  stroke="#0033cc" stroke-width="2"/>
+    <line x1="0" y1="98" x2="283" y2="48"  stroke="#ffa500" stroke-width="2"/>
+    <line x1="0" y1="98" x2="283" y2="68"  stroke="#228B22" stroke-width="2"/>
+    <line x1="0" y1="98" x2="283" y2="88"  stroke="#8B4513" stroke-width="2"/>
+    <line x1="0" y1="98" x2="283" y2="108" stroke="#aaa"    stroke-width="2"/>
+    <line x1="0" y1="98" x2="283" y2="128" stroke="#cc0000" stroke-width="2"/>
+    <line x1="0" y1="98" x2="283" y2="148" stroke="#ff99cc" stroke-width="2"/>
+    <line x1="0" y1="98" x2="283" y2="168" stroke="#cccc00" stroke-width="2"/>
+    <!-- LC connectors -->
+    <rect x="279" y="20"  width="32" height="16" fill="#0033cc" rx="3"/><text x="295" y="31"  text-anchor="middle" font-size="7.5" fill="white">LC</text>
+    <rect x="279" y="40"  width="32" height="16" fill="#ffa500" rx="3"/><text x="295" y="51"  text-anchor="middle" font-size="7.5" fill="white">LC</text>
+    <rect x="279" y="60"  width="32" height="16" fill="#228B22" rx="3"/><text x="295" y="71"  text-anchor="middle" font-size="7.5" fill="white">LC</text>
+    <rect x="279" y="80"  width="32" height="16" fill="#8B4513" rx="3"/><text x="295" y="91"  text-anchor="middle" font-size="7.5" fill="white">LC</text>
+    <rect x="279" y="100" width="32" height="16" fill="#888"    rx="3"/><text x="295" y="111" text-anchor="middle" font-size="7.5" fill="white">LC</text>
+    <rect x="279" y="120" width="32" height="16" fill="#cc0000" rx="3"/><text x="295" y="131" text-anchor="middle" font-size="7.5" fill="white">LC</text>
+    <rect x="279" y="140" width="32" height="16" fill="#cc6699" rx="3"/><text x="295" y="151" text-anchor="middle" font-size="7.5" fill="white">LC</text>
+    <rect x="279" y="160" width="32" height="16" fill="#888800" rx="3"/><text x="295" y="171" text-anchor="middle" font-size="7.5" fill="white">LC</text>
+    <!-- Leg length brace -->
+    <line x1="0" y1="180" x2="311" y2="180" stroke="#555" stroke-width="1" stroke-dasharray="4,3"/>
+    <text x="156" y="190" text-anchor="middle" font-size="8" fill="#555">&#8592; Leg Length (e.g. 1m) &#8594; (8 legs shown; 12 actual)</text>
+  </g>
+
+  <!-- Bottom labels -->
+  <text x="47"  y="176" text-anchor="middle" font-size="8" fill="#333" font-weight="bold">&#10102; MTP End</text>
+  <text x="220" y="176" text-anchor="middle" font-size="8" fill="#333" font-weight="bold">&#10103; Transition</text>
+  <text x="440" y="176" text-anchor="middle" font-size="8" fill="#333" font-weight="bold">&#10104; LC Duplex Legs (to equipment ports)</text>
+</svg>
+</div>
+
+<div class="cards">
+  <div class="card">
+    <h3>Breakout Length</h3>
+    <p>Distance from the MTP connector to the fan-out point. In a cable-tray environment, a 2&ndash;3m breakout lets the trunk travel clean through the tray before legs emerge. In an open-rack direct-attach scenario, a 0.5m breakout keeps things tidy. Always spec based on the physical route.</p>
+  </div>
+  <div class="card">
+    <h3>Leg Length</h3>
+    <p>Length of each individual LC (or SC) leg after the fan-out. Must reach the target equipment port. Common leg lengths: 0.5m, 1m, 1.5m, 2m. Legs can be unequal in a custom harness when ports are at different heights within a rack.</p>
+  </div>
+  <div class="card">
+    <h3>Common Configurations</h3>
+    <p>
+      MTP-12 &#8594; 6&#215; LC duplex (12F &#247; 2)<br>
+      MTP-24 &#8594; 12&#215; LC duplex (24F &#247; 2)<br>
+      MTP-24 &#8594; 2&#215; MTP-12 (split trunk)<br>
+      MTP-12 &#8594; 3&#215; MTP-4 (40G to 4&#215;10G)<br>
+      MTP-8 &#8594; 4&#215; LC duplex (SR4 exact fit)
+    </p>
+  </div>
+</div>
+
+<div class="tp">
+  <h4>&#128172; Sales Talking Points</h4>
+  <ul>
+    <li>"The array cable is where the system becomes flexible. That one MTP connection at the panel cassette fans to 12 individual LC ports. A technician can move any port connection in 30 seconds by swapping a patch cord &mdash; no tools, no downtime."</li>
+    <li>"The breakout length matters more than customers expect. If the tray is 2 meters above the panel, we spec a 2m breakout so the trunk travels clean through the tray before it fans. Wrong breakout length means ugly bundles and bent fibers at the connector."</li>
+  </ul>
+</div>
+</section>
+
+<!-- ===== SECTION 5 ===== -->
+<section id="patch-cords">
+<h2>5. Fiber Patch Cords</h2>
+<p class="intro">Patch cords are the short, flexible cables connecting equipment ports to the permanent cabling plant. They are the most frequently touched element in the fiber plant and the most common source of link failures in operating data centers &mdash; not from complex failures, but from being bent, yanked, stepped on, and reused past their service life.</p>
+
+<table>
+  <tr><th>Type</th><th>Connectors</th><th>Fibers</th><th>Typical Lengths</th><th>Primary Use</th></tr>
+  <tr>
+    <td><strong>LC Duplex</strong></td><td>2&#215; LC (side-by-side clip)</td><td>2</td>
+    <td>0.5, 1, 2, 3, 5m</td>
+    <td>SFP+, SFP28, QSFP28 breakout connections. The most common data center patch cord.</td>
+  </tr>
+  <tr>
+    <td><strong>LC Uniboot</strong></td><td>2&#215; LC in one slim jacket</td><td>2</td>
+    <td>1, 2, 3m</td>
+    <td>High-density patch panels. ~50% less bulk than standard duplex in the same panel space &mdash; measurable airflow improvement at scale.</td>
+  </tr>
+  <tr>
+    <td><strong>SC Duplex</strong></td><td>2&#215; SC (square push-on)</td><td>2</td>
+    <td>1, 2, 3, 5m</td>
+    <td>Older equipment, legacy telecom rooms, some storage arrays. 2.5mm ferrule vs. LC 1.25mm.</td>
+  </tr>
+  <tr>
+    <td><strong>MTP to MTP</strong></td><td>MTP each end (M-F or F-F)</td><td>8/12/16/24</td>
+    <td>1, 2, 3, 5m</td>
+    <td>Switch-to-panel, panel-to-panel, module-to-module connections in structured cabling systems.</td>
+  </tr>
+  <tr>
+    <td><strong>MTP to LC Duplex</strong></td><td>MTP one end, LC other</td><td>8 or 12</td>
+    <td>1, 2, 3m</td>
+    <td>Direct-attach from switch MTP port to individual equipment. Eliminates cassette in some applications.</td>
+  </tr>
+</table>
+
+<h3 class="sub">Loss Budget Quick Reference</h3>
+<table>
+  <tr><th>Parameter</th><th>LC/SC Multimode</th><th>LC/SC Single-mode</th><th>MTP&#174; Multimode</th><th>MTP&#174; Single-mode</th></tr>
+  <tr><td>Max insertion loss</td><td>0.30 dB/mating</td><td>0.30 dB/mating</td><td>0.35 dB/mating</td><td>0.35 dB/mating</td></tr>
+  <tr><td>Min return loss</td><td>20 dB</td><td>26 dB (PC) / 60 dB (APC)</td><td>20 dB</td><td>35 dB (APC)</td></tr>
+</table>
+
+<div class="tp">
+  <h4>&#128172; Sales Talking Points</h4>
+  <ul>
+    <li>"Patch cords are the most-touched part of the fiber plant and the number-one source of link failures in live data centers. Pre-polished connectors on quality fiber matter here. A bad patch cord is never worth the few dollars saved."</li>
+    <li>"Uniboot patch cords are worth the slight premium in high-density environments. Half the jacket bulk means measurably better airflow through the same panel. At 48 ports per panel across hundreds of panels, that translates to real cooling efficiency."</li>
+  </ul>
+</div>
+</section>
+
+<!-- ===== SECTION 6 ===== -->
+<section id="distances">
+<h2>6. Distance Limitations by Speed &amp; Fiber Type</h2>
+<p class="intro">Every transceiver standard defines a maximum reach. Fiber type, transceiver variant, and wavelength all interact. This table is your first reference when a customer asks &ldquo;will this link work?&rdquo;</p>
+
+<table>
+  <tr>
+    <th>Speed</th><th>IEEE Standard</th><th>Transceiver Type</th>
+    <th style="background:#006699">OM3</th>
+    <th style="background:#007799">OM4</th>
+    <th style="background:#1a8800">OM5</th>
+    <th style="background:#9a7800">OS2</th>
+  </tr>
+  <tr>
+    <td><strong>10G</strong></td><td>802.3ae</td><td>10GBASE-SR / LR</td>
+    <td class="good">300m</td><td class="good">400m</td><td class="good">400m</td><td class="good">10km (LR)</td>
+  </tr>
+  <tr>
+    <td><strong>25G</strong></td><td>802.3by</td><td>25GBASE-SR / LR</td>
+    <td class="ok">70m</td><td class="good">100m</td><td class="good">100m</td><td class="good">10km (LR)</td>
+  </tr>
+  <tr>
+    <td><strong>40G</strong></td><td>802.3ba</td><td>40GBASE-SR4 / LR4</td>
+    <td class="good">100m</td><td class="good">150m</td><td class="good">150m</td><td class="good">10km (LR4)</td>
+  </tr>
+  <tr>
+    <td><strong>100G</strong></td><td>802.3bm / 802.3cd</td><td>100GBASE-SR4 / LR4</td>
+    <td class="ok">70m</td><td class="good">100m</td><td class="good">150m *</td><td class="good">10km (LR4)</td>
+  </tr>
+  <tr>
+    <td><strong>400G</strong></td><td>802.3cm / 802.3bs</td><td>400GBASE-SR8 / LR8</td>
+    <td class="none">&mdash;</td><td class="good">100m</td><td class="good">150m *</td><td class="good">10km (LR8)</td>
+  </tr>
+  <tr>
+    <td><strong>800G</strong></td><td>802.3df</td><td>800GBASE-DR8 / emerging</td>
+    <td class="none">&mdash;</td><td class="none">&mdash;</td><td class="ok">Emerging</td><td class="good">500m (DR8)</td>
+  </tr>
+</table>
+<p style="font-size:.76rem;color:#888;margin-bottom:16px;">* OM5 reaches 150m at 100G and 400G using SWDM4 optics (Shortwave Wavelength Division Multiplexing), which transmits four wavelengths simultaneously over the wider spectral window OM5 supports. Standard SR4/SR8 optics on OM5 achieve the same reach as on OM4.</p>
+
+<div class="interactive">
+  <h4>&#128295; Distance Calculator</h4>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px;">
+    <div>
+      <label style="font-size:.84rem;font-weight:600;display:block;margin-bottom:4px;">Speed:</label>
+      <select id="calc-speed" onchange="calcDist()">
+        <option>10G</option><option>25G</option><option>40G</option>
+        <option selected>100G</option><option>400G</option><option>800G</option>
+      </select>
+    </div>
+    <div>
+      <label style="font-size:.84rem;font-weight:600;display:block;margin-bottom:4px;">Fiber Type:</label>
+      <select id="calc-fiber" onchange="calcDist()">
+        <option value="OM3">OM3 (aqua)</option>
+        <option value="OM4" selected>OM4 (aqua, US market)</option>
+        <option value="OM5">OM5 (lime green)</option>
+        <option value="OS2">OS2 (yellow, single-mode)</option>
+      </select>
+    </div>
+  </div>
+  <div id="calc-result" class="result-box">Select speed and fiber type above.</div>
+</div>
+
+<div class="tp">
+  <h4>&#128172; Sales Talking Points</h4>
+  <ul>
+    <li>"The OM4 rule of thumb at 100G: 100 meters. The vast majority of spine-to-leaf distances inside a single data hall fall inside that number. If a run is longer, we&rsquo;re into single-mode optics &mdash; and the cost of the transceivers jumps significantly."</li>
+    <li>"OM5 is the future-proofing play for 400G. Same connector, same installation, same OM4-compatible transceivers today &mdash; but when the customer upgrades to SWDM4 optics, they get 150m instead of 100m. The fiber was already there."</li>
+    <li>"At 800G, the industry is moving to single-mode for anything beyond very short reaches. DR8 on OS2 at 500m is where most hyperscalers are heading for intra-facility links at that speed."</li>
+  </ul>
+</div>
+</section>
+
+<!-- ===== SECTION 7 ===== -->
+<section id="cabling-path">
+<h2>7. The Complete Structured Cabling Path</h2>
+<p class="intro">A link from a spine switch port to a leaf switch port passes through multiple physical elements. Each element has an insertion loss contribution. Designing the system means staying inside the transceiver&rsquo;s receive power budget for every link in the fabric.</p>
+
+<div class="diagram">
+<svg viewBox="0 0 760 210" xmlns="http://www.w3.org/2000/svg" width="760" height="210">
+  <rect width="760" height="210" fill="#f7f9fc" rx="8"/>
+  <text x="380" y="18" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a2b42">Structured Cabling Path: Spine Switch &#8594; Leaf Switch (100G Example)</text>
+
+  <!-- Spine switch -->
+  <rect x="10" y="65" width="88" height="78" fill="#1a2b42" rx="6"/>
+  <text x="54" y="100" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Spine</text>
+  <text x="54" y="113" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Switch</text>
+  <text x="54" y="128" text-anchor="middle" font-size="8" fill="#99aacc">QSFP28 port</text>
+  <text x="54" y="158" text-anchor="middle" font-size="8" fill="#666">&#10102;</text>
+
+  <!-- Arrow 1 -->
+  <rect x="98" y="97" width="60" height="14" fill="#9b27af" rx="3"/>
+  <text x="128" y="108" text-anchor="middle" font-size="8" fill="white">MTP patch 2m</text>
+  <text x="128" y="80" text-anchor="middle" font-size="7.5" fill="#c0392b">&#8804;0.35 dB</text>
+
+  <!-- MDA Cassette -->
+  <rect x="158" y="52" width="76" height="104" fill="#2468b0" rx="6"/>
+  <text x="196" y="90" text-anchor="middle" font-size="9.5" fill="white" font-weight="bold">MDA</text>
+  <text x="196" y="104" text-anchor="middle" font-size="9" fill="#c8dcf5">Cassette</text>
+  <text x="196" y="118" text-anchor="middle" font-size="8" fill="#a0c0e8">or Panel</text>
+  <text x="196" y="172" text-anchor="middle" font-size="8" fill="#666">&#10103;</text>
+  <text x="196" y="183" text-anchor="middle" font-size="7" fill="#888">Main Distrib. Area</text>
+
+  <!-- Trunk cable -->
+  <rect x="234" y="97" width="145" height="14" fill="#444" rx="3"/>
+  <text x="307" y="108" text-anchor="middle" font-size="8.5" fill="white">MTP Trunk (pre-terminated, 50&ndash;100m)</text>
+  <text x="307" y="80" text-anchor="middle" font-size="7.5" fill="#27a85a">Passive &mdash; no active power consumed</text>
+  <text x="307" y="183" text-anchor="middle" font-size="8" fill="#666">&#10104; Trunk Cable</text>
+
+  <!-- HDA Cassette -->
+  <rect x="379" y="52" width="76" height="104" fill="#2468b0" rx="6"/>
+  <text x="417" y="90" text-anchor="middle" font-size="9.5" fill="white" font-weight="bold">HDA</text>
+  <text x="417" y="104" text-anchor="middle" font-size="9" fill="#c8dcf5">Cassette</text>
+  <text x="417" y="118" text-anchor="middle" font-size="8" fill="#a0c0e8">or Panel</text>
+  <text x="417" y="172" text-anchor="middle" font-size="8" fill="#666">&#10105;</text>
+  <text x="417" y="183" text-anchor="middle" font-size="7" fill="#888">Horiz. Distrib. Area</text>
+
+  <!-- Array cable -->
+  <rect x="455" y="97" width="105" height="14" fill="#e8a020" rx="3"/>
+  <text x="507" y="108" text-anchor="middle" font-size="8.5" fill="white">Array Cable (MTP &#8594; 12&#215; LC)</text>
+  <text x="507" y="80" text-anchor="middle" font-size="7.5" fill="#c0392b">&#8804;0.35 dB MTP + &#8804;0.30 dB LC</text>
+  <text x="507" y="183" text-anchor="middle" font-size="8" fill="#666">&#10106; Array Cable</text>
+
+  <!-- LC patch cords -->
+  <rect x="560" y="97" width="72" height="14" fill="#00aaaa" rx="3"/>
+  <text x="596" y="108" text-anchor="middle" font-size="8.5" fill="white">LC patches 1&ndash;2m</text>
+  <text x="596" y="80" text-anchor="middle" font-size="7.5" fill="#c0392b">&#8804;0.30 dB/conn</text>
+
+  <!-- Leaf switch -->
+  <rect x="632" y="65" width="88" height="78" fill="#1a2b42" rx="6"/>
+  <text x="676" y="100" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Leaf</text>
+  <text x="676" y="113" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Switch</text>
+  <text x="676" y="128" text-anchor="middle" font-size="8" fill="#99aacc">SFP28 ports</text>
+  <text x="676" y="158" text-anchor="middle" font-size="8" fill="#666">&#10107;</text>
+
+  <!-- Budget bar -->
+  <rect x="10" y="195" width="730" height="7" fill="#eee" rx="3"/>
+  <rect x="10" y="195" width="425" height="7" fill="#27a85a" rx="3"/>
+  <text x="10"  y="208" font-size="7" fill="#888">Link budget consumed (example): ~1.4 dB total IL (well within 100GBASE-SR4 budget of ~2.9 dB)</text>
+</svg>
+</div>
+
+<div class="interactive">
+  <h4>&#128208; Fiber Count Math &mdash; Worked Example</h4>
+  <p style="font-size:.875rem;color:#333;margin-bottom:10px;"><strong>Scenario:</strong> A customer installs a spine switch with 32 ports of 100G QSFP28-SR4. How many MTP-12 trunks are needed to connect all ports to the MDA patch panel?</p>
+  <div class="math-box">
+    <p>&#9679; 100GBASE-SR4 uses <strong>8 fibers per port</strong> (4 Tx + 4 Rx lanes) &rarr; one MTP-12 connector per switch port.</p>
+    <p>&#9679; 32 ports &times; 1 MTP-12 per port = <strong>32 MTP-12 trunks</strong> from switch faceplate to MDA.</p>
+    <p>&#9679; 32 trunks &times; 12 fibers = <strong>384 fibers total</strong> in the backbone pathway.</p>
+    <p>&#9679; Standard 1U MTP panel holds 6 MTP-12 ports per U &rarr; 32 &divide; 6 = <strong>6U of panel space</strong> (4 ports used on 6th U).</p>
+    <p>&#9679; Alternative: use <strong>4 &times; 96F trunks</strong> (8 MTP-12 each) &mdash; 4 cable pulls instead of 32, dramatically reducing tray congestion.</p>
+    <p>&#9679; Each MTP-12 port at the HDA fans to 6 LC duplex legs &rarr; 32 &times; 6 = <strong>192 LC duplex connections</strong> to leaf switch ports.</p>
+  </div>
+  <p style="font-size:.76rem;color:#888;margin-top:8px;">Note: MTP-8 trunks eliminate the 4 spare fibers per SR4 port, maximizing fiber efficiency. In practice, MTP-12 dominates because most structured cabling cassettes and panels are 12-fiber based.</p>
+</div>
+
+<div class="tp">
+  <h4>&#128172; Sales Talking Points</h4>
+  <ul>
+    <li>"The trunk is passive infrastructure &mdash; once it&rsquo;s in the tray, it stays there for 15 years. The cassettes and patch cords are the flexible layer. Our system is designed so any port can be moved in 30 seconds without touching the tray."</li>
+    <li>"When quoting a full spine-leaf fabric, count fiber pairs per port &mdash; not just ports. A 32-port 100G switch is 256 fibers at the switch faceplate. That number drives trunk counts, panel space, and pathway sizing."</li>
+  </ul>
+</div>
+</section>
+
+<!-- ===== SECTION 8 ===== -->
+<section id="polarity">
+<h2>8. Polarity: Ensuring Tx Connects to Rx</h2>
+<p class="intro">In fiber, light travels one direction per fiber. One fiber in each pair carries transmit (Tx); the other carries receive (Rx). Polarity is the discipline of ensuring the Tx at one end always connects to the Rx at the other &mdash; not to another Tx, which creates a dead link. TIA-568 defines three approved methods for MTP-based systems.</p>
+
+<div class="tip"><strong>Why it matters on installation day:</strong> A polarity error looks like a dead link. Both ends confirm power-on and no physical faults &mdash; but no traffic flows because both transceivers are transmitting into each other&rsquo;s Tx fibers. Finding it requires tracing the fiber. Standardizing on one method across a facility eliminates this entire failure class.</div>
+
+<div class="interactive">
+  <h4>&#128295; Polarity Method Visualizer &mdash; see how fibers 1&ndash;12 map end-to-end</h4>
+  <div class="polarity-btns" id="pol-btns">
+    <button class="active" onclick="setPol('A',this)">Method A</button>
+    <button onclick="setPol('B',this)">Method B</button>
+    <button onclick="setPol('C',this)">Method C</button>
+  </div>
+  <div id="pol-desc" style="font-size:.855rem;color:#444;line-height:1.6;margin-bottom:12px;"></div>
+  <div class="diagram">
+    <svg id="pol-svg" viewBox="0 0 680 155" xmlns="http://www.w3.org/2000/svg" width="680" height="155">
+      <rect width="680" height="155" fill="#f7f9fc" rx="6"/>
+    </svg>
+  </div>
+</div>
+
+<table>
+  <tr><th>Method</th><th>Trunk Configuration</th><th>Patch Cords Needed</th><th>Best For</th></tr>
+  <tr>
+    <td><strong>A</strong></td>
+    <td>Straight-pinned (key-up &harr; key-down). Fiber 1 maps to fiber 1 at far end.</td>
+    <td>Type A straight cord at one end + Type B reversed cord at the other</td>
+    <td>Simple P2P links; requires two cord types in inventory</td>
+  </tr>
+  <tr>
+    <td><strong>B</strong></td>
+    <td>Reversed trunk (key-up &harr; key-up). Fiber 1 maps to fiber 12, 2&rarr;11, etc.</td>
+    <td>Type A straight cords at <em>both</em> ends &mdash; only one cord type needed</td>
+    <td>Most popular; simplest patch cord inventory; cassette-based systems</td>
+  </tr>
+  <tr>
+    <td><strong>C</strong></td>
+    <td>Pair-flipped trunk. Pairs (1,2), (3,4)... are swapped internally.</td>
+    <td>Type A straight cords at both ends</td>
+    <td>Specific array harness applications; less common in practice</td>
+  </tr>
+</table>
+
+<div class="tp">
+  <h4>&#128172; Sales Talking Points</h4>
+  <ul>
+    <li>"We label every trunk with its polarity method and key orientation. When a technician pulls cable at 2am during a maintenance window, the label tells them exactly how it goes in. No guessing, no dead links on power-up."</li>
+    <li>"Cassette-based systems handle polarity internally. The cassette itself executes the Method B reversal. The technician plugs in a standard Type-A patch cord on both sides and the link is correct &mdash; every time. That&rsquo;s the right way to architect a system for scale."</li>
+    <li>"Standardize on Method B with matching cassettes across the facility. Every link works first time. Polarity errors are a solved problem when the system is designed right."</li>
+  </ul>
+</div>
+</section>
+
+<!-- ===== GLOSSARY ===== -->
+<section id="glossary">
+<h2>Glossary</h2>
+<div class="glossary">
+<dl>
+  <dt>Array Cable / Harness / Hydra</dt>
+  <dd>A pre-terminated assembly with an MTP connector on one end and multiple LC or SC connectors on the other, created by furcating the individual fibers from the MTP end. Distinct from a trunk cable (MTP both ends).</dd>
+
+  <dt>Attenuation / Insertion Loss (IL)</dt>
+  <dd>Reduction in optical power as light travels through fiber or across a connector mating. Measured in decibels (dB). Every connector mating, every meter of fiber contributes. The total must stay within the transceiver&rsquo;s receive power budget.</dd>
+
+  <dt>Breakout Length</dt>
+  <dd>On an array cable, the distance from the MTP connector to the fan-out (transition) point. Determines how far the trunk section travels before individual legs appear.</dd>
+
+  <dt>Cassette / Module</dt>
+  <dd>A plug-in unit for a patch panel chassis. MTP ports on the rear face the permanent cabling (trunks). LC ports on the front face the equipment (patch cords). The polarity conversion is built in internally.</dd>
+
+  <dt>Ferrule</dt>
+  <dd>The precision-machined tip of a fiber connector that holds the fiber end and aligns it during mating. MTP/MPO uses an MT (Mechanically Transferable) ferrule that holds all fibers in a flat array in a single housing.</dd>
+
+  <dt>Furcation</dt>
+  <dd>The physical splitting of a multi-fiber cable into individual fibers or smaller fiber groups, each with its own protective tubing. The mechanical process that creates the fan-out section of an array cable.</dd>
+
+  <dt>HDA &mdash; Horizontal Distribution Area</dt>
+  <dd>The cross-connect point nearest the equipment in a data center cabling hierarchy. Where array cables terminate and LC patch cords connect to servers, switches, or storage.</dd>
+
+  <dt>IEC 61754-7</dt>
+  <dd>The international standard defining the MPO connector interface geometry. Any connector meeting this standard is an MPO. MTP&reg; is US Conec&rsquo;s brand of MPO manufactured to tighter dimensional tolerances.</dd>
+
+  <dt>Key (MTP/MPO)</dt>
+  <dd>A small alignment tab on the connector housing. Key-up or key-down orientation determines fiber numbering direction and controls polarity. Never insert an MTP connector without confirming key orientation.</dd>
+
+  <dt>LC (Lucent Connector)</dt>
+  <dd>The dominant small-form-factor fiber connector in modern data centers. 1.25mm ceramic ferrule. Used in duplex pairs for SFP, SFP+, SFP28, and individual QSFP-DD lane connections.</dd>
+
+  <dt>LSZH &mdash; Low Smoke Zero Halogen</dt>
+  <dd>A cable jacket compound that releases minimal smoke and no toxic halogen gases when exposed to fire. Required in many European facilities and enclosed spaces where evacuating smoke is a life-safety concern.</dd>
+
+  <dt>MDA &mdash; Main Distribution Area</dt>
+  <dd>The central cross-connect in a data center cabling hierarchy, typically housing core or spine switches and the origination point for backbone trunk cables.</dd>
+
+  <dt>MPO &mdash; Multi-fiber Push-On</dt>
+  <dd>The IEC 61754-7 standard push-on fiber connector family supporting 8, 12, 16, or 24 fibers in a single housing. The generic connector type. MTP&reg; is a specific premium brand of MPO.</dd>
+
+  <dt>MTP&reg; &mdash; Multi-Path Push-On</dt>
+  <dd>US Conec&rsquo;s trademarked, premium implementation of the MPO standard. Features tighter ferrule tolerances (&le;0.35 dB max IL), removable/reversible guide pins, and consistent factory-controlled quality. All MTP&reg; connectors are MPO; not all MPO connectors are MTP&reg;.</dd>
+
+  <dt>OFNP / OFNR</dt>
+  <dd>Optical Fiber Non-conductive Plenum / Riser. Fire-resistance jacket ratings for fiber cable. OFNP (CMP) is required in air-handling spaces. OFNR (CMR) is for vertical runs in enclosed conduit between floors.</dd>
+
+  <dt>OM3 / OM4 / OM5</dt>
+  <dd>50/125 &micro;m multimode fiber grades. OM3 (aqua): 300m at 10G. OM4 (aqua, US market): 400m at 10G, 100m at 100G, 100m at 400G. OM5 (lime green): same as OM4 with standard optics; extends to 150m at 100G and 400G using SWDM4 optics.</dd>
+
+  <dt>OS2</dt>
+  <dd>9/125 &micro;m single-mode fiber. Yellow jacket. Extremely low attenuation. Supports distances from 2km to 80km+ depending on transceiver. Required when multimode reach is insufficient or when WDM capacity multiplication is needed.</dd>
+
+  <dt>Polarity</dt>
+  <dd>The systematic management of Tx/Rx fiber pair alignment across an MTP-based link, ensuring the transmit fiber at one end connects to the receive fiber at the other. TIA-568 defines Methods A, B, and C.</dd>
+
+  <dt>Return Loss (RL)</dt>
+  <dd>The fraction of optical power reflected back toward the source at a connector mating. Expressed in dB &mdash; higher numbers mean less back-reflection, which is better. Critical for single-mode links and laser sources sensitive to back-reflection.</dd>
+
+  <dt>SC &mdash; Subscriber Connector</dt>
+  <dd>Older 2.5mm ferrule push-on fiber connector. Larger than LC. Common in legacy data center equipment, telecom rooms, and OS2 plant. Being phased out of new high-density data center deployments.</dd>
+
+  <dt>SR4 / SR8 / LR4 / LR8</dt>
+  <dd>Transceiver lane designations. SR = Short Reach (multimode). LR = Long Reach (single-mode). The number = lane count. SR4 uses 4 fiber pairs (8 fibers). SR8 uses 8 fiber pairs (16 fibers). LR4 multiplexes 4 wavelengths over 2 fibers via CWDM.</dd>
+
+  <dt>SWDM4 &mdash; Shortwave Wavelength Division Multiplexing</dt>
+  <dd>A technique used with OM5 fiber that transmits four wavelengths simultaneously on a single fiber pair, extending multimode reach at 100G and 400G. OM5&rsquo;s wider spectral bandwidth (850&ndash;953 nm) is what enables SWDM4 vs. OM4&rsquo;s narrower window.</dd>
+
+  <dt>Trunk Cable</dt>
+  <dd>A factory-terminated, multi-fiber cable with MTP connectors on both ends. Installed in cable trays between distribution points. Passive &mdash; no active components, no breakouts. Not to be confused with array/breakout cables.</dd>
+
+  <dt>TIA-568</dt>
+  <dd>The Telecommunications Industry Association standard for commercial building and data center structured cabling, covering fiber types, connector specifications, polarity methods, and test requirements.</dd>
+
+  <dt>Uniboot</dt>
+  <dd>An LC connector form factor that combines both fibers of a duplex pair into a single slim 3mm boot, reducing patch cord bulk by approximately 50% compared to standard side-by-side duplex connectors. Significant advantage in high-density environments.</dd>
+</dl>
+</div>
+</section>
+
+</main>
+</div>
+
+<script>
+// ===== FIBER COLORS (TIA 598-C) =====
+var FC = ['#0033cc','#ffa500','#228B22','#8B4513','#aaaaaa',
+          '#eeeeee','#cc0000','#ff99cc','#cccc00','#8B008B','#008B8B','#8B5A00'];
+var FCB = ['#002299','#cc8400','#155500','#5a2800','#888888',
+           '#cccccc','#990000','#cc6699','#999900','#5a0055','#005555','#5a3400'];
+
+// ===== STRAND DATA =====
+var SD = {
+  12:  {rows:1,  cols:12, label:'12-Fiber (MTP-12)', common:true,
+        info:'The foundational trunk count. One MTP-12 connector. Supports one 100GBASE-SR4 port (8 fibers used, 4 spare) or six LC duplex connections at 10G. Most common trunk in enterprise data centers.',
+        apps:'Enterprise DC &bull; 10G / 25G / 100G-SR4 &bull; Standard array harnesses'},
+  24:  {rows:2,  cols:12, label:'24-Fiber (2&times; MTP-12)', common:true,
+        info:'24F in a single jacketed cable with two MTP-12 connectors. Supports two SR4 ports per cable pull, or 12 LC duplex connections. Efficient step up from 12F.',
+        apps:'Enterprise DC &bull; Dual 100G port per run &bull; Higher-density backbone'},
+  48:  {rows:4,  cols:12, label:'48-Fiber (4&times; MTP-12)', common:true,
+        info:'A workhorse trunk for medium-density hyperscale and enterprise spine-leaf deployments. Four MTP-12 connectors in one jacketed run. Supports four SR4 ports or 24 LC duplex pairs.',
+        apps:'Spine-leaf uplinks &bull; Hyperscale access layer &bull; Medium-density backbone'},
+  72:  {rows:6,  cols:12, label:'72-Fiber (6&times; MTP-12)', common:false,
+        info:'Six MTP-12 connectors. Less common than 48F or 96F. Used when 48F is insufficient and 96F is more than needed. Seen in specific switch port-count configurations.',
+        apps:'Mid-density backbone &bull; Custom switch port count matching'},
+  96:  {rows:8,  cols:12, label:'96-Fiber (8&times; MTP-12)', common:true,
+        info:'A high-density hyperscale standard. Eight MTP-12 connectors. Supports eight SR4 ports (800G of 100G capacity). Efficient for high-density distribution trunks and AI/ML fabric interconnect.',
+        apps:'Hyperscale spine layer &bull; High-density distribution &bull; AI/ML fabric'},
+  144: {rows:12, cols:12, label:'144-Fiber (12&times; MTP-12)', common:true,
+        info:'Twelve MTP-12 connectors in one run. Used in the most congested backbone pathways. One 144F trunk delivers 1.44 Tbps of 100G capacity per cable pull. Significantly reduces tray congestion.',
+        apps:'Hyperscale MDA-to-HDA &bull; Core backbone &bull; AI/ML cluster interconnect'},
+  216: {rows:18, cols:12, label:'216-Fiber (18&times; MTP-12)', common:false,
+        info:'Eighteen MTP-12 connectors. Specialty high-density assembly for large-scale deployments. Requires careful pulling and bend-radius management. Common in large AI/ML GPU cluster infrastructure.',
+        apps:'Hyperscale AI/ML fabric &bull; Ultra-high-density backbone'},
+  288: {rows:24, cols:12, label:'288-Fiber (24&times; MTP-12)', common:false,
+        info:'The maximum standard indoor strand count. Twenty-four MTP-12 connectors. One cable pull delivers the equivalent of 24 individual 12F trunks. Used when conduit or pathway space is the binding constraint.',
+        apps:'Hyperscale backbone &bull; Conduit-limited pathways &bull; Massive AI/ML fabric'}
+};
+
+var activeStrand = null;
+
+function setStrand(n) {
+  var d = SD[n];
+  // Update buttons
+  document.querySelectorAll('.strand-btn').forEach(function(b) {
+    b.classList.remove('active');
+    if(b.textContent === n+'F') b.classList.add('active');
+  });
+  // Info box
+  var badge = d.common
+    ? '<span style="background:#d4edda;color:#155724;border-radius:4px;padding:1px 7px;font-size:.72rem;font-weight:600;margin-left:7px;">Common</span>'
+    : '<span style="background:#f8f9fa;color:#6c757d;border-radius:4px;padding:1px 7px;font-size:.72rem;margin-left:7px;">Specialty</span>';
+  document.getElementById('strand-info').innerHTML =
+    '<strong>' + d.label + '</strong>' + badge +
+    '<br><span style="font-size:.84rem;">' + d.info + '</span>' +
+    '<br><em style="font-size:.78rem;color:#555;">Applications: ' + d.apps + '</em>';
+
+  // SVG
+  var svg = document.getElementById('strand-svg');
+  var ns = 'http://www.w3.org/2000/svg';
+  document.getElementById('ssv-dots').innerHTML = '';
+  document.getElementById('ssv-legend').innerHTML = '';
+  document.getElementById('ssv-title').textContent =
+    n + '-Fiber Trunk — ' + d.rows + ' row(s) × ' + d.cols + ' fibers per row';
+
+  var sx = 55, sy = 32, spx = 17, spy = 13, r = 4.5;
+  var rows = d.rows, cols = d.cols;
+  var dotG = document.getElementById('ssv-dots');
+  var legG = document.getElementById('ssv-legend');
+
+  for(var row=0;row<rows;row++) {
+    for(var col=0;col<cols;col++) {
+      var c = document.createElementNS(ns,'circle');
+      c.setAttribute('cx', sx + col*spx);
+      c.setAttribute('cy', sy + row*spy);
+      c.setAttribute('r', r);
+      c.setAttribute('fill', FC[col]);
+      c.setAttribute('stroke', FCB[col]);
+      c.setAttribute('stroke-width','0.6');
+      dotG.appendChild(c);
+    }
+    // Row number label
+    var rt = document.createElementNS(ns,'text');
+    rt.setAttribute('x', sx-18);
+    rt.setAttribute('y', sy + row*spy + 4);
+    rt.setAttribute('text-anchor','middle');
+    rt.setAttribute('font-size','7.5');
+    rt.setAttribute('fill','#888');
+    rt.textContent = row+1;
+    legG.appendChild(rt);
+  }
+
+  // Legend row at bottom
+  var ly = sy + rows*spy + 10;
+  for(var i=0;i<12;i++) {
+    var lc = document.createElementNS(ns,'circle');
+    lc.setAttribute('cx', sx + i*spx);
+    lc.setAttribute('cy', ly);
+    lc.setAttribute('r', 4);
+    lc.setAttribute('fill', FC[i]);
+    lc.setAttribute('stroke', FCB[i]);
+    lc.setAttribute('stroke-width','0.5');
+    legG.appendChild(lc);
+    var lt = document.createElementNS(ns,'text');
+    lt.setAttribute('x', sx + i*spx);
+    lt.setAttribute('y', ly+12);
+    lt.setAttribute('text-anchor','middle');
+    lt.setAttribute('font-size','7');
+    lt.setAttribute('fill','#666');
+    lt.textContent = i+1;
+    legG.appendChild(lt);
+  }
+
+  var newH = Math.max(110, sy + rows*spy + 30);
+  svg.setAttribute('viewBox','0 0 680 '+newH);
+  svg.setAttribute('height', newH);
+}
+
+// ===== DISTANCE CALCULATOR =====
+var DIST = {
+  '10G': {
+    OM3:{d:'300m', std:'802.3ae', txvr:'10GBASE-SR', n:''},
+    OM4:{d:'400m', std:'802.3ae', txvr:'10GBASE-SR', n:''},
+    OM5:{d:'400m', std:'802.3ae', txvr:'10GBASE-SR', n:'OM5 is backward compatible with OM4 SR optics.'},
+    OS2:{d:'10km', std:'802.3ae', txvr:'10GBASE-LR', n:'Requires LR transceiver — not SR. Single-mode.'}
+  },
+  '25G': {
+    OM3:{d:'70m',  std:'802.3by', txvr:'25GBASE-SR', n:'OM3 reach is limited at 25G. Verify actual run lengths.'},
+    OM4:{d:'100m', std:'802.3by', txvr:'25GBASE-SR', n:''},
+    OM5:{d:'100m', std:'802.3by', txvr:'25GBASE-SR', n:''},
+    OS2:{d:'10km', std:'802.3by', txvr:'25GBASE-LR', n:'Requires LR transceiver. Single-mode.'}
+  },
+  '40G': {
+    OM3:{d:'100m', std:'802.3ba', txvr:'40GBASE-SR4', n:'SR4 uses 8 fibers (4 pairs) = one MTP-12 connector per port.'},
+    OM4:{d:'150m', std:'802.3ba', txvr:'40GBASE-SR4', n:'SR4 uses 8 fibers (4 pairs) = one MTP-12 connector per port.'},
+    OM5:{d:'150m', std:'802.3ba', txvr:'40GBASE-SR4', n:'SR4 uses 8 fibers (4 pairs) = one MTP-12 connector per port.'},
+    OS2:{d:'10km', std:'802.3ba', txvr:'40GBASE-LR4', n:'LR4 multiplexes 4 CWDM wavelengths over 2 OS2 fibers.'}
+  },
+  '100G': {
+    OM3:{d:'70m',  std:'802.3bm', txvr:'100GBASE-SR4', n:'OM3 reach drops significantly at 100G. Verify all link lengths.'},
+    OM4:{d:'100m', std:'802.3bm', txvr:'100GBASE-SR4', n:'SR4 uses 8 fibers (4 pairs) — one MTP-12 per port.'},
+    OM5:{d:'150m (SWDM4)', std:'802.3bm + SWDM4', txvr:'100G-SWDM4', n:'Requires SWDM4 optics for 150m. Standard SR4 optics on OM5 achieve 100m (same as OM4).'},
+    OS2:{d:'10km', std:'802.3ba', txvr:'100GBASE-LR4', n:'LR4 uses 4 CWDM wavelengths over 2 OS2 fibers.'}
+  },
+  '400G': {
+    OM3:{d:'Not supported', std:'—', txvr:'—', n:'OM3 is not rated for 400G.'},
+    OM4:{d:'100m', std:'802.3cm', txvr:'400GBASE-SR8', n:'SR8 uses 16 fibers (8 pairs) — requires MTP-16 or 2×MTP-8 per port.'},
+    OM5:{d:'150m (SWDM)', std:'802.3cm', txvr:'400GBASE-SR8 / SWDM variant', n:'SWDM variant on OM5 reaches 150m. Standard SR8 on OM5 = 100m (same as OM4).'},
+    OS2:{d:'10km', std:'802.3bs', txvr:'400GBASE-LR8', n:'LR8 uses 8 wavelengths over 2 OS2 fibers.'}
+  },
+  '800G': {
+    OM3:{d:'Not supported', std:'—', txvr:'—', n:'OM3 not rated for 800G.'},
+    OM4:{d:'Not standardized', std:'—', txvr:'—', n:'Industry moving to single-mode for 800G. No ratified multimode 800G standard.'},
+    OM5:{d:'Emerging', std:'802.3df (in progress)', txvr:'Vendor-specific SWDM variants', n:'Some vendor solutions exist but no ratified OM5 800G standard as of 2026.'},
+    OS2:{d:'500m (DR8)', std:'802.3df', txvr:'800GBASE-DR8', n:'DR8 uses 8 parallel SM fibers. Other variants (FR8, LR8) support 2km–10km.'}
+  }
+};
+
+function calcDist() {
+  var sp = document.getElementById('calc-speed').value;
+  var fi = document.getElementById('calc-fiber').value;
+  var d = DIST[sp][fi];
+  var ok = d.d.indexOf('Not') === -1 && d.d !== 'Not standardized';
+  var col = ok ? '#0066cc' : '#c0392b';
+  document.getElementById('calc-result').innerHTML =
+    '<strong style="color:'+col+';font-size:1.05rem;">'+d.d+'</strong> maximum reach<br>' +
+    '<span style="font-size:.84rem;">Standard: '+d.std+' &bull; Transceiver: <strong>'+d.txvr+'</strong></span>' +
+    (d.n ? '<br><em style="font-size:.79rem;color:#555;">ℹ️ '+d.n+'</em>' : '');
+}
+
+// ===== POLARITY VISUALIZER =====
+var POLMAP = {
+  A:[1,2,3,4,5,6,7,8,9,10,11,12],
+  B:[12,11,10,9,8,7,6,5,4,3,2,1],
+  C:[2,1,4,3,6,5,8,7,10,9,12,11]
+};
+var POLDESC = {
+  A:'<strong>Method A &mdash; Straight-Pinned Trunk:</strong> The trunk cable maps fiber 1 to fiber 1 end-to-end. However, the key flips orientation, which reverses fiber numbering at the far end. To achieve correct Tx&rarr;Rx polarity, one patch cord must be Type A (straight) and the other Type B (reversed). Requires two patch cord types in inventory. Less common in new installations.',
+  B:'<strong>Method B &mdash; Reversed Trunk:</strong> The trunk fully reverses the fiber map &mdash; fiber 1 at the near end connects to fiber 12 at the far end, 2&rarr;11, and so on. Both ends use identical Type A (straight) patch cords. The trunk handles the Tx/Rx swap. <strong>Most popular method</strong> because it requires only one patch cord type and works naturally with cassette-based structured cabling systems.',
+  C:'<strong>Method C &mdash; Pair-Flipped Trunk:</strong> The trunk swaps Tx/Rx within each fiber pair. Pair (1,2) becomes (2,1) at the far end; pair (3,4) becomes (4,3), and so on. Both ends use Type A straight patch cords. Used in specific array harness configurations. Less common in practice than Method B.'
+};
+
+function setPol(m, btn) {
+  document.querySelectorAll('#pol-btns button').forEach(function(b){b.classList.remove('active');});
+  if(btn) btn.classList.add('active');
+  document.getElementById('pol-desc').innerHTML = POLDESC[m];
+
+  var svg = document.getElementById('pol-svg');
+  var ns = 'http://www.w3.org/2000/svg';
+  while(svg.firstChild) svg.removeChild(svg.firstChild);
+
+  function el(tag, attrs, text) {
+    var e = document.createElementNS(ns, tag);
+    for(var k in attrs) e.setAttribute(k, attrs[k]);
+    if(text !== undefined) e.textContent = text;
+    svg.appendChild(e);
+    return e;
+  }
+
+  el('rect',{width:680,height:155,fill:'#f7f9fc',rx:6});
+  el('text',{x:130,y:15,'text-anchor':'middle','font-size':9.5,'font-weight':'bold',fill:'#1a2b42'},'Near End');
+  el('text',{x:550,y:15,'text-anchor':'middle','font-size':9.5,'font-weight':'bold',fill:'#1a2b42'},'Far End');
+  el('text',{x:340,y:15,'text-anchor':'middle','font-size':9.5,fill:'#e8a020'},'Trunk — Method '+m+' fiber mapping');
+
+  var map = POLMAP[m];
+  var nx=130, fx=550, sy=25, sp=10;
+
+  for(var i=0;i<12;i++) {
+    var farI = map[i]-1;
+    var ny = sy + i*sp;
+    var fy = sy + farI*sp;
+    var col = FC[i];
+    var bcol = FCB[i];
+
+    // connecting line
+    el('line',{x1:nx+8,y1:ny,x2:fx-8,y2:fy,stroke:col,'stroke-width':1.5,opacity:.65});
+    // near dot
+    el('circle',{cx:nx,cy:ny,r:5.5,fill:col,stroke:bcol,'stroke-width':.6});
+    // near label left
+    el('text',{x:nx-12,y:ny+4,'text-anchor':'end','font-size':8,fill:'#333'},'F'+(i+1));
+    // far dot
+    el('circle',{cx:fx,cy:fy,r:5.5,fill:col,stroke:bcol,'stroke-width':.6});
+    // far label right
+    el('text',{x:fx+12,y:fy+4,'text-anchor':'start','font-size':8,fill:'#333'},'F'+(farI+1));
+  }
+
+  // Tx/Rx annotations
+  el('text',{x:nx,y:148,'text-anchor':'middle','font-size':7.5,fill:'#888'},'Fiber 1–12 (Tx)');
+  el('text',{x:fx,y:148,'text-anchor':'middle','font-size':7.5,fill:'#888'},'Mapped positions (Rx)');
+  el('text',{x:340,y:148,'text-anchor':'middle','font-size':7.5,fill:'#aaa'},'Trace each color to see where each fiber lands at the far end');
+}
+
+// ===== SIDEBAR ACTIVE HIGHLIGHT =====
+window.addEventListener('scroll', function() {
+  var cur = '';
+  document.querySelectorAll('section[id]').forEach(function(s) {
+    if(s.getBoundingClientRect().top <= 90) cur = s.id;
+  });
+  document.querySelectorAll('aside a').forEach(function(a) {
+    a.classList.toggle('active', a.getAttribute('href') === '#'+cur);
+  });
+});
+
+// ===== INIT =====
+setStrand(12);
+calcDist();
+setPol('A', document.querySelector('#pol-btns button'));
+</script>
+</body>
+</html>
